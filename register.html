@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | Fame Store</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .auth-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f9ff, #ffffff, #fffbea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .auth-container {
+            width: min(460px, 100%);
+        }
+
+        .auth-brand {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .auth-logo {
+            width: 55px;
+            height: 55px;
+            background: #ffc928;
+            border-radius: 15px;
+            display: inline-grid;
+            place-items: center;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .auth-brand h1 {
+            color: #0757d9;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .auth-brand p {
+            color: #667085;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .auth-card {
+            background: #ffffff;
+            border: 1px solid #e5eaf1;
+            border-radius: 22px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(7, 87, 217, 0.12);
+        }
+
+        .auth-card h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .auth-subtitle {
+            text-align: center;
+            color: #667085;
+            font-size: 13px;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+            color: #101828;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #d9e0ea;
+            border-radius: 10px;
+            padding: 0 15px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: .2s;
+            background: #fff;
+        }
+
+        .form-input:focus {
+            border-color: #0757d9;
+            box-shadow: 0 0 0 3px rgba(7, 87, 217, .08);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            font-size: 17px;
+        }
+
+        .terms {
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+            margin: 18px 0;
+            color: #667085;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .terms input {
+            margin-top: 2px;
+            accent-color: #0757d9;
+        }
+
+        .terms a {
+            color: #0757d9;
+            font-weight: 700;
+        }
+
+        .create-account-btn {
+            width: 100%;
+            height: 52px;
+            border: 0;
+            border-radius: 11px;
+            background: #0757d9;
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .create-account-btn:hover {
+            background: #063b91;
+        }
+
+        .create-account-btn:disabled {
+            opacity: .65;
+            cursor: not-allowed;
+        }
+
+        .auth-message {
+            display: none;
+            padding: 12px;
+            border-radius: 9px;
+            font-size: 12px;
+            margin-bottom: 17px;
+            text-align: center;
+        }
+
+        .auth-message.error {
+            display: block;
+            background: #fff0f0;
+            color: #c62828;
+            border: 1px solid #ffd0d0;
+        }
+
+        .auth-message.success {
+            display: block;
+            background: #ecfff4;
+            color: #087443;
+            border: 1px solid #b9efd1;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 22px;
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .login-text a {
+            color: #0757d9;
+            font-weight: 700;
+        }
+
+        .back-home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #667085;
+            font-size: 12px;
+        }
+
+        .back-home:hover {
+            color: #0757d9;
+        }
+
+        @media (max-width: 500px) {
+            .auth-card {
+                padding: 25px 20px;
+            }
+
+            .auth-card h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="auth-page">
+
+    <div class="auth-container">
+
+        <!-- BRAND -->
+
+        <div class="auth-brand">
+
+            <div class="auth-logo">
+                🛍️
+            </div>
+
+            <h1>Fame Store</h1>
+
+            <p>
+                Send gifts 🎁, share love
+            </p>
+
+        </div>
+
+
+        <!-- REGISTER CARD -->
+
+        <div class="auth-card">
+
+            <h2>Join Us Today</h2>
+
+            <p class="auth-subtitle">
+                Sign up today and experience the joy of gifting
+            </p>
+
+
+            <div id="authMessage" class="auth-message"></div>
+
+
+            <form id="registerForm">
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        class="form-input"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- GMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Gmail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-input"
+                        placeholder="Enter your Gmail address"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-input"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="togglePassword">
+                            👁️
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            class="form-input"
+                            placeholder="Confirm your password"
+                            autocomplete="new-password"
+                            minlength="6"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="toggleConfirmPassword">
+                            👁️
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <span>
+                        I agree to the
+                        <a href="#">Terms & Conditions</a>
+                        and
+                        <a href="#">Privacy Policy</a>.
+                    </span>
+
+                </label>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="create-account-btn"
+                    id="registerBtn">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+
+            <p class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login Account
+                </a>
+
+            </p>
+
+        </div>
+
+
+        <a href="index.html" class="back-home">
+            ← Back to Fame Store
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        updateProfile
+    }
+    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+    import {
+        getFirestore,
+        doc,
+        setDoc,
+        serverTimestamp
+    }
+    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+    // Firebase configuration
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
+
+        authDomain: "fame-store-ea8b7.firebaseapp.com",
+
+        projectId: "fame-store-ea8b7",
+
+        storageBucket: "fame-store-ea8b7.firebasestorage.app",
+
+        messagingSenderId: "484192010044",
+
+        appId: "1:484192010044:web:8b1c496d5baa492d74a839",
+
+        measurementId: "G-YTGM3N01V6"
+
+    };
+
+
+    // Initialize Firebase
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    const db = getFirestore(app);
+
+
+    // Elements
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const fullName =
+        document.getElementById("fullName");
+
+    const email =
+        document.getElementById("email");
+
+    const password =
+        document.getElementById("password");
+
+    const confirmPassword =
+        document.getElementById("confirmPassword");
+
+    const terms =
+        document.getElementById("terms");
+
+    const registerBtn =
+        document.getElementById("registerBtn");
+
+    const authMessage =
+        document.getElementById("authMessage");
+
+
+    // Show message
+
+    function showMessage(message, type) {
+
+        authMessage.textContent = message;
+
+        authMessage.className =
+            "auth-message " + type;
+
+    }
+
+
+    // Hide/show password
+
+    document
+        .getElementById("togglePassword")
+        .addEventListener("click", () => {
+
+            if (password.type === "password") {
+
+                password.type = "text";
+
+            } else {
+
+                password.type = "password";
+
+            }
+
+        });
+
+
+    document
+        .getElementById("toggleConfirmPassword")
+        .addEventListener("click", () => {
+
+            if (confirmPassword.type === "password") {
+
+                confirmPassword.type = "text";
+
+            } else {
+
+                confirmPassword.type = "password";
+
+            }
+
+        });
+
+
+    // Registration
+
+    registerForm.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+
+        const nameValue =
+            fullName.value.trim();
+
+        const emailValue =
+            email.value.trim().toLowerCase();
+
+        const passwordValue =
+            password.value;
+
+        const confirmValue =
+            confirmPassword.value;
+
+
+        // Check name
+
+        if (nameValue.length < 2) {
+
+            showMessage(
+                "Please enter your full name.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        // Check Gmail
+
+        if (
+            !emailValue.endsWith("@gmail.com")
+        ) {
+
+            showMessage(
+                "Please use a valid Gmail address.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        // Check password
+
+        if (passwordValue.length < 6) {
+
+            showMessage(
+                "Password must contain at least 6 characters.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        // Check matching password
+
+        if (passwordValue !== confirmValue) {
+
+            showMessage(
+                "Passwords do not match.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        // Check terms
+
+        if (!terms.checked) {
+
+            showMessage(
+                "Please agree to the Terms & Conditions and Privacy Policy.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        // Disable button
+
+        registerBtn.disabled = true;
+
+        registerBtn.textContent =
+            "Creating Account...";
+
+
+        try {
+
+            // Create Firebase Authentication account
+
+            const userCredential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    emailValue,
+                    passwordValue
+                );
+
+
+            const user =
+                userCredential.user;
+
+
+            // Add display name
+
+            await updateProfile(user, {
+
+                displayName: nameValue
+
+            });
+
+
+            // Create customer Firestore profile
+
+            await setDoc(
+                doc(db, "users", user.uid),
+                {
+
+                    uid: user.uid,
+
+                    fullName: nameValue,
+
+                    email: emailValue,
+
+                    walletBalance: 0,
+
+                    accountStatus: "active",
+
+                    role: "customer",
+
+                    createdAt: serverTimestamp(),
+
+                    updatedAt: serverTimestamp()
+
+                }
+            );
+
+
+            // Success
+
+            showMessage(
+                "Account created successfully. Redirecting...",
+                "success"
+            );
+
+
+            // Redirect
+
+            setTimeout(() => {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }, 1200);
+
+
+        } catch (error) {
+
+            console.error(
+                "Registration error:",
+                error
+            );
+
+
+            let message =
+                "Unable to create your account. Please try again.";
+
+
+            if (
+                error.code ===
+                "auth/email-already-in-use"
+            ) {
+
+                message =
+                    "This Gmail is already registered. Please login instead.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/invalid-email"
+            ) {
+
+                message =
+                    "Please enter a valid Gmail address.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/weak-password"
+            ) {
+
+                message =
+                    "Your password is too weak. Use at least 6 characters.";
+
+            }
+
+            else if (
+                error.code ===
+                "auth/network-request-failed"
+            ) {
+
+                message =
+                    "Network error. Check your internet connection.";
+
+            }
+
+            else if (
+                error.code ===
+                "permission-denied"
+            ) {
+
+                message =
+                    "Account created, but your profile could not be saved. Check Firestore rules.";
+
+            }
+
+
+            showMessage(
+                message,
+                "error"
+            );
+
+
+            registerBtn.disabled = false;
+
+            registerBtn.textContent =
+                "Create Account";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
