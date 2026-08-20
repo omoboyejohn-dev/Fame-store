@@ -301,11 +301,11 @@
         .country-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 30px rgba(7, 87, 217, .09);
+            border-color: var(--blue);
         }
 
-        .country-card.selected {
-            border: 2px solid var(--blue);
-            background: #f1f7ff;
+        .country-card:active {
+            transform: scale(.98);
         }
 
         .country-flag {
@@ -341,6 +341,12 @@
             align-items: center;
             justify-content: space-between;
             gap: 15px;
+            transition: .25s;
+        }
+
+        .other-country:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
         }
 
         .other-left {
@@ -367,53 +373,6 @@
         .other-country span {
             color: var(--gray);
             font-size: 11px;
-        }
-
-        /* SELECTION */
-
-        .selection-box {
-            display: none;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 18px;
-            margin-top: 20px;
-        }
-
-        .selection-box.show {
-            display: block;
-        }
-
-        .selection-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .selection-info p {
-            color: var(--gray);
-            font-size: 11px;
-            margin-bottom: 3px;
-        }
-
-        .selected-country {
-            color: var(--blue);
-            font-weight: 800;
-        }
-
-        .continue-btn {
-            border: 0;
-            background: var(--blue);
-            color: white;
-            padding: 12px 19px;
-            border-radius: 9px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .continue-btn:hover {
-            background: var(--dark-blue);
         }
 
         /* SUPPORT */
@@ -844,7 +803,7 @@
 
                 <div
                     class="country-card"
-                    data-country="USA">
+                    data-page="usa.html">
 
                     <span class="country-flag">
                         🇺🇸
@@ -859,7 +818,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Canada">
+                    data-page="canada.html">
 
                     <span class="country-flag">
                         🇨🇦
@@ -874,7 +833,7 @@
 
                 <div
                     class="country-card"
-                    data-country="UK">
+                    data-page="uk.html">
 
                     <span class="country-flag">
                         🇬🇧
@@ -889,7 +848,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Germany">
+                    data-page="germany.html">
 
                     <span class="country-flag">
                         🇩🇪
@@ -904,7 +863,7 @@
 
                 <div
                     class="country-card"
-                    data-country="South Africa">
+                    data-page="south-africa.html">
 
                     <span class="country-flag">
                         🇿🇦
@@ -919,7 +878,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Belgium">
+                    data-page="belgium.html">
 
                     <span class="country-flag">
                         🇧🇪
@@ -934,7 +893,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Philippines">
+                    data-page="philippines.html">
 
                     <span class="country-flag">
                         🇵🇭
@@ -949,7 +908,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Portugal">
+                    data-page="portugal.html">
 
                     <span class="country-flag">
                         🇵🇹
@@ -964,7 +923,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Spain">
+                    data-page="spain.html">
 
                     <span class="country-flag">
                         🇪🇸
@@ -979,7 +938,7 @@
 
                 <div
                     class="country-card"
-                    data-country="France">
+                    data-page="france.html">
 
                     <span class="country-flag">
                         🇫🇷
@@ -994,7 +953,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Mexico">
+                    data-page="mexico.html">
 
                     <span class="country-flag">
                         🇲🇽
@@ -1009,7 +968,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Turkey">
+                    data-page="turkey.html">
 
                     <span class="country-flag">
                         🇹🇷
@@ -1024,7 +983,7 @@
 
                 <div
                     class="country-card"
-                    data-country="China">
+                    data-page="china.html">
 
                     <span class="country-flag">
                         🇨🇳
@@ -1039,7 +998,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Saudi Arabia">
+                    data-page="saudi-arabia.html">
 
                     <span class="country-flag">
                         🇸🇦
@@ -1054,7 +1013,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Australia">
+                    data-page="australia.html">
 
                     <span class="country-flag">
                         🇦🇺
@@ -1069,7 +1028,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Kuwait">
+                    data-page="kuwait.html">
 
                     <span class="country-flag">
                         🇰🇼
@@ -1084,7 +1043,7 @@
 
                 <div
                     class="country-card"
-                    data-country="Italy">
+                    data-page="italy.html">
 
                     <span class="country-flag">
                         🇮🇹
@@ -1128,44 +1087,6 @@
                 <strong>
                     →
                 </strong>
-
-            </div>
-
-
-            <!-- SELECTION -->
-
-            <div
-                class="selection-box"
-                id="selectionBox">
-
-                <div class="selection-info">
-
-                    <div>
-
-                        <p>
-                            Selected destination:
-                        </p>
-
-                        <div
-                            class="selected-country"
-                            id="selectedCountry">
-
-                            —
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        class="continue-btn"
-                        id="continueBtn">
-
-                        Continue →
-
-                    </button>
-
-                </div>
 
             </div>
 
@@ -1385,17 +1306,6 @@
             }
 
 
-            /*
-             * USER PROFILE
-             *
-             * The document is:
-             *
-             * users / USER_UID
-             *
-             * onSnapshot keeps the dashboard
-             * synchronized with Firestore.
-             */
-
             const userRef =
                 doc(
                     db,
@@ -1429,9 +1339,7 @@
                         snapshot.data();
 
 
-                    /* =========================
-                       NAME
-                    ========================= */
+                    /* NAME */
 
                     const name =
                         data.fullName ||
@@ -1443,9 +1351,7 @@
                         name;
 
 
-                    /* =========================
-                       PROFILE INITIAL
-                    ========================= */
+                    /* PROFILE INITIAL */
 
                     const initial =
                         name
@@ -1458,9 +1364,7 @@
                         initial || "?";
 
 
-                    /* =========================
-                       WALLET BALANCE
-                    ========================= */
+                    /* WALLET BALANCE */
 
                     const balance =
                         Number(
@@ -1570,36 +1474,13 @@
 
 
     /* =========================
-       COUNTRY SELECTION
+       COUNTRY DIRECT OPEN
     ========================= */
 
     const countryCards =
         document.querySelectorAll(
             ".country-card"
         );
-
-    const otherCountry =
-        document.getElementById(
-            "otherCountry"
-        );
-
-    const selectionBox =
-        document.getElementById(
-            "selectionBox"
-        );
-
-    const selectedCountry =
-        document.getElementById(
-            "selectedCountry"
-        );
-
-    const continueBtn =
-        document.getElementById(
-            "continueBtn"
-        );
-
-
-    let selectedDestination = "";
 
 
     countryCards.forEach(card => {
@@ -1608,33 +1489,30 @@
             "click",
             () => {
 
-                countryCards.forEach(
-                    item => {
-
-                        item.classList.remove(
-                            "selected"
-                        );
-
-                    }
-                );
+                const page =
+                    card.dataset.page;
 
 
-                card.classList.add(
-                    "selected"
-                );
+                if (!page) {
+
+                    showToast(
+                        "Country page is not available yet."
+                    );
+
+                    return;
+
+                }
 
 
-                selectedDestination =
-                    card.dataset.country;
+                /*
+                 * Open the selected country
+                 * immediately.
+                 *
+                 * No Continue button.
+                 */
 
-
-                selectedCountry.textContent =
-                    selectedDestination;
-
-
-                selectionBox.classList.add(
-                    "show"
-                );
+                window.location.href =
+                    page;
 
             }
         );
@@ -1646,60 +1524,18 @@
        OTHER COUNTRIES
     ========================= */
 
+    const otherCountry =
+        document.getElementById(
+            "otherCountry"
+        );
+
+
     otherCountry.addEventListener(
         "click",
         () => {
 
-            countryCards.forEach(
-                card => {
-
-                    card.classList.remove(
-                        "selected"
-                    );
-
-                }
-            );
-
-
-            selectedDestination =
-                "Other Countries";
-
-
-            selectedCountry.textContent =
-                selectedDestination;
-
-
-            selectionBox.classList.add(
-                "show"
-            );
-
-        }
-    );
-
-
-    /* =========================
-       CONTINUE
-    ========================= */
-
-    continueBtn.addEventListener(
-        "click",
-        () => {
-
-            if (!selectedDestination) {
-
-                showToast(
-                    "Please select a destination first."
-                );
-
-                return;
-
-            }
-
-
-            showToast(
-                selectedDestination +
-                " selected. Gift selection coming next."
-            );
+            window.location.href =
+                "countries.html";
 
         }
     );
