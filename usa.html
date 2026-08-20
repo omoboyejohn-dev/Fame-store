@@ -1,1260 +1,1975 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>USA Gifts | Fame Store</title>
+    <meta charset="UTF-8">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fb;
-      color: #172033;
-    }
+    <title>USA Gifts | Fame Store</title>
 
-    header {
-      background: linear-gradient(135deg, #0d47a1, #1565c0);
-      color: white;
-      padding: 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
 
-    .header-inner {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
+    <style>
 
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    .wallet {
-      background: rgba(255,255,255,.15);
-      padding: 10px 15px;
-      border-radius: 12px;
-      font-weight: bold;
-    }
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px 18px;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f9ff;
+            color: #101828;
+        }
 
-    .page-title {
-      text-align: center;
-      margin-bottom: 25px;
-    }
 
-    .page-title h1 {
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
 
-    .page-title p {
-      color: #687386;
-    }
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
+        button {
+            cursor: pointer;
+        }
 
-    .product-card {
-      background: white;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,.08);
-      transition: .25s;
-    }
 
-    .product-card:hover {
-      transform: translateY(-4px);
-    }
+        /* HEADER */
 
-    .product-card img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      display: block;
-      background: #eee;
-    }
+        header {
+            background: linear-gradient(
+                135deg,
+                #0757d9,
+                #0d6efd
+            );
 
-    .product-info {
-      padding: 16px;
-    }
+            color: white;
+            padding: 17px 20px;
 
-    .product-info h3 {
-      font-size: 17px;
-      margin-bottom: 8px;
-    }
+            position: sticky;
+            top: 0;
 
-    .price {
-      color: #0d47a1;
-      font-size: 19px;
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
+            z-index: 100;
+        }
 
-    button {
-      border: none;
-      cursor: pointer;
-      border-radius: 10px;
-      padding: 13px 16px;
-      font-weight: 700;
-      width: 100%;
-    }
 
-    .gift-btn {
-      background: #0d47a1;
-      color: white;
-    }
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
 
-    .gift-btn:hover {
-      background: #083579;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    /* CHECKOUT */
+            gap: 15px;
+        }
 
-    .checkout {
-      display: none;
-      max-width: 700px;
-      margin: 20px auto;
-    }
 
-    .checkout.active {
-      display: block;
-    }
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+        }
 
-    .products-section.hidden {
-      display: none;
-    }
 
-    .back-btn {
-      background: #e9eef7;
-      color: #172033;
-      margin-bottom: 15px;
-    }
+        .wallet {
+            background: rgba(255,255,255,.15);
+            padding: 10px 14px;
+            border-radius: 10px;
 
-    .checkout-card {
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      box-shadow: 0 8px 30px rgba(0,0,0,.08);
-    }
+            font-size: 13px;
+            font-weight: 700;
+        }
 
-    .checkout-card h2 {
-      margin-bottom: 22px;
-    }
 
-    .selected-product {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      padding: 12px;
-      background: #f5f7fb;
-      border-radius: 12px;
-      margin-bottom: 25px;
-    }
+        /* CONTAINER */
 
-    .selected-product img {
-      width: 70px;
-      height: 70px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 18px;
+        }
 
-    .section-title {
-      font-size: 18px;
-      font-weight: 800;
-      margin: 25px 0 12px;
-    }
 
-    label {
-      display: block;
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
+        .page-title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #d8deea;
-      border-radius: 10px;
-      outline: none;
-      font-size: 15px;
-      margin-bottom: 14px;
-    }
 
-    input:focus,
-    textarea:focus {
-      border-color: #1565c0;
-    }
+        .page-title h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
 
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
 
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+        .page-title p {
+            color: #667085;
+            font-size: 14px;
+        }
 
-    .summary {
-      background: #f5f7fb;
-      padding: 18px;
-      border-radius: 14px;
-      margin-top: 15px;
-    }
 
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
+        /* PRODUCTS */
 
-    .summary-row.total {
-      border-top: 1px solid #d8deea;
-      padding-top: 14px;
-      font-size: 18px;
-      font-weight: 800;
-    }
+        .products {
+            display: grid;
 
-    .balance {
-      color: #16803c;
-      font-weight: 700;
-    }
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(220px, 1fr)
+                );
 
-    .confirm-btn {
-      background: #f4c400;
-      color: #111;
-      margin-top: 18px;
-      font-size: 16px;
-    }
+            gap: 20px;
+        }
 
-    .confirm-btn:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-    }
 
-    .message {
-      display: none;
-      padding: 13px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      font-weight: 600;
-    }
+        .product-card {
+            background: white;
 
-    .message.error {
-      display: block;
-      background: #ffe8e8;
-      color: #b42318;
-    }
+            border: 1px solid #e5eaf1;
 
-    .message.success {
-      display: block;
-      background: #e8f8ee;
-      color: #16743a;
-    }
+            border-radius: 18px;
 
-    @media(max-width:600px) {
-      .row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
+            overflow: hidden;
 
-      .product-card img {
-        height: 220px;
-      }
+            box-shadow:
+                0 10px 30px
+                rgba(7,87,217,.08);
 
-      .checkout-card {
-        padding: 18px;
-      }
+            transition: .2s;
+        }
 
-      .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+
+
+        .product-image {
+            width: 100%;
+            height: 245px;
+
+            object-fit: cover;
+
+            display: block;
+
+            background: #edf2f7;
+        }
+
+
+        .product-info {
+            padding: 17px;
+        }
+
+
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 9px;
+        }
+
+
+        .product-description {
+            color: #667085;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+
+        .price {
+            color: #0757d9;
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 14px;
+        }
+
+
+        .gift-btn {
+            width: 100%;
+            border: 0;
+
+            background: #0757d9;
+            color: white;
+
+            padding: 13px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .gift-btn:hover {
+            background: #063b91;
+        }
+
+
+        /* CHECKOUT */
+
+        #checkout {
+            display: none;
+        }
+
+
+        #checkout.active {
+            display: block;
+        }
+
+
+        #productsSection.hidden {
+            display: none;
+        }
+
+
+        .checkout-container {
+            max-width: 720px;
+            margin: auto;
+            padding: 30px 18px;
+        }
+
+
+        .checkout-card {
+            background: white;
+
+            border: 1px solid #e5eaf1;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 15px 45px
+                rgba(7,87,217,.10);
+        }
+
+
+        .back-btn {
+            border: 0;
+
+            background: #eef3f9;
+            color: #344054;
+
+            padding: 11px 15px;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+
+        .checkout-title {
+            font-size: 27px;
+            margin-bottom: 20px;
+        }
+
+
+        /* SELECTED PRODUCT */
+
+        .selected-product {
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 13px;
+
+            background: #f5f9ff;
+
+            border-radius: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .selected-product img {
+            width: 75px;
+            height: 75px;
+
+            border-radius: 10px;
+
+            object-fit: cover;
+        }
+
+
+        .selected-product-name {
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+
+        .selected-product-price {
+            color: #0757d9;
+            font-weight: 800;
+        }
+
+
+        /* SECTION */
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+
+            margin-top: 25px;
+            margin-bottom: 13px;
+        }
+
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+
+        label {
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+
+        input,
+        textarea {
+            width: 100%;
+
+            border: 1px solid #d9e0ea;
+
+            border-radius: 10px;
+
+            padding: 13px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            background: white;
+        }
+
+
+        input {
+            height: 50px;
+        }
+
+
+        textarea {
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+
+        input:focus,
+        textarea:focus {
+            border-color: #0757d9;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(7,87,217,.08);
+        }
+
+
+        .row {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+        }
+
+
+        /* SUMMARY */
+
+        .summary {
+            background: #f5f9ff;
+
+            border-radius: 14px;
+
+            padding: 18px;
+
+            margin-top: 10px;
+        }
+
+
+        .summary-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 13px;
+
+            font-size: 14px;
+        }
+
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .summary-total {
+            border-top: 1px solid #dce4ef;
+
+            padding-top: 14px;
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        .balance {
+            color: #087443;
+            font-weight: 800;
+        }
+
+
+        /* CONFIRM */
+
+        .confirm-btn {
+            width: 100%;
+
+            border: 0;
+
+            background: #ffc928;
+
+            color: #101828;
+
+            padding: 15px;
+
+            border-radius: 11px;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            margin-top: 18px;
+        }
+
+
+        .confirm-btn:hover {
+            background: #f0b900;
+        }
+
+
+        .confirm-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+
+        /* MESSAGE */
+
+        .message {
+            display: none;
+
+            padding: 13px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+
+            line-height: 1.5;
+        }
+
+
+        .message.error {
+            display: block;
+
+            background: #fff1f0;
+
+            color: #b42318;
+
+            border: 1px solid #ffd3d0;
+        }
+
+
+        .message.success {
+            display: block;
+
+            background: #ecfff4;
+
+            color: #087443;
+
+            border: 1px solid #b9efd1;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 600px) {
+
+            .header-inner {
+                align-items: flex-start;
+            }
+
+
+            .logo {
+                font-size: 20px;
+            }
+
+
+            .wallet {
+                font-size: 12px;
+            }
+
+
+            .page-title h1 {
+                font-size: 25px;
+            }
+
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+
+            .checkout-card {
+                padding: 19px;
+            }
+
+
+            .checkout-title {
+                font-size: 24px;
+            }
+
+
+            .product-image {
+                height: 230px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="logo">Fame Store</div>
 
-    <div class="wallet">
-      Wallet:
-      <span id="walletBalance">₦0.00</span>
+<!-- HEADER -->
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="logo">
+            Fame Store
+        </div>
+
+
+        <div class="wallet">
+
+            Wallet:
+            <span id="walletBalance">
+                ₦0.00
+            </span>
+
+        </div>
+
     </div>
-  </div>
+
 </header>
 
 
-<!-- ================= PRODUCTS ================= -->
 
-<section class="products-section" id="productsSection">
+<!-- =====================================
+     PRODUCTS
+===================================== -->
 
-  <div class="container">
+<section
+    id="productsSection"
+>
 
-    <div class="page-title">
-      <h1>🇺🇸 Gifts for United States</h1>
-      <p>Choose a gift to send to someone special.</p>
+    <div class="container">
+
+
+        <div class="page-title">
+
+            <h1>
+                🇺🇸 Gifts for United States
+            </h1>
+
+            <p>
+                Choose a gift to send to someone special.
+            </p>
+
+        </div>
+
+
+        <div
+            class="products"
+            id="products"
+        ></div>
+
+
     </div>
-
-    <div class="products" id="products"></div>
-
-  </div>
 
 </section>
 
 
-<!-- ================= CHECKOUT ================= -->
 
-<section class="checkout" id="checkout">
+<!-- =====================================
+     CHECKOUT
+===================================== -->
 
-  <div class="checkout-card">
+<section
+    id="checkout"
+>
 
-    <button class="back-btn" onclick="goBack()">
-      ← Back to Gifts
-    </button>
+    <div class="checkout-container">
 
-    <h2>Checkout</h2>
 
-    <div id="message" class="message"></div>
+        <div class="checkout-card">
 
-    <!-- Selected Product -->
 
-    <div class="selected-product">
+            <button
+                class="back-btn"
+                type="button"
+                id="backButton"
+            >
+                ← Back to Gifts
+            </button>
 
-      <img id="selectedImage" src="" alt="Gift">
 
-      <div>
-        <strong id="selectedName"></strong>
+            <h2 class="checkout-title">
+                Checkout
+            </h2>
 
-        <div class="price" id="selectedPrice"></div>
-      </div>
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+            <!-- SELECTED PRODUCT -->
+
+            <div class="selected-product">
+
+                <img
+                    id="selectedImage"
+                    src=""
+                    alt="Selected gift"
+                >
+
+
+                <div>
+
+                    <div
+                        class="selected-product-name"
+                        id="selectedName"
+                    ></div>
+
+
+                    <div
+                        class="selected-product-price"
+                        id="selectedPrice"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CONTACT INFO -->
+
+            <div class="section-title">
+                Contact Info
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Your Phone
+                </label>
+
+                <input
+                    type="tel"
+                    id="yourPhone"
+                    placeholder="Enter your phone number"
+                >
+
+            </div>
+
+
+
+            <!-- DELIVERY INFO -->
+
+            <div class="section-title">
+                Delivery Info
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Sender Name
+                </label>
+
+                <input
+                    type="text"
+                    id="senderName"
+                    placeholder="Enter sender name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Name
+                </label>
+
+                <input
+                    type="text"
+                    id="recipientName"
+                    placeholder="Enter recipient name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Phone
+                </label>
+
+                <input
+                    type="tel"
+                    id="recipientPhone"
+                    placeholder="Recipient phone number"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Street / House Address
+                </label>
+
+                <input
+                    type="text"
+                    id="streetAddress"
+                    placeholder="Street / house address"
+                >
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        placeholder="City"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    <input
+                        type="text"
+                        id="state"
+                        placeholder="State"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="row">
+
+                <div class="form-group">
+
+                    <label>
+                        Country
+                    </label>
+
+                    <input
+                        type="text"
+                        id="country"
+                        value="United States"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        ZIP Code
+                    </label>
+
+                    <input
+                        type="text"
+                        id="zipCode"
+                        placeholder="ZIP Code"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NOTES -->
+
+            <div class="section-title">
+                Additional Notes
+            </div>
+
+
+            <textarea
+                id="additionalNotes"
+                placeholder="Gift message or additional delivery instructions..."
+            ></textarea>
+
+
+
+            <!-- PAYMENT SUMMARY -->
+
+            <div class="section-title">
+                Payment Summary
+            </div>
+
+
+            <div class="summary">
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Base Price
+                    </span>
+
+                    <strong id="basePrice">
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+
+                <div
+                    class="summary-row summary-total"
+                >
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="totalPrice">
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Your Balance
+                    </span>
+
+                    <strong
+                        class="balance"
+                        id="checkoutBalance"
+                    >
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <button
+                type="button"
+                class="confirm-btn"
+                id="confirmOrderBtn"
+            >
+                Confirm Order
+            </button>
+
+
+        </div>
 
     </div>
-
-
-    <!-- CONTACT INFO -->
-
-    <div class="section-title">
-      Contact Info
-    </div>
-
-    <label>Your Phone</label>
-
-    <input
-      type="tel"
-      id="yourPhone"
-      placeholder="Enter your phone number"
-      required
-    >
-
-
-    <!-- DELIVERY INFO -->
-
-    <div class="section-title">
-      Delivery Info
-    </div>
-
-    <label>Sender Name</label>
-
-    <input
-      type="text"
-      id="senderName"
-      placeholder="Enter sender name"
-      required
-    >
-
-
-    <label>Recipient Name</label>
-
-    <input
-      type="text"
-      id="recipientName"
-      placeholder="Enter recipient name"
-      required
-    >
-
-
-    <label>Recipient Phone</label>
-
-    <input
-      type="tel"
-      id="recipientPhone"
-      placeholder="Recipient phone number"
-      required
-    >
-
-
-    <label>Street / House Address</label>
-
-    <input
-      type="text"
-      id="streetAddress"
-      placeholder="Street / house address"
-      required
-    >
-
-
-    <div class="row">
-
-      <div>
-        <label>City</label>
-
-        <input
-          type="text"
-          id="city"
-          placeholder="City"
-          required
-        >
-      </div>
-
-      <div>
-        <label>State</label>
-
-        <input
-          type="text"
-          id="state"
-          placeholder="State"
-          required
-        >
-      </div>
-
-    </div>
-
-
-    <div class="row">
-
-      <div>
-        <label>Country</label>
-
-        <input
-          type="text"
-          id="country"
-          value="United States"
-          required
-        >
-      </div>
-
-      <div>
-        <label>ZIP Code</label>
-
-        <input
-          type="text"
-          id="zipCode"
-          placeholder="ZIP Code"
-          required
-        >
-      </div>
-
-    </div>
-
-
-    <!-- NOTES -->
-
-    <div class="section-title">
-      Additional Notes
-    </div>
-
-    <textarea
-      id="additionalNotes"
-      placeholder="Gift message or additional delivery instructions..."
-    ></textarea>
-
-
-    <!-- PAYMENT SUMMARY -->
-
-    <div class="section-title">
-      Payment Summary
-    </div>
-
-    <div class="summary">
-
-      <div class="summary-row">
-        <span>Base Price</span>
-        <strong id="basePrice">₦0.00</strong>
-      </div>
-
-      <div class="summary-row total">
-        <span>Total</span>
-        <strong id="totalPrice">₦0.00</strong>
-      </div>
-
-      <div class="summary-row">
-        <span>Your Balance</span>
-        <strong
-          class="balance"
-          id="checkoutBalance"
-        >
-          ₦0.00
-        </strong>
-      </div>
-
-    </div>
-
-
-    <button
-      class="confirm-btn"
-      id="confirmOrderBtn"
-      onclick="confirmOrder()"
-    >
-      Confirm Order
-    </button>
-
-  </div>
 
 </section>
 
+
+
+<!-- =====================================
+     FIREBASE
+===================================== -->
 
 <script type="module">
 
-  import {
-    initializeApp
-  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
-  import {
-    getAuth,
+/* =====================================
+   USE EXISTING FAME STORE FIREBASE
+===================================== */
+
+import {
+
+    auth,
+
+    db
+
+} from "./firebase-config.js";
+
+
+import {
+
     onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-  import {
-    getFirestore,
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+
     doc,
     getDoc,
     runTransaction,
     collection,
     serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-  // ==========================================================
-  // FIREBASE CONFIG
-  // REPLACE THESE WITH YOUR EXISTING FAME STORE CONFIG
-  // ==========================================================
 
-  const firebaseConfig = {
+/* =====================================
+   VARIABLES
+===================================== */
 
-    apiKey: "YOUR_API_KEY",
+let currentUser = null;
 
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
+let currentProduct = null;
 
-    projectId: "YOUR_PROJECT_ID",
+let currentBalance = 0;
 
-    storageBucket: "YOUR_PROJECT.firebasestorage.app",
-
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-
-    appId: "YOUR_APP_ID"
-
-  };
+let submitting = false;
 
 
-  const app = initializeApp(firebaseConfig);
 
-  const auth = getAuth(app);
+/* =====================================
+   ELEMENTS
+===================================== */
 
-  const db = getFirestore(app);
+const productsContainer =
+    document.getElementById(
+        "products"
+    );
 
 
-  // ==========================================================
-  // PRODUCTS
-  // ==========================================================
+const productsSection =
+    document.getElementById(
+        "productsSection"
+    );
 
-  const products = [
+
+const checkout =
+    document.getElementById(
+        "checkout"
+    );
+
+
+const walletBalance =
+    document.getElementById(
+        "walletBalance"
+    );
+
+
+const checkoutBalance =
+    document.getElementById(
+        "checkoutBalance"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const confirmButton =
+    document.getElementById(
+        "confirmOrderBtn"
+    );
+
+
+
+/* =====================================
+   MONEY
+===================================== */
+
+function money(amount) {
+
+    return "₦" +
+        Number(amount).toLocaleString(
+            "en-NG",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+
+/* =====================================
+   PRODUCTS
+===================================== */
+
+/*
+ * These are your 11 products.
+ *
+ * The links you supplied are ImgBB
+ * page links. They are stored below
+ * so you don't lose them.
+ *
+ * When you click "Direct link" in ImgBB,
+ * replace the image value with the
+ * i.ibb.co direct URL.
+ */
+
+const products = [
 
     {
-      id: "glass-flower-1",
-      name: "Glass Flower",
-      price: 25000,
-      image: "https://i.ibb.co/REPLACE-1/image.jpg"
+        id: "glass-flower-1",
+        name: "Glass Flower",
+        price: 25000,
+        image: "https://ibb.co/1G4w6FcY"
     },
 
-    {
-      id: "glass-flower-2",
-      name: "Glass Flower",
-      price: 25000,
-      image: "https://i.ibb.co/REPLACE-2/image.jpg"
-    },
 
     {
-      id: "glass-flower-3",
-      name: "Glass Flower",
-      price: 25000,
-      image: "https://i.ibb.co/REPLACE-3/image.jpg"
+        id: "glass-flower-2",
+        name: "Glass Flower",
+        price: 25000,
+        image: "https://ibb.co/kVYZJqYQ"
     },
 
-    {
-      id: "glass-flower-4",
-      name: "Glass Flower",
-      price: 25000,
-      image: "https://i.ibb.co/REPLACE-4/image.jpg"
-    },
 
     {
-      id: "preserved-roses-1",
-      name: "Preserved Roses 4",
-      description:
-        "Preserved Roses in a Box, Eternal Rose Flowers for Delivery, Forever Preserved Roses",
-      price: 40000,
-      image: "https://i.ibb.co/REPLACE-5/image.jpg"
+        id: "glass-flower-3",
+        name: "Glass Flower",
+        price: 25000,
+        image: "https://ibb.co/fVC8n5bm"
     },
 
-    {
-      id: "preserved-roses-2",
-      name: "Preserved Roses 4",
-      description:
-        "Preserved Roses in a Box, Eternal Rose Flowers for Delivery, Forever Preserved Roses",
-      price: 40000,
-      image: "https://i.ibb.co/REPLACE-6/image.jpg"
-    },
 
     {
-      id: "artificial-rose-1",
-      name: "Artificial Rose Flower Bouquet",
-      price: 45000,
-      image: "https://i.ibb.co/REPLACE-7/image.jpg"
+        id: "glass-flower-4",
+        name: "Glass Flower",
+        price: 25000,
+        image: "https://ibb.co/wNH6FcrG"
     },
 
-    {
-      id: "artificial-rose-2",
-      name: "Artificial Rose Flower Bouquet",
-      price: 45000,
-      image: "https://i.ibb.co/REPLACE-8/image.jpg"
-    },
 
     {
-      id: "artificial-rose-3",
-      name: "Artificial Rose Flower Bouquet",
-      price: 45000,
-      image: "https://i.ibb.co/REPLACE-9/image.jpg"
+        id: "preserved-roses-1",
+        name: "Preserved Roses 4",
+        price: 40000,
+
+        description:
+            "Preserved Roses in a Box, Eternal Rose Flowers for Delivery, Forever Preserved Roses",
+
+        image: "https://ibb.co/99DG2t7z"
     },
 
-    {
-      id: "fresh-cut-1",
-      name: "Fresh Cut Flower",
-      price: 50000,
-      image: "https://i.ibb.co/REPLACE-10/image.jpg"
-    },
 
     {
-      id: "fresh-cut-2",
-      name: "Fresh Cut Flower",
-      price: 50000,
-      image: "https://i.ibb.co/REPLACE-11/image.jpg"
+        id: "preserved-roses-2",
+        name: "Preserved Roses 4",
+        price: 40000,
+
+        description:
+            "Preserved Roses in a Box, Eternal Rose Flowers for Delivery, Forever Preserved Roses",
+
+        image: "https://ibb.co/67HSNCxw"
+    },
+
+
+    {
+        id: "artificial-rose-1",
+        name: "Artificial Rose Flower Bouquet",
+        price: 45000,
+        image: "https://ibb.co/xtSHGCpG"
+    },
+
+
+    {
+        id: "artificial-rose-2",
+        name: "Artificial Rose Flower Bouquet",
+        price: 45000,
+        image: "https://ibb.co/Ps6nVhPg"
+    },
+
+
+    {
+        id: "artificial-rose-3",
+        name: "Artificial Rose Flower Bouquet",
+        price: 45000,
+        image: "https://ibb.co/CsnTknXS"
+    },
+
+
+    {
+        id: "fresh-cut-1",
+        name: "Fresh Cut Flower",
+        price: 50000,
+        image: "https://ibb.co/D0g5XDw"
+    },
+
+
+    {
+        id: "fresh-cut-2",
+        name: "Fresh Cut Flower",
+        price: 50000,
+        image: "https://ibb.co/DhFkJ9Y"
     }
 
-  ];
+];
 
 
-  let currentUser = null;
 
-  let currentProduct = null;
+/* =====================================
+   SHOW PRODUCTS
+===================================== */
 
-  let currentBalance = 0;
+function renderProducts() {
 
-  let submitting = false;
+    productsContainer.innerHTML = "";
 
 
-  const money = amount =>
-    "₦" + Number(amount).toLocaleString("en-NG", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
+    products.forEach(product => {
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "product-card";
+
+
+        card.innerHTML = `
+
+            <img
+                class="product-image"
+                src="${product.image}"
+                alt="${product.name}"
+            >
+
+            <div class="product-info">
+
+                <h3>
+                    ${product.name}
+                </h3>
+
+                ${
+                    product.description
+                    ? `
+                        <div class="product-description">
+                            ${product.description}
+                        </div>
+                    `
+                    : ""
+                }
+
+                <div class="price">
+                    ${money(product.price)}
+                </div>
+
+                <button
+                    class="gift-btn"
+                    type="button"
+                >
+                    Send as Gift
+                </button>
+
+            </div>
+
+        `;
+
+
+        card
+            .querySelector(".gift-btn")
+            .addEventListener(
+                "click",
+                () => openCheckout(product)
+            );
+
+
+        productsContainer.appendChild(
+            card
+        );
+
     });
 
-
-  // ==========================================================
-  // DISPLAY PRODUCTS
-  // ==========================================================
-
-  const productsContainer =
-    document.getElementById("products");
+}
 
 
-  products.forEach(product => {
+renderProducts();
 
-    const card = document.createElement("div");
 
-    card.className = "product-card";
 
-    card.innerHTML = `
+/* =====================================
+   AUTH STATE
+===================================== */
 
-      <img
-        src="${product.image}"
-        alt="${product.name}"
-        onerror="this.style.opacity='.3'"
-      >
+onAuthStateChanged(
+    auth,
+    async user => {
 
-      <div class="product-info">
 
-        <h3>${product.name}</h3>
+        if (!user) {
 
-        ${
-          product.description
-          ? `<p style="font-size:13px;color:#687386;margin-bottom:10px;">
-              ${product.description}
-             </p>`
-          : ""
+            currentUser = null;
+
+            walletBalance.textContent =
+                "₦0.00";
+
+            checkoutBalance.textContent =
+                "₦0.00";
+
+            console.log(
+                "Fame Store: customer is not logged in."
+            );
+
+            return;
+
         }
 
-        <div class="price">
-          ${money(product.price)}
-        </div>
 
-        <button
-          class="gift-btn"
-          data-product-id="${product.id}"
-        >
-          Send as Gift
-        </button>
-
-      </div>
-
-    `;
-
-    card
-      .querySelector(".gift-btn")
-      .addEventListener("click", () => {
-
-        openCheckout(product);
-
-      });
-
-    productsContainer.appendChild(card);
-
-  });
+        currentUser = user;
 
 
-  // ==========================================================
-  // AUTH
-  // ==========================================================
+        console.log(
+            "Fame Store logged-in UID:",
+            user.uid
+        );
 
-  onAuthStateChanged(auth, async user => {
 
-    if (!user) {
-
-      alert("Please login to send a gift.");
-
-      return;
+        await loadWallet();
 
     }
-
-    currentUser = user;
-
-    await loadWallet();
-
-  });
+);
 
 
-  // ==========================================================
-  // LOAD CUSTOMER WALLET
-  // ==========================================================
 
-  async function loadWallet() {
+/* =====================================
+   LOAD WALLET
+===================================== */
+
+async function loadWallet() {
+
 
     if (!currentUser) return;
 
-    try {
-
-      const userRef =
-        doc(db, "users", currentUser.uid);
-
-      const userSnap =
-        await getDoc(userRef);
-
-      if (!userSnap.exists()) {
-
-        currentBalance = 0;
-
-      } else {
-
-        const data = userSnap.data();
-
-        currentBalance =
-          Number(data.walletBalance || 0);
-
-      }
-
-      document.getElementById("walletBalance")
-        .textContent = money(currentBalance);
-
-      document.getElementById("checkoutBalance")
-        .textContent = money(currentBalance);
-
-    } catch (error) {
-
-      console.error(error);
-
-    }
-
-  }
-
-
-  // ==========================================================
-  // OPEN CHECKOUT
-  // ==========================================================
-
-  window.openCheckout = function(product) {
-
-    if (!currentUser) {
-
-      alert("Please login first.");
-
-      return;
-
-    }
-
-    currentProduct = product;
-
-    document
-      .getElementById("productsSection")
-      .classList.add("hidden");
-
-    document
-      .getElementById("checkout")
-      .classList.add("active");
-
-
-    document.getElementById("selectedImage")
-      .src = product.image;
-
-    document.getElementById("selectedName")
-      .textContent = product.name;
-
-    document.getElementById("selectedPrice")
-      .textContent = money(product.price);
-
-    document.getElementById("basePrice")
-      .textContent = money(product.price);
-
-    document.getElementById("totalPrice")
-      .textContent = money(product.price);
-
-    document.getElementById("checkoutBalance")
-      .textContent = money(currentBalance);
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  };
-
-
-  // ==========================================================
-  // BACK
-  // ==========================================================
-
-  window.goBack = function() {
-
-    document
-      .getElementById("checkout")
-      .classList.remove("active");
-
-    document
-      .getElementById("productsSection")
-      .classList.remove("hidden");
-
-    hideMessage();
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  };
-
-
-  // ==========================================================
-  // VALIDATE FORM
-  // ==========================================================
-
-  function validateForm() {
-
-    const fields = [
-
-      "yourPhone",
-      "senderName",
-      "recipientName",
-      "recipientPhone",
-      "streetAddress",
-      "city",
-      "state",
-      "country",
-      "zipCode"
-
-    ];
-
-
-    for (const id of fields) {
-
-      const field =
-        document.getElementById(id);
-
-      if (!field.value.trim()) {
-
-        showMessage(
-          "Please complete all required delivery information.",
-          "error"
-        );
-
-        field.focus();
-
-        return false;
-
-      }
-
-    }
-
-    return true;
-
-  }
-
-
-  // ==========================================================
-  // CONFIRM ORDER
-  // ==========================================================
-
-  window.confirmOrder = async function() {
-
-    if (submitting) return;
-
-    if (!currentUser) {
-
-      showMessage(
-        "Please login before placing an order.",
-        "error"
-      );
-
-      return;
-
-    }
-
-    if (!currentProduct) {
-
-      showMessage(
-        "Please select a gift first.",
-        "error"
-      );
-
-      return;
-
-    }
-
-    if (!validateForm()) return;
-
-
-    const total =
-      Number(currentProduct.price);
-
-
-    // Refresh wallet before payment
-
-    await loadWallet();
-
-
-    if (currentBalance < total) {
-
-      showMessage(
-        `Insufficient wallet balance. You need ${money(total)} but your balance is ${money(currentBalance)}.`,
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    submitting = true;
-
-
-    const button =
-      document.getElementById("confirmOrderBtn");
-
-    button.disabled = true;
-
-    button.textContent = "Processing...";
-
 
     try {
 
-      const userRef =
-        doc(db, "users", currentUser.uid);
 
-      const orderRef =
-        doc(collection(db, "giftOrders"));
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
 
-
-      await runTransaction(db, async transaction => {
 
         const userSnap =
-          await transaction.get(userRef);
+            await getDoc(
+                userRef
+            );
 
 
         if (!userSnap.exists()) {
 
-          throw new Error(
-            "Customer account was not found."
-          );
+            currentBalance = 0;
+
+        } else {
+
+            const data =
+                userSnap.data();
+
+
+            currentBalance =
+                Number(
+                    data.walletBalance || 0
+                );
 
         }
 
 
-        const userData =
-          userSnap.data();
+        walletBalance.textContent =
+            money(currentBalance);
 
 
-        const wallet =
-          Number(userData.walletBalance || 0);
-
-
-        if (wallet < total) {
-
-          throw new Error(
-            "Insufficient wallet balance."
-          );
-
-        }
-
-
-        // Deduct wallet
-
-        transaction.update(
-          userRef,
-          {
-            walletBalance: wallet - total
-          }
-        );
-
-
-        // Create gift order
-
-        transaction.set(
-          orderRef,
-          {
-
-            customerUID:
-              currentUser.uid,
-
-            customerEmail:
-              currentUser.email || "",
-
-
-            productId:
-              currentProduct.id,
-
-            productName:
-              currentProduct.name,
-
-            productImage:
-              currentProduct.image,
-
-            basePrice:
-              total,
-
-            total:
-              total,
-
-
-            customerPhone:
-              document
-                .getElementById("yourPhone")
-                .value.trim(),
-
-
-            senderName:
-              document
-                .getElementById("senderName")
-                .value.trim(),
-
-
-            recipientName:
-              document
-                .getElementById("recipientName")
-                .value.trim(),
-
-
-            recipientPhone:
-              document
-                .getElementById("recipientPhone")
-                .value.trim(),
-
-
-            streetAddress:
-              document
-                .getElementById("streetAddress")
-                .value.trim(),
-
-
-            city:
-              document
-                .getElementById("city")
-                .value.trim(),
-
-
-            state:
-              document
-                .getElementById("state")
-                .value.trim(),
-
-
-            country:
-              document
-                .getElementById("country")
-                .value.trim(),
-
-
-            zipCode:
-              document
-                .getElementById("zipCode")
-                .value.trim(),
-
-
-            additionalNotes:
-              document
-                .getElementById("additionalNotes")
-                .value.trim(),
-
-
-            deliveryCountry:
-              "United States",
-
-
-            status:
-              "pending",
-
-
-            paymentStatus:
-              "paid",
-
-
-            paymentMethod:
-              "wallet",
-
-
-            createdAt:
-              serverTimestamp()
-
-          }
-        );
-
-      });
-
-
-      currentBalance -= total;
-
-
-      document.getElementById("walletBalance")
-        .textContent = money(currentBalance);
-
-
-      document.getElementById("checkoutBalance")
-        .textContent = money(currentBalance);
-
-
-      showMessage(
-        "Gift order confirmed successfully. Your order is now pending.",
-        "success"
-      );
-
-
-      button.textContent =
-        "Order Confirmed";
-
-
-      // Optional redirect after 2 seconds
-
-      setTimeout(() => {
-
-        window.location.href =
-          "gift-orders.html";
-
-      }, 2000);
+        checkoutBalance.textContent =
+            money(currentBalance);
 
 
     } catch (error) {
 
-      console.error(error);
 
+        console.error(
+            "Wallet loading error:",
+            error
+        );
 
-      showMessage(
-        error.message ||
-        "Unable to complete your gift order. Please try again.",
-        "error"
-      );
-
-
-      button.disabled = false;
-
-      button.textContent =
-        "Confirm Order";
-
-
-      await loadWallet();
-
-    } finally {
-
-      submitting = false;
 
     }
 
-  };
+}
 
 
-  // ==========================================================
-  // MESSAGES
-  // ==========================================================
 
-  function showMessage(text, type) {
+/* =====================================
+   OPEN CHECKOUT
+===================================== */
 
-    const message =
-      document.getElementById("message");
+function openCheckout(product) {
 
-    message.textContent = text;
+
+    if (!currentUser) {
+
+        alert(
+            "Please login to your Fame Store account first."
+        );
+
+        return;
+
+    }
+
+
+    currentProduct =
+        product;
+
+
+    productsSection.classList.add(
+        "hidden"
+    );
+
+
+    checkout.classList.add(
+        "active"
+    );
+
+
+    document.getElementById(
+        "selectedImage"
+    ).src =
+        product.image;
+
+
+    document.getElementById(
+        "selectedName"
+    ).textContent =
+        product.name;
+
+
+    document.getElementById(
+        "selectedPrice"
+    ).textContent =
+        money(product.price);
+
+
+    document.getElementById(
+        "basePrice"
+    ).textContent =
+        money(product.price);
+
+
+    document.getElementById(
+        "totalPrice"
+    ).textContent =
+        money(product.price);
+
+
+    checkoutBalance.textContent =
+        money(currentBalance);
+
+
+    hideMessage();
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* =====================================
+   BACK
+===================================== */
+
+document
+    .getElementById("backButton")
+    .addEventListener(
+        "click",
+        () => {
+
+
+            checkout.classList.remove(
+                "active"
+            );
+
+
+            productsSection.classList.remove(
+                "hidden"
+            );
+
+
+            hideMessage();
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+
+/* =====================================
+   VALIDATE FORM
+===================================== */
+
+function validateForm() {
+
+
+    const fields = [
+
+        "yourPhone",
+        "senderName",
+        "recipientName",
+        "recipientPhone",
+        "streetAddress",
+        "city",
+        "state",
+        "country",
+        "zipCode"
+
+    ];
+
+
+    for (
+        const id of fields
+    ) {
+
+
+        const field =
+            document.getElementById(
+                id
+            );
+
+
+        if (
+            !field.value.trim()
+        ) {
+
+
+            showMessage(
+                "Please complete all required delivery information.",
+                "error"
+            );
+
+
+            field.focus();
+
+
+            return false;
+
+        }
+
+    }
+
+
+    return true;
+
+}
+
+
+
+/* =====================================
+   CONFIRM ORDER
+===================================== */
+
+confirmButton.addEventListener(
+    "click",
+    async () => {
+
+
+        if (submitting)
+            return;
+
+
+        if (!currentUser) {
+
+            alert(
+                "Your login session has expired. Please login again."
+            );
+
+            return;
+
+        }
+
+
+        if (!currentProduct) {
+
+            alert(
+                "Please select a gift first."
+            );
+
+            return;
+
+        }
+
+
+        if (!validateForm())
+            return;
+
+
+        /*
+         * Refresh balance from Firestore
+         * before processing payment.
+         */
+
+        await loadWallet();
+
+
+        const total =
+            Number(
+                currentProduct.price
+            );
+
+
+        if (
+            currentBalance < total
+        ) {
+
+
+            showMessage(
+                `Insufficient wallet balance. Your balance is ${money(currentBalance)}.`,
+                "error"
+            );
+
+
+            return;
+
+        }
+
+
+        submitting = true;
+
+
+        confirmButton.disabled =
+            true;
+
+
+        confirmButton.textContent =
+            "Processing...";
+
+
+        try {
+
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                );
+
+
+            const orderRef =
+                doc(
+                    collection(
+                        db,
+                        "giftOrders"
+                    )
+                );
+
+
+            await runTransaction(
+                db,
+                async transaction => {
+
+
+                    const userSnap =
+                        await transaction.get(
+                            userRef
+                        );
+
+
+                    if (
+                        !userSnap.exists()
+                    ) {
+
+                        throw new Error(
+                            "Customer profile was not found."
+                        );
+
+                    }
+
+
+                    const userData =
+                        userSnap.data();
+
+
+                    const wallet =
+                        Number(
+                            userData.walletBalance || 0
+                        );
+
+
+                    /*
+                     * IMPORTANT:
+                     * Check balance again
+                     * inside transaction.
+                     */
+
+                    if (
+                        wallet < total
+                    ) {
+
+                        throw new Error(
+                            "Insufficient wallet balance."
+                        );
+
+                    }
+
+
+                    /*
+                     * DEDUCT WALLET
+                     */
+
+                    transaction.update(
+                        userRef,
+                        {
+                            walletBalance:
+                                wallet - total
+                        }
+                    );
+
+
+                    /*
+                     * CREATE ORDER
+                     */
+
+                    transaction.set(
+                        orderRef,
+                        {
+
+                            customerUID:
+                                currentUser.uid,
+
+
+                            customerEmail:
+                                currentUser.email || "",
+
+
+                            productId:
+                                currentProduct.id,
+
+
+                            productName:
+                                currentProduct.name,
+
+
+                            productImage:
+                                currentProduct.image,
+
+
+                            basePrice:
+                                total,
+
+
+                            total:
+                                total,
+
+
+                            customerPhone:
+                                document
+                                    .getElementById(
+                                        "yourPhone"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            senderName:
+                                document
+                                    .getElementById(
+                                        "senderName"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            recipientName:
+                                document
+                                    .getElementById(
+                                        "recipientName"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            recipientPhone:
+                                document
+                                    .getElementById(
+                                        "recipientPhone"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            streetAddress:
+                                document
+                                    .getElementById(
+                                        "streetAddress"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            city:
+                                document
+                                    .getElementById(
+                                        "city"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            state:
+                                document
+                                    .getElementById(
+                                        "state"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            country:
+                                document
+                                    .getElementById(
+                                        "country"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            zipCode:
+                                document
+                                    .getElementById(
+                                        "zipCode"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            additionalNotes:
+                                document
+                                    .getElementById(
+                                        "additionalNotes"
+                                    )
+                                    .value
+                                    .trim(),
+
+
+                            deliveryCountry:
+                                "United States",
+
+
+                            paymentMethod:
+                                "wallet",
+
+
+                            paymentStatus:
+                                "paid",
+
+
+                            status:
+                                "pending",
+
+
+                            createdAt:
+                                serverTimestamp()
+
+                        }
+                    );
+
+                }
+            );
+
+
+            /*
+             * UPDATE DISPLAYED BALANCE
+             */
+
+            currentBalance -=
+                total;
+
+
+            walletBalance.textContent =
+                money(currentBalance);
+
+
+            checkoutBalance.textContent =
+                money(currentBalance);
+
+
+            confirmButton.textContent =
+                "Order Confirmed";
+
+
+            showMessage(
+                "Gift order confirmed successfully. Your wallet has been charged and the order is now pending.",
+                "success"
+            );
+
+
+            /*
+             * Send customer to order
+             * history after success.
+             */
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "gift-orders.html";
+
+                },
+                1500
+            );
+
+
+        } catch (error) {
+
+
+            console.error(
+                "Gift order error:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to complete the gift order.",
+                "error"
+            );
+
+
+            confirmButton.disabled =
+                false;
+
+
+            confirmButton.textContent =
+                "Confirm Order";
+
+
+            await loadWallet();
+
+
+        } finally {
+
+            submitting = false;
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
 
     message.className =
-      "message " + type;
+        "message " + type;
 
-  }
+}
 
 
-  function hideMessage() {
+function hideMessage() {
 
-    const message =
-      document.getElementById("message");
+    message.textContent =
+        "";
 
-    message.textContent = "";
 
     message.className =
-      "message";
+        "message";
 
-  }
+}
+
 
 </script>
 
+
 </body>
+
 </html>
