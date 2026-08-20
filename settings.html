@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings | Fame Store</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f9ff;
+    color:#101828;
+    min-height:100vh;
+}
+
+.header{
+    background:#fff;
+    border-bottom:1px solid #e5eaf1;
+    padding:18px;
+    text-align:center;
+}
+
+.logo{
+    width:55px;
+    height:55px;
+    background:#ffc928;
+    border-radius:15px;
+    display:grid;
+    place-items:center;
+    margin:auto;
+    font-size:26px;
+}
+
+.header h1{
+    color:#0757d9;
+    font-size:23px;
+    margin-top:9px;
+}
+
+.header p{
+    color:#667085;
+    font-size:12px;
+    margin-top:4px;
+}
+
+.container{
+    width:min(520px,100%);
+    margin:auto;
+    padding:25px 15px 45px;
+}
+
+.card{
+    background:#fff;
+    border:1px solid #e5eaf1;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:16px;
+}
+
+.card h2{
+    font-size:18px;
+    margin-bottom:6px;
+}
+
+.description{
+    color:#667085;
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+input{
+    width:100%;
+    height:48px;
+    border:1px solid #d9e0ea;
+    border-radius:10px;
+    padding:0 13px;
+    font-size:14px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#0757d9;
+}
+
+.btn{
+    width:100%;
+    height:48px;
+    border:0;
+    border-radius:10px;
+    background:#0757d9;
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.btn:disabled{opacity:.6}
+
+.logout{
+    background:#fff1f0;
+    color:#b42318;
+    border:1px solid #ffd3d0;
+}
+
+.message{
+    display:none;
+    padding:12px;
+    border-radius:9px;
+    margin-bottom:16px;
+    font-size:12px;
+}
+
+.message.show{display:block}
+
+.success{
+    background:#ecfff4;
+    color:#087443;
+    border:1px solid #b9efd1;
+}
+
+.error{
+    background:#fff1f0;
+    color:#b42318;
+    border:1px solid #ffd3d0;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    color:#0757d9;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:700;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙️</div>
+    <h1>Fame Store</h1>
+    <p>Account Settings</p>
+</header>
+
+<main class="container">
+
+    <div class="card">
+
+        <h2>Change Password</h2>
+
+        <p class="description">
+            Update your Fame Store account password.
+        </p>
+
+        <div id="message" class="message"></div>
+
+        <form id="passwordForm">
+
+            <div class="form-group">
+                <label for="newPassword">
+                    New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="newPassword"
+                    minlength="6"
+                    placeholder="Enter new password"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">
+                    Confirm New Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    minlength="6"
+                    placeholder="Confirm new password"
+                    required>
+            </div>
+
+            <button
+                class="btn"
+                id="changeButton"
+                type="submit">
+
+                Change Password
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Account</h2>
+
+        <p class="description">
+            Manage your Fame Store account.
+        </p>
+
+        <button
+            class="btn logout"
+            id="logoutButton">
+
+            Logout
+
+        </button>
+
+    </div>
+
+    <a href="dashboard.html" class="back">
+        ← Back to Dashboard
+    </a>
+
+</main>
+
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+    onAuthStateChanged,
+    updatePassword,
+    signOut
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+const passwordForm =
+    document.getElementById("passwordForm");
+
+const newPassword =
+    document.getElementById("newPassword");
+
+const confirmPassword =
+    document.getElementById("confirmPassword");
+
+const changeButton =
+    document.getElementById("changeButton");
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+const message =
+    document.getElementById("message");
+
+let currentUser=null;
+
+function showMessage(text,type){
+
+    message.textContent=text;
+    message.className="message show "+type;
+
+}
+
+onAuthStateChanged(auth,user=>{
+
+    if(!user){
+
+        window.location.href="login.html";
+        return;
+
+    }
+
+    currentUser=user;
+
+});
+
+passwordForm.addEventListener("submit",async event=>{
+
+    event.preventDefault();
+
+    if(!currentUser) return;
+
+    const password=newPassword.value;
+    const confirm=confirmPassword.value;
+
+    if(password.length<6){
+
+        showMessage(
+            "Password must be at least 6 characters.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    if(password!==confirm){
+
+        showMessage(
+            "Passwords do not match.",
+            "error"
+        );
+
+        return;
+
+    }
+
+    changeButton.disabled=true;
+    changeButton.textContent="Updating...";
+
+    try{
+
+        await updatePassword(
+            currentUser,
+            password
+        );
+
+        passwordForm.reset();
+
+        showMessage(
+            "Password changed successfully.",
+            "success"
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        if(error.code==="auth/requires-recent-login"){
+
+            showMessage(
+                "For security, please log out and log in again before changing your password.",
+                "error"
+            );
+
+        }else{
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }finally{
+
+        changeButton.disabled=false;
+        changeButton.textContent="Change Password";
+
+    }
+
+});
+
+logoutButton.addEventListener("click",async()=>{
+
+    logoutButton.disabled=true;
+    logoutButton.textContent="Logging out...";
+
+    try{
+
+        await signOut(auth);
+
+        window.location.href="login.html";
+
+    }catch(error){
+
+        showMessage(
+            error.message,
+            "error"
+        );
+
+        logoutButton.disabled=false;
+        logoutButton.textContent="Logout";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
