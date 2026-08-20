@@ -210,17 +210,10 @@
             border: 1px solid #ffd3d0;
         }
 
-        .message.success {
-            display: block;
-            color: #087443;
-            background: #ecfff4;
-            border: 1px solid #b9efd1;
-        }
-
         /* HIDDEN */
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         /* INFO */
@@ -251,6 +244,92 @@
             text-decoration: underline;
         }
 
+        /* =========================
+           SUCCESS SCREEN
+        ========================= */
+
+        .success-screen {
+            display: none;
+            text-align: center;
+            background: #ffffff;
+            border: 1px solid #e5eaf1;
+            border-radius: 20px;
+            padding: 40px 25px;
+            margin-bottom: 18px;
+            box-shadow:
+                0 15px 45px rgba(7, 87, 217, 0.08);
+        }
+
+        .success-icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #ecfff4;
+            color: #087443;
+            display: grid;
+            place-items: center;
+            font-size: 34px;
+            font-weight: 800;
+            border: 1px solid #b9efd1;
+        }
+
+        .success-screen h2 {
+            color: #101828;
+            font-size: 21px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .success-message {
+            color: #667085;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .pending-text {
+            display: inline-block;
+            background: #fffbea;
+            border: 1px solid #f5df91;
+            color: #735600;
+            padding: 9px 13px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .support-link {
+            display: block;
+            color: #0757d9;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        .support-link:hover {
+            text-decoration: underline;
+        }
+
+        .dashboard-btn {
+            display: block;
+            width: 100%;
+            background: #0757d9;
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .dashboard-btn:hover {
+            background: #063b91;
+        }
+
         /* MOBILE */
 
         @media (max-width: 500px) {
@@ -261,6 +340,10 @@
 
             .card {
                 padding: 20px;
+            }
+
+            .success-screen {
+                padding: 35px 20px;
             }
 
         }
@@ -296,9 +379,11 @@
 
 
 
-    <!-- BANK DETAILS -->
+    <!-- =========================
+         BANK DETAILS
+    ========================= -->
 
-    <div class="card">
+    <div class="card" id="bankCard">
 
         <h2>
             Deposit Funds
@@ -378,7 +463,9 @@
 
 
 
-    <!-- PAYMENT FORM -->
+    <!-- =========================
+         PAYMENT FORM
+    ========================= -->
 
     <div
         class="card hidden"
@@ -485,9 +572,70 @@
 
 
 
+    <!-- =========================
+         SUCCESS SCREEN
+    ========================= -->
+
+    <div
+        class="success-screen"
+        id="successScreen">
+
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h2>
+            Payment submitted successfully.
+        </h2>
+
+
+        <p class="success-message">
+
+            Your deposit is now pending.
+            <br>
+            Please wait 1 to 10 minutes while we confirm your payment.
+
+        </p>
+
+
+        <div class="pending-text">
+            ⏳ Deposit Pending
+        </div>
+
+
+        <a
+            href="support.html"
+            class="support-link">
+
+            Payment not reflecting?
+            Click to contact support
+
+        </a>
+
+
+        <a
+            href="dashboard.html"
+            class="dashboard-btn">
+
+            Go Back to Dashboard
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         BACK
+    ========================= -->
+
     <a
         href="dashboard.html"
-        class="back">
+        class="back"
+        id="backLink">
 
         ← Back to Dashboard
 
@@ -597,9 +745,27 @@ const paidButton =
     );
 
 
+const bankCard =
+    document.getElementById(
+        "bankCard"
+    );
+
+
 const paymentCard =
     document.getElementById(
         "paymentCard"
+    );
+
+
+const successScreen =
+    document.getElementById(
+        "successScreen"
+    );
+
+
+const backLink =
+    document.getElementById(
+        "backLink"
     );
 
 
@@ -711,27 +877,24 @@ paidButton.addEventListener(
             behavior: "smooth"
         });
 
-
     }
 );
 
 
 
 /* =====================================
-   MESSAGE
+   SHOW ERROR
 ===================================== */
 
 function showMessage(
-    text,
-    type
+    text
 ) {
 
     message.textContent =
         text;
 
-
     message.className =
-        "message " + type;
+        "message error";
 
 }
 
@@ -757,8 +920,7 @@ depositForm.addEventListener(
         if (!currentUser) {
 
             showMessage(
-                "Your login session is not ready. Please refresh the page and try again.",
-                "error"
+                "Your login session is not ready. Please refresh the page and try again."
             );
 
             return;
@@ -778,13 +940,11 @@ depositForm.addEventListener(
 
 
         const senderName =
-            senderInput.value
-                .trim();
+            senderInput.value.trim();
 
 
         const transactionReference =
-            referenceInput.value
-                .trim();
+            referenceInput.value.trim();
 
 
 
@@ -798,8 +958,7 @@ depositForm.addEventListener(
         ) {
 
             showMessage(
-                "Please enter a valid deposit amount.",
-                "error"
+                "Please enter a valid deposit amount."
             );
 
             return;
@@ -810,8 +969,7 @@ depositForm.addEventListener(
         if (!senderName) {
 
             showMessage(
-                "Please enter the sender name.",
-                "error"
+                "Please enter the sender name."
             );
 
             return;
@@ -822,8 +980,7 @@ depositForm.addEventListener(
         if (!transactionReference) {
 
             showMessage(
-                "Please enter the transaction reference.",
-                "error"
+                "Please enter the transaction reference."
             );
 
             return;
@@ -838,7 +995,6 @@ depositForm.addEventListener(
 
         submitButton.disabled =
             true;
-
 
         submitButton.textContent =
             "Submitting...";
@@ -921,24 +1077,33 @@ depositForm.addEventListener(
 
 
             /* =========================
-               SUCCESS
+               SUCCESS SCREEN
             ========================= */
-
-            showMessage(
-
-                "Payment submitted successfully. Your deposit is now pending admin approval.",
-
-                "success"
-
-            );
-
 
             depositForm.reset();
 
 
-            submitButton.textContent =
-                "Payment Submitted";
+            bankCard.classList.add(
+                "hidden"
+            );
 
+
+            paymentCard.classList.add(
+                "hidden"
+            );
+
+
+            successScreen.style.display =
+                "block";
+
+
+            backLink.style.display =
+                "none";
+
+
+            successScreen.scrollIntoView({
+                behavior: "smooth"
+            });
 
 
         }
@@ -971,7 +1136,7 @@ depositForm.addEventListener(
             ========================= */
 
             let errorMessage =
-                "Unable to submit payment.";
+                "Unable to submit payment. Please try again.";
 
 
             if (
@@ -1018,20 +1183,8 @@ depositForm.addEventListener(
             }
 
 
-            else if (
-                error.message
-            ) {
-
-                errorMessage =
-                    error.message;
-
-            }
-
-
-
             showMessage(
-                errorMessage,
-                "error"
+                errorMessage
             );
 
 
