@@ -1,18 +1,58 @@
-<script type="module">
+// firebase-config.js
 
 import {
-    auth,
-    db
-} from "./firebase-config.js";
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 import {
-    onAuthStateChanged
+    getAuth
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 import {
-    collection,
-    addDoc,
-    serverTimestamp
+    getFirestore
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-</script>
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
+
+    authDomain:
+        "fame-store-ea8b7.firebaseapp.com",
+
+    projectId:
+        "fame-store-ea8b7",
+
+    storageBucket:
+        "fame-store-ea8b7.firebasestorage.app",
+
+    messagingSenderId:
+        "484192010044",
+
+    appId:
+        "1:484192010044:web:8b1c496d5baa492d74a839",
+
+    measurementId:
+        "G-YTGM3N01V6"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+export {
+    app,
+    auth,
+    db
+};
