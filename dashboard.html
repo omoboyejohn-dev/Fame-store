@@ -36,7 +36,6 @@
             --gray: #667085;
             --light: #f5f8fc;
             --border: #e5eaf1;
-            --green: #087443;
         }
 
         html {
@@ -54,9 +53,7 @@
             color: inherit;
         }
 
-        button,
-        input,
-        select {
+        button {
             font-family: inherit;
         }
 
@@ -65,7 +62,9 @@
             margin: auto;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
 
         .header {
             background: #ffffff;
@@ -143,7 +142,9 @@
             cursor: pointer;
         }
 
-        /* PAGE */
+        /* =========================
+           DASHBOARD
+        ========================= */
 
         .dashboard {
             padding: 35px 0 70px;
@@ -164,7 +165,9 @@
             font-size: 14px;
         }
 
-        /* BALANCE */
+        /* =========================
+           BALANCE
+        ========================= */
 
         .balance-card {
             background: linear-gradient(
@@ -172,23 +175,38 @@
                 var(--blue),
                 var(--dark-blue)
             );
+
             border-radius: 22px;
+
             color: white;
+
             padding: 30px;
-            box-shadow: 0 20px 45px rgba(7, 87, 217, .20);
+
+            box-shadow:
+                0 20px 45px
+                rgba(7, 87, 217, .20);
+
             position: relative;
+
             overflow: hidden;
+
             margin-bottom: 25px;
         }
 
         .balance-card::after {
             content: "";
+
             width: 220px;
             height: 220px;
+
             position: absolute;
+
             right: -80px;
             top: -80px;
-            background: rgba(255, 255, 255, .08);
+
+            background:
+                rgba(255, 255, 255, .08);
+
             border-radius: 50%;
         }
 
@@ -199,72 +217,111 @@
 
         .balance-row {
             display: flex;
+
             justify-content: space-between;
+
             align-items: end;
+
             gap: 20px;
+
             position: relative;
+
             z-index: 2;
         }
 
         .balance-amount {
-            font-size: clamp(32px, 6vw, 46px);
+            font-size:
+                clamp(32px, 6vw, 46px);
+
             font-weight: 800;
+
             margin-top: 6px;
         }
 
         .deposit-btn {
             border: 0;
+
             background: var(--yellow);
+
             color: #614800;
+
             padding: 13px 22px;
+
             border-radius: 10px;
+
             font-weight: 800;
+
             cursor: pointer;
+
             transition: .3s;
         }
 
         .deposit-btn:hover {
             transform: translateY(-2px);
+
             background: #ffd84e;
         }
 
-        /* QUICK ACTIONS */
+        /* =========================
+           QUICK ACTIONS
+        ========================= */
 
         .quick-actions {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+
+            grid-template-columns:
+                repeat(8, 1fr);
+
             gap: 10px;
+
             margin-bottom: 35px;
         }
 
         .quick-action {
             background: white;
-            border: 1px solid var(--border);
+
+            border: 1px solid
+                var(--border);
+
             border-radius: 13px;
+
             padding: 15px 8px;
+
             text-align: center;
+
             transition: .25s;
         }
 
         .quick-action:hover {
             border-color: var(--blue);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(7, 87, 217, .08);
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(7, 87, 217, .08);
         }
 
         .quick-icon {
             font-size: 22px;
+
             display: block;
+
             margin-bottom: 7px;
         }
 
         .quick-action span:last-child {
             font-size: 10px;
+
             font-weight: 700;
+
             color: #344054;
         }
 
-        /* SECTION */
+        /* =========================
+           SECTION
+        ========================= */
 
         .section-title {
             margin-bottom: 18px;
@@ -276,116 +333,183 @@
 
         .section-title p {
             color: var(--gray);
+
             font-size: 13px;
-            margin-top: 4px;
+
+            margin-top: 5px;
         }
 
-        /* COUNTRIES */
+        /* =========================
+           COUNTRY GRID
+        ========================= */
 
         .country-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 15px;
         }
 
         .country-card {
             background: white;
-            border: 1px solid var(--border);
+
+            border: 1px solid
+                var(--border);
+
             border-radius: 16px;
+
             padding: 20px;
+
             cursor: pointer;
+
             transition: .25s;
+
             position: relative;
         }
 
         .country-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(7, 87, 217, .09);
-            border-color: var(--blue);
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(7, 87, 217, .09);
+
+            border-color:
+                var(--blue);
         }
 
         .country-card:active {
-            transform: scale(.98);
+            transform:
+                scale(.98);
         }
 
         .country-flag {
             font-size: 34px;
+
             display: block;
+
             margin-bottom: 12px;
         }
 
         .country-name {
             font-weight: 800;
+
             font-size: 14px;
         }
 
         .country-card::after {
             content: "→";
+
             position: absolute;
+
             right: 15px;
+
             bottom: 18px;
+
             color: var(--blue);
+
             font-weight: 800;
         }
 
-        /* OTHER COUNTRY */
+        /* =========================
+           OTHER COUNTRIES
+        ========================= */
 
         .other-country {
             margin-top: 15px;
+
             background: white;
-            border: 1px solid var(--border);
+
+            border: 1px solid
+                var(--border);
+
             border-radius: 16px;
+
             padding: 18px;
+
             cursor: pointer;
+
             display: flex;
+
             align-items: center;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             gap: 15px;
+
             transition: .25s;
         }
 
         .other-country:hover {
-            border-color: var(--blue);
-            transform: translateY(-2px);
+            border-color:
+                var(--blue);
+
+            transform:
+                translateY(-2px);
         }
 
         .other-left {
             display: flex;
+
             align-items: center;
+
             gap: 12px;
         }
 
         .other-icon {
             width: 45px;
+
             height: 45px;
+
             background: #fff7d9;
+
             border-radius: 12px;
+
             display: grid;
+
             place-items: center;
+
             font-size: 22px;
         }
 
         .other-country strong {
             display: block;
+
             font-size: 14px;
         }
 
         .other-country span {
             color: var(--gray);
+
             font-size: 11px;
         }
 
-        /* SUPPORT */
+        /* =========================
+           SUPPORT
+        ========================= */
 
         .support-card {
             margin-top: 35px;
+
             background: #fffbea;
+
             border: 1px solid #f5df88;
+
             border-radius: 18px;
+
             padding: 25px;
+
             display: flex;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             align-items: center;
+
             gap: 20px;
         }
 
@@ -395,76 +519,118 @@
 
         .support-card p {
             color: var(--gray);
+
             font-size: 12px;
+
             margin-top: 5px;
         }
 
         .support-btn {
             background: var(--blue);
+
             color: white;
+
             padding: 12px 18px;
+
             border-radius: 9px;
+
             font-size: 12px;
+
             font-weight: 700;
+
             white-space: nowrap;
         }
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         .footer {
             background: #061c43;
+
             color: white;
+
             padding: 25px 0;
         }
 
         .footer-inner {
             display: flex;
-            justify-content: space-between;
+
+            justify-content:
+                space-between;
+
             align-items: center;
+
             gap: 15px;
         }
 
         .footer p {
             color: #9eafc9;
+
             font-size: 10px;
         }
 
-        /* TOAST */
+        /* =========================
+           TOAST
+        ========================= */
 
         .toast {
             position: fixed;
+
             left: 50%;
+
             bottom: 25px;
-            transform: translate(-50%, 100px);
+
+            transform:
+                translate(-50%, 100px);
+
             opacity: 0;
+
             background: #101828;
+
             color: white;
+
             padding: 13px 20px;
+
             border-radius: 10px;
+
             font-size: 12px;
+
             z-index: 9999;
+
             transition: .3s;
+
             pointer-events: none;
         }
 
         .toast.show {
             opacity: 1;
-            transform: translate(-50%, 0);
+
+            transform:
+                translate(-50%, 0);
         }
 
-        /* RESPONSIVE */
+        /* =========================
+           TABLET
+        ========================= */
 
         @media (max-width: 950px) {
 
             .quick-actions {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns:
+                    repeat(4, 1fr);
             }
 
             .country-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns:
+                    repeat(3, 1fr);
             }
 
         }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 650px) {
 
@@ -485,8 +651,11 @@
             }
 
             .balance-row {
-                align-items: flex-start;
-                flex-direction: column;
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
             }
 
             .deposit-btn {
@@ -494,34 +663,48 @@
             }
 
             .quick-actions {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns:
+                    repeat(4, 1fr);
             }
 
             .country-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .support-card {
-                align-items: flex-start;
-                flex-direction: column;
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
             }
 
             .support-btn {
                 width: 100%;
+
                 text-align: center;
             }
 
             .footer-inner {
-                align-items: flex-start;
-                flex-direction: column;
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
             }
 
         }
 
+        /* =========================
+           SMALL PHONE
+        ========================= */
+
         @media (max-width: 400px) {
 
             .quick-actions {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .country-card {
@@ -537,13 +720,17 @@
 <body>
 
 
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
     <div class="container header-inner">
 
-        <a href="dashboard.html" class="brand">
+        <a
+            href="dashboard.html"
+            class="brand">
 
             <div class="brand-icon">
                 🛍️
@@ -592,7 +779,9 @@
 </header>
 
 
-<!-- DASHBOARD -->
+<!-- =========================
+     DASHBOARD
+========================= -->
 
 <main class="dashboard">
 
@@ -604,21 +793,26 @@
         <section class="welcome">
 
             <h1>
+
                 Welcome,
                 <span id="userName">
                     Customer
                 </span>
                 👋
+
             </h1>
 
             <p>
-                Send something special to someone you love.
+                Send something special
+                to someone you love.
             </p>
 
         </section>
 
 
-        <!-- BALANCE -->
+        <!-- =========================
+             BALANCE
+        ========================= -->
 
         <section class="balance-card">
 
@@ -655,13 +849,16 @@
         </section>
 
 
-        <!-- QUICK ACTIONS -->
+        <!-- =========================
+             QUICK ACTIONS
+        ========================= -->
 
         <section class="quick-actions">
 
 
-            <a href="profile.html"
-               class="quick-action">
+            <a
+                href="profile.html"
+                class="quick-action">
 
                 <span class="quick-icon">
                     👤
@@ -674,8 +871,9 @@
             </a>
 
 
-            <a href="deposit.html"
-               class="quick-action">
+            <a
+                href="deposit.html"
+                class="quick-action">
 
                 <span class="quick-icon">
                     💳
@@ -688,8 +886,9 @@
             </a>
 
 
-            <a href="settings.html"
-               class="quick-action">
+            <a
+                href="settings.html"
+                class="quick-action">
 
                 <span class="quick-icon">
                     ⚙️
@@ -702,8 +901,9 @@
             </a>
 
 
-            <a href="notifications.html"
-               class="quick-action">
+            <a
+                href="notifications.html"
+                class="quick-action">
 
                 <span class="quick-icon">
                     🔔
@@ -716,8 +916,9 @@
             </a>
 
 
-            <a href="support.html"
-               class="quick-action">
+            <a
+                href="support.html"
+                class="quick-action">
 
                 <span class="quick-icon">
                     💬
@@ -730,8 +931,9 @@
             </a>
 
 
-            <a href="payment-history.html"
-               class="quick-action">
+            <a
+                href="payment-history.html"
+                class="quick-action">
 
                 <span class="quick-icon">
                     💰
@@ -744,8 +946,9 @@
             </a>
 
 
-            <a href="order-history.html"
-               class="quick-action">
+            <a
+                href="order-history.html"
+                class="quick-action">
 
                 <span class="quick-icon">
                     📦
@@ -758,9 +961,10 @@
             </a>
 
 
-            <a href="#"
-               class="quick-action"
-               id="logoutBtn">
+            <a
+                href="#"
+                class="quick-action"
+                id="logoutBtn">
 
                 <span class="quick-icon">
                     🚪
@@ -775,7 +979,9 @@
         </section>
 
 
-        <!-- GLOBAL DELIVERY -->
+        <!-- =========================
+             GLOBAL DELIVERY
+        ========================= -->
 
         <section>
 
@@ -786,20 +992,19 @@
                 </h2>
 
                 <p>
-                    Which country do you want to send to?
-                </p>
-
-                <p>
-                    Select a destination to explore gifts
-                    available for delivery.
+                    Choose where you want
+                    to send your gift.
                 </p>
 
             </div>
 
 
-            <div class="country-grid"
-                 id="countryGrid">
+            <div
+                class="country-grid"
+                id="countryGrid">
 
+
+                <!-- USA -->
 
                 <div
                     class="country-card"
@@ -810,11 +1015,13 @@
                     </span>
 
                     <span class="country-name">
-                        USA
+                        United States
                     </span>
 
                 </div>
 
+
+                <!-- CANADA -->
 
                 <div
                     class="country-card"
@@ -831,6 +1038,8 @@
                 </div>
 
 
+                <!-- UK -->
+
                 <div
                     class="country-card"
                     data-page="uk.html">
@@ -840,116 +1049,13 @@
                     </span>
 
                     <span class="country-name">
-                        UK
+                        United Kingdom
                     </span>
 
                 </div>
 
 
-                <div
-                    class="country-card"
-                    data-page="germany.html">
-
-                    <span class="country-flag">
-                        🇩🇪
-                    </span>
-
-                    <span class="country-name">
-                        Germany
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="country-card"
-                    data-page="south-africa.html">
-
-                    <span class="country-flag">
-                        🇿🇦
-                    </span>
-
-                    <span class="country-name">
-                        South Africa
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="country-card"
-                    data-page="belgium.html">
-
-                    <span class="country-flag">
-                        🇧🇪
-                    </span>
-
-                    <span class="country-name">
-                        Belgium
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="country-card"
-                    data-page="philippines.html">
-
-                    <span class="country-flag">
-                        🇵🇭
-                    </span>
-
-                    <span class="country-name">
-                        Philippines
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="country-card"
-                    data-page="portugal.html">
-
-                    <span class="country-flag">
-                        🇵🇹
-                    </span>
-
-                    <span class="country-name">
-                        Portugal
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="country-card"
-                    data-page="spain.html">
-
-                    <span class="country-flag">
-                        🇪🇸
-                    </span>
-
-                    <span class="country-name">
-                        Spain
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="country-card"
-                    data-page="france.html">
-
-                    <span class="country-flag">
-                        🇫🇷
-                    </span>
-
-                    <span class="country-name">
-                        France
-                    </span>
-
-                </div>
-
+                <!-- MEXICO -->
 
                 <div
                     class="country-card"
@@ -966,50 +1072,7 @@
                 </div>
 
 
-                <div
-                    class="country-card"
-                    data-page="turkey.html">
-
-                    <span class="country-flag">
-                        🇹🇷
-                    </span>
-
-                    <span class="country-name">
-                        Turkey
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="country-card"
-                    data-page="china.html">
-
-                    <span class="country-flag">
-                        🇨🇳
-                    </span>
-
-                    <span class="country-name">
-                        China
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="country-card"
-                    data-page="saudi-arabia.html">
-
-                    <span class="country-flag">
-                        🇸🇦
-                    </span>
-
-                    <span class="country-name">
-                        Saudi Arabia
-                    </span>
-
-                </div>
-
+                <!-- AUSTRALIA -->
 
                 <div
                     class="country-card"
@@ -1026,31 +1089,18 @@
                 </div>
 
 
-                <div
-                    class="country-card"
-                    data-page="kuwait.html">
-
-                    <span class="country-flag">
-                        🇰🇼
-                    </span>
-
-                    <span class="country-name">
-                        Kuwait
-                    </span>
-
-                </div>
-
+                <!-- GERMANY -->
 
                 <div
                     class="country-card"
-                    data-page="italy.html">
+                    data-page="germany.html">
 
                     <span class="country-flag">
-                        🇮🇹
+                        🇩🇪
                     </span>
 
                     <span class="country-name">
-                        Italy
+                        Germany
                     </span>
 
                 </div>
@@ -1058,7 +1108,9 @@
             </div>
 
 
-            <!-- OTHER COUNTRIES -->
+            <!-- =========================
+                 OTHER COUNTRIES
+            ========================= -->
 
             <div
                 class="other-country"
@@ -1077,12 +1129,14 @@
                         </strong>
 
                         <span>
-                            Choose another delivery destination
+                            Choose another
+                            delivery destination
                         </span>
 
                     </div>
 
                 </div>
+
 
                 <strong>
                     →
@@ -1093,7 +1147,9 @@
         </section>
 
 
-        <!-- SUPPORT -->
+        <!-- =========================
+             SUPPORT
+        ========================= -->
 
         <section class="support-card">
 
@@ -1104,8 +1160,8 @@
                 </h3>
 
                 <p>
-                    Our support team is available to help
-                    you with your order.
+                    Our support team is available
+                    to help you with your order.
                 </p>
 
             </div>
@@ -1126,18 +1182,22 @@
 </main>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer class="footer">
 
     <div class="container footer-inner">
 
         <p>
-            © 2026 Fame Store. All rights reserved.
+            © 2026 Fame Store.
+            All rights reserved.
         </p>
 
         <p>
-            Send gifts today, for a brighter tomorrow ❤️
+            Send gifts today,
+            for a brighter tomorrow ❤️
         </p>
 
     </div>
@@ -1161,21 +1221,24 @@
 
     import {
         initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+    } from
+    "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
     import {
         getAuth,
         onAuthStateChanged,
         signOut
-    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+    } from
+    "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
     import {
         getFirestore,
         doc,
         onSnapshot
-    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+    } from
+    "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
     /* =========================
@@ -1227,25 +1290,39 @@
     ========================= */
 
     const userName =
-        document.getElementById("userName");
+        document.getElementById(
+            "userName"
+        );
 
     const walletBalance =
-        document.getElementById("walletBalance");
+        document.getElementById(
+            "walletBalance"
+        );
 
     const profileMini =
-        document.getElementById("profileMini");
+        document.getElementById(
+            "profileMini"
+        );
 
     const logoutBtn =
-        document.getElementById("logoutBtn");
+        document.getElementById(
+            "logoutBtn"
+        );
 
     const depositBtn =
-        document.getElementById("depositBtn");
+        document.getElementById(
+            "depositBtn"
+        );
 
     const notificationBtn =
-        document.getElementById("notificationBtn");
+        document.getElementById(
+            "notificationBtn"
+        );
 
     const toast =
-        document.getElementById("toast");
+        document.getElementById(
+            "toast"
+        );
 
 
     /* =========================
@@ -1260,7 +1337,9 @@
 
         setTimeout(() => {
 
-            toast.classList.remove("show");
+            toast.classList.remove(
+                "show"
+            );
 
         }, 2500);
 
@@ -1373,7 +1452,9 @@
 
 
                     walletBalance.textContent =
-                        formatNaira(balance);
+                        formatNaira(
+                            balance
+                        );
 
                 },
 
@@ -1411,7 +1492,9 @@
                 window.location.href =
                     "login.html";
 
-            } catch (error) {
+            }
+
+            catch (error) {
 
                 console.error(
                     "Logout error:",
@@ -1483,41 +1566,36 @@
         );
 
 
-    countryCards.forEach(card => {
+    countryCards.forEach(
+        card => {
 
-        card.addEventListener(
-            "click",
-            () => {
+            card.addEventListener(
+                "click",
+                () => {
 
-                const page =
-                    card.dataset.page;
+                    const page =
+                        card.dataset.page;
 
 
-                if (!page) {
+                    if (!page) {
 
-                    showToast(
-                        "Country page is not available yet."
-                    );
+                        showToast(
+                            "Country page is not available yet."
+                        );
 
-                    return;
+                        return;
+
+                    }
+
+
+                    window.location.href =
+                        page;
 
                 }
+            );
 
-
-                /*
-                 * Open the selected country
-                 * immediately.
-                 *
-                 * No Continue button.
-                 */
-
-                window.location.href =
-                    page;
-
-            }
-        );
-
-    });
+        }
+    );
 
 
     /* =========================
