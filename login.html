@@ -10,17 +10,6 @@
 
     <title>Login | Fame Store</title>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-
     <style>
 
         * {
@@ -30,7 +19,7 @@
         }
 
         body {
-            font-family: "Inter", sans-serif;
+            font-family: Arial, sans-serif;
             min-height: 100vh;
             background: linear-gradient(
                 135deg,
@@ -50,12 +39,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 35px 20px;
+            padding: 30px 15px;
         }
 
         .login-container {
             width: min(460px, 100%);
         }
+
+        /* BRAND */
 
         .brand {
             text-align: center;
@@ -63,10 +54,10 @@
         }
 
         .brand-icon {
-            width: 56px;
-            height: 56px;
+            width: 58px;
+            height: 58px;
             background: #ffc928;
-            border-radius: 15px;
+            border-radius: 16px;
             display: grid;
             place-items: center;
             font-size: 28px;
@@ -75,15 +66,18 @@
 
         .brand h1 {
             color: #0757d9;
-            font-size: 24px;
+            font-size: 25px;
             font-weight: 800;
         }
 
         .brand p {
             color: #667085;
             font-size: 12px;
-            margin-top: 4px;
+            margin-top: 5px;
         }
+
+
+        /* CARD */
 
         .login-card {
             background: #ffffff;
@@ -96,7 +90,7 @@
 
         .login-card h2 {
             text-align: center;
-            font-size: 28px;
+            font-size: 27px;
             margin-bottom: 7px;
         }
 
@@ -104,14 +98,18 @@
             text-align: center;
             color: #667085;
             font-size: 13px;
-            margin-bottom: 28px;
+            margin-bottom: 27px;
         }
+
+
+        /* MESSAGE */
 
         .message {
             display: none;
             padding: 12px;
             border-radius: 9px;
             font-size: 12px;
+            line-height: 1.5;
             text-align: center;
             margin-bottom: 17px;
         }
@@ -129,6 +127,9 @@
             background: #ecfff4;
             border: 1px solid #b9efd1;
         }
+
+
+        /* FORM */
 
         .form-group {
             margin-bottom: 18px;
@@ -154,8 +155,7 @@
             outline: none;
             font-family: inherit;
             font-size: 14px;
-            background: #fff;
-            transition: .2s;
+            background: #ffffff;
         }
 
         .input:focus {
@@ -174,6 +174,9 @@
             cursor: pointer;
             font-size: 17px;
         }
+
+
+        /* OPTIONS */
 
         .login-options {
             display: flex;
@@ -202,6 +205,9 @@
             font-weight: 700;
         }
 
+
+        /* BUTTON */
+
         .login-btn {
             width: 100%;
             height: 52px;
@@ -213,7 +219,7 @@
             font-size: 14px;
             font-weight: 700;
             cursor: pointer;
-            transition: .3s;
+            transition: .2s;
         }
 
         .login-btn:hover {
@@ -224,6 +230,9 @@
             opacity: .65;
             cursor: not-allowed;
         }
+
+
+        /* REGISTER */
 
         .register-text {
             text-align: center;
@@ -237,6 +246,9 @@
             font-weight: 700;
         }
 
+
+        /* BACK */
+
         .back-home {
             display: block;
             text-align: center;
@@ -248,6 +260,9 @@
         .back-home:hover {
             color: #0757d9;
         }
+
+
+        /* MOBILE */
 
         @media (max-width: 500px) {
 
@@ -278,6 +293,8 @@
     <div class="login-container">
 
 
+        <!-- BRAND -->
+
         <div class="brand">
 
             <div class="brand-icon">
@@ -295,6 +312,9 @@
         </div>
 
 
+
+        <!-- LOGIN CARD -->
+
         <div class="login-card">
 
             <h2>
@@ -306,13 +326,23 @@
             </p>
 
 
-            <div id="message"
-                 class="message">
+
+            <!-- MESSAGE -->
+
+            <div
+                id="message"
+                class="message">
+
             </div>
 
 
+
+            <!-- LOGIN FORM -->
+
             <form id="loginForm">
 
+
+                <!-- EMAIL -->
 
                 <div class="form-group">
 
@@ -331,6 +361,9 @@
 
                 </div>
 
+
+
+                <!-- PASSWORD -->
 
                 <div class="form-group">
 
@@ -363,6 +396,9 @@
                 </div>
 
 
+
+                <!-- OPTIONS -->
+
                 <div class="login-options">
 
                     <label class="remember">
@@ -391,6 +427,9 @@
                 </div>
 
 
+
+                <!-- LOGIN BUTTON -->
+
                 <button
                     type="submit"
                     class="login-btn"
@@ -404,6 +443,9 @@
             </form>
 
 
+
+            <!-- REGISTER -->
+
             <p class="register-text">
 
                 Don't have an account?
@@ -414,8 +456,12 @@
 
             </p>
 
+
         </div>
 
+
+
+        <!-- BACK -->
 
         <a
             href="index.html"
@@ -425,490 +471,669 @@
 
         </a>
 
+
     </div>
 
 </div>
 
 
 
+<!-- =====================================
+     FIREBASE
+===================================== -->
+
 <script type="module">
 
-    import {
-        initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+/* =====================================
+   SHARED FIREBASE CONFIG
+===================================== */
+
+import {
+
+    auth,
+
+    db
+
+} from "./firebase-config.js";
 
 
-    import {
-        getAuth,
-        signInWithEmailAndPassword,
-        setPersistence,
-        browserLocalPersistence,
-        browserSessionPersistence,
-        sendPasswordResetEmail
-    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+/* =====================================
+   AUTH
+===================================== */
+
+import {
+
+    signInWithEmailAndPassword,
+
+    setPersistence,
+
+    browserLocalPersistence,
+
+    browserSessionPersistence,
+
+    onAuthStateChanged,
+
+    sendPasswordResetEmail
+
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-    import {
-        getFirestore,
-        doc,
-        getDoc
-    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+/* =====================================
+   FIRESTORE
+===================================== */
+
+import {
+
+    doc,
+
+    getDoc
+
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-    /* =========================
-       FIREBASE CONFIG
-    ========================= */
 
-    const firebaseConfig = {
+/* =====================================
+   ELEMENTS
+===================================== */
 
-        apiKey:
-            "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
-
-        authDomain:
-            "fame-store-ea8b7.firebaseapp.com",
-
-        projectId:
-            "fame-store-ea8b7",
-
-        storageBucket:
-            "fame-store-ea8b7.firebasestorage.app",
-
-        messagingSenderId:
-            "484192010044",
-
-        appId:
-            "1:484192010044:web:8b1c496d5baa492d74a839",
-
-        measurementId:
-            "G-YTGM3N01V6"
-
-    };
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
 
 
-    /* =========================
-       INITIALIZE FIREBASE
-    ========================= */
-
-    const app =
-        initializeApp(firebaseConfig);
-
-    const auth =
-        getAuth(app);
-
-    const db =
-        getFirestore(app);
+const emailInput =
+    document.getElementById(
+        "email"
+    );
 
 
-    /* =========================
-       ELEMENTS
-    ========================= */
-
-    const loginForm =
-        document.getElementById("loginForm");
-
-    const emailInput =
-        document.getElementById("email");
-
-    const passwordInput =
-        document.getElementById("password");
-
-    const rememberMe =
-        document.getElementById("rememberMe");
-
-    const loginBtn =
-        document.getElementById("loginBtn");
-
-    const message =
-        document.getElementById("message");
+const passwordInput =
+    document.getElementById(
+        "password"
+    );
 
 
-    /* =========================
-       MESSAGE
-    ========================= */
+const rememberMe =
+    document.getElementById(
+        "rememberMe"
+    );
 
-    function showMessage(text, type) {
 
-        message.textContent = text;
+const loginBtn =
+    document.getElementById(
+        "loginBtn"
+    );
 
-        message.className =
-            "message " + type;
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const togglePassword =
+    document.getElementById(
+        "togglePassword"
+    );
+
+
+const forgotPassword =
+    document.getElementById(
+        "forgotPassword"
+    );
+
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message " + type;
+
+}
+
+
+
+/* =====================================
+   PASSWORD TOGGLE
+===================================== */
+
+togglePassword.addEventListener(
+    "click",
+    () => {
+
+        if (
+            passwordInput.type ===
+            "password"
+        ) {
+
+            passwordInput.type =
+                "text";
+
+            togglePassword.textContent =
+                "🙈";
+
+        } else {
+
+            passwordInput.type =
+                "password";
+
+            togglePassword.textContent =
+                "👁️";
+
+        }
 
     }
+);
 
 
-    /* =========================
-       PASSWORD TOGGLE
-    ========================= */
 
-    document
-        .getElementById("togglePassword")
-        .addEventListener("click", () => {
+/* =====================================
+   LOGIN
+===================================== */
 
-            if (
-                passwordInput.type === "password"
-            ) {
+loginForm.addEventListener(
+    "submit",
+    async event => {
 
-                passwordInput.type = "text";
-
-            } else {
-
-                passwordInput.type = "password";
-
-            }
-
-        });
+        event.preventDefault();
 
 
-    /* =========================
-       LOGIN
-    ========================= */
-
-    loginForm.addEventListener(
-        "submit",
-        async event => {
-
-            event.preventDefault();
+        const email =
+            emailInput.value
+                .trim()
+                .toLowerCase();
 
 
-            const email =
-                emailInput.value
-                    .trim()
-                    .toLowerCase();
-
-            const password =
-                passwordInput.value;
+        const password =
+            passwordInput.value;
 
 
-            if (!email.endsWith("@gmail.com")) {
+        /* =========================
+           VALIDATION
+        ========================= */
 
-                showMessage(
-                    "Please enter a valid Gmail address.",
-                    "error"
-                );
+        if (
+            !email.endsWith(
+                "@gmail.com"
+            )
+        ) {
 
-                return;
+            showMessage(
+                "Please enter a valid Gmail address.",
+                "error"
+            );
 
-            }
+            return;
 
-
-            if (!password) {
-
-                showMessage(
-                    "Please enter your password.",
-                    "error"
-                );
-
-                return;
-
-            }
+        }
 
 
-            loginBtn.disabled = true;
+        if (!password) {
 
-            loginBtn.textContent =
-                "Logging in...";
+            showMessage(
+                "Please enter your password.",
+                "error"
+            );
+
+            return;
+
+        }
 
 
-            try {
 
-                /* =========================
-                   PERSISTENCE
-                ========================= */
+        /* =========================
+           LOADING
+        ========================= */
 
-                await setPersistence(
+        loginBtn.disabled =
+            true;
+
+        loginBtn.textContent =
+            "Logging in...";
+
+
+
+        try {
+
+
+            /* =========================
+               PERSISTENCE
+            ========================= */
+
+            await setPersistence(
+
+                auth,
+
+                rememberMe.checked
+                    ? browserLocalPersistence
+                    : browserSessionPersistence
+
+            );
+
+
+
+            /* =========================
+               SIGN IN
+            ========================= */
+
+            const credential =
+                await signInWithEmailAndPassword(
                     auth,
-                    rememberMe.checked
-                        ? browserLocalPersistence
-                        : browserSessionPersistence
+                    email,
+                    password
                 );
 
 
-                /* =========================
-                   FIREBASE LOGIN
-                ========================= */
-
-                const result =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        email,
-                        password
-                    );
+            const user =
+                credential.user;
 
 
-                const user =
-                    result.user;
+
+            console.log(
+                "Logged in UID:",
+                user.uid
+            );
 
 
-                console.log(
-                    "Logged in UID:",
+
+            /* =========================
+               GET USER PROFILE
+            ========================= */
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
                     user.uid
                 );
 
 
-                /* =========================
-                   GET FIRESTORE PROFILE
-                ========================= */
-
-                const userRef =
-                    doc(
-                        db,
-                        "users",
-                        user.uid
-                    );
-
-
-                const userSnapshot =
-                    await getDoc(userRef);
-
-
-                if (!userSnapshot.exists()) {
-
-                    await auth.signOut();
-
-                    throw new Error(
-                        "PROFILE_NOT_FOUND"
-                    );
-
-                }
-
-
-                const userData =
-                    userSnapshot.data();
-
-
-                console.log(
-                    "Firestore profile:",
-                    userData
+            const userSnap =
+                await getDoc(
+                    userRef
                 );
 
 
-                /* =========================
-                   ADMIN
-                ========================= */
 
-                if (
-                    userData.role === "admin"
-                ) {
+            /* =========================
+               PROFILE CHECK
+            ========================= */
 
-                    showMessage(
-                        "Admin login successful. Redirecting...",
-                        "success"
-                    );
-
-
-                    setTimeout(() => {
-
-                        window.location.href =
-                            "admin/admin-dashboard.html";
-
-                    }, 500);
-
-
-                    return;
-
-                }
-
-
-                /* =========================
-                   CUSTOMER
-                ========================= */
+            if (
+                !userSnap.exists()
+            ) {
 
                 showMessage(
-                    "Login successful. Redirecting...",
-                    "success"
-                );
-
-
-                setTimeout(() => {
-
-                    window.location.href =
-                        "dashboard.html";
-
-                }, 500);
-
-
-            } catch (error) {
-
-                console.error(
-                    "LOGIN ERROR:",
-                    error
-                );
-
-
-                let errorMessage =
-                    "Unable to login. Please check your details.";
-
-
-                if (
-                    error.code ===
-                    "auth/invalid-credential"
-                ) {
-
-                    errorMessage =
-                        "Incorrect Gmail or password.";
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/user-not-found"
-                ) {
-
-                    errorMessage =
-                        "No account was found with this Gmail.";
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/wrong-password"
-                ) {
-
-                    errorMessage =
-                        "Incorrect password.";
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/too-many-requests"
-                ) {
-
-                    errorMessage =
-                        "Too many login attempts. Please try again later.";
-
-                }
-
-                else if (
-                    error.code ===
-                    "auth/network-request-failed"
-                ) {
-
-                    errorMessage =
-                        "Network error. Check your internet connection.";
-
-                }
-
-                else if (
-                    error.message ===
-                    "PROFILE_NOT_FOUND"
-                ) {
-
-                    errorMessage =
-                        "Your account profile could not be found. Please contact support.";
-
-                }
-
-
-                showMessage(
-                    errorMessage,
+                    "Login successful, but your profile could not be found.",
                     "error"
                 );
 
-
-                loginBtn.disabled = false;
+                loginBtn.disabled =
+                    false;
 
                 loginBtn.textContent =
                     "Login Account";
 
+                return;
+
             }
+
+
+
+            const userData =
+                userSnap.data();
+
+
+
+            console.log(
+                "User profile:",
+                userData
+            );
+
+
+
+            /* =========================
+               ADMIN CHECK
+            ========================= */
+
+            if (
+                userData.role ===
+                "admin"
+            ) {
+
+
+                showMessage(
+                    "Admin login successful. Opening admin panel...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        window.location.href =
+                            "admin-deposits.html";
+
+                    },
+                    700
+                );
+
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               CUSTOMER
+            ========================= */
+
+            showMessage(
+                "Login successful. Opening your dashboard...",
+                "success"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "dashboard.html";
+
+                },
+                700
+            );
+
+
+        } catch (error) {
+
+
+            console.error(
+                "LOGIN ERROR:",
+                error
+            );
+
+
+            let errorMessage =
+                "Unable to login. Please try again.";
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                errorMessage =
+                    "Incorrect Gmail or password.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage =
+                    "No account was found with this Gmail.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                errorMessage =
+                    "Incorrect password.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                errorMessage =
+                    "Too many login attempts. Please try again later.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "auth/network-request-failed"
+            ) {
+
+                errorMessage =
+                    "Network error. Check your internet connection.";
+
+            }
+
+
+            else if (
+                error.code ===
+                "permission-denied"
+            ) {
+
+                errorMessage =
+                    "Unable to read your profile. Check your Firestore Rules.";
+
+            }
+
+
+            else if (
+                error.message
+            ) {
+
+                errorMessage =
+                    error.message;
+
+            }
+
+
+            showMessage(
+                errorMessage,
+                "error"
+            );
+
+
+            loginBtn.disabled =
+                false;
+
+            loginBtn.textContent =
+                "Login Account";
 
         }
-    );
+
+    }
+);
 
 
-    /* =========================
-       FORGOT PASSWORD
-    ========================= */
 
-    document
-        .getElementById("forgotPassword")
-        .addEventListener(
-            "click",
-            async event => {
+/* =====================================
+   FORGOT PASSWORD
+===================================== */
 
-                event.preventDefault();
+forgotPassword.addEventListener(
+    "click",
+    async event => {
 
-
-                const email =
-                    emailInput.value
-                        .trim()
-                        .toLowerCase();
+        event.preventDefault();
 
 
-                if (!email) {
-
-                    showMessage(
-                        "Enter your Gmail first, then click Forgot Password.",
-                        "error"
-                    );
-
-                    emailInput.focus();
-
-                    return;
-
-                }
+        const email =
+            emailInput.value
+                .trim()
+                .toLowerCase();
 
 
-                if (!email.endsWith("@gmail.com")) {
+        if (!email) {
 
-                    showMessage(
-                        "Please enter a valid Gmail address.",
-                        "error"
-                    );
+            showMessage(
+                "Enter your Gmail first, then click Forgot Password.",
+                "error"
+            );
 
-                    return;
+            emailInput.focus();
 
-                }
+            return;
 
-
-                try {
-
-                    await sendPasswordResetEmail(
-                        auth,
-                        email
-                    );
+        }
 
 
-                    showMessage(
-                        "Password reset email sent. Check your Gmail inbox.",
-                        "success"
-                    );
+        if (
+            !email.endsWith(
+                "@gmail.com"
+            )
+        ) {
+
+            showMessage(
+                "Please enter a valid Gmail address.",
+                "error"
+            );
+
+            return;
+
+        }
 
 
-                } catch (error) {
-
-                    console.error(
-                        "PASSWORD RESET ERROR:",
-                        error
-                    );
+        try {
 
 
-                    if (
-                        error.code ===
-                        "auth/user-not-found"
-                    ) {
+            await sendPasswordResetEmail(
+                auth,
+                email
+            );
 
-                        showMessage(
-                            "No account was found with this Gmail.",
-                            "error"
-                        );
 
-                    } else {
+            showMessage(
+                "Password reset email sent. Check your Gmail inbox.",
+                "success"
+            );
 
-                        showMessage(
-                            "Unable to send the reset email. Please try again.",
-                            "error"
-                        );
 
-                    }
+        } catch (error) {
 
-                }
+
+            console.error(
+                "PASSWORD RESET ERROR:",
+                error
+            );
+
+
+            showMessage(
+                "Unable to send the reset email. Please check the Gmail address and try again.",
+                "error"
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   EXISTING SESSION
+===================================== */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if (!user) {
+
+            return;
+
+        }
+
+
+        /*
+         * If someone is already logged in,
+         * determine whether they are admin
+         * or customer before redirecting.
+         */
+
+        try {
+
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const userSnap =
+                await getDoc(
+                    userRef
+                );
+
+
+            if (
+                !userSnap.exists()
+            ) {
+
+                return;
 
             }
-        );
+
+
+            const userData =
+                userSnap.data();
+
+
+            if (
+                userData.role ===
+                "admin"
+            ) {
+
+                window.location.href =
+                    "admin-deposits.html";
+
+            } else {
+
+                window.location.href =
+                    "dashboard.html";
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "SESSION CHECK ERROR:",
+                error
+            );
+
+        }
+
+    }
+);
+
 
 </script>
 
+
 </body>
+
 </html>
