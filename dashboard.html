@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -9,82 +10,37 @@
 
     <title>Dashboard | Fame Store</title>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-
     <style>
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --blue: #0757d9;
-            --dark-blue: #063b91;
-            --yellow: #ffc928;
-            --white: #ffffff;
-            --black: #101828;
-            --gray: #667085;
-            --light: #f5f8fc;
-            --border: #e5eaf1;
-            --green: #087443;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
-            font-family: "Inter", sans-serif;
-            background: var(--light);
-            color: var(--black);
+            font-family: Arial, sans-serif;
+            background: #f5f9ff;
+            color: #101828;
+            min-height: 100vh;
         }
 
         a {
             text-decoration: none;
-            color: inherit;
         }
 
-        button,
-        input,
-        select {
-            font-family: inherit;
-        }
-
-        .container {
-            width: min(1180px, 92%);
-            margin: auto;
-        }
-
-
-        /* =========================
-           HEADER
-        ========================= */
+        /* HEADER */
 
         .header {
             background: #ffffff;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #e5eaf1;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: sticky;
             top: 0;
-            z-index: 1000;
-        }
-
-        .header-inner {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
+            z-index: 20;
         }
 
         .brand {
@@ -94,527 +50,358 @@
         }
 
         .brand-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--yellow);
+            width: 42px;
+            height: 42px;
+            background: #ffc928;
             border-radius: 12px;
             display: grid;
             place-items: center;
-            font-size: 22px;
+            font-size: 21px;
         }
 
-        .brand-name {
-            color: var(--blue);
-            font-size: 18px;
-            font-weight: 800;
+        .brand h1 {
+            color: #0757d9;
+            font-size: 20px;
         }
 
-        .brand-tagline {
-            color: var(--gray);
-            font-size: 9px;
-            margin-top: 2px;
+        .brand p {
+            color: #667085;
+            font-size: 11px;
+            margin-top: 3px;
         }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header-btn {
-            width: 42px;
-            height: 42px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        .header-btn:hover {
-            border-color: var(--blue);
-        }
-
-        .profile-mini {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: var(--blue);
-            color: white;
-            display: grid;
-            place-items: center;
-            font-weight: 800;
+        .logout-btn {
+            border: 0;
+            background: #fff1f0;
+            color: #b42318;
+            padding: 9px 13px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 700;
             cursor: pointer;
         }
 
 
-        /* =========================
-           PAGE
-        ========================= */
+        /* CONTAINER */
 
-        .dashboard {
-            padding: 35px 0 70px;
+        .container {
+            width: min(1150px, 100%);
+            margin: auto;
+            padding: 25px 18px 50px;
         }
+
+
+        /* WELCOME */
 
         .welcome {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
-        .welcome h1 {
-            font-size: clamp(24px, 4vw, 34px);
-            line-height: 1.2;
+        .welcome h2 {
+            font-size: 24px;
+            margin-bottom: 6px;
         }
 
         .welcome p {
-            color: var(--gray);
-            margin-top: 6px;
-            font-size: 14px;
+            color: #667085;
+            font-size: 13px;
         }
 
 
-        /* =========================
-           BALANCE
-        ========================= */
+        /* WALLET */
 
-        .balance-card {
+        .wallet {
             background: linear-gradient(
                 135deg,
-                var(--blue),
-                var(--dark-blue)
+                #0757d9,
+                #0b72ed
             );
-            border-radius: 22px;
-            color: white;
-            padding: 30px;
-            box-shadow: 0 20px 45px rgba(7, 87, 217, .20);
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 25px;
+
+            color: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(7, 87, 217, .18);
         }
 
-        .balance-card::after {
-            content: "";
-            width: 220px;
-            height: 220px;
-            position: absolute;
-            right: -80px;
-            top: -80px;
-            background: rgba(255, 255, 255, .08);
-            border-radius: 50%;
-        }
-
-        .balance-label {
+        .wallet-label {
             font-size: 12px;
-            opacity: .8;
+            opacity: .85;
+            margin-bottom: 8px;
         }
 
-        .balance-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .balance-amount {
-            font-size: clamp(32px, 6vw, 46px);
+        .balance {
+            font-size: 34px;
             font-weight: 800;
-            margin-top: 6px;
+            margin-bottom: 18px;
+        }
+
+        .wallet-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .wallet-btn {
+            border: 0;
+            border-radius: 9px;
+            padding: 11px 18px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
         }
 
         .deposit-btn {
-            border: 0;
-            background: var(--yellow);
-            color: #614800;
-            padding: 13px 22px;
-            border-radius: 10px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: .3s;
+            background: #ffc928;
+            color: #101828;
         }
 
-        .deposit-btn:hover {
-            transform: translateY(-2px);
-            background: #ffd84e;
+        .withdraw-btn {
+            background: #ffffff;
+            color: #0757d9;
         }
 
 
-        /* =========================
-           QUICK ACTIONS
-        ========================= */
+        /* QUICK ACTIONS */
+
+        .quick-title {
+            font-size: 18px;
+            margin: 25px 0 13px;
+        }
 
         .quick-actions {
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns:
+                repeat(7, 1fr);
+
             gap: 10px;
-            margin-bottom: 35px;
         }
 
-        .quick-action {
-            background: white;
-            border: 1px solid var(--border);
+        .quick-card {
+            background: #ffffff;
+            border: 1px solid #e5eaf1;
             border-radius: 13px;
             padding: 15px 8px;
             text-align: center;
-            transition: .25s;
+            color: #101828;
+            transition: .2s;
         }
 
-        .quick-action:hover {
-            border-color: var(--blue);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(7, 87, 217, .08);
+        .quick-card:hover {
+            border-color: #0757d9;
+            transform: translateY(-2px);
         }
 
         .quick-icon {
             font-size: 22px;
-            display: block;
             margin-bottom: 7px;
         }
 
-        .quick-action span:last-child {
+        .quick-card span {
+            display: block;
             font-size: 10px;
             font-weight: 700;
-            color: #344054;
         }
 
 
-        /* =========================
-           SECTION TITLE
-        ========================= */
+        /* GLOBAL DELIVERY */
+
+        .section {
+            margin-top: 28px;
+        }
 
         .section-title {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .section-subtitle {
+            color: #667085;
+            font-size: 13px;
             margin-bottom: 18px;
         }
 
-        .section-title h2 {
-            font-size: 23px;
-        }
 
-        .section-title p {
-            color: var(--gray);
-            font-size: 13px;
-            margin-top: 4px;
-        }
+        /* COUNTRIES */
 
-
-        /* =========================
-           COUNTRIES
-        ========================= */
-
-        .country-grid {
+        .countries {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
 
-        .country-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 20px;
-            cursor: pointer;
-            transition: .25s;
-            position: relative;
-        }
+            grid-template-columns:
+                repeat(4, 1fr);
 
-        .country-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(7, 87, 217, .09);
-        }
-
-        .country-card.selected {
-            border: 2px solid var(--blue);
-            background: #f1f7ff;
-        }
-
-        .country-flag {
-            font-size: 34px;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .country-name {
-            font-weight: 800;
-            font-size: 14px;
-        }
-
-        .country-card::after {
-            content: "→";
-            position: absolute;
-            right: 15px;
-            bottom: 18px;
-            color: var(--blue);
-            font-weight: 800;
-        }
-
-
-        /* =========================
-           OTHER COUNTRY
-        ========================= */
-
-        .other-country {
-            margin-top: 15px;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .other-left {
-            display: flex;
-            align-items: center;
             gap: 12px;
         }
 
-        .other-icon {
-            width: 45px;
-            height: 45px;
-            background: #fff7d9;
-            border-radius: 12px;
-            display: grid;
-            place-items: center;
-            font-size: 22px;
+        .country {
+            background: #ffffff;
+            border: 1px solid #e5eaf1;
+            border-radius: 15px;
+            padding: 18px 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: .2s;
         }
 
-        .other-country strong {
-            display: block;
-            font-size: 14px;
+        .country:hover {
+            border-color: #0757d9;
+            box-shadow:
+                0 8px 25px
+                rgba(7, 87, 217, .08);
+            transform: translateY(-2px);
         }
 
-        .other-country span {
-            color: var(--gray);
+        .flag {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .country-name {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+
+        /* SELECTED */
+
+        .selected {
+            background: #ffffff;
+            border: 1px solid #e5eaf1;
+            border-radius: 15px;
+            padding: 17px;
+            margin-top: 16px;
+        }
+
+        .selected-label {
+            color: #667085;
             font-size: 11px;
-        }
-
-
-        /* =========================
-           SELECTED COUNTRY
-        ========================= */
-
-        .selection-box {
-            display: none;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 18px;
-            margin-top: 20px;
-        }
-
-        .selection-box.show {
-            display: block;
-        }
-
-        .selection-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .selection-info p {
-            color: var(--gray);
-            font-size: 11px;
-            margin-bottom: 3px;
+            margin-bottom: 5px;
         }
 
         .selected-country {
-            color: var(--blue);
             font-weight: 800;
+            margin-bottom: 13px;
         }
 
         .continue-btn {
+            width: 100%;
+            height: 45px;
+            background: #0757d9;
+            color: #ffffff;
             border: 0;
-            background: var(--blue);
-            color: white;
-            padding: 12px 19px;
             border-radius: 9px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: 800;
             cursor: pointer;
         }
 
-        .continue-btn:hover {
-            background: var(--dark-blue);
+        .continue-btn:disabled {
+            opacity: .45;
+            cursor: not-allowed;
         }
 
 
-        /* =========================
-           SUPPORT
-        ========================= */
+        /* SUPPORT */
 
-        .support-card {
-            margin-top: 35px;
+        .support {
+            margin-top: 28px;
             background: #fffbea;
-            border: 1px solid #f5df88;
-            border-radius: 18px;
-            padding: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
+            border: 1px solid #ffe69a;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
         }
 
-        .support-card h3 {
-            font-size: 17px;
+        .support h3 {
+            margin-bottom: 7px;
         }
 
-        .support-card p {
-            color: var(--gray);
+        .support p {
+            color: #667085;
             font-size: 12px;
-            margin-top: 5px;
+            margin-bottom: 13px;
         }
 
         .support-btn {
-            background: var(--blue);
-            color: white;
-            padding: 12px 18px;
+            display: inline-block;
+            background: #0757d9;
+            color: #ffffff;
+            padding: 10px 18px;
             border-radius: 9px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            white-space: nowrap;
         }
 
 
-        /* =========================
-           FOOTER
-        ========================= */
+        /* FOOTER */
 
-        .footer {
-            background: #061c43;
-            color: white;
-            padding: 25px 0;
-        }
-
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .footer p {
-            color: #9eafc9;
-            font-size: 10px;
+        footer {
+            text-align: center;
+            color: #98a2b3;
+            font-size: 11px;
+            padding: 25px 10px;
         }
 
 
-        /* =========================
-           TOAST
-        ========================= */
-
-        .toast {
-            position: fixed;
-            left: 50%;
-            bottom: 25px;
-            transform: translate(-50%, 100px);
-            opacity: 0;
-            background: #101828;
-            color: white;
-            padding: 13px 20px;
-            border-radius: 10px;
-            font-size: 12px;
-            z-index: 9999;
-            transition: .3s;
-            pointer-events: none;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translate(-50%, 0);
-        }
-
-
-        /* =========================
-           LOADING
-        ========================= */
+        /* LOADING */
 
         .loading {
-            color: var(--gray);
+            opacity: .6;
         }
 
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
+        /* MOBILE */
 
-        @media (max-width: 950px) {
+        @media (max-width: 850px) {
 
             .quick-actions {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns:
+                    repeat(4, 1fr);
             }
 
-            .country-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-        }
-
-
-        @media (max-width: 650px) {
-
-            .dashboard {
-                padding-top: 25px;
-            }
-
-            .header-inner {
-                min-height: 68px;
-            }
-
-            .brand-name {
-                font-size: 16px;
-            }
-
-            .balance-card {
-                padding: 24px;
-            }
-
-            .balance-row {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .deposit-btn {
-                width: 100%;
-            }
-
-            .quick-actions {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .country-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .support-card {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .support-btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .footer-inner {
-                align-items: flex-start;
-                flex-direction: column;
+            .countries {
+                grid-template-columns:
+                    repeat(3, 1fr);
             }
 
         }
 
 
-        @media (max-width: 400px) {
+        @media (max-width: 550px) {
 
-            .quick-actions {
-                grid-template-columns: repeat(2, 1fr);
+            .header {
+                padding: 13px 14px;
             }
 
-            .country-card {
-                padding: 16px;
+            .container {
+                padding: 20px 12px 40px;
+            }
+
+            .welcome h2 {
+                font-size: 21px;
+            }
+
+            .balance {
+                font-size: 29px;
+            }
+
+            .wallet {
+                padding: 21px;
+            }
+
+            .quick-actions {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .countries {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
         }
@@ -633,1189 +420,1008 @@
 
 <header class="header">
 
-    <div class="container header-inner">
+    <div class="brand">
 
+        <div class="brand-icon">
+            🛍️
+        </div>
 
-        <a href="dashboard.html" class="brand">
+        <div>
 
-            <div class="brand-icon">
-                🛍️
-            </div>
+            <h1>
+                Fame Store
+            </h1>
 
-            <div>
-
-                <div class="brand-name">
-                    Fame Store
-                </div>
-
-                <div class="brand-tagline">
-                    Send gifts 🎁, share love ❤️
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <div class="header-actions">
-
-            <button
-                class="header-btn"
-                id="notificationBtn"
-                title="Notifications">
-
-                🔔
-
-            </button>
-
-
-            <div
-                class="profile-mini"
-                id="profileMini"
-                title="Profile">
-
-                ?
-
-            </div>
+            <p>
+                Send gifts 🎁, share love ❤️
+            </p>
 
         </div>
 
     </div>
+
+
+    <button
+        id="logoutBtn"
+        class="logout-btn">
+
+        Logout
+
+    </button>
 
 </header>
 
 
 
 <!-- =========================
-     DASHBOARD
+     MAIN
 ========================= -->
 
-<main class="dashboard">
-
-    <div class="container">
+<main class="container">
 
 
-        <!-- WELCOME -->
+    <!-- WELCOME -->
 
-        <section class="welcome">
+    <section class="welcome">
 
-            <h1>
-                Welcome,
-                <span id="userName">
-                    Customer
-                </span>
-                👋
-            </h1>
+        <h2 id="welcomeText">
+            Welcome 👋
+        </h2>
 
-            <p>
-                Send something special to someone you love.
-            </p>
+        <p>
+            Send something special to someone you love
+        </p>
 
-        </section>
+    </section>
 
 
 
-        <!-- BALANCE -->
+    <!-- WALLET -->
 
-        <section class="balance-card">
+    <section class="wallet">
 
-            <div class="balance-label">
-                Total Balance
+        <div class="wallet-label">
+            Total Balance
+        </div>
+
+        <div
+            id="walletBalance"
+            class="balance loading">
+
+            ₦0.00
+
+        </div>
+
+
+        <div class="wallet-actions">
+
+            <button
+                class="wallet-btn deposit-btn"
+                id="depositBtn">
+
+                Deposit
+
+            </button>
+
+
+            <button
+                class="wallet-btn withdraw-btn"
+                id="withdrawBtn">
+
+                Withdraw
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- QUICK ACTIONS -->
+
+    <h3 class="quick-title">
+        Quick Actions
+    </h3>
+
+
+    <div class="quick-actions">
+
+
+        <a
+            href="profile.html"
+            class="quick-card">
+
+            <div class="quick-icon">
+                👤
             </div>
 
+            <span>
+                Profile
+            </span>
 
-            <div class="balance-row">
-
-                <div>
-
-                    <div
-                        class="balance-amount"
-                        id="walletBalance">
-
-                        ₦0.00
-
-                    </div>
-
-                </div>
+        </a>
 
 
-                <button
-                    class="deposit-btn"
-                    id="depositBtn">
+        <a
+            href="deposit.html"
+            class="quick-card">
 
-                    Deposit
-
-                </button>
-
+            <div class="quick-icon">
+                💳
             </div>
 
-        </section>
+            <span>
+                Deposit
+            </span>
+
+        </a>
 
 
+        <a
+            href="settings.html"
+            class="quick-card">
 
-        <!-- QUICK ACTIONS -->
-
-        <section class="quick-actions">
-
-
-            <a href="profile.html"
-               class="quick-action">
-
-                <span class="quick-icon">
-                    👤
-                </span>
-
-                <span>
-                    Profile
-                </span>
-
-            </a>
-
-
-            <a href="deposit.html"
-               class="quick-action">
-
-                <span class="quick-icon">
-                    💳
-                </span>
-
-                <span>
-                    Deposit
-                </span>
-
-            </a>
-
-
-            <a href="settings.html"
-               class="quick-action">
-
-                <span class="quick-icon">
-                    ⚙️
-                </span>
-
-                <span>
-                    Settings
-                </span>
-
-            </a>
-
-
-            <a href="notifications.html"
-               class="quick-action">
-
-                <span class="quick-icon">
-                    🔔
-                </span>
-
-                <span>
-                    Notifications
-                </span>
-
-            </a>
-
-
-            <a href="support.html"
-               class="quick-action">
-
-                <span class="quick-icon">
-                    💬
-                </span>
-
-                <span>
-                    Support
-                </span>
-
-            </a>
-
-
-            <a href="payment-history.html"
-               class="quick-action">
-
-                <span class="quick-icon">
-                    💰
-                </span>
-
-                <span>
-                    Payment History
-                </span>
-
-            </a>
-
-
-            <a href="order-history.html"
-               class="quick-action">
-
-                <span class="quick-icon">
-                    📦
-                </span>
-
-                <span>
-                    Order History
-                </span>
-
-            </a>
-
-
-            <a href="#"
-               class="quick-action"
-               id="logoutBtn">
-
-                <span class="quick-icon">
-                    🚪
-                </span>
-
-                <span>
-                    Logout
-                </span>
-
-            </a>
-
-        </section>
-
-
-
-        <!-- GLOBAL DELIVERY -->
-
-        <section>
-
-
-            <div class="section-title">
-
-                <h2>
-                    🌎 Global Delivery
-                </h2>
-
-                <p>
-                    Which country do you want to send to?
-                </p>
-
-                <p>
-                    Select a destination to explore gifts
-                    available for delivery.
-                </p>
-
+            <div class="quick-icon">
+                ⚙️
             </div>
 
+            <span>
+                Settings
+            </span>
 
+        </a>
 
-            <div class="country-grid"
-                 id="countryGrid">
 
+        <a
+            href="notifications.html"
+            class="quick-card">
 
-                <!-- USA -->
-
-                <div
-                    class="country-card"
-                    data-country="USA">
-
-                    <span class="country-flag">
-                        🇺🇸
-                    </span>
-
-                    <span class="country-name">
-                        USA
-                    </span>
-
-                </div>
-
-
-                <!-- CANADA -->
-
-                <div
-                    class="country-card"
-                    data-country="Canada">
-
-                    <span class="country-flag">
-                        🇨🇦
-                    </span>
-
-                    <span class="country-name">
-                        Canada
-                    </span>
-
-                </div>
-
-
-                <!-- UK -->
-
-                <div
-                    class="country-card"
-                    data-country="UK">
-
-                    <span class="country-flag">
-                        🇬🇧
-                    </span>
-
-                    <span class="country-name">
-                        UK
-                    </span>
-
-                </div>
-
-
-                <!-- GERMANY -->
-
-                <div
-                    class="country-card"
-                    data-country="Germany">
-
-                    <span class="country-flag">
-                        🇩🇪
-                    </span>
-
-                    <span class="country-name">
-                        Germany
-                    </span>
-
-                </div>
-
-
-                <!-- SOUTH AFRICA -->
-
-                <div
-                    class="country-card"
-                    data-country="South Africa">
-
-                    <span class="country-flag">
-                        🇿🇦
-                    </span>
-
-                    <span class="country-name">
-                        South Africa
-                    </span>
-
-                </div>
-
-
-                <!-- BELGIUM -->
-
-                <div
-                    class="country-card"
-                    data-country="Belgium">
-
-                    <span class="country-flag">
-                        🇧🇪
-                    </span>
-
-                    <span class="country-name">
-                        Belgium
-                    </span>
-
-                </div>
-
-
-                <!-- PHILIPPINES -->
-
-                <div
-                    class="country-card"
-                    data-country="Philippines">
-
-                    <span class="country-flag">
-                        🇵🇭
-                    </span>
-
-                    <span class="country-name">
-                        Philippines
-                    </span>
-
-                </div>
-
-
-                <!-- PORTUGAL -->
-
-                <div
-                    class="country-card"
-                    data-country="Portugal">
-
-                    <span class="country-flag">
-                        🇵🇹
-                    </span>
-
-                    <span class="country-name">
-                        Portugal
-                    </span>
-
-                </div>
-
-
-                <!-- SPAIN -->
-
-                <div
-                    class="country-card"
-                    data-country="Spain">
-
-                    <span class="country-flag">
-                        🇪🇸
-                    </span>
-
-                    <span class="country-name">
-                        Spain
-                    </span>
-
-                </div>
-
-
-                <!-- FRANCE -->
-
-                <div
-                    class="country-card"
-                    data-country="France">
-
-                    <span class="country-flag">
-                        🇫🇷
-                    </span>
-
-                    <span class="country-name">
-                        France
-                    </span>
-
-                </div>
-
-
-                <!-- MEXICO -->
-
-                <div
-                    class="country-card"
-                    data-country="Mexico">
-
-                    <span class="country-flag">
-                        🇲🇽
-                    </span>
-
-                    <span class="country-name">
-                        Mexico
-                    </span>
-
-                </div>
-
-
-                <!-- TURKEY -->
-
-                <div
-                    class="country-card"
-                    data-country="Turkey">
-
-                    <span class="country-flag">
-                        🇹🇷
-                    </span>
-
-                    <span class="country-name">
-                        Turkey
-                    </span>
-
-                </div>
-
-
-                <!-- CHINA -->
-
-                <div
-                    class="country-card"
-                    data-country="China">
-
-                    <span class="country-flag">
-                        🇨🇳
-                    </span>
-
-                    <span class="country-name">
-                        China
-                    </span>
-
-                </div>
-
-
-                <!-- SAUDI -->
-
-                <div
-                    class="country-card"
-                    data-country="Saudi Arabia">
-
-                    <span class="country-flag">
-                        🇸🇦
-                    </span>
-
-                    <span class="country-name">
-                        Saudi Arabia
-                    </span>
-
-                </div>
-
-
-                <!-- AUSTRALIA -->
-
-                <div
-                    class="country-card"
-                    data-country="Australia">
-
-                    <span class="country-flag">
-                        🇦🇺
-                    </span>
-
-                    <span class="country-name">
-                        Australia
-                    </span>
-
-                </div>
-
-
-                <!-- KUWAIT -->
-
-                <div
-                    class="country-card"
-                    data-country="Kuwait">
-
-                    <span class="country-flag">
-                        🇰🇼
-                    </span>
-
-                    <span class="country-name">
-                        Kuwait
-                    </span>
-
-                </div>
-
-
-                <!-- ITALY -->
-
-                <div
-                    class="country-card"
-                    data-country="Italy">
-
-                    <span class="country-flag">
-                        🇮🇹
-                    </span>
-
-                    <span class="country-name">
-                        Italy
-                    </span>
-
-                </div>
-
+            <div class="quick-icon">
+                🔔
             </div>
 
+            <span>
+                Notifications
+            </span>
+
+        </a>
 
 
-            <!-- OTHER COUNTRIES -->
+        <a
+            href="support.html"
+            class="quick-card">
 
-            <div
-                class="other-country"
-                id="otherCountry">
-
-                <div class="other-left">
-
-                    <div class="other-icon">
-                        🌎
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Other Countries
-                        </strong>
-
-                        <span>
-                            Choose another delivery destination
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <strong>
-                    →
-                </strong>
-
+            <div class="quick-icon">
+                💬
             </div>
 
+            <span>
+                Support
+            </span>
+
+        </a>
 
 
-            <!-- SELECTION -->
+        <a
+            href="payment-history.html"
+            class="quick-card">
 
-            <div
-                class="selection-box"
-                id="selectionBox">
-
-                <div class="selection-info">
-
-                    <div>
-
-                        <p>
-                            Selected destination:
-                        </p>
-
-                        <div
-                            class="selected-country"
-                            id="selectedCountry">
-
-                            —
-
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        class="continue-btn"
-                        id="continueBtn">
-
-                        Continue →
-
-                    </button>
-
-                </div>
-
+            <div class="quick-icon">
+                💰
             </div>
 
-        </section>
+            <span>
+                Payment History
+            </span>
+
+        </a>
 
 
+        <a
+            href="order-history.html"
+            class="quick-card">
 
-        <!-- SUPPORT -->
-
-        <section class="support-card">
-
-            <div>
-
-                <h3>
-                    Need help sending a gift?
-                </h3>
-
-                <p>
-                    Our support team is available to help
-                    you with your order.
-                </p>
-
+            <div class="quick-icon">
+                📦
             </div>
 
+            <span>
+                Order History
+            </span>
 
-            <a
-                href="support.html"
-                class="support-btn">
-
-                Contact Support
-
-            </a>
-
-        </section>
+        </a>
 
 
     </div>
+
+
+
+    <!-- GLOBAL DELIVERY -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            GLOBAL DELIVERY
+        </h2>
+
+        <p class="section-subtitle">
+            Which country do you want to send to?
+            Select a destination to explore gifts
+            available for delivery.
+        </p>
+
+
+        <div class="countries">
+
+
+            <div class="country"
+                 data-country="USA">
+
+                <div class="flag">
+                    🇺🇸
+                </div>
+
+                <div class="country-name">
+                    USA
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Canada">
+
+                <div class="flag">
+                    🇨🇦
+                </div>
+
+                <div class="country-name">
+                    Canada
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="UK">
+
+                <div class="flag">
+                    🇬🇧
+                </div>
+
+                <div class="country-name">
+                    UK
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Germany">
+
+                <div class="flag">
+                    🇩🇪
+                </div>
+
+                <div class="country-name">
+                    Germany
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="South Africa">
+
+                <div class="flag">
+                    🇿🇦
+                </div>
+
+                <div class="country-name">
+                    South Africa
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Belgium">
+
+                <div class="flag">
+                    🇧🇪
+                </div>
+
+                <div class="country-name">
+                    Belgium
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Philippines">
+
+                <div class="flag">
+                    🇵🇭
+                </div>
+
+                <div class="country-name">
+                    Philippines
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Portugal">
+
+                <div class="flag">
+                    🇵🇹
+                </div>
+
+                <div class="country-name">
+                    Portugal
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Spain">
+
+                <div class="flag">
+                    🇪🇸
+                </div>
+
+                <div class="country-name">
+                    Spain
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="France">
+
+                <div class="flag">
+                    🇫🇷
+                </div>
+
+                <div class="country-name">
+                    France
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Mexico">
+
+                <div class="flag">
+                    🇲🇽
+                </div>
+
+                <div class="country-name">
+                    Mexico
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Turkey">
+
+                <div class="flag">
+                    🇹🇷
+                </div>
+
+                <div class="country-name">
+                    Turkey
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="China">
+
+                <div class="flag">
+                    🇨🇳
+                </div>
+
+                <div class="country-name">
+                    China
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Saudi Arabia">
+
+                <div class="flag">
+                    🇸🇦
+                </div>
+
+                <div class="country-name">
+                    Saudi Arabia
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Australia">
+
+                <div class="flag">
+                    🇦🇺
+                </div>
+
+                <div class="country-name">
+                    Australia
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Kuwait">
+
+                <div class="flag">
+                    🇰🇼
+                </div>
+
+                <div class="country-name">
+                    Kuwait
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Italy">
+
+                <div class="flag">
+                    🇮🇹
+                </div>
+
+                <div class="country-name">
+                    Italy
+                </div>
+
+            </div>
+
+
+            <div class="country"
+                 data-country="Other Countries">
+
+                <div class="flag">
+                    🌎
+                </div>
+
+                <div class="country-name">
+                    Other Countries
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- SELECTED -->
+
+        <div class="selected">
+
+            <div class="selected-label">
+                Selected destination:
+            </div>
+
+            <div
+                id="selectedCountry"
+                class="selected-country">
+
+                —
+
+            </div>
+
+            <button
+                id="continueBtn"
+                class="continue-btn"
+                disabled>
+
+                Continue →
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SUPPORT -->
+
+    <section class="support">
+
+        <h3>
+            Need help sending a gift?
+        </h3>
+
+        <p>
+            Our support team is available
+            to help you with your order.
+        </p>
+
+        <a
+            href="support.html"
+            class="support-btn">
+
+            Contact Support
+
+        </a>
+
+    </section>
+
 
 </main>
 
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
-<footer class="footer">
+<footer>
 
-    <div class="container footer-inner">
-
-        <p>
-            © 2026 Fame Store. All rights reserved.
-        </p>
-
-        <p>
-            Send gifts today, for a brighter tomorrow ❤️
-        </p>
-
-    </div>
+    © 2026 Fame Store. All rights reserved.
 
 </footer>
 
 
 
-<!-- TOAST -->
-
-<div
-    class="toast"
-    id="toast">
-
-</div>
-
-
-
-<!-- =========================
+<!-- =====================================
      FIREBASE
-========================= -->
+===================================== -->
 
 <script type="module">
 
-    import {
-        initializeApp
-    }
-    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+/* =====================================
+   FIREBASE CONFIG
+===================================== */
+
+import {
+
+    auth,
+
+    db
+
+} from "./firebase-config.js";
 
 
-    import {
-        getAuth,
-        onAuthStateChanged,
-        signOut
-    }
-    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+/* =====================================
+   FIREBASE AUTH
+===================================== */
+
+import {
+
+    onAuthStateChanged,
+
+    signOut
+
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-    import {
-        getFirestore,
-        doc,
-        getDoc
-    }
-    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+/* =====================================
+   FIRESTORE
+===================================== */
+
+import {
+
+    doc,
+
+    onSnapshot
+
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-    /* =========================
-       FIREBASE CONFIG
-    ========================= */
 
-    const firebaseConfig = {
+/* =====================================
+   ELEMENTS
+===================================== */
 
-        apiKey:
-            "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
-
-        authDomain:
-            "fame-store-ea8b7.firebaseapp.com",
-
-        projectId:
-            "fame-store-ea8b7",
-
-        storageBucket:
-            "fame-store-ea8b7.firebasestorage.app",
-
-        messagingSenderId:
-            "484192010044",
-
-        appId:
-            "1:484192010044:web:8b1c496d5baa492d74a839",
-
-        measurementId:
-            "G-YTGM3N01V6"
-
-    };
+const welcomeText =
+    document.getElementById(
+        "welcomeText"
+    );
 
 
-    /* =========================
-       INITIALIZE
-    ========================= */
-
-    const app =
-        initializeApp(firebaseConfig);
-
-    const auth =
-        getAuth(app);
-
-    const db =
-        getFirestore(app);
+const walletBalance =
+    document.getElementById(
+        "walletBalance"
+    );
 
 
-    /* =========================
-       ELEMENTS
-    ========================= */
-
-    const userName =
-        document.getElementById("userName");
-
-    const walletBalance =
-        document.getElementById("walletBalance");
-
-    const profileMini =
-        document.getElementById("profileMini");
-
-    const logoutBtn =
-        document.getElementById("logoutBtn");
-
-    const depositBtn =
-        document.getElementById("depositBtn");
-
-    const notificationBtn =
-        document.getElementById("notificationBtn");
-
-    const toast =
-        document.getElementById("toast");
+const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
 
 
-    /* =========================
-       TOAST
-    ========================= */
-
-    function showToast(text) {
-
-        toast.textContent = text;
-
-        toast.classList.add("show");
-
-        setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        }, 2500);
-
-    }
+const depositBtn =
+    document.getElementById(
+        "depositBtn"
+    );
 
 
-    /* =========================
-       FORMAT BALANCE
-    ========================= */
+const withdrawBtn =
+    document.getElementById(
+        "withdrawBtn"
+    );
 
-    function formatNaira(amount) {
 
-        const number =
-            Number(amount) || 0;
+const selectedCountry =
+    document.getElementById(
+        "selectedCountry"
+    );
 
-        return "₦" +
-            number.toLocaleString(
-                "en-NG",
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
+
+const continueBtn =
+    document.getElementById(
+        "continueBtn"
+    );
+
+
+
+let selected =
+    "";
+
+
+
+/* =====================================
+   FORMAT NAIRA
+===================================== */
+
+function formatNaira(
+    amount
+) {
+
+    return "₦" +
+        Number(
+            amount || 0
+        ).toLocaleString(
+            "en-NG",
+            {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }
+        );
+
+}
+
+
+
+/* =====================================
+   AUTH STATE
+===================================== */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+
+        /*
+         * Show email temporarily
+         * while profile loads.
+         */
+
+        welcomeText.textContent =
+            "Welcome, " +
+            (
+                user.displayName ||
+                user.email.split("@")[0]
+            ) +
+            " 👋";
+
+
+
+        /* =========================
+           REAL-TIME USER PROFILE
+        ========================= */
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                user.uid
             );
 
-    }
+
+        /*
+         * onSnapshot means the wallet
+         * changes automatically when
+         * admin approves a deposit.
+         */
+
+        onSnapshot(
+            userRef,
+            snapshot => {
 
 
-    /* =========================
-       AUTH STATE
-    ========================= */
-
-    onAuthStateChanged(
-        auth,
-        async user => {
-
-            /* NOT LOGGED IN */
-
-            if (!user) {
-
-                window.location.href =
-                    "login.html";
-
-                return;
-
-            }
-
-
-            /* =========================
-               DEFAULT NAME
-            ========================= */
-
-            let name =
-                user.displayName ||
-                "Customer";
-
-
-            /* =========================
-               GET FIRESTORE PROFILE
-            ========================= */
-
-            try {
-
-                const userRef =
-                    doc(
-                        db,
-                        "users",
-                        user.uid
-                    );
-
-                const userSnapshot =
-                    await getDoc(userRef);
-
-
-                if (userSnapshot.exists()) {
-
-                    const data =
-                        userSnapshot.data();
-
-
-                    if (data.fullName) {
-
-                        name =
-                            data.fullName;
-
-                    }
-
-
-                    if (
-                        data.walletBalance !==
-                        undefined
-                    ) {
-
-                        walletBalance.textContent =
-                            formatNaira(
-                                data.walletBalance
-                            );
-
-                    } else {
-
-                        walletBalance.textContent =
-                            "₦0.00";
-
-                    }
-
-                } else {
+                if (!snapshot.exists()) {
 
                     walletBalance.textContent =
                         "₦0.00";
 
+                    walletBalance.classList
+                        .remove("loading");
+
+                    return;
+
                 }
 
 
-            } catch (error) {
 
-                console.error(
-                    "Profile loading error:",
-                    error
-                );
+                const data =
+                    snapshot.data();
 
-                walletBalance.textContent =
-                    "₦0.00";
 
-            }
 
+                /* =========================
+                   FULL NAME
+                ========================= */
 
-            /* =========================
-               DISPLAY USER
-            ========================= */
+                if (
+                    data.fullName
+                ) {
 
-            userName.textContent =
-                name;
+                    welcomeText.textContent =
+                        "Welcome, " +
+                        data.fullName +
+                        " 👋";
 
+                }
 
-            /* PROFILE INITIAL */
 
-            const initial =
-                name
-                    .trim()
-                    .charAt(0)
-                    .toUpperCase();
 
-            profileMini.textContent =
-                initial || "?";
+                /* =========================
+                   WALLET
+                ========================= */
 
-        }
-    );
-
-
-    /* =========================
-       LOGOUT
-    ========================= */
-
-    logoutBtn.addEventListener(
-        "click",
-        async event => {
-
-            event.preventDefault();
-
-            try {
-
-                await signOut(auth);
-
-                window.location.href =
-                    "login.html";
-
-            } catch (error) {
-
-                console.error(
-                    "Logout error:",
-                    error
-                );
-
-                showToast(
-                    "Unable to logout. Please try again."
-                );
-
-            }
-
-        }
-    );
-
-
-    /* =========================
-       DEPOSIT
-    ========================= */
-
-    depositBtn.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "deposit.html";
-
-        }
-    );
-
-
-    /* =========================
-       PROFILE
-    ========================= */
-
-    profileMini.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "profile.html";
-
-        }
-    );
-
-
-    /* =========================
-       NOTIFICATIONS
-    ========================= */
-
-    notificationBtn.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "notifications.html";
-
-        }
-    );
-
-
-    /* =========================
-       COUNTRY SELECTION
-    ========================= */
-
-    const countryCards =
-        document.querySelectorAll(
-            ".country-card"
-        );
-
-    const otherCountry =
-        document.getElementById(
-            "otherCountry"
-        );
-
-    const selectionBox =
-        document.getElementById(
-            "selectionBox"
-        );
-
-    const selectedCountry =
-        document.getElementById(
-            "selectedCountry"
-        );
-
-    const continueBtn =
-        document.getElementById(
-            "continueBtn"
-        );
-
-
-    let selectedDestination = "";
-
-
-    countryCards.forEach(card => {
-
-        card.addEventListener(
-            "click",
-            () => {
-
-                countryCards.forEach(
-                    item => {
-
-                        item.classList.remove(
-                            "selected"
-                        );
-
-                    }
-                );
-
-
-                card.classList.add(
-                    "selected"
-                );
-
-
-                selectedDestination =
-                    card.dataset.country;
-
-
-                selectedCountry.textContent =
-                    selectedDestination;
-
-
-                selectionBox.classList.add(
-                    "show"
-                );
-
-            }
-        );
-
-    });
-
-
-    /* =========================
-       OTHER COUNTRIES
-    ========================= */
-
-    otherCountry.addEventListener(
-        "click",
-        () => {
-
-            countryCards.forEach(
-                card => {
-
-                    card.classList.remove(
-                        "selected"
+                const balance =
+                    Number(
+                        data.walletBalance ||
+                        0
                     );
 
+
+                walletBalance.textContent =
+                    formatNaira(
+                        balance
+                    );
+
+
+                walletBalance.classList
+                    .remove("loading");
+
+            },
+
+            error => {
+
+                console.error(
+                    "Wallet error:",
+                    error
+                );
+
+
+                walletBalance.textContent =
+                    "Unable to load";
+
+                walletBalance.classList
+                    .remove("loading");
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =====================================
+   DEPOSIT
+===================================== */
+
+depositBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "deposit.html";
+
+    }
+);
+
+
+
+/* =====================================
+   WITHDRAW
+===================================== */
+
+withdrawBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "withdraw.html";
+
+    }
+);
+
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+logoutBtn.addEventListener(
+    "click",
+    async () => {
+
+
+        const confirmed =
+            confirm(
+                "Are you sure you want to logout?"
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
+        try {
+
+            await signOut(
+                auth
+            );
+
+
+            window.location.href =
+                "login.html";
+
+
+        } catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+            alert(
+                "Unable to logout. Please try again."
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   COUNTRY SELECTION
+===================================== */
+
+document
+    .querySelectorAll(".country")
+    .forEach(
+        country => {
+
+            country.addEventListener(
+                "click",
+                () => {
+
+
+                    document
+                        .querySelectorAll(
+                            ".country"
+                        )
+                        .forEach(
+                            item => {
+
+                                item.style.borderColor =
+                                    "#e5eaf1";
+
+                                item.style.boxShadow =
+                                    "none";
+
+                            }
+                        );
+
+
+
+                    country.style.borderColor =
+                        "#0757d9";
+
+                    country.style.boxShadow =
+                        "0 8px 25px rgba(7,87,217,.10)";
+
+
+
+                    selected =
+                        country.dataset.country;
+
+
+
+                    selectedCountry.textContent =
+                        selected;
+
+
+
+                    continueBtn.disabled =
+                        false;
+
                 }
             );
 
-
-            selectedDestination =
-                "Other Countries";
-
-
-            selectedCountry.textContent =
-                selectedDestination;
-
-
-            selectionBox.classList.add(
-                "show"
-            );
-
         }
     );
 
 
-    /* =========================
-       CONTINUE
-    ========================= */
 
-    continueBtn.addEventListener(
-        "click",
-        () => {
+/* =====================================
+   CONTINUE
+===================================== */
 
-            if (!selectedDestination) {
-
-                showToast(
-                    "Please select a destination first."
-                );
-
-                return;
-
-            }
+continueBtn.addEventListener(
+    "click",
+    () => {
 
 
-            /*
-             * We will connect this to the
-             * country-specific gift page next.
-             */
+        if (!selected) {
 
-            showToast(
-                selectedDestination +
-                " selected. Gift selection coming next."
-            );
+            return;
 
         }
-    );
+
+
+        /*
+         * We pass the selected country
+         * to gifts.html.
+         *
+         * Later we can build the gifts
+         * page to read this country.
+         */
+
+        window.location.href =
+            "gifts.html?country=" +
+            encodeURIComponent(
+                selected
+            );
+
+    }
+);
+
 
 </script>
 
 
 </body>
-  </html>
+
+</html>
