@@ -32,37 +32,48 @@
         .header {
             background: #ffffff;
             border-bottom: 1px solid #e5eaf1;
-            padding: 18px 20px;
-        }
-
-        .header-inner {
-            width: min(850px, 100%);
-            margin: auto;
+            padding: 17px 22px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
+            gap: 15px;
         }
 
-        .logo {
-            width: 44px;
-            height: 44px;
-            background: #ffc928;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
             border-radius: 12px;
+            background: #ffc928;
             display: grid;
             place-items: center;
-            font-size: 22px;
-            flex-shrink: 0;
+            font-size: 21px;
         }
 
-        .brand h1 {
+        .brand-name {
             color: #0757d9;
-            font-size: 20px;
+            font-size: 19px;
+            font-weight: 800;
         }
 
-        .brand p {
+        .brand-subtitle {
             color: #667085;
-            font-size: 11px;
+            font-size: 10px;
             margin-top: 3px;
+        }
+
+        .user-badge {
+            background: #eaf2ff;
+            color: #0757d9;
+            border-radius: 20px;
+            padding: 8px 11px;
+            font-size: 10px;
+            font-weight: 700;
         }
 
         /* =========================
@@ -70,9 +81,9 @@
         ========================= */
 
         .container {
-            width: min(850px, 100%);
+            width: min(1050px, 100%);
             margin: auto;
-            padding: 28px 15px 50px;
+            padding: 25px 17px 50px;
         }
 
         /* =========================
@@ -80,10 +91,10 @@
         ========================= */
 
         .page-title {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
-        .page-title h2 {
+        .page-title h1 {
             font-size: 25px;
             margin-bottom: 6px;
         }
@@ -91,35 +102,34 @@
         .page-title p {
             color: #667085;
             font-size: 13px;
-            line-height: 1.5;
         }
 
         /* =========================
-           SUMMARY
+           STATS
         ========================= */
 
-        .summary {
+        .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 22px;
+            gap: 14px;
+            margin-bottom: 25px;
         }
 
-        .summary-card {
+        .stat {
             background: #ffffff;
             border: 1px solid #e5eaf1;
-            border-radius: 14px;
-            padding: 16px;
+            border-radius: 15px;
+            padding: 18px;
         }
 
-        .summary-label {
+        .stat-label {
             color: #667085;
             font-size: 11px;
-            margin-bottom: 7px;
+            margin-bottom: 8px;
         }
 
-        .summary-value {
-            font-size: 21px;
+        .stat-value {
+            font-size: 23px;
             font-weight: 800;
         }
 
@@ -132,7 +142,7 @@
         }
 
         .yellow {
-            color: #a66f00;
+            color: #b78100;
         }
 
         /* =========================
@@ -143,21 +153,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 15px;
         }
 
-        .action-bar h3 {
-            font-size: 17px;
+        .action-bar h2 {
+            font-size: 18px;
         }
 
         .refresh-btn {
             border: 1px solid #d9e0ea;
             background: #ffffff;
             color: #0757d9;
-            border-radius: 9px;
             padding: 9px 13px;
-            font-size: 12px;
+            border-radius: 9px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
         }
@@ -166,20 +176,15 @@
             background: #f5f9ff;
         }
 
-        .refresh-btn:disabled {
-            opacity: .6;
-            cursor: not-allowed;
-        }
-
         /* =========================
            MESSAGE
         ========================= */
 
         .message {
             display: none;
-            padding: 13px;
+            padding: 13px 15px;
             border-radius: 10px;
-            margin-bottom: 16px;
+            margin-bottom: 17px;
             font-size: 12px;
             line-height: 1.5;
         }
@@ -208,7 +213,7 @@
             background: #ffffff;
             border: 1px solid #e5eaf1;
             border-radius: 15px;
-            padding: 40px 20px;
+            padding: 35px;
             text-align: center;
             color: #667085;
             font-size: 13px;
@@ -228,7 +233,7 @@
         }
 
         .empty-icon {
-            font-size: 42px;
+            font-size: 40px;
             margin-bottom: 12px;
         }
 
@@ -243,51 +248,40 @@
             line-height: 1.5;
         }
 
-        .deposit-link {
-            display: inline-block;
-            margin-top: 16px;
-            background: #0757d9;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 11px 18px;
-            border-radius: 9px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
         /* =========================
-           HISTORY
+           PAYMENTS
         ========================= */
 
-        .history {
+        .payments {
             display: grid;
-            gap: 13px;
+            gap: 14px;
         }
 
         .payment-card {
             background: #ffffff;
             border: 1px solid #e5eaf1;
-            border-radius: 16px;
+            border-radius: 17px;
             padding: 18px;
         }
 
-        .payment-top {
+        .payment-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 12px;
+            gap: 15px;
             margin-bottom: 16px;
         }
 
-        .payment-title {
-            font-size: 14px;
-            font-weight: 800;
+        .payment-number {
+            color: #667085;
+            font-size: 10px;
+            margin-bottom: 5px;
         }
 
-        .payment-date {
-            color: #98a2b3;
-            font-size: 10px;
-            margin-top: 5px;
+        .payment-amount {
+            color: #0757d9;
+            font-size: 20px;
+            font-weight: 800;
         }
 
         /* =========================
@@ -295,9 +289,9 @@
         ========================= */
 
         .status {
-            padding: 6px 10px;
+            padding: 7px 11px;
             border-radius: 20px;
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 800;
             text-transform: uppercase;
             white-space: nowrap;
@@ -316,6 +310,11 @@
         .status.rejected {
             color: #b42318;
             background: #fff1f0;
+        }
+
+        .status.unknown {
+            color: #475467;
+            background: #f2f4f7;
         }
 
         /* =========================
@@ -338,7 +337,7 @@
         .detail-label {
             display: block;
             color: #667085;
-            font-size: 9px;
+            font-size: 10px;
             margin-bottom: 5px;
         }
 
@@ -349,34 +348,15 @@
             word-break: break-word;
         }
 
-        .amount {
-            color: #0757d9;
-            font-size: 15px;
-        }
-
-        /* =========================
-           REFERENCE
-        ========================= */
-
-        .reference-box {
+        .date-row {
             margin-top: 10px;
             background: #f8fafc;
             border-radius: 10px;
             padding: 11px;
         }
 
-        .reference-label {
-            display: block;
-            color: #667085;
-            font-size: 9px;
-            margin-bottom: 5px;
-        }
-
-        .reference-value {
-            display: block;
-            font-size: 12px;
-            font-weight: 700;
-            word-break: break-all;
+        .date-row .detail-label {
+            margin-bottom: 4px;
         }
 
         /* =========================
@@ -401,9 +381,9 @@
            MOBILE
         ========================= */
 
-        @media (max-width: 650px) {
+        @media (max-width: 700px) {
 
-            .summary {
+            .stats {
                 grid-template-columns: 1fr;
             }
 
@@ -415,20 +395,20 @@
 
         @media (max-width: 450px) {
 
+            .header {
+                padding: 14px;
+            }
+
             .container {
-                padding: 22px 12px 40px;
+                padding: 20px 12px 40px;
             }
 
-            .payment-card {
-                padding: 15px;
+            .page-title h1 {
+                font-size: 22px;
             }
 
-            .payment-top {
+            .payment-header {
                 flex-direction: column;
-            }
-
-            .status {
-                align-self: flex-start;
             }
 
             .details {
@@ -451,24 +431,29 @@
 
 <header class="header">
 
-    <div class="header-inner">
+    <div class="brand">
 
-        <div class="logo">
+        <div class="brand-icon">
             🛍️
         </div>
 
-        <div class="brand">
+        <div>
 
-            <h1>
+            <div class="brand-name">
                 Fame Store
-            </h1>
+            </div>
 
-            <p>
+            <div class="brand-subtitle">
                 Payment History
-            </p>
+            </div>
 
         </div>
 
+    </div>
+
+
+    <div class="user-badge">
+        CUSTOMER
     </div>
 
 </header>
@@ -482,15 +467,16 @@
 <main class="container">
 
 
+    <!-- TITLE -->
+
     <div class="page-title">
 
-        <h2>
+        <h1>
             Payment History
-        </h2>
+        </h1>
 
         <p>
-            View your deposit payment requests
-            and their current status.
+            View your deposit payment requests and their current status.
         </p>
 
     </div>
@@ -498,21 +484,21 @@
 
 
     <!-- =========================
-         SUMMARY
+         STATS
     ========================= -->
 
-    <section class="summary">
+    <section class="stats">
 
 
-        <div class="summary-card">
+        <div class="stat">
 
-            <div class="summary-label">
+            <div class="stat-label">
                 Total Payments
             </div>
 
             <div
-                class="summary-value blue"
-                id="totalCount">
+                class="stat-value blue"
+                id="totalPayments">
 
                 0
 
@@ -521,15 +507,15 @@
         </div>
 
 
-        <div class="summary-card">
+        <div class="stat">
 
-            <div class="summary-label">
+            <div class="stat-label">
                 Approved
             </div>
 
             <div
-                class="summary-value green"
-                id="approvedCount">
+                class="stat-value green"
+                id="approvedPayments">
 
                 0
 
@@ -538,15 +524,15 @@
         </div>
 
 
-        <div class="summary-card">
+        <div class="stat">
 
-            <div class="summary-label">
+            <div class="stat-label">
                 Pending
             </div>
 
             <div
-                class="summary-value yellow"
-                id="pendingCount">
+                class="stat-value yellow"
+                id="pendingPayments">
 
                 0
 
@@ -559,9 +545,7 @@
 
 
 
-    <!-- =========================
-         MESSAGE
-    ========================= -->
+    <!-- MESSAGE -->
 
     <div
         id="message"
@@ -571,15 +555,13 @@
 
 
 
-    <!-- =========================
-         ACTION BAR
-    ========================= -->
+    <!-- ACTION BAR -->
 
     <div class="action-bar">
 
-        <h3>
+        <h2>
             Your Payments
-        </h3>
+        </h2>
 
         <button
             type="button"
@@ -594,9 +576,7 @@
 
 
 
-    <!-- =========================
-         LOADING
-    ========================= -->
+    <!-- LOADING -->
 
     <div
         id="loading"
@@ -608,9 +588,7 @@
 
 
 
-    <!-- =========================
-         EMPTY
-    ========================= -->
+    <!-- EMPTY -->
 
     <div
         id="empty"
@@ -625,33 +603,24 @@
         </h3>
 
         <p>
-            You have not submitted any deposit
-            payments yet.
+            Your deposit payments will appear here after you submit them.
         </p>
 
-        <a
-            href="deposit.html"
-            class="deposit-link">
-
-            Make a Deposit
-
-        </a>
-
     </div>
 
 
 
-    <!-- =========================
-         HISTORY
-    ========================= -->
+    <!-- PAYMENTS -->
 
     <div
-        id="history"
-        class="history">
+        id="payments"
+        class="payments">
 
     </div>
 
 
+
+    <!-- BACK -->
 
     <a
         href="dashboard.html"
@@ -674,19 +643,19 @@
 
 
 /* =====================================
-   FIREBASE IMPORT
+   FIREBASE
 ===================================== */
 
 import {
 
-    auth,
-    db
+    initializeApp
 
-} from "./firebase-config.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import {
 
+    getAuth,
     onAuthStateChanged
 
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
@@ -694,10 +663,10 @@ import {
 
 import {
 
+    getFirestore,
     collection,
     query,
     where,
-    orderBy,
     getDocs
 
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -705,12 +674,62 @@ import {
 
 
 /* =====================================
+   FIREBASE CONFIG
+===================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
+
+    authDomain:
+        "fame-store-ea8b7.firebaseapp.com",
+
+    projectId:
+        "fame-store-ea8b7",
+
+    storageBucket:
+        "fame-store-ea8b7.firebasestorage.app",
+
+    messagingSenderId:
+        "484192010044",
+
+    appId:
+        "1:484192010044:web:8b1c496d5baa492d74a839",
+
+    measurementId:
+        "G-YTGM3N01V6"
+
+};
+
+
+
+/* =====================================
+   INITIALIZE FIREBASE
+===================================== */
+
+const app =
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =====================================
    ELEMENTS
 ===================================== */
 
-const historyContainer =
+const paymentsContainer =
     document.getElementById(
-        "history"
+        "payments"
     );
 
 
@@ -738,21 +757,21 @@ const refreshBtn =
     );
 
 
-const totalCount =
+const totalPayments =
     document.getElementById(
-        "totalCount"
+        "totalPayments"
     );
 
 
-const approvedCount =
+const approvedPayments =
     document.getElementById(
-        "approvedCount"
+        "approvedPayments"
     );
 
 
-const pendingCount =
+const pendingPayments =
     document.getElementById(
-        "pendingCount"
+        "pendingPayments"
     );
 
 
@@ -766,7 +785,7 @@ let currentUser = null;
 
 
 /* =====================================
-   SHOW MESSAGE
+   MESSAGE
 ===================================== */
 
 function showMessage(
@@ -785,7 +804,7 @@ function showMessage(
 
 
 /* =====================================
-   FORMAT MONEY
+   MONEY FORMAT
 ===================================== */
 
 function formatMoney(
@@ -807,7 +826,7 @@ function formatMoney(
 
 
 /* =====================================
-   FORMAT DATE
+   DATE FORMAT
 ===================================== */
 
 function formatDate(
@@ -816,28 +835,137 @@ function formatDate(
 
     if (!timestamp) {
 
-        return "Processing date";
+        return "Processing";
 
     }
 
 
     try {
 
-        return timestamp
-            .toDate()
-            .toLocaleString(
-                "en-NG",
-                {
-                    dateStyle: "medium",
-                    timeStyle: "short"
-                }
-            );
+        let date;
+
+
+        if (
+            typeof timestamp.toDate ===
+            "function"
+        ) {
+
+            date =
+                timestamp.toDate();
+
+        }
+
+        else if (
+            timestamp.seconds
+        ) {
+
+            date =
+                new Date(
+                    timestamp.seconds * 1000
+                );
+
+        }
+
+        else {
+
+            date =
+                new Date(timestamp);
+
+        }
+
+
+        if (
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return "Unknown date";
+
+        }
+
+
+        return date.toLocaleString(
+            "en-NG",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
 
     }
 
     catch {
 
         return "Unknown date";
+
+    }
+
+}
+
+
+
+/* =====================================
+   GET TIMESTAMP VALUE
+===================================== */
+
+function getTimeValue(
+    timestamp
+) {
+
+    if (!timestamp) {
+
+        return 0;
+
+    }
+
+
+    try {
+
+        if (
+            typeof timestamp.toMillis ===
+            "function"
+        ) {
+
+            return timestamp.toMillis();
+
+        }
+
+
+        if (
+            typeof timestamp.toDate ===
+            "function"
+        ) {
+
+            return timestamp.toDate()
+                .getTime();
+
+        }
+
+
+        if (
+            timestamp.seconds
+        ) {
+
+            return Number(
+                timestamp.seconds
+            ) * 1000;
+
+        }
+
+
+        return new Date(
+            timestamp
+        ).getTime();
+
+    }
+
+    catch {
+
+        return 0;
 
     }
 
@@ -856,41 +984,47 @@ function escapeHTML(
     return String(
         value ?? ""
     )
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
 
 
 /* =====================================
-   STATUS
+   STATUS CLASS
 ===================================== */
 
 function getStatusClass(
     status
 ) {
 
+    const value =
+        String(
+            status || ""
+        ).toLowerCase();
+
+
     if (
-        status === "approved"
+        value === "approved"
     ) {
 
         return "approved";
@@ -899,7 +1033,16 @@ function getStatusClass(
 
 
     if (
-        status === "rejected"
+        value === "pending"
+    ) {
+
+        return "pending";
+
+    }
+
+
+    if (
+        value === "rejected"
     ) {
 
         return "rejected";
@@ -907,17 +1050,64 @@ function getStatusClass(
     }
 
 
-    return "pending";
+    return "unknown";
 
 }
 
 
 
 /* =====================================
-   LOAD HISTORY
+   STATUS TEXT
 ===================================== */
 
-async function loadHistory() {
+function getStatusText(
+    status
+) {
+
+    const value =
+        String(
+            status || "unknown"
+        ).toLowerCase();
+
+
+    if (
+        value === "approved"
+    ) {
+
+        return "Approved";
+
+    }
+
+
+    if (
+        value === "pending"
+    ) {
+
+        return "Pending";
+
+    }
+
+
+    if (
+        value === "rejected"
+    ) {
+
+        return "Rejected";
+
+    }
+
+
+    return "Unknown";
+
+}
+
+
+
+/* =====================================
+   LOAD PAYMENT HISTORY
+===================================== */
+
+async function loadPaymentHistory() {
 
 
     if (!currentUser) {
@@ -933,9 +1123,11 @@ async function loadHistory() {
     empty.style.display =
         "none";
 
-    historyContainer.innerHTML =
+    paymentsContainer.innerHTML =
         "";
 
+    message.className =
+        "message";
 
 
     try {
@@ -944,86 +1136,49 @@ async function loadHistory() {
         /*
          * IMPORTANT:
          *
-         * Only deposits belonging to
-         * the currently logged-in user
-         * are loaded.
+         * We ONLY use where().
+         *
+         * We do NOT use orderBy().
+         *
+         * This prevents Firebase from
+         * requesting a composite index.
          */
 
-        const depositsRef =
-            collection(
-                db,
-                "deposits"
-            );
-
-
-        const depositsQuery =
+        const paymentsQuery =
             query(
-                depositsRef,
+
+                collection(
+                    db,
+                    "deposits"
+                ),
 
                 where(
                     "uid",
                     "==",
                     currentUser.uid
-                ),
-
-                orderBy(
-                    "createdAt",
-                    "desc"
                 )
+
             );
 
 
         const snapshot =
             await getDocs(
-                depositsQuery
+                paymentsQuery
             );
 
 
-
-        let total = 0;
-
-        let approved = 0;
-
-        let pending = 0;
-
+        const payments = [];
 
 
         snapshot.forEach(
-            depositDoc => {
+            paymentDoc => {
 
-                const data =
-                    depositDoc.data();
-
-
-                total++;
-
-
-                if (
-                    data.status ===
-                    "approved"
-                ) {
-
-                    approved++;
-
-                }
-
-
-                if (
-                    data.status ===
-                    "pending"
-                ) {
-
-                    pending++;
-
-                }
-
-
-                renderPayment({
+                payments.push({
 
                     id:
-                        depositDoc.id,
+                        paymentDoc.id,
 
-                    ...data
+                    ...paymentDoc.data()
 
                 });
 
@@ -1033,18 +1188,74 @@ async function loadHistory() {
 
 
         /* =========================
-           UPDATE SUMMARY
+           SORT NEWEST FIRST
         ========================= */
 
-        totalCount.textContent =
-            total;
+        payments.sort(
+            (a, b) => {
+
+                return (
+                    getTimeValue(
+                        b.createdAt
+                    ) -
+                    getTimeValue(
+                        a.createdAt
+                    )
+                );
+
+            }
+        );
 
 
-        approvedCount.textContent =
+
+        /* =========================
+           STATS
+        ========================= */
+
+        let approved = 0;
+
+        let pending = 0;
+
+
+        payments.forEach(
+            payment => {
+
+                const status =
+                    String(
+                        payment.status || ""
+                    ).toLowerCase();
+
+
+                if (
+                    status === "approved"
+                ) {
+
+                    approved++;
+
+                }
+
+
+                if (
+                    status === "pending"
+                ) {
+
+                    pending++;
+
+                }
+
+            }
+        );
+
+
+        totalPayments.textContent =
+            payments.length;
+
+
+        approvedPayments.textContent =
             approved;
 
 
-        pendingCount.textContent =
+        pendingPayments.textContent =
             pending;
 
 
@@ -1059,13 +1270,32 @@ async function loadHistory() {
         ========================= */
 
         if (
-            total === 0
+            payments.length === 0
         ) {
 
             empty.style.display =
                 "block";
 
+            return;
+
         }
+
+
+
+        /* =========================
+           DISPLAY PAYMENTS
+        ========================= */
+
+        payments.forEach(
+            (payment, index) => {
+
+                renderPayment(
+                    payment,
+                    index
+                );
+
+            }
+        );
 
 
     }
@@ -1084,43 +1314,30 @@ async function loadHistory() {
 
 
         /*
-         * If Firestore asks for an
-         * index, show a useful message.
+         * If Firestore rules prevent
+         * reading the collection.
          */
 
         if (
-            error.code ===
-            "failed-precondition"
-        ) {
-
-            showMessage(
-                "Firestore needs an index for payment history. Open the Firebase console link shown in your browser console to create it.",
-                "error"
-            );
-
-        }
-
-        else if (
             error.code ===
             "permission-denied"
         ) {
 
             showMessage(
-                "You do not have permission to view your payment history.",
+                "Unable to view payment history. Please check your Firestore permissions.",
                 "error"
             );
 
-        }
-
-        else {
-
-            showMessage(
-                "Unable to load payment history: " +
-                error.message,
-                "error"
-            );
+            return;
 
         }
+
+
+        showMessage(
+            "Unable to load payment history: " +
+            error.message,
+            "error"
+        );
 
     }
 
@@ -1133,7 +1350,8 @@ async function loadHistory() {
 ===================================== */
 
 function renderPayment(
-    payment
+    payment,
+    index
 ) {
 
 
@@ -1147,13 +1365,10 @@ function renderPayment(
         "payment-card";
 
 
-
     const status =
         String(
-            payment.status ||
-            "pending"
+            payment.status || "unknown"
         ).toLowerCase();
-
 
 
     const statusClass =
@@ -1162,31 +1377,29 @@ function renderPayment(
         );
 
 
-
     const statusText =
-        status.toUpperCase();
+        getStatusText(
+            status
+        );
 
 
 
     card.innerHTML = `
 
-        <div class="payment-top">
+        <div class="payment-header">
 
             <div>
 
-                <div class="payment-title">
+                <div class="payment-number">
 
-                    Deposit Payment
+                    Payment #${index + 1}
 
                 </div>
 
-                <div class="payment-date">
+                <div class="payment-amount">
 
-                    Submitted:
-                    ${escapeHTML(
-                        formatDate(
-                            payment.createdAt
-                        )
+                    ${formatMoney(
+                        payment.amount
                     )}
 
                 </div>
@@ -1203,25 +1416,7 @@ function renderPayment(
         </div>
 
 
-
         <div class="details">
-
-
-            <div class="detail">
-
-                <span class="detail-label">
-                    Deposit Amount
-                </span>
-
-                <span class="detail-value amount">
-
-                    ${formatMoney(
-                        payment.amount
-                    )}
-
-                </span>
-
-            </div>
 
 
             <div class="detail">
@@ -1245,14 +1440,30 @@ function renderPayment(
             <div class="detail">
 
                 <span class="detail-label">
-                    Payment Status
+                    Transaction Reference
                 </span>
 
                 <span class="detail-value">
 
                     ${escapeHTML(
-                        statusText
+                        payment.transactionReference ||
+                        "-"
                     )}
+
+                </span>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span class="detail-label">
+                    Status
+                </span>
+
+                <span class="detail-value">
+
+                    ${statusText}
 
                 </span>
 
@@ -1262,20 +1473,16 @@ function renderPayment(
         </div>
 
 
+        <div class="date-row">
 
-        <div class="reference-box">
-
-            <span class="reference-label">
-
-                Transaction Reference
-
+            <span class="detail-label">
+                Submitted
             </span>
 
-            <span class="reference-value">
+            <span class="detail-value">
 
-                ${escapeHTML(
-                    payment.transactionReference ||
-                    "-"
+                ${formatDate(
+                    payment.createdAt
                 )}
 
             </span>
@@ -1285,8 +1492,7 @@ function renderPayment(
     `;
 
 
-
-    historyContainer.appendChild(
+    paymentsContainer.appendChild(
         card
     );
 
@@ -1295,7 +1501,7 @@ function renderPayment(
 
 
 /* =====================================
-   AUTH
+   AUTH STATE
 ===================================== */
 
 onAuthStateChanged(
@@ -1317,7 +1523,7 @@ onAuthStateChanged(
             user;
 
 
-        await loadHistory();
+        await loadPaymentHistory();
 
     }
 );
@@ -1343,17 +1549,14 @@ refreshBtn.addEventListener(
         refreshBtn.disabled =
             true;
 
+
         refreshBtn.textContent =
             "Refreshing...";
 
 
-        message.className =
-            "message";
-
-
         try {
 
-            await loadHistory();
+            await loadPaymentHistory();
 
         }
 
@@ -1361,6 +1564,7 @@ refreshBtn.addEventListener(
 
             refreshBtn.disabled =
                 false;
+
 
             refreshBtn.textContent =
                 "↻ Refresh";
