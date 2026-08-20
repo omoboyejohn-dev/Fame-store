@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Fame Store</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #0757d9;
+            --dark-blue: #063b91;
+            --yellow: #ffc928;
+            --white: #ffffff;
+            --black: #101828;
+            --gray: #667085;
+            --light: #f5f8fc;
+            --border: #e5eaf1;
+            --green: #087443;
+            --red: #b42318;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--light);
+            color: var(--black);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            background: #ffffff;
+            border-right: 1px solid var(--border);
+            padding: 22px 15px;
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 10px 28px;
+        }
+
+        .brand-icon {
+            width: 43px;
+            height: 43px;
+            background: var(--yellow);
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 21px;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            color: var(--blue);
+            font-size: 17px;
+        }
+
+        .brand-role {
+            color: var(--gray);
+            font-size: 9px;
+            margin-top: 3px;
+        }
+
+
+        .nav-title {
+            font-size: 9px;
+            color: #98a2b3;
+            font-weight: 800;
+            padding: 0 11px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 11px;
+            border-radius: 10px;
+            color: #475467;
+            font-size: 12px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .nav-link:hover {
+            background: #f1f6ff;
+            color: var(--blue);
+        }
+
+        .nav-link.active {
+            background: #eaf2ff;
+            color: var(--blue);
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .logout-link {
+            margin-top: auto;
+            color: var(--red);
+            cursor: pointer;
+        }
+
+        .sidebar-bottom {
+            position: absolute;
+            left: 15px;
+            right: 15px;
+            bottom: 20px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .topbar {
+            height: 70px;
+            background: white;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+        }
+
+        .page-title {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-avatar {
+            width: 38px;
+            height: 38px;
+            background: var(--blue);
+            color: white;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .admin-name {
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .admin-email {
+            color: var(--gray);
+            font-size: 9px;
+            margin-top: 2px;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content {
+            padding: 30px;
+            max-width: 1400px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 26px;
+        }
+
+        .welcome p {
+            color: var(--gray);
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+
+        /* =========================
+           STAT CARDS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .stat-icon {
+            width: 38px;
+            height: 38px;
+            background: #edf4ff;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+        }
+
+        .stat-value {
+            font-size: 25px;
+            font-weight: 800;
+            margin-top: 13px;
+        }
+
+
+        /* =========================
+           MAIN GRID
+        ========================= */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.4fr .8fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-header h2 {
+            font-size: 15px;
+        }
+
+        .view-link {
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           QUICK ACTIONS
+        ========================= */
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .action {
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            padding: 15px;
+            transition: .2s;
+        }
+
+        .action:hover {
+            border-color: var(--blue);
+            background: #f8fbff;
+        }
+
+        .action-icon {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .action-title {
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .action-description {
+            color: var(--gray);
+            font-size: 9px;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           SYSTEM CARD
+        ========================= */
+
+        .system-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .system-item:last-child {
+            border-bottom: 0;
+        }
+
+        .system-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .system-icon {
+            width: 34px;
+            height: 34px;
+            background: #f2f4f7;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+        }
+
+        .system-name {
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .system-status {
+            color: var(--green);
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            color: var(--gray);
+        }
+
+
+        /* =========================
+           MOBILE MENU
+        ========================= */
+
+        .mobile-menu {
+            display: none;
+            border: 0;
+            background: transparent;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: .3s;
+                box-shadow: 10px 0 30px rgba(0,0,0,.08);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .admin-email {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-value {
+                font-size: 20px;
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar" id="sidebar">
+
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🛍️
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                Fame Store
+            </div>
+
+            <div class="brand-role">
+                ADMIN PANEL
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="nav-title">
+        Main Menu
+    </div>
+
+
+    <nav class="nav">
+
+        <a
+            href="admin-dashboard.html"
+            class="nav-link active">
+
+            <span class="nav-icon">
+                📊
+            </span>
+
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="deposits.html"
+            class="nav-link">
+
+            <span class="nav-icon">
+                💳
+            </span>
+
+            Deposits
+
+        </a>
+
+
+        <a
+            href="customers.html"
+            class="nav-link">
+
+            <span class="nav-icon">
+                👥
+            </span>
+
+            Customers
+
+        </a>
+
+
+        <a
+            href="orders.html"
+            class="nav-link">
+
+            <span class="nav-icon">
+                📦
+            </span>
+
+            Orders
+
+        </a>
+
+
+        <a
+            href="notifications.html"
+            class="nav-link">
+
+            <span class="nav-icon">
+                🔔
+            </span>
+
+            Notifications
+
+        </a>
+
+
+        <a
+            href="support.html"
+            class="nav-link">
+
+            <span class="nav-icon">
+                💬
+            </span>
+
+            Support
+
+        </a>
+
+
+        <a
+            href="settings.html"
+            class="nav-link">
+
+            <span class="nav-icon">
+                ⚙️
+            </span>
+
+            Settings
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a
+            href="#"
+            class="nav-link logout-link"
+            id="logoutBtn">
+
+            <span class="nav-icon">
+                🚪
+            </span>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="main">
+
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <button
+                class="mobile-menu"
+                id="mobileMenu">
+
+                ☰
+
+            </button>
+
+            <span class="page-title">
+                Admin Dashboard
+            </span>
+
+        </div>
+
+
+        <div class="admin-info">
+
+            <div>
+
+                <div
+                    class="admin-name"
+                    id="adminName">
+
+                    Loading...
+
+                </div>
+
+                <div
+                    class="admin-email"
+                    id="adminEmail">
+
+                    Loading...
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="admin-avatar"
+                id="adminAvatar">
+
+                ?
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- CONTENT -->
+
+    <main class="content">
+
+
+        <section class="welcome">
+
+            <h1>
+                Welcome, <span id="welcomeName">
+                    Admin
+                </span> 👋
+            </h1>
+
+            <p>
+                Manage Fame Store customers, deposits,
+                orders and support from one place.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             STATISTICS
+        ========================= -->
+
+        <section class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        Total Customers
+                    </div>
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="customerCount">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        Pending Deposits
+                    </div>
+
+                    <div class="stat-icon">
+                        💳
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="pendingDeposits">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        Total Orders
+                    </div>
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="orderCount">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        Pending Amount
+                    </div>
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="pendingAmount">
+
+                    ₦0.00
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             DASHBOARD GRID
+        ========================= -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                </div>
+
+
+                <div class="actions">
+
+
+                    <a
+                        href="deposits.html"
+                        class="action">
+
+                        <div class="action-icon">
+                            💳
+                        </div>
+
+                        <div class="action-title">
+                            Deposit Management
+                        </div>
+
+                        <div class="action-description">
+                            Review and approve customer
+                            payment requests.
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="customers.html"
+                        class="action">
+
+                        <div class="action-icon">
+                            👥
+                        </div>
+
+                        <div class="action-title">
+                            Customers
+                        </div>
+
+                        <div class="action-description">
+                            View registered Fame Store
+                            customers.
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="orders.html"
+                        class="action">
+
+                        <div class="action-icon">
+                            📦
+                        </div>
+
+                        <div class="action-title">
+                            Orders
+                        </div>
+
+                        <div class="action-description">
+                            Manage gift orders and delivery
+                            requests.
+                        </div>
+
+                    </a>
+
+
+                    <a
+                        href="support.html"
+                        class="action">
+
+                        <div class="action-icon">
+                            💬
+                        </div>
+
+                        <div class="action-title">
+                            Customer Support
+                        </div>
+
+                        <div class="action-description">
+                            Respond to customer support
+                            requests.
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SYSTEM -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        System Status
+                    </h2>
+
+                </div>
+
+
+                <div class="system-item">
+
+                    <div class="system-left">
+
+                        <div class="system-icon">
+                            🔐
+                        </div>
+
+                        <div class="system-name">
+                            Authentication
+                        </div>
+
+                    </div>
+
+                    <div class="system-status">
+                        Active
+                    </div>
+
+                </div>
+
+
+                <div class="system-item">
+
+                    <div class="system-left">
+
+                        <div class="system-icon">
+                            🗄️
+                        </div>
+
+                        <div class="system-name">
+                            Firestore
+                        </div>
+
+                    </div>
+
+                    <div class="system-status">
+                        Active
+                    </div>
+
+                </div>
+
+
+                <div class="system-item">
+
+                    <div class="system-left">
+
+                        <div class="system-icon">
+                            🛍️
+                        </div>
+
+                        <div class="system-name">
+                            Fame Store
+                        </div>
+
+                    </div>
+
+                    <div class="system-status">
+                        Online
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+    import {
+        getFirestore,
+        doc,
+        getDoc
+    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+    /* =========================
+       CONFIG
+    ========================= */
+
+    const firebaseConfig = {
+
+        apiKey:
+            "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
+
+        authDomain:
+            "fame-store-ea8b7.firebaseapp.com",
+
+        projectId:
+            "fame-store-ea8b7",
+
+        storageBucket:
+            "fame-store-ea8b7.firebasestorage.app",
+
+        messagingSenderId:
+            "484192010044",
+
+        appId:
+            "1:484192010044:web:8b1c496d5baa492d74a839",
+
+        measurementId:
+            "G-YTGM3N01V6"
+
+    };
+
+
+    /* =========================
+       INITIALIZE
+    ========================= */
+
+    const app =
+        initializeApp(firebaseConfig);
+
+    const auth =
+        getAuth(app);
+
+    const db =
+        getFirestore(app);
+
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const adminName =
+        document.getElementById("adminName");
+
+    const adminEmail =
+        document.getElementById("adminEmail");
+
+    const welcomeName =
+        document.getElementById("welcomeName");
+
+    const adminAvatar =
+        document.getElementById("adminAvatar");
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+
+    /* =========================
+       AUTH + ADMIN CHECK
+    ========================= */
+
+    onAuthStateChanged(
+        auth,
+        async user => {
+
+            if (!user) {
+
+                window.location.href =
+                    "../login.html";
+
+                return;
+
+            }
+
+
+            try {
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        user.uid
+                    );
+
+
+                const snapshot =
+                    await getDoc(userRef);
+
+
+                if (!snapshot.exists()) {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "../login.html";
+
+                    return;
+
+                }
+
+
+                const data =
+                    snapshot.data();
+
+
+                /* =========================
+                   IMPORTANT ADMIN CHECK
+                ========================= */
+
+                if (data.role !== "admin") {
+
+                    await signOut(auth);
+
+                    window.location.href =
+                        "../dashboard.html";
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   ADMIN INFORMATION
+                ========================= */
+
+                const name =
+                    data.fullName ||
+                    "Fame Store Admin";
+
+
+                adminName.textContent =
+                    name;
+
+                welcomeName.textContent =
+                    name;
+
+                adminEmail.textContent =
+                    data.email ||
+                    user.email ||
+                    "";
+
+
+                adminAvatar.textContent =
+                    name
+                        .trim()
+                        .charAt(0)
+                        .toUpperCase();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Admin verification error:",
+                    error
+                );
+
+                await signOut(auth);
+
+                window.location.href =
+                    "../login.html";
+
+            }
+
+        }
+    );
+
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    logoutBtn.addEventListener(
+        "click",
+        async event => {
+
+            event.preventDefault();
+
+            await signOut(auth);
+
+            window.location.href =
+                "../login.html";
+
+        }
+    );
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+
+    mobileMenu.addEventListener(
+        "click",
+        () => {
+
+            sidebar.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+</script>
+
+
+</body>
+  </html>
