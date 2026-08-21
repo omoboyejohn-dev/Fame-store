@@ -1,496 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>USA Gifts | Fame Store</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f9ff;
-            color: #101828;
-        }
-
-        button,
-        input,
-        textarea {
-            font-family: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        header {
-            background: linear-gradient(
-                135deg,
-                #0757d9,
-                #0d6efd
-            );
-
-            color: white;
-            padding: 17px 20px;
-
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-inner {
-            max-width: 1200px;
-            margin: auto;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 15px;
-        }
-
-        .logo {
-            font-size: 23px;
-            font-weight: 800;
-        }
-
-        .wallet {
-            background: rgba(255,255,255,.15);
-            padding: 10px 14px;
-            border-radius: 10px;
-
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 30px 18px;
-        }
-
-        .page-title {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-
-        .page-title h1 {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
-
-        .page-title p {
-            color: #667085;
-            font-size: 14px;
-        }
-
-        .products {
-            display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(220px, 1fr)
-                );
-
-            gap: 20px;
-        }
-
-        .product-card {
-            background: white;
-
-            border: 1px solid #e5eaf1;
-
-            border-radius: 18px;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 10px 30px
-                rgba(7,87,217,.08);
-
-            transition: .2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 245px;
-
-            object-fit: cover;
-
-            display: block;
-
-            background: #edf2f7;
-        }
-
-        .product-info {
-            padding: 17px;
-        }
-
-        .product-info h3 {
-            font-size: 16px;
-            margin-bottom: 9px;
-        }
-
-        .product-description {
-            color: #667085;
-            font-size: 12px;
-            line-height: 1.5;
-            margin-bottom: 10px;
-        }
-
-        .price {
-            color: #0757d9;
-            font-size: 19px;
-            font-weight: 800;
-            margin-bottom: 14px;
-        }
-
-        .gift-btn {
-            width: 100%;
-            border: 0;
-
-            background: #0757d9;
-            color: white;
-
-            padding: 13px;
-
-            border-radius: 10px;
-
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .gift-btn:hover {
-            background: #063b91;
-        }
-
-        #checkout {
-            display: none;
-        }
-
-        #checkout.active {
-            display: block;
-        }
-
-        #productsSection.hidden {
-            display: none;
-        }
-
-        .checkout-container {
-            max-width: 720px;
-            margin: auto;
-            padding: 30px 18px;
-        }
-
-        .checkout-card {
-            background: white;
-
-            border: 1px solid #e5eaf1;
-
-            border-radius: 20px;
-
-            padding: 25px;
-
-            box-shadow:
-                0 15px 45px
-                rgba(7,87,217,.10);
-        }
-
-        .back-btn {
-            border: 0;
-
-            background: #eef3f9;
-            color: #344054;
-
-            padding: 11px 15px;
-
-            border-radius: 9px;
-
-            font-weight: 700;
-
-            margin-bottom: 20px;
-        }
-
-        .checkout-title {
-            font-size: 27px;
-            margin-bottom: 20px;
-        }
-
-        .selected-product {
-            display: flex;
-            align-items: center;
-
-            gap: 15px;
-
-            padding: 13px;
-
-            background: #f5f9ff;
-
-            border-radius: 13px;
-
-            margin-bottom: 25px;
-        }
-
-        .selected-product img {
-            width: 75px;
-            height: 75px;
-
-            border-radius: 10px;
-
-            object-fit: cover;
-        }
-
-        .selected-product-name {
-            font-weight: 800;
-            margin-bottom: 6px;
-        }
-
-        .selected-product-price {
-            color: #0757d9;
-            font-weight: 800;
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: 800;
-
-            margin-top: 25px;
-            margin-bottom: 13px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            margin-bottom: 7px;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-
-            border: 1px solid #d9e0ea;
-
-            border-radius: 10px;
-
-            padding: 13px;
-
-            outline: none;
-
-            font-size: 14px;
-
-            background: white;
-        }
-
-        input {
-            height: 50px;
-        }
-
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        input:focus,
-        textarea:focus {
-            border-color: #0757d9;
-
-            box-shadow:
-                0 0 0 3px
-                rgba(7,87,217,.08);
-        }
-
-        .row {
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 12px;
-        }
-
-        .summary {
-            background: #f5f9ff;
-
-            border-radius: 14px;
-
-            padding: 18px;
-
-            margin-top: 10px;
-        }
-
-        .summary-row {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            margin-bottom: 13px;
-
-            font-size: 14px;
-        }
-
-        .summary-total {
-            border-top: 1px solid #dce4ef;
-
-            padding-top: 14px;
-
-            font-size: 18px;
-
-            font-weight: 800;
-        }
-
-        .balance {
-            color: #087443;
-            font-weight: 800;
-        }
-
-        .confirm-btn {
-            width: 100%;
-
-            border: 0;
-
-            background: #ffc928;
-
-            color: #101828;
-
-            padding: 15px;
-
-            border-radius: 11px;
-
-            font-size: 15px;
-
-            font-weight: 800;
-
-            margin-top: 18px;
-        }
-
-        .confirm-btn:hover {
-            background: #f0b900;
-        }
-
-        .confirm-btn:disabled {
-            opacity: .6;
-            cursor: not-allowed;
-        }
-
-        .message {
-            display: none;
-
-            padding: 13px;
-
-            border-radius: 10px;
-
-            font-size: 13px;
-
-            margin-bottom: 18px;
-
-            line-height: 1.5;
-        }
-
-        .message.error {
-            display: block;
-
-            background: #fff1f0;
-
-            color: #b42318;
-
-            border: 1px solid #ffd3d0;
-        }
-
-        .message.success {
-            display: block;
-
-            background: #ecfff4;
-
-            color: #087443;
-
-            border: 1px solid #b9efd1;
-        }
-
-        @media(max-width:600px) {
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .wallet {
-                font-size: 12px;
-            }
-
-            .page-title h1 {
-                font-size: 25px;
-            }
-
-            .row {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .checkout-card {
-                padding: 19px;
-            }
-
-            .checkout-title {
-                font-size: 24px;
-            }
-
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fame Store | Send Gifts</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f6f9ff;
+    color:#101828;
+}
+
+button,input,textarea{
+    font-family:inherit;
+}
+
+.header{
+    background:#fff;
+    border-bottom:1px solid #e7edf5;
+    padding:22px 18px;
+    text-align:center;
+}
+
+.brand-icon{
+    font-size:34px;
+    margin-bottom:5px;
+}
+
+.brand-name{
+    color:#0757d9;
+    font-size:25px;
+    font-weight:800;
+}
+
+.brand-text{
+    color:#667085;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.wallet-box{
+    display:inline-block;
+    margin-top:14px;
+    background:#eef5ff;
+    color:#0757d9;
+    padding:9px 15px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.container{
+    width:min(1200px,100%);
+    margin:auto;
+    padding:25px 16px 35px;
+}
+
+.page-title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    font-size:27px;
+    margin-bottom:7px;
+}
+
+.page-title p{
+    color:#667085;
+    font-size:13px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:18px;
+}
+
+.product-card{
+    background:#fff;
+    border:1px solid #e4e9f0;
+    border-radius:17px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(16,24,40,.06);
+}
+
+.product-image{
+    width:100%;
+    height:220px;
+    display:block;
+    object-fit:cover;
+    background:#eef2f6;
+}
+
+.product-info{
+    padding:15px;
+}
+
+.product-name{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.4;
+    min-height:42px;
+}
+
+.product-price{
+    color:#0757d9;
+    font-size:18px;
+    font-weight:800;
+    margin:10px 0 13px;
+}
+
+.gift-btn{
+    width:100%;
+    border:0;
+    background:#0757d9;
+    color:#fff;
+    padding:12px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.gift-btn:hover{
+    background:#063b91;
+}
+
+/* FOOTER */
+
+.bottom-area{
+    text-align:center;
+    padding:10px 18px 35px;
+}
+
+.dashboard-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#fff;
+    border:1px solid #d9e1eb;
+    color:#344054;
+    padding:12px 20px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* CHECKOUT */
+
+#checkout{
+    display:none;
+}
+
+#checkout.active{
+    display:block;
+}
+
+#productsSection.hidden{
+    display:none;
+}
+
+.checkout-container{
+    width:min(720px,100%);
+    margin:auto;
+    padding:25px 16px 40px;
+}
+
+.checkout-card{
+    background:#fff;
+    border:1px solid #e4e9f0;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 10px 35px rgba(16,24,40,.08);
+}
+
+.back-products{
+    border:0;
+    background:#eef3f8;
+    color:#344054;
+    padding:10px 14px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+
+.checkout-card h2{
+    font-size:26px;
+    margin-bottom:20px;
+}
+
+.selected-product{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:#f5f8fc;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:25px;
+}
+
+.selected-product img{
+    width:75px;
+    height:75px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.selected-name{
+    font-weight:800;
+    font-size:14px;
+}
+
+.selected-price{
+    color:#0757d9;
+    font-weight:800;
+    margin-top:6px;
+}
+
+.section-title{
+    font-size:17px;
+    font-weight:800;
+    margin:23px 0 13px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    border:1px solid #d9e1eb;
+    border-radius:10px;
+    outline:none;
+    padding:13px;
+    font-size:14px;
+}
+
+.form-group input{
+    height:49px;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#0757d9;
+    box-shadow:0 0 0 3px rgba(7,87,217,.08);
+}
+
+.two-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.summary{
+    background:#f5f8fc;
+    border-radius:13px;
+    padding:17px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:13px;
+    font-size:14px;
+}
+
+.summary-total{
+    border-top:1px solid #dce3ec;
+    padding-top:13px;
+    font-size:18px;
+    font-weight:800;
+}
+
+.balance{
+    color:#087443;
+    font-weight:800;
+}
+
+.confirm-btn{
+    width:100%;
+    border:0;
+    background:#ffc928;
+    color:#101828;
+    padding:15px;
+    border-radius:10px;
+    margin-top:18px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.confirm-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.message{
+    display:none;
+    padding:12px;
+    border-radius:9px;
+    margin-bottom:17px;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.message.error{
+    display:block;
+    color:#b42318;
+    background:#fff1f0;
+    border:1px solid #ffd3d0;
+}
+
+.message.success{
+    display:block;
+    color:#087443;
+    background:#ecfff4;
+    border:1px solid #b9efd1;
+}
+
+@media(max-width:600px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
+
+    .product-image{
+        height:175px;
+    }
+
+    .product-info{
+        padding:11px;
+    }
+
+    .product-name{
+        font-size:13px;
+    }
+
+    .product-price{
+        font-size:16px;
+    }
+
+    .gift-btn{
+        font-size:12px;
+        padding:11px 5px;
+    }
+
+    .two-columns{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .checkout-card{
+        padding:18px;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
+<!-- HEADER -->
 
-<header>
+<header class="header">
 
-    <div class="header-inner">
+    <div class="brand-icon">🛍️</div>
 
-        <div class="logo">
-            Fame Store
-        </div>
+    <div class="brand-name">
+        Fame Store
+    </div>
 
-        <div class="wallet">
-            Wallet:
-            <span id="walletBalance">
-                ₦0.00
-            </span>
-        </div>
+    <div class="brand-text">
+        Send gifts 🎁, share love ❤️
+    </div>
 
+    <div class="wallet-box">
+        Wallet:
+        <span id="walletBalance">₦0.00</span>
     </div>
 
 </header>
 
 
+<!-- PRODUCTS -->
 
 <section id="productsSection">
 
@@ -498,12 +411,10 @@
 
         <div class="page-title">
 
-            <h1>
-                🇺🇸 Gifts for United States
-            </h1>
+            <h1>Send a Gift</h1>
 
             <p>
-                Choose a gift to send to someone special.
+                Choose a gift and send it to someone special.
             </p>
 
         </div>
@@ -518,6 +429,7 @@
 </section>
 
 
+<!-- CHECKOUT -->
 
 <section id="checkout">
 
@@ -526,14 +438,14 @@
         <div class="checkout-card">
 
             <button
-                class="back-btn"
                 type="button"
-                id="backButton"
+                class="back-products"
+                id="backProducts"
             >
                 ← Back to Gifts
             </button>
 
-            <h2 class="checkout-title">
+            <h2>
                 Checkout
             </h2>
 
@@ -548,18 +460,18 @@
                 <img
                     id="selectedImage"
                     src=""
-                    alt="Selected gift"
+                    alt="Gift"
                 >
 
                 <div>
 
                     <div
-                        class="selected-product-name"
+                        class="selected-name"
                         id="selectedName"
                     ></div>
 
                     <div
-                        class="selected-product-price"
+                        class="selected-price"
                         id="selectedPrice"
                     ></div>
 
@@ -568,10 +480,11 @@
             </div>
 
 
+            <!-- CONTACT -->
+
             <div class="section-title">
                 Contact Info
             </div>
-
 
             <div class="form-group">
 
@@ -580,18 +493,20 @@
                 </label>
 
                 <input
-                    type="tel"
                     id="yourPhone"
+                    type="tel"
                     placeholder="Enter your phone number"
+                    required
                 >
 
             </div>
 
 
+            <!-- DELIVERY -->
+
             <div class="section-title">
                 Delivery Info
             </div>
-
 
             <div class="form-group">
 
@@ -600,13 +515,13 @@
                 </label>
 
                 <input
-                    type="text"
                     id="senderName"
-                    placeholder="Enter sender name"
+                    type="text"
+                    placeholder="Sender name"
+                    required
                 >
 
             </div>
-
 
             <div class="form-group">
 
@@ -615,13 +530,13 @@
                 </label>
 
                 <input
-                    type="text"
                     id="recipientName"
-                    placeholder="Enter recipient name"
+                    type="text"
+                    placeholder="Recipient name"
+                    required
                 >
 
             </div>
-
 
             <div class="form-group">
 
@@ -630,13 +545,13 @@
                 </label>
 
                 <input
-                    type="tel"
                     id="recipientPhone"
-                    placeholder="Recipient phone number"
+                    type="tel"
+                    placeholder="Recipient phone"
+                    required
                 >
 
             </div>
-
 
             <div class="form-group">
 
@@ -645,15 +560,16 @@
                 </label>
 
                 <input
-                    type="text"
                     id="streetAddress"
+                    type="text"
                     placeholder="Street / house address"
+                    required
                 >
 
             </div>
 
 
-            <div class="row">
+            <div class="two-columns">
 
                 <div class="form-group">
 
@@ -662,13 +578,13 @@
                     </label>
 
                     <input
-                        type="text"
                         id="city"
+                        type="text"
                         placeholder="City"
+                        required
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -677,9 +593,10 @@
                     </label>
 
                     <input
-                        type="text"
                         id="state"
+                        type="text"
                         placeholder="State"
+                        required
                     >
 
                 </div>
@@ -687,7 +604,7 @@
             </div>
 
 
-            <div class="row">
+            <div class="two-columns">
 
                 <div class="form-group">
 
@@ -696,13 +613,13 @@
                     </label>
 
                     <input
-                        type="text"
                         id="country"
-                        value="United States"
+                        type="text"
+                        placeholder="Country"
+                        required
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -711,9 +628,10 @@
                     </label>
 
                     <input
-                        type="text"
                         id="zipCode"
+                        type="text"
                         placeholder="ZIP Code"
+                        required
                     >
 
                 </div>
@@ -721,21 +639,27 @@
             </div>
 
 
+            <!-- NOTES -->
+
             <div class="section-title">
                 Additional Notes
             </div>
 
+            <div class="form-group">
 
-            <textarea
-                id="additionalNotes"
-                placeholder="Gift message or additional delivery instructions..."
-            ></textarea>
+                <textarea
+                    id="additionalNotes"
+                    placeholder="Gift message or delivery instructions"
+                ></textarea>
 
+            </div>
+
+
+            <!-- PAYMENT -->
 
             <div class="section-title">
                 Payment Summary
             </div>
-
 
             <div class="summary">
 
@@ -751,7 +675,6 @@
 
                 </div>
 
-
                 <div class="summary-row summary-total">
 
                     <span>
@@ -763,7 +686,6 @@
                     </strong>
 
                 </div>
-
 
                 <div class="summary-row">
 
@@ -786,7 +708,7 @@
             <button
                 type="button"
                 class="confirm-btn"
-                id="confirmOrderBtn"
+                id="confirmOrder"
             >
                 Confirm Order
             </button>
@@ -798,44 +720,39 @@
 </section>
 
 
+<!-- BOTTOM -->
+
+<div class="bottom-area">
+
+    <a
+        href="dashboard.html"
+        class="dashboard-btn"
+    >
+        ← Back to Dashboard
+    </a>
+
+</div>
+
 
 <script type="module">
-
-
-/* =====================================
-   FIREBASE
-===================================== */
 
 import {
     auth,
     db
 } from "./firebase-config.js";
 
-
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
-
 import {
     doc,
     getDoc,
-    runTransaction,
+    addDoc,
     collection,
+    updateDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
-
-
-/* =====================================
-   VARIABLES
-===================================== */
-
-let currentUser = null;
-let currentProduct = null;
-let currentBalance = 0;
-let submitting = false;
-
 
 
 /* =====================================
@@ -844,262 +761,400 @@ let submitting = false;
 
 const products = [
 
-    {
-        id: "glass-flower-1",
-        name: "Glass Flower",
-        price: 25000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d0188b3_media_698d3fd3b5d0a"
-    },
+/* 1-3 */
+
+{
+    name:"Glass Flower",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ab65_Purple"
+},
+
+{
+    name:"Glass Flower",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ac3f_Blue"
+},
+
+{
+    name:"Glass Flower",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058a940_xv"
+},
 
 
-    {
-        id: "glass-flower-2",
-        name: "Glass Flower",
-        price: 25000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018a52_media_698d3fd332f71"
-    },
+/* 4-6 */
+
+{
+    name:"Fresh Cut Flower",
+    price:45000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018b91_media_698d3fd2b0149"
+},
+
+{
+    name:"Fresh Cut Flower",
+    price:45000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018a52_media_698d3fd332f71"
+},
+
+{
+    name:"Fresh Cut Flower",
+    price:45000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d0188b3_media_698d3fd3b5d0a"
+},
 
 
-    {
-        id: "glass-flower-3",
-        name: "Glass Flower",
-        price: 25000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782108227_6a38d043ac1c8_media_698764375caff"
-    },
+/* 7-11 */
+
+{
+    name:"Artificial Peonies Flowers",
+    price:25000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1916b_IMG_5382"
+},
+
+{
+    name:"Artificial Peonies Flowers",
+    price:25000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19279_IMG_5381"
+},
+
+{
+    name:"Artificial Peonies Flowers",
+    price:25000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19359_IMG_5380"
+},
+
+{
+    name:"Artificial Peonies Flowers",
+    price:25000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1942c_IMG_5379"
+},
+
+{
+    name:"Artificial Peonies Flowers",
+    price:25000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb194e4_IMG_5378"
+},
 
 
-    {
-        id: "glass-flower-4",
-        name: "Glass Flower",
-        price: 25000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782108227_6a38d043ac419_Red"
-    },
+/* 12-16 */
+
+{
+    name:"Artificial Rose Flowers",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931930b_Blue"
+},
+
+{
+    name:"Artificial Rose Flowers",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993193ae_Yellow"
+},
+
+{
+    name:"Artificial Rose Flowers",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931944a_Black"
+},
+
+{
+    name:"Artificial Rose Flowers",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993194e3_White"
+},
+
+{
+    name:"Artificial Rose Flowers",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c99319235_Red"
+},
 
 
-    {
-        id: "glass-flower-5",
-        name: "Glass Flower",
-        price: 25000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782108227_6a38d043ac377_White"
-    },
+/* 17-18 */
+
+{
+    name:"AMG Benz Car Key",
+    price:230000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebe39_1000008930"
+},
+
+{
+    name:"AMG Benz Car Key",
+    price:230000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebf39_1000008931"
+},
 
 
-    {
-        id: "preserved-roses-1",
-        name: "Preserved Roses 4",
-        price: 40000,
-        description:
-        "Preserved Roses in a Box, Eternal Rose Flowers for Delivery, Forever Preserved Roses",
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782109307_6a38d47b378c1_White"
-    },
+/* 19-21 */
+
+{
+    name:"Benz Key",
+    price:45000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238600_6a3acd889a953_1000008917"
+},
+
+{
+    name:"Tesla Key",
+    price:135000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238712_6a3acdf8eba67_1000008919"
+},
+
+{
+    name:"House Keys",
+    price:30000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238998_6a3acf16450ca_1000008923"
+},
 
 
-    {
-        id: "preserved-roses-2",
-        name: "Preserved Roses 4",
-        price: 40000,
-        description:
-        "Preserved Roses in a Box, Eternal Rose Flowers for Delivery, Forever Preserved Roses",
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782109307_6a38d47b37620_Red"
-    },
+/* 22 */
+
+{
+    name:"Costway 3pcs Patio Acacia Wood Bistro Table Rocking Chair Set All-Weather Rope Outdoor",
+    price:250000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3pcs-Patio-Acacia-Wood-Bistro-Table-Rocking-Chair-Set-All-Weather-Rope-Outdoor_038a53ef-54cf-4ac9-be33-73863fc4b4fb.25eddf448bcecbf77ff23fe5bea83047"
+},
 
 
-    {
-        id: "artificial-rose-1",
-        name: "Artificial Rose Flower Bouquet",
-        price: 45000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105871_6a38c70f8f05e_Mixed_White"
-    },
+/* 23 */
+
+{
+    name:"Costway 3 PCS Acacia Wood Patio Bistro Set Folding Table & Chairs Set with Cushions Navy",
+    price:195000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3-PCS-Acacia-Wood-Patio-Bistro-Set-Folding-Table-Chairs-Set-with-Cushions-Navy_9d86ceee-77ed-4972-a995-7a194c39a22f.cc4b7ebad2af83b9d788acd3f4c94690"
+},
 
 
-    {
-        id: "artificial-rose-2",
-        name: "Artificial Rose Flower Bouquet",
-        price: 45000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105871_6a38c70f8f05e_Mixed_White"
-    },
+/* 24-26 */
+
+{
+    name:"Grand Patio 3-Piece Metal Outdoor Folding Bistro Set, Garden-Pea Green, Bistro Table and Chairs",
+    price:75000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Grand-Patio-Metal-3-Piece-Outdoor-Folding-Bistro-Set-Garden-Pea-Green_52cb114e-076a-4e13-94bc-72011bd08533.4b6dcb8a1b65ea741437a8f7e4d046e5"
+},
+
+{
+    name:"3-Piece Outdoor Folding Bistro Set Metal Patio Table & Chairs Set",
+    price:75000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/3-Piece-Outdoor-Folding-Bistro-Set-Metal-Patio-Table-Chairs-Set-Balcony-Backyard-Garden-Weather-Resistant-Small-Bistro-Set-Assembly-Required_8716a781-af35-4be9-8c8b-8e6413d15c8f.cfe1ea998f11fe8a665b314850f08b97"
+},
+
+{
+    name:"Bistro Table Chairs Set 3-Piece Outdoor Folding Patio Bistro Set",
+    price:75000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Bistro-Table-Chairs-Set-3-Piece-Outdoor-Folding-Patio-Bistro-Set-Foldable-Steel-Frame-Table-2-Chairs-Balcony-Garden-Yard-Porch-Weather-Resistant-Spac_5e9745c4-8469-4d3a-b668-d7153db27c9a.4c495713856d7b49966b4366664abc55"
+},
 
 
-    {
-        id: "artificial-rose-3",
-        name: "Artificial Rose Flower Bouquet",
-        price: 45000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ab65_Purple_1"
-    },
+/* 27 */
+
+{
+    name:"2.25Ct Round Moissanite 18K White Gold Over Silver Under Halo Bridal Set Wedding Engagement Ring Set",
+    price:95000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/silrxxx399-1111_1024x"
+},
 
 
-    {
-        id: "fresh-cut-1",
-        name: "Fresh Cut Flower",
-        price: 50000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ac3f_Blue"
-    },
+/* 28-35 */
+
+{
+    name:"Pizza And Coke",
+    price:20000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782219179_6a3a81abe67c6_IMG_4529"
+},
+
+{
+    name:"Wrapster And Pepsi",
+    price:15000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/wrapster-and-pepsi6846"
+},
+
+{
+    name:"4 In 1 Boss Combo",
+    price:25000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4-in-1-boss-combo7174"
+},
+
+{
+    name:"The Big Boss",
+    price:33000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/the-big-boss6576"
+},
+
+{
+    name:"Sweet Chilli Chicken",
+    price:15000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/sweet-chilli-chicken6236"
+},
+
+{
+    name:"Chicken Supreme",
+    price:17500,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/chicken-supreme5834"
+},
+
+{
+    name:"Chicken Strips 6pcs",
+    price:15000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/crumbed-chicken-strips5294"
+},
+
+{
+    name:"Chicken Wings (6pcs)",
+    price:15000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/saucy-chicken-wings9489"
+},
 
 
-    {
-        id: "fresh-cut-2",
-        name: "Fresh Cut Flower",
-        price: 50000,
-        image:
-        "https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782108514_6a38d1621186d_media_699832785cec8"
-    }
+/* 36-39 */
+
+{
+    name:"Teddy Bear",
+    price:150000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4f2623f0890a59b52ad6041c0376a958"
+},
+
+{
+    name:"Teddy Bear",
+    price:150000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/f38cec07b07bfc75cace01e4b50ef4c6"
+},
+
+{
+    name:"Teddy Bear",
+    price:150000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/531872b26909d00eb50dedfb42c602c8"
+},
+
+{
+    name:"Teddy Bear",
+    price:150000,
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/a12d4294ccec72b254eef7d1254f5a51"
+}
 
 ];
 
+
+/* =====================================
+   STATE
+===================================== */
+
+let currentUser = null;
+let currentProduct = null;
+let currentBalance = 0;
+let orderProcessing = false;
+
+
+/* =====================================
+   ELEMENTS
+===================================== */
+
+const productsContainer =
+    document.getElementById("products");
+
+const productsSection =
+    document.getElementById("productsSection");
+
+const checkout =
+    document.getElementById("checkout");
+
+const walletBalance =
+    document.getElementById("walletBalance");
+
+const checkoutBalance =
+    document.getElementById("checkoutBalance");
+
+const message =
+    document.getElementById("message");
 
 
 /* =====================================
    MONEY
 ===================================== */
 
-function money(amount) {
+function money(value){
 
     return "₦" +
-        Number(amount).toLocaleString(
+        Number(value).toLocaleString(
             "en-NG",
             {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
             }
         );
-
 }
-
 
 
 /* =====================================
    RENDER PRODUCTS
 ===================================== */
 
-const productsContainer =
-    document.getElementById(
-        "products"
-    );
+products.forEach((product,index)=>{
 
+    const card =
+        document.createElement("div");
 
-function renderProducts() {
+    card.className =
+        "product-card";
 
-    productsContainer.innerHTML = "";
+    card.innerHTML = `
 
+        <img
+            class="product-image"
+            src="${product.image}"
+            alt="${product.name}"
+            loading="lazy"
+        >
 
-    products.forEach(product => {
+        <div class="product-info">
 
-
-        const card =
-            document.createElement(
-                "div"
-            );
-
-
-        card.className =
-            "product-card";
-
-
-        card.innerHTML = `
-
-            <img
-                class="product-image"
-                src="${product.image}"
-                alt="${product.name}"
-                loading="lazy"
-            >
-
-            <div class="product-info">
-
-                <h3>
-                    ${product.name}
-                </h3>
-
-                ${
-                    product.description
-                    ? `
-                        <div class="product-description">
-                            ${product.description}
-                        </div>
-                    `
-                    : ""
-                }
-
-                <div class="price">
-                    ${money(product.price)}
-                </div>
-
-                <button
-                    class="gift-btn"
-                    type="button"
-                >
-                    Send as Gift
-                </button>
-
+            <div class="product-name">
+                ${product.name}
             </div>
 
-        `;
+            <div class="product-price">
+                ${money(product.price)}
+            </div>
 
+            <button
+                class="gift-btn"
+                type="button"
+            >
+                Send as Gift
+            </button>
 
-        card
-            .querySelector(".gift-btn")
-            .addEventListener(
-                "click",
-                () => openCheckout(product)
-            );
+        </div>
+    `;
 
-
-        productsContainer.appendChild(
-            card
+    card
+        .querySelector(".gift-btn")
+        .addEventListener(
+            "click",
+            ()=>openCheckout(product)
         );
 
-    });
+    productsContainer.appendChild(card);
 
-}
-
-
-renderProducts();
-
+});
 
 
 /* =====================================
-   AUTH STATE
+   AUTH
 ===================================== */
 
 onAuthStateChanged(
     auth,
-    async user => {
+    async user=>{
 
-        if (!user) {
+        if(!user){
 
             currentUser = null;
 
-            document.getElementById(
-                "walletBalance"
-            ).textContent = "₦0.00";
-
-            document.getElementById(
-                "checkoutBalance"
-            ).textContent = "₦0.00";
+            walletBalance.textContent =
+                "₦0.00";
 
             return;
-
         }
 
-
         currentUser = user;
-
-        console.log(
-            "Logged in UID:",
-            user.uid
-        );
-
 
         await loadWallet();
 
@@ -1107,18 +1162,16 @@ onAuthStateChanged(
 );
 
 
-
 /* =====================================
    LOAD WALLET
 ===================================== */
 
-async function loadWallet() {
+async function loadWallet(){
 
-    if (!currentUser)
+    if(!currentUser)
         return;
 
-
-    try {
+    try{
 
         const userRef =
             doc(
@@ -1127,189 +1180,124 @@ async function loadWallet() {
                 currentUser.uid
             );
 
+        const snap =
+            await getDoc(userRef);
 
-        const userSnap =
-            await getDoc(
-                userRef
-            );
-
-
-        if (
-            !userSnap.exists()
-        ) {
+        if(!snap.exists()){
 
             currentBalance = 0;
 
-        } else {
+        }else{
 
-            const data =
-                userSnap.data();
+            const data = snap.data();
 
+            /*
+             * Uses walletBalance from
+             * your existing user document.
+             */
 
             currentBalance =
                 Number(
                     data.walletBalance || 0
                 );
-
         }
 
-
-        document.getElementById(
-            "walletBalance"
-        ).textContent =
+        walletBalance.textContent =
             money(currentBalance);
 
-
-        document.getElementById(
-            "checkoutBalance"
-        ).textContent =
+        checkoutBalance.textContent =
             money(currentBalance);
 
-
-    } catch (error) {
+    }catch(error){
 
         console.error(
-            "WALLET ERROR:",
+            "Wallet error:",
             error
         );
 
     }
-
 }
-
 
 
 /* =====================================
    OPEN CHECKOUT
 ===================================== */
 
-function openCheckout(product) {
+function openCheckout(product){
 
-    if (!currentUser) {
+    if(!currentUser){
 
         alert(
             "Please login to your Fame Store account first."
         );
 
         return;
-
     }
 
+    currentProduct = product;
 
-    currentProduct =
-        product;
+    productsSection.classList.add("hidden");
 
-
-    document
-        .getElementById(
-            "productsSection"
-        )
-        .classList.add(
-            "hidden"
-        );
-
-
-    document
-        .getElementById(
-            "checkout"
-        )
-        .classList.add(
-            "active"
-        );
-
+    checkout.classList.add("active");
 
     document.getElementById(
         "selectedImage"
-    ).src =
-        product.image;
-
+    ).src = product.image;
 
     document.getElementById(
         "selectedName"
-    ).textContent =
-        product.name;
-
+    ).textContent = product.name;
 
     document.getElementById(
         "selectedPrice"
-    ).textContent =
-        money(product.price);
-
+    ).textContent = money(product.price);
 
     document.getElementById(
         "basePrice"
-    ).textContent =
-        money(product.price);
-
+    ).textContent = money(product.price);
 
     document.getElementById(
         "totalPrice"
-    ).textContent =
-        money(product.price);
+    ).textContent = money(product.price);
 
-
-    document.getElementById(
-        "checkoutBalance"
-    ).textContent =
+    checkoutBalance.textContent =
         money(currentBalance);
-
 
     hideMessage();
 
-
     window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+        top:0,
+        behavior:"smooth"
     });
-
 }
 
 
-
 /* =====================================
-   BACK
+   BACK TO PRODUCTS
 ===================================== */
 
 document
-    .getElementById(
-        "backButton"
-    )
+    .getElementById("backProducts")
     .addEventListener(
         "click",
-        () => {
+        ()=>{
 
-            document
-                .getElementById(
-                    "checkout"
-                )
-                .classList.remove(
-                    "active"
-                );
+            checkout.classList.remove("active");
 
-
-            document
-                .getElementById(
-                    "productsSection"
-                )
-                .classList.remove(
-                    "hidden"
-                );
-
+            productsSection.classList.remove("hidden");
 
             hideMessage();
-
         }
     );
 
 
-
 /* =====================================
-   VALIDATION
+   FORM VALIDATION
 ===================================== */
 
-function validateForm() {
+function validateForm(){
 
-    const fields = [
+    const ids = [
 
         "yourPhone",
         "senderName",
@@ -1323,41 +1311,26 @@ function validateForm() {
 
     ];
 
-
-    for (
-        const id of fields
-    ) {
+    for(const id of ids){
 
         const field =
-            document.getElementById(
-                id
-            );
+            document.getElementById(id);
 
-
-        if (
-            !field.value.trim()
-        ) {
+        if(!field.value.trim()){
 
             showMessage(
-                "Please complete all required delivery information.",
+                "Please complete all delivery information.",
                 "error"
             );
 
-
             field.focus();
 
-
             return false;
-
         }
-
     }
 
-
     return true;
-
 }
-
 
 
 /* =====================================
@@ -1365,84 +1338,195 @@ function validateForm() {
 ===================================== */
 
 document
-    .getElementById(
-        "confirmOrderBtn"
-    )
+    .getElementById("confirmOrder")
     .addEventListener(
         "click",
-        async () => {
+        async ()=>{
 
-
-            if (submitting)
+            if(orderProcessing)
                 return;
 
-
-            if (!currentUser) {
+            if(!currentUser){
 
                 alert(
-                    "Your login session has expired. Please login again."
+                    "Please login first."
                 );
 
                 return;
-
             }
 
+            if(!currentProduct){
 
-            if (!currentProduct) {
-
-                alert(
-                    "Please select a gift first."
+                showMessage(
+                    "Please select a gift.",
+                    "error"
                 );
 
                 return;
-
             }
 
-
-            if (!validateForm())
+            if(!validateForm())
                 return;
-
 
             await loadWallet();
-
 
             const total =
                 Number(
                     currentProduct.price
                 );
 
-
-            if (
-                currentBalance < total
-            ) {
+            if(currentBalance < total){
 
                 showMessage(
-                    `Insufficient wallet balance. Your balance is ${money(currentBalance)}.`,
+                    "Insufficient wallet balance.",
                     "error"
                 );
 
                 return;
-
             }
 
-
-            submitting = true;
-
+            orderProcessing = true;
 
             const button =
                 document.getElementById(
-                    "confirmOrderBtn"
+                    "confirmOrder"
                 );
-
 
             button.disabled = true;
 
             button.textContent =
                 "Processing...";
 
+            try{
 
-            try {
+                /*
+                 * Create order.
+                 */
 
+                const orderRef =
+                    await addDoc(
+                        collection(
+                            db,
+                            "giftOrders"
+                        ),
+                        {
+
+                            customerUID:
+                                currentUser.uid,
+
+                            customerEmail:
+                                currentUser.email || "",
+
+                            productName:
+                                currentProduct.name,
+
+                            productImage:
+                                currentProduct.image,
+
+                            basePrice:
+                                total,
+
+                            total:
+                                total,
+
+                            yourPhone:
+                                document
+                                    .getElementById(
+                                        "yourPhone"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            senderName:
+                                document
+                                    .getElementById(
+                                        "senderName"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            recipientName:
+                                document
+                                    .getElementById(
+                                        "recipientName"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            recipientPhone:
+                                document
+                                    .getElementById(
+                                        "recipientPhone"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            streetAddress:
+                                document
+                                    .getElementById(
+                                        "streetAddress"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            city:
+                                document
+                                    .getElementById(
+                                        "city"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            state:
+                                document
+                                    .getElementById(
+                                        "state"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            country:
+                                document
+                                    .getElementById(
+                                        "country"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            zipCode:
+                                document
+                                    .getElementById(
+                                        "zipCode"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            additionalNotes:
+                                document
+                                    .getElementById(
+                                        "additionalNotes"
+                                    )
+                                    .value
+                                    .trim(),
+
+                            paymentMethod:
+                                "Wallet",
+
+                            paymentStatus:
+                                "Paid",
+
+                            status:
+                                "Pending",
+
+                            createdAt:
+                                serverTimestamp()
+                        }
+                    );
+
+
+                /*
+                 * Deduct wallet.
+                 */
 
                 const userRef =
                     doc(
@@ -1451,216 +1535,21 @@ document
                         currentUser.uid
                     );
 
-
-                const orderRef =
-                    doc(
-                        collection(
-                            db,
-                            "giftOrders"
-                        )
-                    );
-
-
-                await runTransaction(
-                    db,
-                    async transaction => {
-
-
-                        const userSnap =
-                            await transaction.get(
-                                userRef
-                            );
-
-
-                        if (
-                            !userSnap.exists()
-                        ) {
-
-                            throw new Error(
-                                "Customer profile was not found."
-                            );
-
-                        }
-
-
-                        const userData =
-                            userSnap.data();
-
-
-                        const wallet =
-                            Number(
-                                userData.walletBalance || 0
-                            );
-
-
-                        if (
-                            wallet < total
-                        ) {
-
-                            throw new Error(
-                                "Insufficient wallet balance."
-                            );
-
-                        }
-
-
-                        /*
-                         * DEDUCT WALLET
-                         */
-
-                        transaction.update(
-                            userRef,
-                            {
-                                walletBalance:
-                                    wallet - total
-                            }
-                        );
-
-
-                        /*
-                         * CREATE GIFT ORDER
-                         */
-
-                        transaction.set(
-                            orderRef,
-                            {
-
-                                customerUID:
-                                    currentUser.uid,
-
-                                customerEmail:
-                                    currentUser.email || "",
-
-                                productId:
-                                    currentProduct.id,
-
-                                productName:
-                                    currentProduct.name,
-
-                                productImage:
-                                    currentProduct.image,
-
-                                basePrice:
-                                    total,
-
-                                total:
-                                    total,
-
-                                yourPhone:
-                                    document
-                                        .getElementById(
-                                            "yourPhone"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                senderName:
-                                    document
-                                        .getElementById(
-                                            "senderName"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                recipientName:
-                                    document
-                                        .getElementById(
-                                            "recipientName"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                recipientPhone:
-                                    document
-                                        .getElementById(
-                                            "recipientPhone"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                streetAddress:
-                                    document
-                                        .getElementById(
-                                            "streetAddress"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                city:
-                                    document
-                                        .getElementById(
-                                            "city"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                state:
-                                    document
-                                        .getElementById(
-                                            "state"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                country:
-                                    document
-                                        .getElementById(
-                                            "country"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                zipCode:
-                                    document
-                                        .getElementById(
-                                            "zipCode"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                additionalNotes:
-                                    document
-                                        .getElementById(
-                                            "additionalNotes"
-                                        )
-                                        .value
-                                        .trim(),
-
-                                deliveryCountry:
-                                    "United States",
-
-                                paymentMethod:
-                                    "wallet",
-
-                                paymentStatus:
-                                    "paid",
-
-                                status:
-                                    "pending",
-
-                                createdAt:
-                                    serverTimestamp()
-
-                            }
-                        );
-
+                await updateDoc(
+                    userRef,
+                    {
+                        walletBalance:
+                            currentBalance - total
                     }
                 );
 
 
-                currentBalance -=
-                    total;
+                currentBalance -= total;
 
-
-                document.getElementById(
-                    "walletBalance"
-                ).textContent =
+                walletBalance.textContent =
                     money(currentBalance);
 
-
-                document.getElementById(
-                    "checkoutBalance"
-                ).textContent =
+                checkoutBalance.textContent =
                     money(currentBalance);
 
 
@@ -1669,56 +1558,43 @@ document
 
 
                 showMessage(
-                    "Gift order confirmed successfully. Your wallet has been charged and your order is pending.",
+                    "Your gift order has been submitted successfully.",
                     "success"
                 );
 
 
                 setTimeout(
-                    () => {
-
-                        /*
-                         * Change this filename if
-                         * your order-history page
-                         * has a different name.
-                         */
+                    ()=>{
 
                         window.location.href =
-                            "gift-orders.html";
+                            "dashboard.html";
 
                     },
-                    1500
+                    1800
                 );
 
 
-            } catch (error) {
+            }catch(error){
 
                 console.error(
-                    "GIFT ORDER ERROR:",
+                    "ORDER ERROR:",
                     error
                 );
 
-
                 showMessage(
                     error.message ||
-                    "Unable to complete the gift order.",
+                    "Unable to submit your order. Please try again.",
                     "error"
                 );
 
-
-                button.disabled =
-                    false;
-
+                button.disabled = false;
 
                 button.textContent =
                     "Confirm Order";
 
+            }finally{
 
-                await loadWallet();
-
-            } finally {
-
-                submitting = false;
+                orderProcessing = false;
 
             }
 
@@ -1726,52 +1602,27 @@ document
     );
 
 
-
 /* =====================================
-   MESSAGE
+   MESSAGES
 ===================================== */
 
-function showMessage(
-    text,
-    type
-) {
+function showMessage(text,type){
 
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        text;
-
+    message.textContent = text;
 
     message.className =
         "message " + type;
-
 }
 
+function hideMessage(){
 
-function hideMessage() {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-
-    message.textContent =
-        "";
-
+    message.textContent = "";
 
     message.className =
         "message";
-
 }
 
 </script>
 
-
 </body>
-
 </html>
