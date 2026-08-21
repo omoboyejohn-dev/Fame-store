@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | Fame Store</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #f5f9ff,
+                #ffffff,
+                #fffbea
+            );
+            color: #101828;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 25px 15px 45px;
+        }
+
+        .container {
+            width: min(850px, 100%);
+            margin: auto;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .brand-icon {
+            width: 58px;
+            height: 58px;
+            background: #ffc928;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+            margin: 0 auto 10px;
+        }
+
+        .header h1 {
+            color: #0757d9;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .header p {
+            color: #667085;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5eaf1;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 18px;
+            box-shadow:
+                0 15px 45px rgba(7, 87, 217, .08);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+
+        /* =========================
+           PRODUCT
+        ========================= */
+
+        .product {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .product-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 13px;
+            object-fit: cover;
+            background: #f2f4f7;
+            border: 1px solid #eaecf0;
+            flex-shrink: 0;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: #0757d9;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 3px;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #d9e0ea;
+            border-radius: 10px;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+            background: #ffffff;
+        }
+
+        input,
+        select {
+            height: 50px;
+            padding: 0 14px;
+        }
+
+        textarea {
+            min-height: 100px;
+            padding: 13px 14px;
+            resize: vertical;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #0757d9;
+            box-shadow:
+                0 0 0 3px rgba(7, 87, 217, .08);
+        }
+
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .summary {
+            background: #f8faff;
+            border-radius: 13px;
+            padding: 17px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        .summary-row span:first-child {
+            color: #667085;
+        }
+
+        .summary-row span:last-child {
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .summary-total {
+            border-top: 1px solid #dfe5ee;
+            margin-top: 8px;
+            padding-top: 14px;
+            font-size: 17px;
+        }
+
+        .summary-total span:last-child {
+            color: #0757d9;
+            font-size: 19px;
+        }
+
+        .wallet {
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 11px;
+            background: #eef5ff;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            font-size: 13px;
+        }
+
+        .wallet strong {
+            color: #0757d9;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        .message {
+            display: none;
+            padding: 14px;
+            border-radius: 11px;
+            margin-bottom: 18px;
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .message.error {
+            display: block;
+            color: #b42318;
+            background: #fff1f0;
+            border: 1px solid #ffd3d0;
+        }
+
+        .message.success {
+            display: block;
+            color: #087443;
+            background: #ecfff4;
+            border: 1px solid #b9efd1;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .confirm-btn {
+            width: 100%;
+            height: 53px;
+            border: 0;
+            border-radius: 11px;
+            background: #0757d9;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .confirm-btn:hover {
+            background: #063b91;
+        }
+
+        .confirm-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           BACK
+        ========================= */
+
+        .back-dashboard {
+            display: block;
+            text-align: center;
+            color: #667085;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        .back-dashboard:hover {
+            color: #0757d9;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .page {
+                padding: 20px 12px 35px;
+            }
+
+            .card {
+                padding: 20px 17px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+
+            .product-image {
+                width: 75px;
+                height: 75px;
+            }
+
+            .product-name {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+    <div class="container">
+
+
+        <!-- =========================
+             HEADER
+        ========================= -->
+
+        <div class="header">
+
+            <div class="brand-icon">
+                🛍️
+            </div>
+
+            <h1>
+                Fame Store
+            </h1>
+
+            <p>
+                Send gifts 🎁, share love ❤️
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             MESSAGE
+        ========================= -->
+
+        <div
+            id="message"
+            class="message">
+        </div>
+
+
+        <!-- =========================
+             PRODUCT
+        ========================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Your Gift
+            </div>
+
+            <div class="product">
+
+                <img
+                    id="productImage"
+                    class="product-image"
+                    src=""
+                    alt="Gift">
+
+                <div class="product-info">
+
+                    <div
+                        id="productName"
+                        class="product-name">
+
+                        Loading product...
+
+                    </div>
+
+                    <div
+                        id="productPrice"
+                        class="product-price">
+
+                        ₦0.00
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CONTACT INFO
+        ========================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Contact Info
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group full">
+
+                    <label for="yourPhone">
+                        Your Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="yourPhone"
+                        placeholder="Enter your phone number"
+                        required>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             DELIVERY INFO
+        ========================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Delivery Info
+            </div>
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label for="senderName">
+                        Sender Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="senderName"
+                        placeholder="Enter sender name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="recipientName">
+                        Recipient Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="recipientName"
+                        placeholder="Enter recipient name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="recipientPhone">
+                        Recipient Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="recipientPhone"
+                        placeholder="Enter recipient phone"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="country">
+                        Country
+                    </label>
+
+                    <select
+                        id="country"
+                        required>
+
+                        <option value="">
+                            Select country
+                        </option>
+
+                        <option value="United States">
+                            🇺🇸 United States
+                        </option>
+
+                        <option value="Canada">
+                            🇨🇦 Canada
+                        </option>
+
+                        <option value="United Kingdom">
+                            🇬🇧 United Kingdom
+                        </option>
+
+                        <option value="Mexico">
+                            🇲🇽 Mexico
+                        </option>
+
+                        <option value="Australia">
+                            🇦🇺 Australia
+                        </option>
+
+                        <option value="Germany">
+                            🇩🇪 Germany
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="address">
+                        Street / House Address
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address"
+                        placeholder="Enter street or house address"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="city">
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        placeholder="Enter city"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="state">
+                        State
+                    </label>
+
+                    <input
+                        type="text"
+                        id="state"
+                        placeholder="Enter state"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="zipCode">
+                        ZIP Code
+                    </label>
+
+                    <input
+                        type="text"
+                        id="zipCode"
+                        placeholder="Enter ZIP code"
+                        required>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label for="notes">
+                        Additional Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        placeholder="Any additional information for this order..."></textarea>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PAYMENT SUMMARY
+        ========================= -->
+
+        <div class="card">
+
+            <div class="card-title">
+                Payment Summary
+            </div>
+
+            <div class="summary">
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Base Price
+                    </span>
+
+                    <span
+                        id="basePrice">
+
+                        ₦0.00
+
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span
+                        id="totalPrice">
+
+                        ₦0.00
+
+                    </span>
+
+                </div>
+
+
+                <div class="wallet">
+
+                    <span>
+                        Your Balance
+                    </span>
+
+                    <strong
+                        id="walletBalance">
+
+                        ₦0.00
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CONFIRM
+        ========================= -->
+
+        <button
+            type="button"
+            id="confirmOrderBtn"
+            class="confirm-btn">
+
+            Confirm Order
+
+        </button>
+
+
+        <!-- =========================
+             BACK
+        ========================= -->
+
+        <a
+            href="dashboard.html"
+            class="back-dashboard">
+
+            ← Back to Dashboard
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+import {
+    auth,
+    db
+} from "./firebase-config.js";
+
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+    doc,
+    getDoc,
+    collection,
+    runTransaction,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const productImage =
+    document.getElementById("productImage");
+
+const productName =
+    document.getElementById("productName");
+
+const productPrice =
+    document.getElementById("productPrice");
+
+const basePrice =
+    document.getElementById("basePrice");
+
+const totalPrice =
+    document.getElementById("totalPrice");
+
+const walletBalance =
+    document.getElementById("walletBalance");
+
+const confirmOrderBtn =
+    document.getElementById("confirmOrderBtn");
+
+const message =
+    document.getElementById("message");
+
+
+
+/* =========================
+   PRODUCT DATA
+========================= */
+
+let selectedProduct = null;
+
+let currentUser = null;
+
+let currentWalletBalance = 0;
+
+
+
+/* =========================
+   GET SELECTED PRODUCT
+========================= */
+
+function getSelectedProduct() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                "fameStoreSelectedProduct"
+            );
+
+        if (!saved) {
+            return null;
+        }
+
+        return JSON.parse(saved);
+
+    } catch (error) {
+
+        console.error(
+            "PRODUCT DATA ERROR:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+
+selectedProduct =
+    getSelectedProduct();
+
+
+
+/* =========================
+   FORMAT MONEY
+========================= */
+
+function formatMoney(amount) {
+
+    return "₦" +
+        Number(amount || 0)
+            .toLocaleString("en-NG", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+}
+
+
+
+/* =========================
+   SHOW MESSAGE
+========================= */
+
+function showMessage(
+    text,
+    type
+) {
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message " + type;
+
+}
+
+
+
+/* =========================
+   LOAD PRODUCT
+========================= */
+
+function loadProduct() {
+
+    if (!selectedProduct) {
+
+        productName.textContent =
+            "No product selected";
+
+        productPrice.textContent =
+            "₦0.00";
+
+        basePrice.textContent =
+            "₦0.00";
+
+        totalPrice.textContent =
+            "₦0.00";
+
+        confirmOrderBtn.disabled =
+            true;
+
+        showMessage(
+            "Please select a gift before going to checkout.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const name =
+        selectedProduct.name ||
+        "Gift Item";
+
+
+    const price =
+        Number(
+            selectedProduct.price || 0
+        );
+
+
+    productName.textContent =
+        name;
+
+
+    productPrice.textContent =
+        formatMoney(price);
+
+
+    basePrice.textContent =
+        formatMoney(price);
+
+
+    totalPrice.textContent =
+        formatMoney(price);
+
+
+    if (
+        selectedProduct.image
+    ) {
+
+        productImage.src =
+            selectedProduct.image;
+
+    } else {
+
+        productImage.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+/* =========================
+   LOAD USER
+========================= */
+
+async function loadUserData(user) {
+
+    try {
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                user.uid
+            );
+
+
+        const userSnap =
+            await getDoc(
+                userRef
+            );
+
+
+        if (!userSnap.exists()) {
+
+            showMessage(
+                "Your account profile could not be found.",
+                "error"
+            );
+
+            confirmOrderBtn.disabled =
+                true;
+
+            return;
+
+        }
+
+
+        const userData =
+            userSnap.data();
+
+
+        /*
+         * This uses walletBalance,
+         * matching your Fame Store
+         * deposit system.
+         */
+
+        currentWalletBalance =
+            Number(
+                userData.walletBalance || 0
+            );
+
+
+        walletBalance.textContent =
+            formatMoney(
+                currentWalletBalance
+            );
+
+
+    } catch (error) {
+
+        console.error(
+            "USER DATA ERROR:",
+            error
+        );
+
+
+        showMessage(
+            "Unable to load your wallet balance.",
+            "error"
+        );
+
+        confirmOrderBtn.disabled =
+            true;
+
+    }
+
+}
+
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if (!user) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        loadProduct();
+
+        await loadUserData(
+            user
+        );
+
+    }
+);
+
+
+
+/* =========================
+   CONFIRM ORDER
+========================= */
+
+confirmOrderBtn.addEventListener(
+    "click",
+    async () => {
+
+        if (!currentUser) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        if (!selectedProduct) {
+
+            showMessage(
+                "Please select a gift first.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const price =
+            Number(
+                selectedProduct.price || 0
+            );
+
+
+        if (
+            !price ||
+            price <= 0
+        ) {
+
+            showMessage(
+                "Invalid product price.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           GET FORM VALUES
+        ========================= */
+
+        const yourPhone =
+            document
+                .getElementById(
+                    "yourPhone"
+                )
+                .value
+                .trim();
+
+
+        const senderName =
+            document
+                .getElementById(
+                    "senderName"
+                )
+                .value
+                .trim();
+
+
+        const recipientName =
+            document
+                .getElementById(
+                    "recipientName"
+                )
+                .value
+                .trim();
+
+
+        const recipientPhone =
+            document
+                .getElementById(
+                    "recipientPhone"
+                )
+                .value
+                .trim();
+
+
+        const address =
+            document
+                .getElementById(
+                    "address"
+                )
+                .value
+                .trim();
+
+
+        const city =
+            document
+                .getElementById(
+                    "city"
+                )
+                .value
+                .trim();
+
+
+        const state =
+            document
+                .getElementById(
+                    "state"
+                )
+                .value
+                .trim();
+
+
+        const country =
+            document
+                .getElementById(
+                    "country"
+                )
+                .value
+                .trim();
+
+
+        const zipCode =
+            document
+                .getElementById(
+                    "zipCode"
+                )
+                .value
+                .trim();
+
+
+        const notes =
+            document
+                .getElementById(
+                    "notes"
+                )
+                .value
+                .trim();
+
+
+
+        /* =========================
+           VALIDATION
+        ========================= */
+
+        if (
+            !yourPhone ||
+            !senderName ||
+            !recipientName ||
+            !recipientPhone ||
+            !address ||
+            !city ||
+            !state ||
+            !country ||
+            !zipCode
+        ) {
+
+            showMessage(
+                "Please complete all required delivery information.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+
+        /* =========================
+           BALANCE CHECK
+        ========================= */
+
+        if (
+            currentWalletBalance <
+            price
+        ) {
+
+            showMessage(
+                "Insufficient wallet balance. Kindly deposit and make an order.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        confirmOrderBtn.disabled =
+            true;
+
+        confirmOrderBtn.textContent =
+            "Processing Order...";
+
+
+
+        try {
+
+
+            /*
+             * Transaction makes the balance
+             * deduction and order creation
+             * happen together.
+             */
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                );
+
+
+            const ordersRef =
+                collection(
+                    db,
+                    "orders"
+                );
+
+
+            const newOrderRef =
+                doc(
+                    ordersRef
+                );
+
+
+            const orderNumber =
+                "FS-" +
+                Date.now();
+
+
+            await runTransaction(
+                db,
+                async transaction => {
+
+                    const userSnap =
+                        await transaction.get(
+                            userRef
+                        );
+
+
+                    if (
+                        !userSnap.exists()
+                    ) {
+
+                        throw new Error(
+                            "USER_PROFILE_NOT_FOUND"
+                        );
+
+                    }
+
+
+                    const userData =
+                        userSnap.data();
+
+
+                    const latestBalance =
+                        Number(
+                            userData.walletBalance || 0
+                        );
+
+
+                    /*
+                     * Check balance AGAIN
+                     * inside the transaction.
+                     */
+
+                    if (
+                        latestBalance <
+                        price
+                    ) {
+
+                        throw new Error(
+                            "INSUFFICIENT_BALANCE"
+                        );
+
+                    }
+
+
+                    const newBalance =
+                        latestBalance -
+                        price;
+
+
+                    /*
+                     * Deduct wallet balance.
+                     */
+
+                    transaction.update(
+                        userRef,
+                        {
+                            walletBalance:
+                                newBalance
+                        }
+                    );
+
+
+                    /*
+                     * Create order.
+                     */
+
+                    transaction.set(
+                        newOrderRef,
+                        {
+
+                            orderNumber:
+                                orderNumber,
+
+                            userId:
+                                currentUser.uid,
+
+                            customerEmail:
+                                currentUser.email || "",
+
+                            productName:
+                                selectedProduct.name || "Gift Item",
+
+                            productPrice:
+                                price,
+
+                            productImage:
+                                selectedProduct.image || "",
+
+                            yourPhone:
+                                yourPhone,
+
+                            senderName:
+                                senderName,
+
+                            recipientName:
+                                recipientName,
+
+                            recipientPhone:
+                                recipientPhone,
+
+                            address:
+                                address,
+
+                            city:
+                                city,
+
+                            state:
+                                state,
+
+                            country:
+                                country,
+
+                            zipCode:
+                                zipCode,
+
+                            notes:
+                                notes,
+
+                            status:
+                                "Processing",
+
+                            createdAt:
+                                serverTimestamp()
+
+                        }
+                    );
+
+                }
+            );
+
+
+            /*
+             * Update local balance.
+             */
+
+            currentWalletBalance =
+                currentWalletBalance -
+                price;
+
+
+            walletBalance.textContent =
+                formatMoney(
+                    currentWalletBalance
+                );
+
+
+            /* =========================
+               SUCCESS
+            ========================= */
+
+            showMessage(
+                "Your order completed. It will take less than three business days to deliver your order. Always check your order history.",
+                "success"
+            );
+
+
+            confirmOrderBtn.textContent =
+                "Order Completed";
+
+
+            /*
+             * Remove selected product
+             * after successful order.
+             */
+
+            localStorage.removeItem(
+                "fameStoreSelectedProduct"
+            );
+
+
+            /*
+             * Give customer time to
+             * read the message.
+             */
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "orders-history.html";
+
+                },
+                3000
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "ORDER ERROR:",
+                error
+            );
+
+
+            if (
+                error.message ===
+                "INSUFFICIENT_BALANCE"
+            ) {
+
+                showMessage(
+                    "Insufficient wallet balance. Kindly deposit and make an order.",
+                    "error"
+                );
+
+            }
+
+            else if (
+                error.message ===
+                "USER_PROFILE_NOT_FOUND"
+            ) {
+
+                showMessage(
+                    "Your account profile could not be found.",
+                    "error"
+                );
+
+            }
+
+            else {
+
+                showMessage(
+                    "Unable to complete your order. Please try again.",
+                    "error"
+                );
+
+            }
+
+
+            confirmOrderBtn.disabled =
+                false;
+
+            confirmOrderBtn.textContent =
+                "Confirm Order";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+  </html>
