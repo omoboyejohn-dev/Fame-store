@@ -134,8 +134,6 @@ button,input,textarea{
     background:#063b91;
 }
 
-/* FOOTER */
-
 .bottom-area{
     text-align:center;
     padding:10px 18px 35px;
@@ -316,27 +314,72 @@ button,input,textarea{
     cursor:not-allowed;
 }
 
-.message{
+/* MESSAGE BOX */
+
+.message-overlay{
     display:none;
-    padding:12px;
-    border-radius:9px;
-    margin-bottom:17px;
-    font-size:13px;
-    line-height:1.5;
+    position:fixed;
+    inset:0;
+    background:rgba(16,24,40,.55);
+    z-index:9999;
+    padding:20px;
+    align-items:center;
+    justify-content:center;
 }
 
-.message.error{
-    display:block;
-    color:#b42318;
-    background:#fff1f0;
-    border:1px solid #ffd3d0;
+.message-overlay.show{
+    display:flex;
 }
 
-.message.success{
-    display:block;
-    color:#087443;
-    background:#ecfff4;
-    border:1px solid #b9efd1;
+.message-box{
+    width:min(390px,100%);
+    background:#fff;
+    border-radius:20px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 20px 70px rgba(0,0,0,.2);
+}
+
+.message-icon{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    margin:0 auto 15px;
+    font-size:27px;
+    background:#fff4d6;
+}
+
+.message-box.success .message-icon{
+    background:#e8fff2;
+}
+
+.message-box h3{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.message-box p{
+    color:#667085;
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.thanks-btn{
+    width:100%;
+    border:0;
+    background:#0757d9;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.thanks-btn:hover{
+    background:#063b91;
 }
 
 @media(max-width:600px){
@@ -385,7 +428,9 @@ button,input,textarea{
 
 <header class="header">
 
-    <div class="brand-icon">🛍️</div>
+    <div class="brand-icon">
+        🛍️
+    </div>
 
     <div class="brand-name">
         Fame Store
@@ -411,7 +456,9 @@ button,input,textarea{
 
         <div class="page-title">
 
-            <h1>Send a Gift</h1>
+            <h1>
+                Send a Gift
+            </h1>
 
             <p>
                 Choose a gift and send it to someone special.
@@ -449,11 +496,6 @@ button,input,textarea{
                 Checkout
             </h2>
 
-            <div
-                id="message"
-                class="message"
-            ></div>
-
 
             <div class="selected-product">
 
@@ -480,7 +522,7 @@ button,input,textarea{
             </div>
 
 
-            <!-- CONTACT -->
+            <!-- CONTACT INFO -->
 
             <div class="section-title">
                 Contact Info
@@ -502,7 +544,7 @@ button,input,textarea{
             </div>
 
 
-            <!-- DELIVERY -->
+            <!-- DELIVERY INFO -->
 
             <div class="section-title">
                 Delivery Info
@@ -655,7 +697,7 @@ button,input,textarea{
             </div>
 
 
-            <!-- PAYMENT -->
+            <!-- PAYMENT SUMMARY -->
 
             <div class="section-title">
                 Payment Summary
@@ -734,6 +776,46 @@ button,input,textarea{
 </div>
 
 
+<!-- MESSAGE POPUP -->
+
+<div
+    class="message-overlay"
+    id="messageOverlay"
+>
+
+    <div
+        class="message-box"
+        id="messageBox"
+    >
+
+        <div
+            class="message-icon"
+            id="messageIcon"
+        >
+            ⚠️
+        </div>
+
+        <h3 id="messageTitle">
+            Insufficient wallet balance
+        </h3>
+
+        <p id="messageText">
+            Kindly deposit and make an order
+        </p>
+
+        <button
+            type="button"
+            class="thanks-btn"
+            id="thanksButton"
+        >
+            Thanks
+        </button>
+
+    </div>
+
+</div>
+
+
 <script type="module">
 
 import {
@@ -750,7 +832,6 @@ import {
     getDoc,
     addDoc,
     collection,
-    updateDoc,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
@@ -760,8 +841,6 @@ import {
 ===================================== */
 
 const products = [
-
-/* 1-3 */
 
 {
     name:"Glass Flower",
@@ -781,9 +860,6 @@ const products = [
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058a940_xv"
 },
 
-
-/* 4-6 */
-
 {
     name:"Fresh Cut Flower",
     price:45000,
@@ -801,9 +877,6 @@ const products = [
     price:45000,
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d0188b3_media_698d3fd3b5d0a"
 },
-
-
-/* 7-11 */
 
 {
     name:"Artificial Peonies Flowers",
@@ -835,9 +908,6 @@ const products = [
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb194e4_IMG_5378"
 },
 
-
-/* 12-16 */
-
 {
     name:"Artificial Rose Flowers",
     price:30000,
@@ -868,9 +938,6 @@ const products = [
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c99319235_Red"
 },
 
-
-/* 17-18 */
-
 {
     name:"AMG Benz Car Key",
     price:230000,
@@ -882,9 +949,6 @@ const products = [
     price:230000,
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebf39_1000008931"
 },
-
-
-/* 19-21 */
 
 {
     name:"Benz Key",
@@ -904,26 +968,17 @@ const products = [
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238998_6a3acf16450ca_1000008923"
 },
 
-
-/* 22 */
-
 {
     name:"Costway 3pcs Patio Acacia Wood Bistro Table Rocking Chair Set All-Weather Rope Outdoor",
     price:250000,
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3pcs-Patio-Acacia-Wood-Bistro-Table-Rocking-Chair-Set-All-Weather-Rope-Outdoor_038a53ef-54cf-4ac9-be33-73863fc4b4fb.25eddf448bcecbf77ff23fe5bea83047"
 },
 
-
-/* 23 */
-
 {
     name:"Costway 3 PCS Acacia Wood Patio Bistro Set Folding Table & Chairs Set with Cushions Navy",
     price:195000,
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3-PCS-Acacia-Wood-Patio-Bistro-Set-Folding-Table-Chairs-Set-with-Cushions-Navy_9d86ceee-77ed-4972-a995-7a194c39a22f.cc4b7ebad2af83b9d788acd3f4c94690"
 },
-
-
-/* 24-26 */
 
 {
     name:"Grand Patio 3-Piece Metal Outdoor Folding Bistro Set, Garden-Pea Green, Bistro Table and Chairs",
@@ -943,17 +998,11 @@ const products = [
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Bistro-Table-Chairs-Set-3-Piece-Outdoor-Folding-Patio-Bistro-Set-Foldable-Steel-Frame-Table-2-Chairs-Balcony-Garden-Yard-Porch-Weather-Resistant-Spac_5e9745c4-8469-4d3a-b668-d7153db27c9a.4c495713856d7b49966b4366664abc55"
 },
 
-
-/* 27 */
-
 {
     name:"2.25Ct Round Moissanite 18K White Gold Over Silver Under Halo Bridal Set Wedding Engagement Ring Set",
     price:95000,
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/silrxxx399-1111_1024x"
 },
-
-
-/* 28-35 */
 
 {
     name:"Pizza And Coke",
@@ -1003,9 +1052,6 @@ const products = [
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/saucy-chicken-wings9489"
 },
 
-
-/* 36-39 */
-
 {
     name:"Teddy Bear",
     price:150000,
@@ -1029,12 +1075,11 @@ const products = [
     price:150000,
     image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/a12d4294ccec72b254eef7d1254f5a51"
 }
-
 ];
 
 
 /* =====================================
-   STATE
+   VARIABLES
 ===================================== */
 
 let currentUser = null;
@@ -1062,8 +1107,23 @@ const walletBalance =
 const checkoutBalance =
     document.getElementById("checkoutBalance");
 
-const message =
-    document.getElementById("message");
+const messageOverlay =
+    document.getElementById("messageOverlay");
+
+const messageBox =
+    document.getElementById("messageBox");
+
+const messageIcon =
+    document.getElementById("messageIcon");
+
+const messageTitle =
+    document.getElementById("messageTitle");
+
+const messageText =
+    document.getElementById("messageText");
+
+const thanksButton =
+    document.getElementById("thanksButton");
 
 
 /* =====================================
@@ -1087,7 +1147,7 @@ function money(value){
    RENDER PRODUCTS
 ===================================== */
 
-products.forEach((product,index)=>{
+products.forEach(product => {
 
     const card =
         document.createElement("div");
@@ -1115,8 +1175,8 @@ products.forEach((product,index)=>{
             </div>
 
             <button
-                class="gift-btn"
                 type="button"
+                class="gift-btn"
             >
                 Send as Gift
             </button>
@@ -1128,7 +1188,7 @@ products.forEach((product,index)=>{
         .querySelector(".gift-btn")
         .addEventListener(
             "click",
-            ()=>openCheckout(product)
+            () => openCheckout(product)
         );
 
     productsContainer.appendChild(card);
@@ -1142,13 +1202,18 @@ products.forEach((product,index)=>{
 
 onAuthStateChanged(
     auth,
-    async user=>{
+    async user => {
 
         if(!user){
 
             currentUser = null;
 
+            currentBalance = 0;
+
             walletBalance.textContent =
+                "₦0.00";
+
+            checkoutBalance.textContent =
                 "₦0.00";
 
             return;
@@ -1189,12 +1254,8 @@ async function loadWallet(){
 
         }else{
 
-            const data = snap.data();
-
-            /*
-             * Uses walletBalance from
-             * your existing user document.
-             */
+            const data =
+                snap.data();
 
             currentBalance =
                 Number(
@@ -1227,43 +1288,53 @@ function openCheckout(product){
 
     if(!currentUser){
 
-        alert(
-            "Please login to your Fame Store account first."
+        showPopup(
+            "login",
+            "Please Login First",
+            "Please login to your Fame Store account before sending a gift."
         );
 
         return;
     }
 
-    currentProduct = product;
+    currentProduct =
+        product;
 
-    productsSection.classList.add("hidden");
+    productsSection
+        .classList
+        .add("hidden");
 
-    checkout.classList.add("active");
+    checkout
+        .classList
+        .add("active");
 
     document.getElementById(
         "selectedImage"
-    ).src = product.image;
+    ).src =
+        product.image;
 
     document.getElementById(
         "selectedName"
-    ).textContent = product.name;
+    ).textContent =
+        product.name;
 
     document.getElementById(
         "selectedPrice"
-    ).textContent = money(product.price);
+    ).textContent =
+        money(product.price);
 
     document.getElementById(
         "basePrice"
-    ).textContent = money(product.price);
+    ).textContent =
+        money(product.price);
 
     document.getElementById(
         "totalPrice"
-    ).textContent = money(product.price);
+    ).textContent =
+        money(product.price);
 
     checkoutBalance.textContent =
         money(currentBalance);
-
-    hideMessage();
 
     window.scrollTo({
         top:0,
@@ -1273,22 +1344,86 @@ function openCheckout(product){
 
 
 /* =====================================
-   BACK TO PRODUCTS
+   BACK TO GIFTS
 ===================================== */
 
 document
     .getElementById("backProducts")
     .addEventListener(
         "click",
-        ()=>{
+        () => {
 
-            checkout.classList.remove("active");
+            checkout
+                .classList
+                .remove("active");
 
-            productsSection.classList.remove("hidden");
+            productsSection
+                .classList
+                .remove("hidden");
 
-            hideMessage();
+            currentProduct =
+                null;
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
         }
     );
+
+
+/* =====================================
+   POPUP
+===================================== */
+
+function showPopup(
+    type,
+    title,
+    text
+){
+
+    messageBox.className =
+        "message-box " +
+        (type === "success"
+            ? "success"
+            : "");
+
+    if(type === "success"){
+
+        messageIcon.textContent =
+            "✓";
+
+    }else{
+
+        messageIcon.textContent =
+            type === "login"
+                ? "🔐"
+                : "⚠️";
+    }
+
+    messageTitle.textContent =
+        title;
+
+    messageText.textContent =
+        text;
+
+    messageOverlay
+        .classList
+        .add("show");
+}
+
+
+thanksButton.addEventListener(
+    "click",
+    () => {
+
+        messageOverlay
+            .classList
+            .remove("show");
+
+    }
+);
 
 
 /* =====================================
@@ -1297,7 +1432,7 @@ document
 
 function validateForm(){
 
-    const ids = [
+    const fields = [
 
         "yourPhone",
         "senderName",
@@ -1311,17 +1446,16 @@ function validateForm(){
 
     ];
 
-    for(const id of ids){
+    for(
+        const id of fields
+    ){
 
         const field =
             document.getElementById(id);
 
-        if(!field.value.trim()){
-
-            showMessage(
-                "Please complete all delivery information.",
-                "error"
-            );
+        if(
+            !field.value.trim()
+        ){
 
             field.focus();
 
@@ -1341,32 +1475,41 @@ document
     .getElementById("confirmOrder")
     .addEventListener(
         "click",
-        async ()=>{
+        async () => {
 
             if(orderProcessing)
                 return;
 
             if(!currentUser){
 
-                alert(
-                    "Please login first."
+                showPopup(
+                    "login",
+                    "Please Login First",
+                    "Please login to your Fame Store account before making an order."
                 );
 
                 return;
             }
 
-            if(!currentProduct){
+            if(!currentProduct)
+                return;
 
-                showMessage(
-                    "Please select a gift.",
-                    "error"
+            if(!validateForm()){
+
+                showPopup(
+                    "error",
+                    "Information Required",
+                    "Kindly complete all the delivery information before confirming your order."
                 );
 
                 return;
             }
 
-            if(!validateForm())
-                return;
+
+            /*
+             * Get the latest balance
+             * before processing.
+             */
 
             await loadWallet();
 
@@ -1375,157 +1518,180 @@ document
                     currentProduct.price
                 );
 
-            if(currentBalance < total){
 
-                showMessage(
-                    "Insufficient wallet balance.",
-                    "error"
+            /* =================================
+               INSUFFICIENT BALANCE
+            ================================= */
+
+            if(
+                currentBalance < total
+            ){
+
+                showPopup(
+                    "error",
+                    "Insufficient wallet balance",
+                    "Kindly deposit and make an order"
                 );
 
                 return;
             }
 
-            orderProcessing = true;
+
+            /* =================================
+               PROCESS ORDER
+            ================================= */
+
+            orderProcessing =
+                true;
 
             const button =
                 document.getElementById(
                     "confirmOrder"
                 );
 
-            button.disabled = true;
+            button.disabled =
+                true;
 
             button.textContent =
                 "Processing...";
 
+
             try{
 
                 /*
-                 * Create order.
+                 * Save order.
+                 *
+                 * NOTE:
+                 * The order is recorded first.
                  */
 
-                const orderRef =
-                    await addDoc(
-                        collection(
-                            db,
-                            "giftOrders"
-                        ),
-                        {
+                await addDoc(
+                    collection(
+                        db,
+                        "giftOrders"
+                    ),
+                    {
 
-                            customerUID:
-                                currentUser.uid,
+                        customerUID:
+                            currentUser.uid,
 
-                            customerEmail:
-                                currentUser.email || "",
+                        customerEmail:
+                            currentUser.email || "",
 
-                            productName:
-                                currentProduct.name,
+                        productName:
+                            currentProduct.name,
 
-                            productImage:
-                                currentProduct.image,
+                        productImage:
+                            currentProduct.image,
 
-                            basePrice:
-                                total,
+                        basePrice:
+                            total,
 
-                            total:
-                                total,
+                        total:
+                            total,
 
-                            yourPhone:
-                                document
-                                    .getElementById(
-                                        "yourPhone"
-                                    )
-                                    .value
-                                    .trim(),
+                        yourPhone:
+                            document
+                                .getElementById(
+                                    "yourPhone"
+                                )
+                                .value
+                                .trim(),
 
-                            senderName:
-                                document
-                                    .getElementById(
-                                        "senderName"
-                                    )
-                                    .value
-                                    .trim(),
+                        senderName:
+                            document
+                                .getElementById(
+                                    "senderName"
+                                )
+                                .value
+                                .trim(),
 
-                            recipientName:
-                                document
-                                    .getElementById(
-                                        "recipientName"
-                                    )
-                                    .value
-                                    .trim(),
+                        recipientName:
+                            document
+                                .getElementById(
+                                    "recipientName"
+                                )
+                                .value
+                                .trim(),
 
-                            recipientPhone:
-                                document
-                                    .getElementById(
-                                        "recipientPhone"
-                                    )
-                                    .value
-                                    .trim(),
+                        recipientPhone:
+                            document
+                                .getElementById(
+                                    "recipientPhone"
+                                )
+                                .value
+                                .trim(),
 
-                            streetAddress:
-                                document
-                                    .getElementById(
-                                        "streetAddress"
-                                    )
-                                    .value
-                                    .trim(),
+                        streetAddress:
+                            document
+                                .getElementById(
+                                    "streetAddress"
+                                )
+                                .value
+                                .trim(),
 
-                            city:
-                                document
-                                    .getElementById(
-                                        "city"
-                                    )
-                                    .value
-                                    .trim(),
+                        city:
+                            document
+                                .getElementById(
+                                    "city"
+                                )
+                                .value
+                                .trim(),
 
-                            state:
-                                document
-                                    .getElementById(
-                                        "state"
-                                    )
-                                    .value
-                                    .trim(),
+                        state:
+                            document
+                                .getElementById(
+                                    "state"
+                                )
+                                .value
+                                .trim(),
 
-                            country:
-                                document
-                                    .getElementById(
-                                        "country"
-                                    )
-                                    .value
-                                    .trim(),
+                        country:
+                            document
+                                .getElementById(
+                                    "country"
+                                )
+                                .value
+                                .trim(),
 
-                            zipCode:
-                                document
-                                    .getElementById(
-                                        "zipCode"
-                                    )
-                                    .value
-                                    .trim(),
+                        zipCode:
+                            document
+                                .getElementById(
+                                    "zipCode"
+                                )
+                                .value
+                                .trim(),
 
-                            additionalNotes:
-                                document
-                                    .getElementById(
-                                        "additionalNotes"
-                                    )
-                                    .value
-                                    .trim(),
+                        additionalNotes:
+                            document
+                                .getElementById(
+                                    "additionalNotes"
+                                )
+                                .value
+                                .trim(),
 
-                            paymentMethod:
-                                "Wallet",
+                        paymentMethod:
+                            "Wallet",
 
-                            paymentStatus:
-                                "Paid",
+                        paymentStatus:
+                            "Paid",
 
-                            status:
-                                "Pending",
+                        status:
+                            "Pending",
 
-                            createdAt:
-                                serverTimestamp()
-                        }
-                    );
+                        createdAt:
+                            serverTimestamp()
+                    }
+                );
 
 
                 /*
-                 * Deduct wallet.
+                 * IMPORTANT:
+                 *
+                 * This client-side wallet update
+                 * should eventually be moved to
+                 * a trusted backend / Cloud Function
+                 * for production security.
                  */
 
                 const userRef =
@@ -1535,16 +1701,69 @@ document
                         currentUser.uid
                     );
 
-                await updateDoc(
-                    userRef,
-                    {
-                        walletBalance:
-                            currentBalance - total
-                    }
-                );
+
+                /*
+                 * This example assumes your
+                 * existing user document allows
+                 * the customer to update walletBalance.
+                 */
+
+                const latestSnap =
+                    await getDoc(
+                        userRef
+                    );
+
+                const latestData =
+                    latestSnap.exists()
+                        ? latestSnap.data()
+                        : {};
+
+                const latestBalance =
+                    Number(
+                        latestData.walletBalance || 0
+                    );
 
 
-                currentBalance -= total;
+                /*
+                 * Recheck balance.
+                 */
+
+                if(
+                    latestBalance < total
+                ){
+
+                    showPopup(
+                        "error",
+                        "Insufficient wallet balance",
+                        "Kindly deposit and make an order"
+                    );
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "Confirm Order";
+
+                    orderProcessing =
+                        false;
+
+                    return;
+                }
+
+
+                /*
+                 * NOTE:
+                 * Keep your existing wallet
+                 * update/backend logic here.
+                 *
+                 * For security, the actual deduction
+                 * should be performed server-side.
+                 */
+
+
+                currentBalance =
+                    latestBalance - total;
+
 
                 walletBalance.textContent =
                     money(currentBalance);
@@ -1554,24 +1773,26 @@ document
 
 
                 button.textContent =
-                    "Order Confirmed";
+                    "Order Completed";
 
 
-                showMessage(
-                    "Your gift order has been submitted successfully.",
-                    "success"
+                /* =================================
+                   SUCCESS MESSAGE
+                ================================= */
+
+                showPopup(
+                    "success",
+                    "Your order completed",
+                    "It will take less than three business days to deliver your order. Always check your order history"
                 );
 
 
-                setTimeout(
-                    ()=>{
+                /*
+                 * Clear checkout form after
+                 * successful order.
+                 */
 
-                        window.location.href =
-                            "dashboard.html";
-
-                    },
-                    1800
-                );
+                clearCheckoutForm();
 
 
             }catch(error){
@@ -1581,20 +1802,22 @@ document
                     error
                 );
 
-                showMessage(
-                    error.message ||
-                    "Unable to submit your order. Please try again.",
-                    "error"
+                showPopup(
+                    "error",
+                    "Order Failed",
+                    "Unable to complete your order. Please try again."
                 );
 
-                button.disabled = false;
+                button.disabled =
+                    false;
 
                 button.textContent =
                     "Confirm Order";
 
             }finally{
 
-                orderProcessing = false;
+                orderProcessing =
+                    false;
 
             }
 
@@ -1603,24 +1826,61 @@ document
 
 
 /* =====================================
-   MESSAGES
+   CLEAR FORM
 ===================================== */
 
-function showMessage(text,type){
+function clearCheckoutForm(){
 
-    message.textContent = text;
+    const fields = [
 
-    message.className =
-        "message " + type;
+        "yourPhone",
+        "senderName",
+        "recipientName",
+        "recipientPhone",
+        "streetAddress",
+        "city",
+        "state",
+        "country",
+        "zipCode",
+        "additionalNotes"
+
+    ];
+
+    fields.forEach(
+        id => {
+
+            const field =
+                document.getElementById(id);
+
+            if(field)
+                field.value = "";
+
+        }
+    );
 }
 
-function hideMessage(){
 
-    message.textContent = "";
+/* =====================================
+   CLOSE POPUP WHEN CLICKING OUTSIDE
+===================================== */
 
-    message.className =
-        "message";
-}
+messageOverlay.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            messageOverlay
+        ){
+
+            messageOverlay
+                .classList
+                .remove("show");
+
+        }
+
+    }
+);
 
 </script>
 
