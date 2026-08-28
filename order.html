@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Place Order | Fame Store</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --blue:#0757d9;
+    --dark-blue:#063b91;
+    --yellow:#ffc928;
+    --black:#101828;
+    --gray:#667085;
+    --light:#f5f8fc;
+    --border:#e5eaf1;
+    --red:#b42318;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:var(--light);
+    color:var(--black);
+    min-height:100vh;
+    padding-bottom:40px;
+}
+
+.container{
+    width:min(650px,92%);
+    margin:auto;
+}
+
+/* HEADER */
+
+.header{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    padding:20px 0;
+    margin-bottom:25px;
+}
+
+.header-content{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:48px;
+    height:48px;
+    border-radius:13px;
+    background:var(--yellow);
+    display:grid;
+    place-items:center;
+    font-size:23px;
+}
+
+.brand h1{
+    color:var(--blue);
+    font-size:19px;
+    font-weight:800;
+}
+
+.brand p{
+    color:var(--gray);
+    font-size:10px;
+    margin-top:3px;
+}
+
+/* PRODUCT */
+
+.product-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow:0 10px 30px rgba(7,87,217,.06);
+}
+
+.product-image{
+    width:100%;
+    height:260px;
+    object-fit:contain;
+    border-radius:15px;
+    background:#f7f9fc;
+    display:block;
+}
+
+.product-info{
+    padding-top:18px;
+}
+
+.product-name{
+    font-size:21px;
+    font-weight:800;
+    line-height:1.4;
+}
+
+.product-price{
+    color:var(--blue);
+    font-size:24px;
+    font-weight:800;
+    margin-top:8px;
+}
+
+/* FORM */
+
+.form-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:22px;
+}
+
+.form-card h2{
+    font-size:20px;
+    margin-bottom:6px;
+}
+
+.description{
+    color:var(--gray);
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:22px;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+label{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    border:1px solid #d9e0ea;
+    border-radius:11px;
+    padding:13px 14px;
+    font-family:inherit;
+    font-size:13px;
+    outline:none;
+    background:#fff;
+}
+
+input{
+    height:49px;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(7,87,217,.08);
+}
+
+/* SUMMARY */
+
+.summary{
+    background:#f5f9ff;
+    border:1px solid #dce8ff;
+    border-radius:13px;
+    padding:16px;
+    margin-bottom:20px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:8px 0;
+    font-size:13px;
+}
+
+.summary-row span:first-child{
+    color:var(--gray);
+}
+
+.summary-row strong{
+    text-align:right;
+}
+
+.total{
+    border-top:1px solid #dce8ff;
+    margin-top:7px;
+    padding-top:13px;
+    font-size:17px;
+}
+
+.total strong{
+    color:var(--blue);
+}
+
+/* BUTTON */
+
+.confirm-btn{
+    width:100%;
+    height:53px;
+    border:0;
+    border-radius:11px;
+    background:var(--yellow);
+    color:#4f3b00;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.confirm-btn:hover{
+    background:#ffd84e;
+}
+
+.confirm-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* BACK */
+
+.back{
+    display:block;
+    text-align:center;
+    margin:22px 0;
+    color:var(--blue);
+    font-size:12px;
+    font-weight:700;
+    text-decoration:none;
+}
+
+/* ERROR */
+
+.error-message{
+    display:none;
+    background:#fff1f0;
+    border:1px solid #ffd3d0;
+    color:var(--red);
+    padding:13px;
+    border-radius:10px;
+    font-size:12px;
+    line-height:1.5;
+    margin-bottom:17px;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(16,24,40,.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:9999;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(500px,100%);
+    background:#fff;
+    border-radius:25px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.modal-icon{
+    width:70px;
+    height:70px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-size:34px;
+    background:#fff7d9;
+}
+
+.modal-box h2{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.modal-box p{
+    color:var(--gray);
+    font-size:14px;
+    line-height:1.7;
+    margin-bottom:22px;
+}
+
+.modal-btn{
+    width:100%;
+    height:52px;
+    border:0;
+    border-radius:11px;
+    background:var(--blue);
+    color:white;
+    font-size:14px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.success .modal-icon{
+    background:#ecfff4;
+}
+
+.success .modal-icon{
+    color:#087443;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .product-image{
+        height:220px;
+    }
+
+    .product-name{
+        font-size:18px;
+    }
+
+    .product-price{
+        font-size:21px;
+    }
+
+    .form-card,
+    .product-card{
+        padding:18px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="container header-content">
+
+<div class="logo">
+🛍️
+</div>
+
+<div class="brand">
+
+<h1>
+Fame Store
+</h1>
+
+<p>
+Send gifts 🎁, share love ❤️
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- PRODUCT -->
+
+<section class="product-card">
+
+<img
+    id="productImage"
+    class="product-image"
+    src=""
+    alt="Gift">
+
+<div class="product-info">
+
+<div
+    id="productName"
+    class="product-name">
+
+Loading product...
+
+</div>
+
+<div
+    id="productPrice"
+    class="product-price">
+
+₦0.00
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ORDER FORM -->
+
+<section class="form-card">
+
+<h2>
+Delivery Details
+</h2>
+
+<p class="description">
+
+Enter the details of the person who should
+receive your gift.
+
+</p>
+
+
+<div
+    id="errorMessage"
+    class="error-message">
+</div>
+
+
+<div class="summary">
+
+<div class="summary-row">
+
+<span>
+Product
+</span>
+
+<strong id="summaryProduct">
+Loading...
+</strong>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>
+Order Price
+</span>
+
+<strong id="summaryPrice">
+₦0.00
+</strong>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>
+Your Wallet
+</span>
+
+<strong id="walletDisplay">
+₦0.00
+</strong>
+
+</div>
+
+
+<div class="summary-row total">
+
+<span>
+Total
+</span>
+
+<strong id="totalPrice">
+₦0.00
+</strong>
+
+</div>
+
+</div>
+
+
+<form id="orderForm">
+
+
+<div class="form-group">
+
+<label for="receiverName">
+Receiver Name
+</label>
+
+<input
+    type="text"
+    id="receiverName"
+    placeholder="Full name of receiver"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="receiverPhone">
+Receiver Phone Number
+</label>
+
+<input
+    type="tel"
+    id="receiverPhone"
+    placeholder="Phone number"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="country">
+Delivery Country
+</label>
+
+<select id="country" required>
+
+<option value="">
+Select country
+</option>
+
+<option value="United States">
+🇺🇸 United States
+</option>
+
+<option value="Canada">
+🇨🇦 Canada
+</option>
+
+<option value="United Kingdom">
+🇬🇧 United Kingdom
+</option>
+
+<option value="Mexico">
+🇲🇽 Mexico
+</option>
+
+<option value="Australia">
+🇦🇺 Australia
+</option>
+
+<option value="Germany">
+🇩🇪 Germany
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="address">
+Delivery Address
+</label>
+
+<textarea
+    id="address"
+    placeholder="Enter complete delivery address"
+    required></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="city">
+City
+</label>
+
+<input
+    type="text"
+    id="city"
+    placeholder="City"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="zip">
+ZIP / Postal Code
+</label>
+
+<input
+    type="text"
+    id="zip"
+    placeholder="ZIP / Postal Code"
+    required>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="notes">
+Additional Notes
+</label>
+
+<textarea
+    id="notes"
+    placeholder="Optional message or delivery instructions"></textarea>
+
+</div>
+
+
+<button
+    type="submit"
+    class="confirm-btn"
+    id="confirmButton">
+
+Confirm Order
+
+</button>
+
+
+</form>
+
+</section>
+
+
+<a
+    href="dashboard.html"
+    class="back">
+
+← Back to Dashboard
+
+</a>
+
+
+</main>
+
+
+<!-- =========================
+     RESULT MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="resultModal">
+
+<div class="modal-box">
+
+<div
+    class="modal-icon"
+    id="modalIcon">
+
+⚠️
+
+</div>
+
+<h2 id="modalTitle">
+Order Failed
+</h2>
+
+<p id="modalMessage">
+Unable to complete your order.
+Please try again.
+</p>
+
+<button
+    class="modal-btn"
+    id="modalButton">
+
+Thanks
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    runTransaction,
+    collection,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
+
+    authDomain:
+        "fame-store-ea8b7.firebaseapp.com",
+
+    projectId:
+        "fame-store-ea8b7",
+
+    storageBucket:
+        "fame-store-ea8b7.firebasestorage.app",
+
+    messagingSenderId:
+        "484192010044",
+
+    appId:
+        "1:484192010044:web:8b1c496d5baa492d74a839",
+
+    measurementId:
+        "G-YTGM3N01V6"
+
+};
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const productImage =
+    document.getElementById(
+        "productImage"
+    );
+
+const productName =
+    document.getElementById(
+        "productName"
+    );
+
+const productPrice =
+    document.getElementById(
+        "productPrice"
+    );
+
+const summaryProduct =
+    document.getElementById(
+        "summaryProduct"
+    );
+
+const summaryPrice =
+    document.getElementById(
+        "summaryPrice"
+    );
+
+const totalPrice =
+    document.getElementById(
+        "totalPrice"
+    );
+
+const walletDisplay =
+    document.getElementById(
+        "walletDisplay"
+    );
+
+const orderForm =
+    document.getElementById(
+        "orderForm"
+    );
+
+const confirmButton =
+    document.getElementById(
+        "confirmButton"
+    );
+
+const errorMessage =
+    document.getElementById(
+        "errorMessage"
+    );
+
+const resultModal =
+    document.getElementById(
+        "resultModal"
+    );
+
+const modalIcon =
+    document.getElementById(
+        "modalIcon"
+    );
+
+const modalTitle =
+    document.getElementById(
+        "modalTitle"
+    );
+
+const modalMessage =
+    document.getElementById(
+        "modalMessage"
+    );
+
+const modalButton =
+    document.getElementById(
+        "modalButton"
+    );
+
+
+/* =========================
+   PRODUCT FROM URL
+========================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const selectedProduct =
+    params.get("product") ||
+    "Gift";
+
+
+const selectedPrice =
+    Number(
+        params.get("price")
+    ) || 0;
+
+
+const selectedImage =
+    params.get("image") || "";
+
+
+/* =========================
+   DISPLAY PRODUCT
+========================= */
+
+productName.textContent =
+    selectedProduct;
+
+
+summaryProduct.textContent =
+    selectedProduct;
+
+
+if(selectedImage){
+
+    productImage.src =
+        selectedImage;
+
+}
+
+
+function formatNaira(amount){
+
+    return "₦" +
+        Number(amount || 0)
+        .toLocaleString(
+            "en-NG",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+productPrice.textContent =
+    formatNaira(
+        selectedPrice
+    );
+
+
+summaryPrice.textContent =
+    formatNaira(
+        selectedPrice
+    );
+
+
+totalPrice.textContent =
+    formatNaira(
+        selectedPrice
+    );
+
+
+/* =========================
+   USER
+========================= */
+
+let currentUser = null;
+
+let currentBalance = 0;
+
+
+/* =========================
+   SHOW ERROR
+========================= */
+
+function showError(text){
+
+    errorMessage.textContent =
+        text;
+
+    errorMessage.style.display =
+        "block";
+
+}
+
+
+/* =========================
+   HIDE ERROR
+========================= */
+
+function hideError(){
+
+    errorMessage.style.display =
+        "none";
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function showModal(
+    title,
+    text,
+    type
+){
+
+    modalTitle.textContent =
+        title;
+
+    modalMessage.textContent =
+        text;
+
+
+    if(type === "success"){
+
+        resultModal.classList.add(
+            "success"
+        );
+
+        modalIcon.textContent =
+            "✓";
+
+    }else{
+
+        resultModal.classList.remove(
+            "success"
+        );
+
+        modalIcon.textContent =
+            "⚠️";
+
+    }
+
+
+    resultModal.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   MODAL BUTTON
+========================= */
+
+modalButton.addEventListener(
+    "click",
+    () => {
+
+        resultModal.classList.remove(
+            "show"
+        );
+
+        if(
+            modalTitle.textContent ===
+            "Order Completed"
+        ){
+
+            window.location.href =
+                "order-history.html";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        try{
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    user.uid
+                );
+
+
+            const snapshot =
+                await getDoc(
+                    userRef
+                );
+
+
+            if(snapshot.exists()){
+
+                const data =
+                    snapshot.data();
+
+
+                currentBalance =
+                    Number(
+                        data.walletBalance || 0
+                    );
+
+
+                walletDisplay.textContent =
+                    formatNaira(
+                        currentBalance
+                    );
+
+            }else{
+
+                currentBalance = 0;
+
+                walletDisplay.textContent =
+                    "₦0.00";
+
+            }
+
+        }
+
+        catch(error){
+
+            console.error(
+                "Wallet error:",
+                error
+            );
+
+            showError(
+                "Unable to load your wallet balance. Please refresh and try again."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   SUBMIT ORDER
+========================= */
+
+orderForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+        hideError();
+
+
+        if(!currentUser){
+
+            showError(
+                "Please login before placing an order."
+            );
+
+            return;
+
+        }
+
+
+        if(!selectedPrice || selectedPrice <= 0){
+
+            showError(
+                "The product price is not available."
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           GET DELIVERY DETAILS
+        ========================= */
+
+        const receiverName =
+            document
+            .getElementById(
+                "receiverName"
+            )
+            .value
+            .trim();
+
+
+        const receiverPhone =
+            document
+            .getElementById(
+                "receiverPhone"
+            )
+            .value
+            .trim();
+
+
+        const country =
+            document
+            .getElementById(
+                "country"
+            )
+            .value
+            .trim();
+
+
+        const address =
+            document
+            .getElementById(
+                "address"
+            )
+            .value
+            .trim();
+
+
+        const city =
+            document
+            .getElementById(
+                "city"
+            )
+            .value
+            .trim();
+
+
+        const zip =
+            document
+            .getElementById(
+                "zip"
+            )
+            .value
+            .trim();
+
+
+        const notes =
+            document
+            .getElementById(
+                "notes"
+            )
+            .value
+            .trim();
+
+
+        /* =========================
+           CHECK BALANCE FIRST
+        ========================= */
+
+        if(
+            currentBalance <
+            selectedPrice
+        ){
+
+            showModal(
+
+                "Insufficient wallet balance",
+
+                "Kindly deposit and make an order",
+
+                "error"
+
+            );
+
+            return;
+
+        }
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        confirmButton.disabled =
+            true;
+
+        confirmButton.textContent =
+            "Processing...";
+
+
+        try{
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                );
+
+
+            const orderRef =
+                doc(
+                    collection(
+                        db,
+                        "orders"
+                    )
+                );
+
+
+            /* =========================
+               ATOMIC TRANSACTION
+            ========================= */
+
+            await runTransaction(
+                db,
+                async transaction => {
+
+                    const userSnapshot =
+                        await transaction.get(
+                            userRef
+                        );
+
+
+                    if(
+                        !userSnapshot.exists()
+                    ){
+
+                        throw new Error(
+                            "USER_NOT_FOUND"
+                        );
+
+                    }
+
+
+                    const userData =
+                        userSnapshot.data();
+
+
+                    const balance =
+                        Number(
+                            userData.walletBalance || 0
+                        );
+
+
+                    /* BALANCE CHECK */
+
+                    if(
+                        balance <
+                        selectedPrice
+                    ){
+
+                        throw new Error(
+                            "INSUFFICIENT_BALANCE"
+                        );
+
+                    }
+
+
+                    const newBalance =
+                        balance -
+                        selectedPrice;
+
+
+                    /* UPDATE WALLET */
+
+                    transaction.update(
+
+                        userRef,
+
+                        {
+
+                            walletBalance:
+                                newBalance
+
+                        }
+
+                    );
+
+
+                    /* CREATE ORDER */
+
+                    transaction.set(
+
+                        orderRef,
+
+                        {
+
+                            orderId:
+                                orderRef.id,
+
+                            userId:
+                                currentUser.uid,
+
+                            customerEmail:
+                                currentUser.email || "",
+
+                            productName:
+                                selectedProduct,
+
+                            productImage:
+                                selectedImage,
+
+                            amount:
+                                selectedPrice,
+
+                            totalAmount:
+                                selectedPrice,
+
+                            receiverName:
+                                receiverName,
+
+                            receiverPhone:
+                                receiverPhone,
+
+                            country:
+                                country,
+
+                            address:
+                                address,
+
+                            city:
+                                city,
+
+                            zip:
+                                zip,
+
+                            notes:
+                                notes,
+
+                            status:
+                                "completed",
+
+                            paymentStatus:
+                                "paid",
+
+                            createdAt:
+                                serverTimestamp()
+
+                        }
+
+                    );
+
+                }
+            );
+
+
+            /* =========================
+               SUCCESS
+            ========================= */
+
+            showModal(
+
+                "Order Completed",
+
+                "Your order completed. It will take less than three business days to deliver your order. Always check your order history.",
+
+                "success"
+
+            );
+
+
+            orderForm.reset();
+
+
+        }
+
+        catch(error){
+
+            console.error(
+                "ORDER ERROR:",
+                error
+            );
+
+
+            console.error(
+                "ERROR CODE:",
+                error.code
+            );
+
+
+            console.error(
+                "ERROR MESSAGE:",
+                error.message
+            );
+
+
+            if(
+                error.message ===
+                "INSUFFICIENT_BALANCE"
+            ){
+
+                showModal(
+
+                    "Insufficient wallet balance",
+
+                    "Kindly deposit and make an order",
+
+                    "error"
+
+                );
+
+            }
+
+            else if(
+                error.message ===
+                "USER_NOT_FOUND"
+            ){
+
+                showError(
+                    "Your customer account could not be found. Please contact support."
+                );
+
+            }
+
+            else if(
+                error.code ===
+                "permission-denied"
+            ){
+
+                showError(
+                    "Order permission denied. Please check your Firestore Rules."
+                );
+
+            }
+
+            else{
+
+                showError(
+                    "Unable to complete your order. Please try again."
+                );
+
+            }
+
+
+            confirmButton.disabled =
+                false;
+
+            confirmButton.textContent =
+                "Confirm Order";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+  </html>
