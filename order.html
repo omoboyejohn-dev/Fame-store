@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>Place Order | Fame Store</title>
 
@@ -167,8 +167,7 @@ label{
 }
 
 input,
-textarea,
-select{
+textarea{
     width:100%;
     border:1px solid #d9e0ea;
     border-radius:10px;
@@ -189,8 +188,7 @@ textarea{
 }
 
 input:focus,
-textarea:focus,
-select:focus{
+textarea:focus{
     border-color:var(--blue);
     box-shadow:
         0 0 0 3px
@@ -345,9 +343,7 @@ select:focus{
 
 <body>
 
-
 <div class="container">
-
 
 <!-- HEADER -->
 
@@ -441,11 +437,9 @@ select:focus{
     </p>
 
 
-    <!-- RECIPIENT -->
-
     <div class="form-group">
 
-        <label>
+        <label for="recipientName">
             Recipient Full Name
         </label>
 
@@ -453,16 +447,15 @@ select:focus{
             type="text"
             id="recipientName"
             placeholder="Enter recipient name"
+            autocomplete="name"
             required>
 
     </div>
 
 
-    <!-- PHONE -->
-
     <div class="form-group">
 
-        <label>
+        <label for="recipientPhone">
             Recipient Phone Number
         </label>
 
@@ -470,16 +463,15 @@ select:focus{
             type="tel"
             id="recipientPhone"
             placeholder="Enter phone number"
+            autocomplete="tel"
             required>
 
     </div>
 
 
-    <!-- COUNTRY -->
-
     <div class="form-group">
 
-        <label>
+        <label for="deliveryCountry">
             Delivery Country
         </label>
 
@@ -492,11 +484,9 @@ select:focus{
     </div>
 
 
-    <!-- ADDRESS -->
-
     <div class="form-group">
 
-        <label>
+        <label for="deliveryAddress">
             Delivery Address
         </label>
 
@@ -508,11 +498,9 @@ select:focus{
     </div>
 
 
-    <!-- NOTES -->
-
     <div class="form-group">
 
-        <label>
+        <label for="additionalNotes">
             Additional Notes
         </label>
 
@@ -523,9 +511,8 @@ select:focus{
     </div>
 
 
-    <!-- CONFIRM -->
-
     <button
+        type="button"
         class="confirm-btn"
         id="confirmOrder">
 
@@ -544,13 +531,10 @@ select:focus{
 
 </a>
 
-
 </div>
 
 
-<!-- =========================
-     FAILED MODAL
-========================= -->
+<!-- FAILED MODAL -->
 
 <div
     class="modal"
@@ -568,10 +552,10 @@ select:focus{
 
         <p id="failedText">
             Unable to complete your order.
-            Please try again.
         </p>
 
         <button
+            type="button"
             class="modal-btn"
             id="failedButton">
 
@@ -584,9 +568,7 @@ select:focus{
 </div>
 
 
-<!-- =========================
-     SUCCESS MODAL
-========================= -->
+<!-- SUCCESS MODAL -->
 
 <div
     class="modal success"
@@ -612,6 +594,7 @@ select:focus{
         </p>
 
         <button
+            type="button"
             class="modal-btn"
             id="successButton">
 
@@ -624,219 +607,149 @@ select:focus{
 </div>
 
 
-<!-- =========================
-     FIREBASE
-========================= -->
-
 <script type="module">
 
+/* =====================================
+   FIREBASE CONFIG
+===================================== */
+
 import {
-    initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+    auth,
+    db
+} from "./firebase-config.js";
 
 
 import {
-    getAuth,
     onAuthStateChanged
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import {
-    getFirestore,
     doc,
     getDoc,
     runTransaction,
     serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
-
-    authDomain:
-        "fame-store-ea8b7.firebaseapp.com",
-
-    projectId:
-        "fame-store-ea8b7",
-
-    storageBucket:
-        "fame-store-ea8b7.firebasestorage.app",
-
-    messagingSenderId:
-        "484192010044",
-
-    appId:
-        "1:484192010044:web:8b1c496d5baa492d74a839",
-
-    measurementId:
-        "G-YTGM3N01V6"
-
-};
-
-
-/* =========================
-   INITIALIZE
-========================= */
-
-const app =
-    initializeApp(firebaseConfig);
-
-const auth =
-    getAuth(app);
-
-const db =
-    getFirestore(app);
-
-
-/* =========================
+/* =====================================
    ELEMENTS
-========================= */
+===================================== */
 
 const productImage =
-    document.getElementById(
-        "productImage"
-    );
+    document.getElementById("productImage");
 
 const productName =
-    document.getElementById(
-        "productName"
-    );
+    document.getElementById("productName");
 
 const productCountry =
-    document.getElementById(
-        "productCountry"
-    );
+    document.getElementById("productCountry");
 
 const productPrice =
-    document.getElementById(
-        "productPrice"
-    );
+    document.getElementById("productPrice");
 
 const walletBalance =
-    document.getElementById(
-        "walletBalance"
-    );
+    document.getElementById("walletBalance");
 
 const recipientName =
-    document.getElementById(
-        "recipientName"
-    );
+    document.getElementById("recipientName");
 
 const recipientPhone =
-    document.getElementById(
-        "recipientPhone"
-    );
+    document.getElementById("recipientPhone");
 
 const deliveryCountry =
-    document.getElementById(
-        "deliveryCountry"
-    );
+    document.getElementById("deliveryCountry");
 
 const deliveryAddress =
-    document.getElementById(
-        "deliveryAddress"
-    );
+    document.getElementById("deliveryAddress");
 
 const additionalNotes =
-    document.getElementById(
-        "additionalNotes"
-    );
+    document.getElementById("additionalNotes");
 
 const confirmOrder =
-    document.getElementById(
-        "confirmOrder"
-    );
+    document.getElementById("confirmOrder");
 
 const failedModal =
-    document.getElementById(
-        "failedModal"
-    );
+    document.getElementById("failedModal");
 
 const failedText =
-    document.getElementById(
-        "failedText"
-    );
+    document.getElementById("failedText");
 
 const failedButton =
-    document.getElementById(
-        "failedButton"
-    );
+    document.getElementById("failedButton");
 
 const successModal =
-    document.getElementById(
-        "successModal"
-    );
+    document.getElementById("successModal");
 
 const successButton =
-    document.getElementById(
-        "successButton"
-    );
+    document.getElementById("successButton");
 
 
-/* =========================
+/* =====================================
    PRODUCT FROM URL
-========================= */
+===================================== */
 
 const params =
     new URLSearchParams(
         window.location.search
     );
 
+
 const selectedProduct =
     params.get("product") ||
-    "Gift";
+    "";
+
 
 const selectedPrice =
     Number(
         params.get("price")
-    ) || 0;
+    );
+
 
 const selectedImage =
-    params.get("image") || "";
+    params.get("image") ||
+    "";
+
 
 const selectedCountry =
     params.get("country") ||
     "Global Delivery";
 
 
-/* =========================
+/* =====================================
    DISPLAY PRODUCT
-========================= */
+===================================== */
 
 productName.textContent =
-    selectedProduct;
+    selectedProduct || "Gift";
+
 
 productCountry.textContent =
     selectedCountry;
+
 
 productPrice.textContent =
     formatNaira(
         selectedPrice
     );
 
+
 if(selectedImage){
 
     productImage.src =
         selectedImage;
 
+}else{
+
+    productImage.style.display =
+        "none";
+
 }
 
 
-/* =========================
-   FORMAT NAIRA
-========================= */
+/* =====================================
+   MONEY
+===================================== */
 
 function formatNaira(amount){
 
@@ -853,17 +766,18 @@ function formatNaira(amount){
 }
 
 
-/* =========================
-   USER
-========================= */
+/* =====================================
+   USER STATE
+===================================== */
 
 let currentUser = null;
+
 let currentWalletBalance = 0;
 
 
-/* =========================
+/* =====================================
    AUTH
-========================= */
+===================================== */
 
 onAuthStateChanged(
     auth,
@@ -878,7 +792,9 @@ onAuthStateChanged(
 
         }
 
+
         currentUser = user;
+
 
         await loadWallet();
 
@@ -886,9 +802,9 @@ onAuthStateChanged(
 );
 
 
-/* =========================
+/* =====================================
    LOAD WALLET
-========================= */
+===================================== */
 
 async function loadWallet(){
 
@@ -901,10 +817,12 @@ async function loadWallet(){
                 currentUser.uid
             );
 
+
         const snapshot =
             await getDoc(
                 userRef
             );
+
 
         if(!snapshot.exists()){
 
@@ -915,6 +833,7 @@ async function loadWallet(){
             const data =
                 snapshot.data();
 
+
             currentWalletBalance =
                 Number(
                     data.walletBalance || 0
@@ -922,21 +841,22 @@ async function loadWallet(){
 
         }
 
+
         walletBalance.textContent =
             formatNaira(
                 currentWalletBalance
             );
 
-    }
-
-    catch(error){
+    }catch(error){
 
         console.error(
             "Wallet error:",
             error
         );
 
+
         currentWalletBalance = 0;
+
 
         walletBalance.textContent =
             "₦0.00";
@@ -946,9 +866,9 @@ async function loadWallet(){
 }
 
 
-/* =========================
+/* =====================================
    FAILED MODAL
-========================= */
+===================================== */
 
 function showFailed(text){
 
@@ -962,10 +882,6 @@ function showFailed(text){
 }
 
 
-/* =========================
-   CLOSE FAILED
-========================= */
-
 failedButton.addEventListener(
     "click",
     () => {
@@ -978,9 +894,9 @@ failedButton.addEventListener(
 );
 
 
-/* =========================
+/* =====================================
    SUCCESS
-========================= */
+===================================== */
 
 successButton.addEventListener(
     "click",
@@ -993,9 +909,9 @@ successButton.addEventListener(
 );
 
 
-/* =========================
+/* =====================================
    CONFIRM ORDER
-========================= */
+===================================== */
 
 confirmOrder.addEventListener(
     "click",
@@ -1014,15 +930,16 @@ confirmOrder.addEventListener(
         }
 
 
-        /* PRODUCT PRICE */
+        /* PRODUCT */
 
         if(
-            !selectedPrice ||
+            !selectedProduct ||
+            !Number.isFinite(selectedPrice) ||
             selectedPrice <= 0
         ){
 
             showFailed(
-                "This product price is not available. Please go back and select the product again."
+                "This product information is invalid. Please go back and select the product again."
             );
 
             return;
@@ -1030,7 +947,7 @@ confirmOrder.addEventListener(
         }
 
 
-        /* FORM VALIDATION */
+        /* FORM */
 
         const name =
             recipientName.value.trim();
@@ -1051,12 +968,13 @@ confirmOrder.addEventListener(
         if(!name){
 
             showFailed(
-                "Please enter the recipient's name."
+                "Please enter the recipient's full name."
             );
 
             return;
 
         }
+
 
         if(!phone){
 
@@ -1068,6 +986,7 @@ confirmOrder.addEventListener(
 
         }
 
+
         if(!country){
 
             showFailed(
@@ -1078,10 +997,11 @@ confirmOrder.addEventListener(
 
         }
 
+
         if(!address){
 
             showFailed(
-                "Please enter the delivery address."
+                "Please enter the complete delivery address."
             );
 
             return;
@@ -1089,7 +1009,7 @@ confirmOrder.addEventListener(
         }
 
 
-        /* CHECK BALANCE */
+        /* DISPLAY CHECK */
 
         if(
             currentWalletBalance <
@@ -1097,15 +1017,13 @@ confirmOrder.addEventListener(
         ){
 
             showFailed(
-                "Insufficient wallet balance. Kindly deposit and make an order."
+                "Insufficient wallet balance. Kindly deposit and try again."
             );
 
             return;
 
         }
 
-
-        /* LOADING */
 
         confirmOrder.disabled =
             true;
@@ -1127,9 +1045,14 @@ confirmOrder.addEventListener(
             let createdOrderId = "";
 
 
-            /* =========================
-               ATOMIC TRANSACTION
-            ========================= */
+            /*
+             ATOMIC TRANSACTION
+
+             1. Read latest wallet balance.
+             2. Verify sufficient balance.
+             3. Deduct the exact product price.
+             4. Create order.
+             */
 
             await runTransaction(
                 db,
@@ -1141,9 +1064,7 @@ confirmOrder.addEventListener(
                         );
 
 
-                    if(
-                        !userSnapshot.exists()
-                    ){
+                    if(!userSnapshot.exists()){
 
                         throw new Error(
                             "USER_NOT_FOUND"
@@ -1158,16 +1079,13 @@ confirmOrder.addEventListener(
 
                     const balance =
                         Number(
-                            userData.walletBalance ||
-                            0
+                            userData.walletBalance || 0
                         );
 
 
-                    /* FINAL BALANCE CHECK */
-
                     if(
-                        balance <
-                        selectedPrice
+                        !Number.isFinite(balance) ||
+                        balance < selectedPrice
                     ){
 
                         throw new Error(
@@ -1177,21 +1095,16 @@ confirmOrder.addEventListener(
                     }
 
 
-                    /* CREATE ORDER REF */
-
                     const orderRef =
                         doc(
                             db,
-                            "orders",
-                            crypto.randomUUID()
+                            "orders"
                         );
 
 
                     createdOrderId =
                         orderRef.id;
 
-
-                    /* NEW BALANCE */
 
                     const newBalance =
                         balance -
@@ -1211,7 +1124,7 @@ confirmOrder.addEventListener(
                     );
 
 
-                    /* SAVE ORDER */
+                    /* CREATE ORDER */
 
                     transaction.set(
                         orderRef,
@@ -1276,11 +1189,14 @@ confirmOrder.addEventListener(
             );
 
 
-            /* UPDATE DISPLAY */
+            /*
+             UPDATE LOCAL BALANCE
+            */
 
             currentWalletBalance =
                 currentWalletBalance -
                 selectedPrice;
+
 
             walletBalance.textContent =
                 formatNaira(
@@ -1288,35 +1204,25 @@ confirmOrder.addEventListener(
                 );
 
 
-            /* SUCCESS */
+            confirmOrder.textContent =
+                "Order Completed";
+
 
             successModal.classList.add(
                 "show"
             );
 
 
-            confirmOrder.textContent =
-                "Order Completed";
-
-
-        }
-
-        catch(error){
+        }catch(error){
 
             console.error(
                 "ORDER ERROR:",
                 error
             );
 
-            console.error(
-                "ERROR CODE:",
-                error.code
-            );
 
-            console.error(
-                "ERROR MESSAGE:",
-                error.message
-            );
+            let errorMessage =
+                "Unable to complete your order. Please try again.";
 
 
             if(
@@ -1324,52 +1230,48 @@ confirmOrder.addEventListener(
                 "INSUFFICIENT_BALANCE"
             ){
 
-                showFailed(
-                    "Insufficient wallet balance. Kindly deposit and make an order."
-                );
+                errorMessage =
+                    "Insufficient wallet balance. Kindly deposit and try again.";
 
             }
+
 
             else if(
                 error.message ===
                 "USER_NOT_FOUND"
             ){
 
-                showFailed(
-                    "Your customer account could not be found. Please contact support."
-                );
+                errorMessage =
+                    "Your customer account could not be found. Please contact support.";
 
             }
+
 
             else if(
                 error.code ===
                 "permission-denied"
             ){
 
-                showFailed(
-                    "Order failed because Firestore permission was denied. Update your Firestore Rules for customer orders."
-                );
+                errorMessage =
+                    "Order failed because Firestore permission was denied. Please check your Firestore Rules.";
 
             }
+
 
             else if(
                 error.code ===
                 "unauthenticated"
             ){
 
-                showFailed(
-                    "Your login session has expired. Please login again."
-                );
+                errorMessage =
+                    "Your login session has expired. Please login again.";
 
             }
 
-            else{
 
-                showFailed(
-                    "Unable to complete your order. Please try again."
-                );
-
-            }
+            showFailed(
+                errorMessage
+            );
 
 
             confirmOrder.disabled =
