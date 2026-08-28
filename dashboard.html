@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -18,6 +19,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
+
 
     <style>
 
@@ -61,6 +63,7 @@
             width: min(1180px, 92%);
             margin: auto;
         }
+
 
         /* =========================
            HEADER
@@ -142,6 +145,7 @@
             cursor: pointer;
         }
 
+
         /* =========================
            DASHBOARD
         ========================= */
@@ -164,6 +168,7 @@
             margin-top: 6px;
             font-size: 14px;
         }
+
 
         /* =========================
            BALANCE
@@ -262,6 +267,7 @@
             background: #ffd84e;
         }
 
+
         /* =========================
            QUICK ACTIONS
         ========================= */
@@ -319,6 +325,7 @@
             color: #344054;
         }
 
+
         /* =========================
            SECTION
         ========================= */
@@ -338,6 +345,7 @@
 
             margin-top: 5px;
         }
+
 
         /* =========================
            COUNTRY GRID
@@ -414,6 +422,7 @@
             font-weight: 800;
         }
 
+
         /* =========================
            OTHER COUNTRIES
         ========================= */
@@ -450,6 +459,10 @@
 
             transform:
                 translateY(-2px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(7, 87, 217, .07);
         }
 
         .other-left {
@@ -487,6 +500,195 @@
 
             font-size: 11px;
         }
+
+
+        /* =========================
+           OTHER COUNTRIES MODAL
+        ========================= */
+
+        .country-modal-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, .60);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 10000;
+
+            animation:
+                modalFade .25s ease;
+        }
+
+        .country-modal {
+            width:
+                min(420px, 100%);
+
+            background:
+                #ffffff;
+
+            border-radius:
+                22px;
+
+            padding:
+                30px 25px;
+
+            text-align:
+                center;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, .25);
+
+            animation:
+                modalUp .25s ease;
+        }
+
+        .country-modal-icon {
+            width: 65px;
+
+            height: 65px;
+
+            margin:
+                0 auto 15px;
+
+            border-radius: 18px;
+
+            background:
+                #fff7d9;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 32px;
+        }
+
+        .country-modal h2 {
+            font-size: 22px;
+
+            font-weight: 800;
+
+            color: var(--black);
+
+            margin-bottom: 12px;
+        }
+
+        .country-modal p {
+            color: var(--gray);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            margin-bottom: 10px;
+        }
+
+        .whatsapp-btn {
+            display: block;
+
+            width: 100%;
+
+            margin-top: 22px;
+
+            padding: 14px 18px;
+
+            border-radius: 11px;
+
+            background:
+                #25d366;
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            transition: .25s;
+        }
+
+        .whatsapp-btn:hover {
+            transform:
+                translateY(-2px);
+
+            filter:
+                brightness(.95);
+        }
+
+        .close-modal-btn {
+            width: 100%;
+
+            margin-top: 10px;
+
+            padding: 13px 18px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius: 11px;
+
+            background: #ffffff;
+
+            color: var(--black);
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: .25s;
+        }
+
+        .close-modal-btn:hover {
+            border-color:
+                var(--blue);
+
+            color:
+                var(--blue);
+        }
+
+        @keyframes modalFade {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+        @keyframes modalUp {
+
+            from {
+                opacity: 0;
+                transform:
+                    translateY(20px)
+                    scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
 
         /* =========================
            SUPPORT
@@ -541,6 +743,7 @@
             white-space: nowrap;
         }
 
+
         /* =========================
            FOOTER
         ========================= */
@@ -570,6 +773,7 @@
             font-size: 10px;
         }
 
+
         /* =========================
            TOAST
         ========================= */
@@ -586,11 +790,13 @@
 
             opacity: 0;
 
-            background: #101828;
+            background:
+                #101828;
 
             color: white;
 
-            padding: 13px 20px;
+            padding:
+                13px 20px;
 
             border-radius: 10px;
 
@@ -610,6 +816,7 @@
                 translate(-50%, 0);
         }
 
+
         /* =========================
            TABLET
         ========================= */
@@ -627,6 +834,7 @@
             }
 
         }
+
 
         /* =========================
            MOBILE
@@ -696,6 +904,7 @@
 
         }
 
+
         /* =========================
            SMALL PHONE
         ========================= */
@@ -716,6 +925,7 @@
     </style>
 
 </head>
+
 
 <body>
 
@@ -779,6 +989,7 @@
 </header>
 
 
+
 <!-- =========================
      DASHBOARD
 ========================= -->
@@ -808,6 +1019,7 @@
             </p>
 
         </section>
+
 
 
         <!-- =========================
@@ -847,6 +1059,7 @@
             </div>
 
         </section>
+
 
 
         <!-- =========================
@@ -979,6 +1192,7 @@
         </section>
 
 
+
         <!-- =========================
              GLOBAL DELIVERY
         ========================= -->
@@ -1020,6 +1234,8 @@
 
                 </div>
 
+            </div>
+
 
             <!-- =========================
                  OTHER COUNTRIES
@@ -1060,6 +1276,7 @@
         </section>
 
 
+
         <!-- =========================
              SUPPORT
         ========================= -->
@@ -1095,6 +1312,7 @@
 </main>
 
 
+
 <!-- =========================
      FOOTER
 ========================= -->
@@ -1118,12 +1336,14 @@
 </footer>
 
 
+
 <!-- TOAST -->
 
 <div
     class="toast"
     id="toast">
 </div>
+
 
 
 <!-- =========================
@@ -1152,6 +1372,7 @@
         onSnapshot
     } from
     "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 
     /* =========================
@@ -1184,6 +1405,7 @@
     };
 
 
+
     /* =========================
        INITIALIZE
     ========================= */
@@ -1196,6 +1418,7 @@
 
     const db =
         getFirestore(app);
+
 
 
     /* =========================
@@ -1238,15 +1461,19 @@
         );
 
 
+
     /* =========================
        TOAST
     ========================= */
 
     function showToast(text) {
 
-        toast.textContent = text;
+        toast.textContent =
+            text;
 
-        toast.classList.add("show");
+        toast.classList.add(
+            "show"
+        );
 
         setTimeout(() => {
 
@@ -1257,6 +1484,7 @@
         }, 2500);
 
     }
+
 
 
     /* =========================
@@ -1278,6 +1506,7 @@
             );
 
     }
+
 
 
     /* =========================
@@ -1388,6 +1617,7 @@
     );
 
 
+
     /* =========================
        LOGOUT
     ========================= */
@@ -1424,6 +1654,7 @@
     );
 
 
+
     /* =========================
        DEPOSIT
     ========================= */
@@ -1437,6 +1668,7 @@
 
         }
     );
+
 
 
     /* =========================
@@ -1454,6 +1686,7 @@
     );
 
 
+
     /* =========================
        NOTIFICATIONS
     ========================= */
@@ -1467,6 +1700,7 @@
 
         }
     );
+
 
 
     /* =========================
@@ -1511,6 +1745,7 @@
     );
 
 
+
     /* =========================
        OTHER COUNTRIES
     ========================= */
@@ -1525,13 +1760,111 @@
         "click",
         () => {
 
-            window.location.href =
-                "countries.html";
+            const whatsappLink =
+                "https://whatsapp.com/channel/0029VbDpD8RIyPtZiIkHkx3u";
+
+
+            const modal =
+                document.createElement(
+                    "div"
+                );
+
+
+            modal.className =
+                "country-modal-overlay";
+
+
+            modal.innerHTML = `
+
+                <div class="country-modal">
+
+                    <div class="country-modal-icon">
+                        🌎
+                    </div>
+
+                    <h2>
+                        Other Countries
+                    </h2>
+
+                    <p>
+                        We're currently working
+                        on expanding our delivery
+                        destinations.
+                    </p>
+
+                    <p>
+                        Kindly contact us on WhatsApp,
+                        and we're going to help arrange
+                        delivery to your destination 😊
+                    </p>
+
+                    <a
+                        href="${whatsappLink}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="whatsapp-btn">
+
+                        Contact Us on WhatsApp
+
+                    </a>
+
+                    <button
+                        class="close-modal-btn">
+
+                        Thank You ❤️
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            document.body.appendChild(
+                modal
+            );
+
+
+
+            /* CLOSE BUTTON */
+
+            modal
+                .querySelector(
+                    ".close-modal-btn"
+                )
+                .addEventListener(
+                    "click",
+                    () => {
+
+                        modal.remove();
+
+                    }
+                );
+
+
+
+            /* CLOSE OUTSIDE */
+
+            modal.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target === modal
+                    ) {
+
+                        modal.remove();
+
+                    }
+
+                }
+            );
 
         }
     );
 
 </script>
+
 
 </body>
 </html>
