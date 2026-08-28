@@ -446,8 +446,6 @@ button,input,textarea{
 </header>
 
 
-<!-- PRODUCTS -->
-
 <section id="productsSection">
 
     <div class="container">
@@ -471,8 +469,6 @@ button,input,textarea{
 
 </section>
 
-
-<!-- CHECKOUT -->
 
 <section id="checkout">
 
@@ -645,8 +641,7 @@ button,input,textarea{
 
                 <textarea
                     id="notes"
-                    placeholder="Gift message or delivery instructions">
-                </textarea>
+                    placeholder="Gift message or delivery instructions"></textarea>
 
             </div>
 
@@ -727,8 +722,6 @@ button,input,textarea{
 </div>
 
 
-<!-- POPUP -->
-
 <div
     class="overlay"
     id="overlay">
@@ -779,8 +772,8 @@ import {
 import {
     doc,
     getDoc,
-    addDoc,
     collection,
+    runTransaction,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
@@ -820,6 +813,16 @@ const countries = {
     "germany.html":{
         name:"Germany",
         flag:"🇩🇪"
+    },
+
+    "usa.html":{
+        name:"United States",
+        flag:"🇺🇸"
+    },
+
+    "united-states.html":{
+        name:"United States",
+        flag:"🇺🇸"
     }
 
 };
@@ -1080,6 +1083,9 @@ onAuthStateChanged(
             balance = 0;
 
             walletBalance.textContent =
+                "₦0.00";
+
+            checkoutBalance.textContent =
                 "₦0.00";
 
             return;
@@ -1369,36 +1375,6 @@ document
                 return;
 
 
-            /*
-             * Get the newest wallet balance
-             */
-
-            await loadWallet();
-
-            const total =
-                Number(
-                    selectedProduct.price
-                );
-
-
-            /* ================================
-               LOW BALANCE
-            ================================= */
-
-            if(balance < total){
-
-                popup(
-                    "error",
-                    "Insufficient wallet balance",
-                    "Kindly deposit and make an order",
-                    "⚠️"
-                );
-
-                return;
-
-            }
-
-
             const button =
                 document.getElementById(
                     "confirmOrder"
@@ -1410,111 +1386,189 @@ document
                 "Processing...";
 
 
+            const total =
+                Number(
+                    selectedProduct.price
+                );
+
+
             try{
 
-                /*
-                 * Save order to Firestore.
-                 */
-
-                await addDoc(
-                    collection(
+                const result =
+                    await runTransaction(
                         db,
-                        "giftOrders"
-                    ),
-                    {
+                        async transaction => {
 
-                        customerUID:
-                            user.uid,
+                            const userRef =
+                                doc(
+                                    db,
+                                    "users",
+                                    user.uid
+                                );
 
-                        customerEmail:
-                            user.email || "",
-
-                        country:
-                            selectedCountry.name,
-
-                        countryFlag:
-                            selectedCountry.flag,
-
-                        productName:
-                            selectedProduct.name,
-
-                        productImage:
-                            selectedProduct.images[0],
-
-                        price:
-                            total,
-
-                        total:
-                            total,
-
-                        yourPhone:
-                            value("yourPhone"),
-
-                        senderName:
-                            value("senderName"),
-
-                        recipientName:
-                            value("recipientName"),
-
-                        recipientPhone:
-                            value("recipientPhone"),
-
-                        streetAddress:
-                            value("streetAddress"),
-
-                        city:
-                            value("city"),
-
-                        state:
-                            value("state"),
-
-                        deliveryCountry:
-                            value("country"),
-
-                        zipCode:
-                            value("zipCode"),
-
-                        notes:
-                            value("notes"),
-
-                        paymentMethod:
-                            "Wallet",
-
-                        paymentStatus:
-                            "Paid",
-
-                        status:
-                            "Pending",
-
-                        createdAt:
-                            serverTimestamp()
-
-                    }
-                );
+                            const userSnapshot =
+                                await transaction.get(
+                                    userRef
+                                );
 
 
-                /*
-                 * IMPORTANT:
-                 * Wallet deduction should be handled
-                 * by a trusted backend/Cloud Function
-                 * in production.
-                 */
+                            if(
+                                !userSnapshot.exists()
+                            ){
 
-                popup(
-                    "success",
-                    "Your order completed",
-                    "It will take less than three business days to deliver your order. Always check your order history",
-                    "✓"
-                );
+                                throw new Error(
+                                    "ACCOUNT_NOT_FOUND"
+                                );
+
+                            }
+
+
+                            const userData =
+                                userSnapshot.data();
+
+
+                            const currentBalance =
+                                Number(
+                                    userData.walletBalance || 0
+                                );
+
+
+                            if(
+                                currentBalance < total
+                            ){
+
+                                throw new Error(
+                                    "INSUFFICIENT_BALANCE"
+                                );
+
+                            }
+
+
+                            const newBalance =
+                                currentBalance - total;
+
+
+                            const orderRef =
+                                doc(
+                                    collection(
+                                        db,
+                                        "giftOrders"
+                                    )
+                                );
+
+
+                            transaction.update(
+                                userRef,
+                                {
+                                    walletBalance:
+                                        newBalance
+                                }
+                            );
+
+
+                            transaction.set(
+                                orderRef,
+                                {
+
+                                    customerUID:
+                                        user.uid,
+
+                                    customerEmail:
+                                        user.email || "",
+
+                                    country:
+                                        selectedCountry.name,
+
+                                    countryFlag:
+                                        selectedCountry.flag,
+
+                                    productName:
+                                        selectedProduct.name,
+
+                                    productImage:
+                                        selectedProduct.images[0],
+
+                                    price:
+                                        total,
+
+                                    total:
+                                        total,
+
+                                    yourPhone:
+                                        value("yourPhone"),
+
+                                    senderName:
+                                        value("senderName"),
+
+                                    recipientName:
+                                        value("recipientName"),
+
+                                    recipientPhone:
+                                        value("recipientPhone"),
+
+                                    streetAddress:
+                                        value("streetAddress"),
+
+                                    city:
+                                        value("city"),
+
+                                    state:
+                                        value("state"),
+
+                                    deliveryCountry:
+                                        value("country"),
+
+                                    zipCode:
+                                        value("zipCode"),
+
+                                    notes:
+                                        value("notes"),
+
+                                    paymentMethod:
+                                        "Wallet",
+
+                                    paymentStatus:
+                                        "Paid",
+
+                                    status:
+                                        "Processing",
+
+                                    createdAt:
+                                        serverTimestamp()
+
+                                }
+                            );
+
+
+                            return {
+                                newBalance:
+                                    newBalance
+                            };
+
+                        }
+                    );
+
+
+                balance =
+                    result.newBalance;
+
+
+                walletBalance.textContent =
+                    money(balance);
+
+                checkoutBalance.textContent =
+                    money(balance);
 
 
                 clearForm();
 
-                button.disabled =
-                    false;
 
-                button.textContent =
-                    "Confirm Order";
+                popup(
+                    "success",
+                    "Order Confirmed",
+                    "Your order has been received and is now processing. You can check your Order History for updates.",
+                    "✓"
+                );
 
 
             }catch(error){
@@ -1524,20 +1578,49 @@ document
                     error
                 );
 
-                popup(
-                    "error",
-                    "Order Failed",
-                    "Unable to complete your order. Please try again.",
-                    "⚠️"
-                );
 
-                button.disabled =
-                    false;
+                if(
+                    error.message ===
+                    "INSUFFICIENT_BALANCE"
+                ){
 
-                button.textContent =
-                    "Confirm Order";
+                    popup(
+                        "error",
+                        "Insufficient Wallet Balance",
+                        "Your wallet balance is not enough to complete this order. Kindly deposit more funds and try again.",
+                        "⚠️"
+                    );
+
+                }else if(
+                    error.message ===
+                    "ACCOUNT_NOT_FOUND"
+                ){
+
+                    popup(
+                        "error",
+                        "Account Error",
+                        "Your customer account could not be found. Please contact support.",
+                        "⚠️"
+                    );
+
+                }else{
+
+                    popup(
+                        "error",
+                        "Order Failed",
+                        "Unable to complete your order. Your wallet was not charged. Please try again.",
+                        "⚠️"
+                    );
+
+                }
 
             }
+
+
+            button.disabled = false;
+
+            button.textContent =
+                "Confirm Order";
 
         }
     );
