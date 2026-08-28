@@ -182,9 +182,7 @@
             );
 
             border-radius: 22px;
-
             color: white;
-
             padding: 30px;
 
             box-shadow:
@@ -192,7 +190,6 @@
                 rgba(7, 87, 217, .20);
 
             position: relative;
-
             overflow: hidden;
 
             margin-bottom: 25px;
@@ -355,7 +352,7 @@
             display: grid;
 
             grid-template-columns:
-                repeat(3, 1fr);
+                repeat(2, 1fr);
 
             gap: 15px;
         }
@@ -368,13 +365,15 @@
 
             border-radius: 16px;
 
-            padding: 20px;
+            padding: 22px;
 
             cursor: pointer;
 
             transition: .25s;
 
             position: relative;
+
+            min-height: 130px;
         }
 
         .country-card:hover {
@@ -395,7 +394,7 @@
         }
 
         .country-flag {
-            font-size: 34px;
+            font-size: 36px;
 
             display: block;
 
@@ -405,7 +404,7 @@
         .country-name {
             font-weight: 800;
 
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .country-card::after {
@@ -413,11 +412,13 @@
 
             position: absolute;
 
-            right: 15px;
+            right: 18px;
 
-            bottom: 18px;
+            bottom: 20px;
 
             color: var(--blue);
+
+            font-size: 18px;
 
             font-weight: 800;
         }
@@ -830,7 +831,7 @@
 
             .country-grid {
                 grid-template-columns:
-                    repeat(3, 1fr);
+                    repeat(2, 1fr);
             }
 
         }
@@ -880,6 +881,11 @@
                     repeat(2, 1fr);
             }
 
+            .country-card {
+                min-height: 120px;
+                padding: 18px;
+            }
+
             .support-card {
                 align-items:
                     flex-start;
@@ -916,8 +922,21 @@
                     repeat(2, 1fr);
             }
 
+            .country-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
             .country-card {
-                padding: 16px;
+                padding: 15px;
+            }
+
+            .country-flag {
+                font-size: 30px;
+            }
+
+            .country-name {
+                font-size: 13px;
             }
 
         }
@@ -1213,6 +1232,8 @@
             </div>
 
 
+            <!-- USA + CANADA -->
+
             <div
                 class="country-grid"
                 id="countryGrid">
@@ -1229,12 +1250,11 @@
                     </span>
 
                     <span class="country-name">
-                        United States
+                        USA
                     </span>
 
                 </div>
 
-            </div>
 
                 <!-- CANADA -->
 
@@ -1251,6 +1271,8 @@
                     </span>
 
                 </div>
+
+            </div>
 
 
             <!-- =========================
