@@ -88,8 +88,7 @@ body{
     padding:24px;
     margin-bottom:18px;
     box-shadow:
-        0 15px 45px
-        rgba(7,87,217,.08);
+        0 15px 45px rgba(7,87,217,.08);
 }
 
 /* PRODUCT */
@@ -259,8 +258,7 @@ textarea:focus{
     padding:38px 25px;
     text-align:center;
     box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.2);
+        0 25px 70px rgba(0,0,0,.2);
 }
 
 .modal-icon{
@@ -364,7 +362,7 @@ textarea:focus{
 </div>
 
 
-<!-- PRODUCT CARD -->
+<!-- PRODUCT -->
 
 <div class="card">
 
@@ -387,7 +385,7 @@ textarea:focus{
             <div
                 id="productCountry"
                 class="product-country">
-                Delivery
+                Global Delivery
             </div>
 
             <div
@@ -418,7 +416,7 @@ textarea:focus{
 </div>
 
 
-<!-- DELIVERY FORM -->
+<!-- DELIVERY -->
 
 <div class="card">
 
@@ -447,8 +445,7 @@ textarea:focus{
             type="text"
             id="recipientName"
             placeholder="Enter recipient name"
-            autocomplete="name"
-            required>
+            autocomplete="name">
 
     </div>
 
@@ -463,8 +460,7 @@ textarea:focus{
             type="tel"
             id="recipientPhone"
             placeholder="Enter phone number"
-            autocomplete="tel"
-            required>
+            autocomplete="tel">
 
     </div>
 
@@ -478,8 +474,7 @@ textarea:focus{
         <input
             type="text"
             id="deliveryCountry"
-            placeholder="Country"
-            required>
+            placeholder="Country">
 
     </div>
 
@@ -492,8 +487,7 @@ textarea:focus{
 
         <textarea
             id="deliveryAddress"
-            placeholder="Enter complete delivery address"
-            required></textarea>
+            placeholder="Enter complete delivery address"></textarea>
 
     </div>
 
@@ -552,6 +546,7 @@ textarea:focus{
 
         <p id="failedText">
             Unable to complete your order.
+            Please try again.
         </p>
 
         <button
@@ -588,7 +583,9 @@ textarea:focus{
             Your order has been completed.
             It will take less than three business
             days to deliver your order.
+
             <br><br>
+
             Always check your order history
             for updates.
         </p>
@@ -598,7 +595,7 @@ textarea:focus{
             class="modal-btn"
             id="successButton">
 
-            Thanks
+            View Order History
 
         </button>
 
@@ -697,18 +694,17 @@ const params =
 
 const selectedProduct =
     params.get("product") ||
-    "";
+    "Gift";
 
 
 const selectedPrice =
     Number(
         params.get("price")
-    );
+    ) || 0;
 
 
 const selectedImage =
-    params.get("image") ||
-    "";
+    params.get("image") || "";
 
 
 const selectedCountry =
@@ -721,7 +717,7 @@ const selectedCountry =
 ===================================== */
 
 productName.textContent =
-    selectedProduct || "Gift";
+    selectedProduct;
 
 
 productCountry.textContent =
@@ -738,11 +734,6 @@ if(selectedImage){
 
     productImage.src =
         selectedImage;
-
-}else{
-
-    productImage.style.display =
-        "none";
 
 }
 
@@ -767,12 +758,60 @@ function formatNaira(amount){
 
 
 /* =====================================
-   USER STATE
+   USER
 ===================================== */
 
 let currentUser = null;
 
+
+/* =====================================
+   WALLET DISPLAY
+===================================== */
+
 let currentWalletBalance = 0;
+
+
+async function loadWallet(){
+
+    const userRef =
+        doc(
+            db,
+            "users",
+            currentUser.uid
+        );
+
+
+    const snapshot =
+        await getDoc(
+            userRef
+        );
+
+
+    if(!snapshot.exists()){
+
+        throw new Error(
+            "USER_NOT_FOUND"
+        );
+
+    }
+
+
+    const data =
+        snapshot.data();
+
+
+    currentWalletBalance =
+        Number(
+            data.walletBalance || 0
+        );
+
+
+    walletBalance.textContent =
+        formatNaira(
+            currentWalletBalance
+        );
+
+}
 
 
 /* =====================================
@@ -796,74 +835,25 @@ onAuthStateChanged(
         currentUser = user;
 
 
-        await loadWallet();
+        try{
 
-    }
-);
+            await loadWallet();
 
+        }catch(error){
 
-/* =====================================
-   LOAD WALLET
-===================================== */
-
-async function loadWallet(){
-
-    try{
-
-        const userRef =
-            doc(
-                db,
-                "users",
-                currentUser.uid
+            console.error(
+                "Wallet loading error:",
+                error
             );
 
-
-        const snapshot =
-            await getDoc(
-                userRef
+            showFailed(
+                "Unable to load your wallet. Please refresh the page and try again."
             );
-
-
-        if(!snapshot.exists()){
-
-            currentWalletBalance = 0;
-
-        }else{
-
-            const data =
-                snapshot.data();
-
-
-            currentWalletBalance =
-                Number(
-                    data.walletBalance || 0
-                );
 
         }
 
-
-        walletBalance.textContent =
-            formatNaira(
-                currentWalletBalance
-            );
-
-    }catch(error){
-
-        console.error(
-            "Wallet error:",
-            error
-        );
-
-
-        currentWalletBalance = 0;
-
-
-        walletBalance.textContent =
-            "₦0.00";
-
     }
-
-}
+);
 
 
 /* =====================================
@@ -917,8 +907,6 @@ confirmOrder.addEventListener(
     "click",
     async () => {
 
-        /* AUTH */
-
         if(!currentUser){
 
             showFailed(
@@ -930,16 +918,13 @@ confirmOrder.addEventListener(
         }
 
 
-        /* PRODUCT */
-
         if(
-            !selectedProduct ||
             !Number.isFinite(selectedPrice) ||
             selectedPrice <= 0
         ){
 
             showFailed(
-                "This product information is invalid. Please go back and select the product again."
+                "This product price is invalid. Please go back and select the product again."
             );
 
             return;
@@ -947,19 +932,21 @@ confirmOrder.addEventListener(
         }
 
 
-        /* FORM */
-
         const name =
             recipientName.value.trim();
+
 
         const phone =
             recipientPhone.value.trim();
 
+
         const country =
             deliveryCountry.value.trim();
 
+
         const address =
             deliveryAddress.value.trim();
+
 
         const notes =
             additionalNotes.value.trim();
@@ -968,7 +955,7 @@ confirmOrder.addEventListener(
         if(!name){
 
             showFailed(
-                "Please enter the recipient's full name."
+                "Please enter the recipient's name."
             );
 
             return;
@@ -1001,7 +988,7 @@ confirmOrder.addEventListener(
         if(!address){
 
             showFailed(
-                "Please enter the complete delivery address."
+                "Please enter the delivery address."
             );
 
             return;
@@ -1009,21 +996,9 @@ confirmOrder.addEventListener(
         }
 
 
-        /* DISPLAY CHECK */
-
-        if(
-            currentWalletBalance <
-            selectedPrice
-        ){
-
-            showFailed(
-                "Insufficient wallet balance. Kindly deposit and try again."
-            );
-
-            return;
-
-        }
-
+        /* =================================
+           BUTTON LOCK
+        ================================= */
 
         confirmOrder.disabled =
             true;
@@ -1042,17 +1017,21 @@ confirmOrder.addEventListener(
                 );
 
 
-            let createdOrderId = "";
+            const orderRef =
+                doc(
+                    db,
+                    "orders",
+                    crypto.randomUUID()
+                );
 
 
             /*
-             ATOMIC TRANSACTION
+             Atomic transaction.
 
-             1. Read latest wallet balance.
-             2. Verify sufficient balance.
-             3. Deduct the exact product price.
-             4. Create order.
-             */
+             Firestore reads the current wallet
+             balance and creates the order in
+             the same transaction.
+            */
 
             await runTransaction(
                 db,
@@ -1064,7 +1043,9 @@ confirmOrder.addEventListener(
                         );
 
 
-                    if(!userSnapshot.exists()){
+                    if(
+                        !userSnapshot.exists()
+                    ){
 
                         throw new Error(
                             "USER_NOT_FOUND"
@@ -1084,8 +1065,19 @@ confirmOrder.addEventListener(
 
 
                     if(
-                        !Number.isFinite(balance) ||
-                        balance < selectedPrice
+                        !Number.isFinite(balance)
+                    ){
+
+                        throw new Error(
+                            "INVALID_WALLET"
+                        );
+
+                    }
+
+
+                    if(
+                        balance <
+                        selectedPrice
                     ){
 
                         throw new Error(
@@ -1093,17 +1085,6 @@ confirmOrder.addEventListener(
                         );
 
                     }
-
-
-                    const orderRef =
-                        doc(
-                            db,
-                            "orders"
-                        );
-
-
-                    createdOrderId =
-                        orderRef.id;
 
 
                     const newBalance =
@@ -1118,7 +1099,10 @@ confirmOrder.addEventListener(
                         {
 
                             walletBalance:
-                                newBalance
+                                newBalance,
+
+                            updatedAt:
+                                serverTimestamp()
 
                         }
                     );
@@ -1134,8 +1118,7 @@ confirmOrder.addEventListener(
                                 currentUser.uid,
 
                             customerEmail:
-                                currentUser.email ||
-                                "",
+                                currentUser.email || "",
 
                             productName:
                                 selectedProduct,
@@ -1183,18 +1166,11 @@ confirmOrder.addEventListener(
             );
 
 
-            console.log(
-                "Order created:",
-                createdOrderId
-            );
+            /* =================================
+               UPDATE DISPLAY
+            ================================= */
 
-
-            /*
-             UPDATE LOCAL BALANCE
-            */
-
-            currentWalletBalance =
-                currentWalletBalance -
+            currentWalletBalance -=
                 selectedPrice;
 
 
@@ -1208,6 +1184,10 @@ confirmOrder.addEventListener(
                 "Order Completed";
 
 
+            /* =================================
+               SUCCESS
+            ================================= */
+
             successModal.classList.add(
                 "show"
             );
@@ -1216,7 +1196,7 @@ confirmOrder.addEventListener(
         }catch(error){
 
             console.error(
-                "ORDER ERROR:",
+                "Order error:",
                 error
             );
 
@@ -1231,7 +1211,7 @@ confirmOrder.addEventListener(
             ){
 
                 errorMessage =
-                    "Insufficient wallet balance. Kindly deposit and try again.";
+                    "Insufficient wallet balance. Kindly deposit funds before placing this order.";
 
             }
 
@@ -1248,12 +1228,23 @@ confirmOrder.addEventListener(
 
 
             else if(
+                error.message ===
+                "INVALID_WALLET"
+            ){
+
+                errorMessage =
+                    "Your wallet balance is invalid. Please contact support.";
+
+            }
+
+
+            else if(
                 error.code ===
                 "permission-denied"
             ){
 
                 errorMessage =
-                    "Order failed because Firestore permission was denied. Please check your Firestore Rules.";
+                    "Order permission denied. Please check your Firestore Rules.";
 
             }
 
@@ -1288,4 +1279,5 @@ confirmOrder.addEventListener(
 </script>
 
 </body>
+
 </html>
