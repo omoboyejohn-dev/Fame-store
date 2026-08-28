@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Fame Store | Send Gifts</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -416,15 +423,22 @@ button,input,textarea{
     .checkout-card{
         padding:18px;
     }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header class="header">
 
-    <div class="brand-icon">🛍️</div>
+    <div class="brand-icon">
+        🛍️
+    </div>
 
     <div class="brand-name">
         Fame Store
@@ -440,11 +454,15 @@ button,input,textarea{
 
     <div class="wallet">
         Wallet:
-        <span id="walletBalance">₦0.00</span>
+        <span id="walletBalance">
+            ₦0.00
+        </span>
     </div>
 
 </header>
 
+
+<!-- PRODUCTS -->
 
 <section id="productsSection">
 
@@ -452,7 +470,9 @@ button,input,textarea{
 
         <div class="title">
 
-            <h1>Send a Gift</h1>
+            <h1>
+                Send a Gift
+            </h1>
 
             <p>
                 Choose a gift for someone special.
@@ -469,6 +489,8 @@ button,input,textarea{
 
 </section>
 
+
+<!-- CHECKOUT -->
 
 <section id="checkout">
 
@@ -520,7 +542,9 @@ button,input,textarea{
 
             <div class="group">
 
-                <label>Your Phone</label>
+                <label>
+                    Your Phone
+                </label>
 
                 <input
                     id="yourPhone"
@@ -536,7 +560,9 @@ button,input,textarea{
 
             <div class="group">
 
-                <label>Sender Name</label>
+                <label>
+                    Sender Name
+                </label>
 
                 <input
                     id="senderName"
@@ -545,9 +571,12 @@ button,input,textarea{
 
             </div>
 
+
             <div class="group">
 
-                <label>Recipient Name</label>
+                <label>
+                    Recipient Name
+                </label>
 
                 <input
                     id="recipientName"
@@ -556,9 +585,12 @@ button,input,textarea{
 
             </div>
 
+
             <div class="group">
 
-                <label>Recipient Phone</label>
+                <label>
+                    Recipient Phone
+                </label>
 
                 <input
                     id="recipientPhone"
@@ -567,9 +599,12 @@ button,input,textarea{
 
             </div>
 
+
             <div class="group">
 
-                <label>Street / House Address</label>
+                <label>
+                    Street / House Address
+                </label>
 
                 <input
                     id="streetAddress"
@@ -583,7 +618,9 @@ button,input,textarea{
 
                 <div class="group">
 
-                    <label>City</label>
+                    <label>
+                        City
+                    </label>
 
                     <input
                         id="city"
@@ -592,9 +629,12 @@ button,input,textarea{
 
                 </div>
 
+
                 <div class="group">
 
-                    <label>State</label>
+                    <label>
+                        State
+                    </label>
 
                     <input
                         id="state"
@@ -610,7 +650,9 @@ button,input,textarea{
 
                 <div class="group">
 
-                    <label>Country</label>
+                    <label>
+                        Country
+                    </label>
 
                     <input
                         id="country"
@@ -619,9 +661,12 @@ button,input,textarea{
 
                 </div>
 
+
                 <div class="group">
 
-                    <label>ZIP Code</label>
+                    <label>
+                        ZIP Code
+                    </label>
 
                     <input
                         id="zipCode"
@@ -650,6 +695,7 @@ button,input,textarea{
                 Payment Summary
             </div>
 
+
             <div class="summary">
 
                 <div class="row">
@@ -664,6 +710,7 @@ button,input,textarea{
 
                 </div>
 
+
                 <div class="row total-row">
 
                     <span>
@@ -676,6 +723,7 @@ button,input,textarea{
 
                 </div>
 
+
                 <div class="row">
 
                     <span>
@@ -685,7 +733,9 @@ button,input,textarea{
                     <strong
                         class="balance"
                         id="checkoutBalance">
+
                         ₦0.00
+
                     </strong>
 
                 </div>
@@ -722,6 +772,8 @@ button,input,textarea{
 </div>
 
 
+<!-- POPUP -->
+
 <div
     class="overlay"
     id="overlay">
@@ -733,15 +785,17 @@ button,input,textarea{
         <div
             class="popup-icon"
             id="popupIcon">
+
             ⚠️
+
         </div>
 
         <h3 id="popupTitle">
-            Insufficient wallet balance
+            Order
         </h3>
 
         <p id="popupText">
-            Kindly deposit and make an order
+            Please try again.
         </p>
 
         <button
@@ -760,14 +814,21 @@ button,input,textarea{
 
 <script type="module">
 
+
+/* ==================================================
+   FIREBASE
+================================================== */
+
 import {
     auth,
     db
 } from "./firebase-config.js";
 
+
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
 
 import {
     doc,
@@ -787,6 +848,7 @@ const fileName =
     .split("/")
     .pop()
     .toLowerCase();
+
 
 const countries = {
 
@@ -827,11 +889,13 @@ const countries = {
 
 };
 
+
 const selectedCountry =
     countries[fileName] || {
         name:"International",
         flag:"🌍"
     };
+
 
 document.getElementById(
     "countryName"
@@ -973,7 +1037,9 @@ images:[
 ================================================== */
 
 let user = null;
+
 let balance = 0;
+
 let selectedProduct = null;
 
 
@@ -1004,7 +1070,7 @@ const checkoutBalance =
 function money(value){
 
     return "₦" +
-        Number(value).toLocaleString(
+        Number(value || 0).toLocaleString(
             "en-NG",
             {
                 minimumFractionDigits:2,
@@ -1019,53 +1085,59 @@ function money(value){
    RENDER PRODUCTS
 ================================================== */
 
-products.forEach(product => {
+products.forEach(
+    product => {
 
-    const card =
-        document.createElement("div");
+        const card =
+            document.createElement("div");
 
-    card.className = "card";
+        card.className =
+            "card";
 
-    card.innerHTML = `
 
-        <img
-            src="${product.images[0]}"
-            alt="${product.name}"
-            loading="lazy"
-        >
+        card.innerHTML = `
 
-        <div class="card-body">
+            <img
+                src="${product.images[0]}"
+                alt="${product.name}"
+                loading="lazy"
+            >
 
-            <div class="name">
-                ${product.name}
+            <div class="card-body">
+
+                <div class="name">
+                    ${product.name}
+                </div>
+
+                <div class="price">
+                    ${money(product.price)}
+                </div>
+
+                <button
+                    class="gift-btn"
+                    type="button">
+
+                    Send as Gift
+
+                </button>
+
             </div>
 
-            <div class="price">
-                ${money(product.price)}
-            </div>
+        `;
 
-            <button
-                class="gift-btn"
-                type="button">
 
-                Send as Gift
+        card
+            .querySelector(".gift-btn")
+            .addEventListener(
+                "click",
+                () => openCheckout(product)
+            );
 
-            </button>
 
-        </div>
+        productsBox.appendChild(card);
 
-    `;
-
-    card
-        .querySelector(".gift-btn")
-        .addEventListener(
-            "click",
-            () => openCheckout(product)
-        );
-
-    productsBox.appendChild(card);
-
-});
+    }
+);
 
 
 /* ==================================================
@@ -1076,7 +1148,9 @@ onAuthStateChanged(
     auth,
     async currentUser => {
 
-        user = currentUser;
+        user =
+            currentUser;
+
 
         if(!user){
 
@@ -1089,7 +1163,9 @@ onAuthStateChanged(
                 "₦0.00";
 
             return;
+
         }
+
 
         await loadWallet();
 
@@ -1106,6 +1182,7 @@ async function loadWallet(){
     if(!user)
         return;
 
+
     try{
 
         const userRef =
@@ -1115,13 +1192,18 @@ async function loadWallet(){
                 user.uid
             );
 
+
         const snapshot =
-            await getDoc(userRef);
+            await getDoc(
+                userRef
+            );
+
 
         if(snapshot.exists()){
 
             const data =
                 snapshot.data();
+
 
             balance =
                 Number(
@@ -1134,11 +1216,14 @@ async function loadWallet(){
 
         }
 
+
         walletBalance.textContent =
             money(balance);
 
+
         checkoutBalance.textContent =
             money(balance);
+
 
     }catch(error){
 
@@ -1168,45 +1253,60 @@ function openCheckout(product){
         );
 
         return;
+
     }
 
-    selectedProduct = product;
+
+    selectedProduct =
+        product;
+
 
     document.getElementById(
         "selectedImage"
     ).src =
         product.images[0];
 
+
     document.getElementById(
         "selectedName"
     ).textContent =
         product.name;
+
 
     document.getElementById(
         "selectedPrice"
     ).textContent =
         money(product.price);
 
+
     document.getElementById(
         "basePrice"
     ).textContent =
         money(product.price);
+
 
     document.getElementById(
         "totalPrice"
     ).textContent =
         money(product.price);
 
+
     checkoutBalance.textContent =
         money(balance);
+
 
     productsSection.style.display =
         "none";
 
+
     checkout.style.display =
         "block";
 
-    window.scrollTo(0,0);
+
+    window.scrollTo(
+        0,
+        0
+    );
 
 }
 
@@ -1230,7 +1330,10 @@ document
             selectedProduct =
                 null;
 
-            window.scrollTo(0,0);
+            window.scrollTo(
+                0,
+                0
+            );
 
         }
     );
@@ -1250,8 +1353,10 @@ function popup(
     const overlay =
         document.getElementById("overlay");
 
+
     const box =
         document.getElementById("popup");
+
 
     box.className =
         "popup " +
@@ -1261,22 +1366,28 @@ function popup(
             : ""
         );
 
+
     document.getElementById(
         "popupIcon"
     ).textContent =
         icon;
+
 
     document.getElementById(
         "popupTitle"
     ).textContent =
         title;
 
+
     document.getElementById(
         "popupText"
     ).textContent =
         text;
 
-    overlay.classList.add("show");
+
+    overlay.classList.add(
+        "show"
+    );
 
 }
 
@@ -1316,6 +1427,7 @@ function validForm(){
 
     ];
 
+
     for(
         const id of ids
     ){
@@ -1323,11 +1435,13 @@ function validForm(){
         const input =
             document.getElementById(id);
 
+
         if(
             !input.value.trim()
         ){
 
             input.focus();
+
 
             popup(
                 "error",
@@ -1336,10 +1450,13 @@ function validForm(){
                 "⚠️"
             );
 
+
             return false;
+
         }
 
     }
+
 
     return true;
 
@@ -1356,6 +1473,7 @@ document
         "click",
         async () => {
 
+
             if(!user){
 
                 popup(
@@ -1366,10 +1484,23 @@ document
                 );
 
                 return;
+
             }
 
-            if(!selectedProduct)
+
+            if(!selectedProduct){
+
+                popup(
+                    "error",
+                    "No Product Selected",
+                    "Please select a gift before placing your order.",
+                    "⚠️"
+                );
+
                 return;
+
+            }
+
 
             if(!validForm())
                 return;
@@ -1380,11 +1511,6 @@ document
                     "confirmOrder"
                 );
 
-            button.disabled = true;
-
-            button.textContent =
-                "Processing...";
-
 
             const total =
                 Number(
@@ -1392,12 +1518,43 @@ document
                 );
 
 
+            if(
+                !Number.isFinite(total) ||
+                total <= 0
+            ){
+
+                popup(
+                    "error",
+                    "Invalid Price",
+                    "The selected product has an invalid price.",
+                    "⚠️"
+                );
+
+                return;
+
+            }
+
+
+            button.disabled =
+                true;
+
+
+            button.textContent =
+                "Processing...";
+
+
             try{
+
 
                 const result =
                     await runTransaction(
                         db,
                         async transaction => {
+
+
+                            /* ==========================
+                               USER
+                            ========================== */
 
                             const userRef =
                                 doc(
@@ -1405,6 +1562,7 @@ document
                                     "users",
                                     user.uid
                                 );
+
 
                             const userSnapshot =
                                 await transaction.get(
@@ -1434,6 +1592,23 @@ document
 
 
                             if(
+                                !Number.isFinite(
+                                    currentBalance
+                                )
+                            ){
+
+                                throw new Error(
+                                    "INVALID_WALLET"
+                                );
+
+                            }
+
+
+                            /* ==========================
+                               BALANCE CHECK
+                            ========================== */
+
+                            if(
                                 currentBalance < total
                             ){
 
@@ -1444,9 +1619,18 @@ document
                             }
 
 
-                            const newBalance =
-                                currentBalance - total;
+                            /* ==========================
+                               NEW BALANCE
+                            ========================== */
 
+                            const newBalance =
+                                currentBalance -
+                                total;
+
+
+                            /* ==========================
+                               ORDER DOCUMENT
+                            ========================== */
 
                             const orderRef =
                                 doc(
@@ -1457,14 +1641,24 @@ document
                                 );
 
 
+                            /* ==========================
+                               DEDUCT WALLET
+                            ========================== */
+
                             transaction.update(
                                 userRef,
                                 {
+
                                     walletBalance:
                                         newBalance
+
                                 }
                             );
 
+
+                            /* ==========================
+                               CREATE ORDER
+                            ========================== */
 
                             transaction.set(
                                 orderRef,
@@ -1541,13 +1735,22 @@ document
 
 
                             return {
+
                                 newBalance:
-                                    newBalance
+                                    newBalance,
+
+                                orderId:
+                                    orderRef.id
+
                             };
 
                         }
                     );
 
+
+                /* ==========================
+                   UPDATE BALANCE
+                ========================== */
 
                 balance =
                     result.newBalance;
@@ -1556,25 +1759,37 @@ document
                 walletBalance.textContent =
                     money(balance);
 
+
                 checkoutBalance.textContent =
                     money(balance);
 
 
+                /* ==========================
+                   CLEAR FORM
+                ========================== */
+
                 clearForm();
 
+
+                /* ==========================
+                   SUCCESS
+                ========================== */
 
                 popup(
                     "success",
                     "Order Confirmed",
-                    "Your order has been received and is now processing. You can check your Order History for updates.",
+                    "Your order has been received and is now processing. " +
+                    money(total) +
+                    " has been deducted from your wallet.",
                     "✓"
                 );
 
 
             }catch(error){
 
+
                 console.error(
-                    "Order error:",
+                    "ORDER ERROR:",
                     error
                 );
 
@@ -1587,11 +1802,13 @@ document
                     popup(
                         "error",
                         "Insufficient Wallet Balance",
-                        "Your wallet balance is not enough to complete this order. Kindly deposit more funds and try again.",
+                        "Your wallet balance is not enough to complete this order.",
                         "⚠️"
                     );
 
-                }else if(
+                }
+
+                else if(
                     error.message ===
                     "ACCOUNT_NOT_FOUND"
                 ){
@@ -1599,16 +1816,32 @@ document
                     popup(
                         "error",
                         "Account Error",
-                        "Your customer account could not be found. Please contact support.",
+                        "Your customer account could not be found.",
                         "⚠️"
                     );
 
-                }else{
+                }
+
+                else if(
+                    error.message ===
+                    "INVALID_WALLET"
+                ){
+
+                    popup(
+                        "error",
+                        "Wallet Error",
+                        "Your wallet balance is invalid. Please contact support.",
+                        "⚠️"
+                    );
+
+                }
+
+                else{
 
                     popup(
                         "error",
                         "Order Failed",
-                        "Unable to complete your order. Your wallet was not charged. Please try again.",
+                        "The order could not be completed and your wallet was not charged. Please try again.",
                         "⚠️"
                     );
 
@@ -1617,7 +1850,9 @@ document
             }
 
 
-            button.disabled = false;
+            button.disabled =
+                false;
+
 
             button.textContent =
                 "Confirm Order";
@@ -1660,6 +1895,7 @@ function clearForm(){
         "notes"
 
     ];
+
 
     ids.forEach(
         id => {
