@@ -91,6 +91,7 @@ body{
     display:flex;
     gap:13px;
     align-items:center;
+    min-width:0;
 }
 
 .product img{
@@ -99,6 +100,7 @@ body{
     object-fit:cover;
     border-radius:11px;
     background:#eef2f6;
+    flex-shrink:0;
 }
 
 .product-name{
@@ -128,6 +130,7 @@ body{
     border-radius:20px;
     font-size:12px;
     font-weight:800;
+    margin-bottom:14px;
 }
 
 .status.processing{
@@ -158,12 +161,14 @@ body{
     font-size:13px;
 }
 
-.detail-row span:first-child{
+.detail-row span{
     color:#667085;
+    flex-shrink:0;
 }
 
 .detail-row strong{
     text-align:right;
+    overflow-wrap:anywhere;
 }
 
 .empty{
@@ -306,15 +311,16 @@ import {
     db
 } from "./firebase-config.js";
 
+
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
 
 import {
     collection,
     query,
     where,
-    orderBy,
     getDocs
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
@@ -330,7 +336,7 @@ const ordersBox =
 function money(value){
 
     return "₦" +
-        Number(value).toLocaleString(
+        Number(value || 0).toLocaleString(
             "en-NG",
             {
                 minimumFractionDigits:2,
@@ -416,7 +422,7 @@ function statusIcon(status){
 
 
 /* ==================================================
-   LOAD ORDERS
+   AUTH
 ================================================== */
 
 onAuthStateChanged(
@@ -446,17 +452,20 @@ onAuthStateChanged(
             `;
 
             return;
+
         }
 
 
-        await loadOrders(user.uid);
+        await loadOrders(
+            user.uid
+        );
 
     }
 );
 
 
 /* ==================================================
-   GET ORDERS
+   LOAD ORDERS
 ================================================== */
 
 async function loadOrders(uid){
@@ -470,6 +479,12 @@ async function loadOrders(uid){
             );
 
 
+        /*
+         * Only use WHERE.
+         * No orderBy here, so a composite
+         * Firestore index is not required.
+         */
+
         const ordersQuery =
             query(
                 ordersRef,
@@ -477,10 +492,6 @@ async function loadOrders(uid){
                     "customerUID",
                     "==",
                     uid
-                ),
-                orderBy(
-                    "createdAt",
-                    "desc"
                 )
             );
 
@@ -518,19 +529,105 @@ async function loadOrders(uid){
         }
 
 
-        ordersBox.innerHTML = "";
+        /*
+         * Convert Firestore documents
+         * into an array.
+         */
+
+        const orders = [];
 
 
         snapshot.forEach(
             orderDoc => {
 
+                orders.push({
+
+                    id:
+                        orderDoc.id,
+
+                    data:
+                        orderDoc.data()
+
+                });
+
+            }
+        );
+
+
+        /*
+         * Sort newest orders first.
+         */
+
+        orders.sort(
+            (a,b) => {
+
+                const dateA =
+                    a.data.createdAt
+                    ?.toMillis?.() || 0;
+
+                const dateB =
+                    b.data.createdAt
+                    ?.toMillis?.() || 0;
+
+                return dateB - dateA;
+
+            }
+        );
+
+
+        ordersBox.innerHTML = "";
+
+
+        orders.forEach(
+            orderItem => {
+
                 const order =
-                    orderDoc.data();
+                    orderItem.data;
+
+                const orderId =
+                    orderItem.id;
 
 
                 const status =
                     order.status ||
                     "Processing";
+
+
+                const image =
+                    order.productImage ||
+                    "";
+
+
+                const productName =
+                    order.productName ||
+                    "Gift";
+
+
+                const total =
+                    order.total ||
+                    order.price ||
+                    0;
+
+
+                const recipient =
+                    order.recipientName ||
+                    "-";
+
+
+                const recipientPhone =
+                    order.recipientPhone ||
+                    "-";
+
+
+                const address =
+                    [
+                        order.streetAddress,
+                        order.city,
+                        order.state,
+                        order.zipCode
+                    ]
+                    .filter(Boolean)
+                    .join(", ") || "-";
 
 
                 const card =
@@ -550,23 +647,27 @@ async function loadOrders(uid){
                         <div class="product">
 
                             <img
-                                src="${order.productImage || ""}"
-                                alt="${order.productName || "Gift"}"
+                                src="${escapeHTML(image)}"
+                                alt="Gift"
                             >
 
                             <div>
 
                                 <div class="product-name">
                                     ${escapeHTML(
-                                        order.productName || "Gift"
+                                        productName
                                     )}
                                 </div>
 
                                 <div class="country">
+
                                     ${order.countryFlag || "🌍"}
+
                                     ${escapeHTML(
-                                        order.country || "International"
+                                        order.country ||
+                                        "International"
                                     )}
+
                                 </div>
 
                             </div>
@@ -575,9 +676,9 @@ async function loadOrders(uid){
 
 
                         <div class="price">
-                            ${money(
-                                order.total || order.price || 0
-                            )}
+
+                            ${money(total)}
+
                         </div>
 
                     </div>
@@ -599,6 +700,7 @@ async function loadOrders(uid){
 
                     <div class="details">
 
+
                         <div class="detail-row">
 
                             <span>
@@ -606,7 +708,7 @@ async function loadOrders(uid){
                             </span>
 
                             <strong>
-                                ${orderDoc.id}
+                                ${escapeHTML(orderId)}
                             </strong>
 
                         </div>
@@ -619,9 +721,7 @@ async function loadOrders(uid){
                             </span>
 
                             <strong>
-                                ${escapeHTML(
-                                    order.recipientName || "-"
-                                )}
+                                ${escapeHTML(recipient)}
                             </strong>
 
                         </div>
@@ -634,9 +734,7 @@ async function loadOrders(uid){
                             </span>
 
                             <strong>
-                                ${escapeHTML(
-                                    order.recipientPhone || "-"
-                                )}
+                                ${escapeHTML(recipientPhone)}
                             </strong>
 
                         </div>
@@ -649,16 +747,7 @@ async function loadOrders(uid){
                             </span>
 
                             <strong>
-                                ${escapeHTML(
-                                    [
-                                        order.streetAddress,
-                                        order.city,
-                                        order.state,
-                                        order.zipCode
-                                    ]
-                                    .filter(Boolean)
-                                    .join(", ")
-                                )}
+                                ${escapeHTML(address)}
                             </strong>
 
                         </div>
@@ -672,7 +761,8 @@ async function loadOrders(uid){
 
                             <strong>
                                 ${escapeHTML(
-                                    order.paymentStatus || "Paid"
+                                    order.paymentStatus ||
+                                    "Paid"
                                 )}
                             </strong>
 
@@ -709,7 +799,7 @@ async function loadOrders(uid){
     }catch(error){
 
         console.error(
-            "Order history error:",
+            "ORDER HISTORY ERROR:",
             error
         );
 
@@ -718,11 +808,16 @@ async function loadOrders(uid){
 
             <div class="error">
 
-                Unable to load your order history.
+                <strong>
+                    Unable to load your order history.
+                </strong>
 
                 <br><br>
 
-                Please try again.
+                ${escapeHTML(
+                    error.message ||
+                    "Please try again."
+                )}
 
             </div>
 
@@ -734,7 +829,7 @@ async function loadOrders(uid){
 
 
 /* ==================================================
-   SECURITY
+   ESCAPE HTML
 ================================================== */
 
 function escapeHTML(value){
