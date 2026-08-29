@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fame Store | Canada Gifts</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f6f9ff;
+    color:#101828;
+}
+
+button,input,textarea{
+    font-family:inherit;
+}
+
+.header{
+    background:#fff;
+    border-bottom:1px solid #e7edf5;
+    padding:22px 18px;
+    text-align:center;
+}
+
+.brand-icon{
+    font-size:34px;
+    margin-bottom:5px;
+}
+
+.brand-name{
+    color:#0757d9;
+    font-size:25px;
+    font-weight:800;
+}
+
+.brand-text{
+    color:#667085;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.wallet-box{
+    display:inline-block;
+    margin-top:14px;
+    background:#eef5ff;
+    color:#0757d9;
+    padding:9px 15px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.country-badge{
+    display:inline-block;
+    margin-top:9px;
+    background:#fff1f2;
+    color:#c1121f;
+    padding:7px 13px;
+    border-radius:18px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.container{
+    width:min(1200px,100%);
+    margin:auto;
+    padding:25px 16px 35px;
+}
+
+.page-title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.page-title h1{
+    font-size:27px;
+    margin-bottom:7px;
+}
+
+.page-title p{
+    color:#667085;
+    font-size:13px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:18px;
+}
+
+.product-card{
+    background:#fff;
+    border:1px solid #e4e9f0;
+    border-radius:17px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(16,24,40,.06);
+    transition:.2s;
+}
+
+.product-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(16,24,40,.10);
+}
+
+.product-image{
+    width:100%;
+    height:220px;
+    display:block;
+    object-fit:cover;
+    background:#eef2f6;
+}
+
+.product-info{
+    padding:15px;
+}
+
+.product-name{
+    font-size:15px;
+    font-weight:700;
+    line-height:1.4;
+    min-height:42px;
+}
+
+.product-price{
+    color:#0757d9;
+    font-size:18px;
+    font-weight:800;
+    margin:10px 0 13px;
+}
+
+.gift-btn{
+    width:100%;
+    border:0;
+    background:#0757d9;
+    color:#fff;
+    padding:12px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.gift-btn:hover{
+    background:#063b91;
+}
+
+.bottom-area{
+    text-align:center;
+    padding:10px 18px 35px;
+}
+
+.dashboard-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#fff;
+    border:1px solid #d9e1eb;
+    color:#344054;
+    padding:12px 20px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* CHECKOUT */
+
+#checkout{
+    display:none;
+}
+
+#checkout.active{
+    display:block;
+}
+
+#productsSection.hidden{
+    display:none;
+}
+
+.checkout-container{
+    width:min(720px,100%);
+    margin:auto;
+    padding:25px 16px 40px;
+}
+
+.checkout-card{
+    background:#fff;
+    border:1px solid #e4e9f0;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:0 10px 35px rgba(16,24,40,.08);
+}
+
+.back-products{
+    border:0;
+    background:#eef3f8;
+    color:#344054;
+    padding:10px 14px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+
+.checkout-card h2{
+    font-size:26px;
+    margin-bottom:20px;
+}
+
+.selected-product{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    background:#f5f8fc;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:25px;
+}
+
+.selected-product img{
+    width:75px;
+    height:75px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.selected-name{
+    font-weight:800;
+    font-size:14px;
+}
+
+.selected-price{
+    color:#0757d9;
+    font-weight:800;
+    margin-top:6px;
+}
+
+.section-title{
+    font-size:17px;
+    font-weight:800;
+    margin:23px 0 13px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    border:1px solid #d9e1eb;
+    border-radius:10px;
+    outline:none;
+    padding:13px;
+    font-size:14px;
+}
+
+.form-group input{
+    height:49px;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#0757d9;
+    box-shadow:0 0 0 3px rgba(7,87,217,.08);
+}
+
+.two-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.summary{
+    background:#f5f8fc;
+    border-radius:13px;
+    padding:17px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:13px;
+    font-size:14px;
+}
+
+.summary-total{
+    border-top:1px solid #dce3ec;
+    padding-top:13px;
+    font-size:18px;
+    font-weight:800;
+}
+
+.balance{
+    color:#087443;
+    font-weight:800;
+}
+
+.confirm-btn{
+    width:100%;
+    border:0;
+    background:#ffc928;
+    color:#101828;
+    padding:15px;
+    border-radius:10px;
+    margin-top:18px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.confirm-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* MESSAGE BOX */
+
+.message-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(16,24,40,.55);
+    z-index:9999;
+    padding:20px;
+    align-items:center;
+    justify-content:center;
+}
+
+.message-overlay.show{
+    display:flex;
+}
+
+.message-box{
+    width:min(390px,100%);
+    background:#fff;
+    border-radius:20px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 20px 70px rgba(0,0,0,.2);
+}
+
+.message-icon{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    margin:0 auto 15px;
+    font-size:27px;
+    background:#fff4d6;
+}
+
+.message-box.success .message-icon{
+    background:#e8fff2;
+}
+
+.message-box h3{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.message-box p{
+    color:#667085;
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.thanks-btn{
+    width:100%;
+    border:0;
+    background:#0757d9;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.thanks-btn:hover{
+    background:#063b91;
+}
+
+@media(max-width:600px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+    }
+
+    .product-image{
+        height:175px;
+    }
+
+    .product-info{
+        padding:11px;
+    }
+
+    .product-name{
+        font-size:13px;
+    }
+
+    .product-price{
+        font-size:16px;
+    }
+
+    .gift-btn{
+        font-size:12px;
+        padding:11px 5px;
+    }
+
+    .two-columns{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .checkout-card{
+        padding:18px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="brand-icon">
+        🛍️
+    </div>
+
+    <div class="brand-name">
+        Fame Store
+    </div>
+
+    <div class="brand-text">
+        Send gifts 🎁, share love ❤️
+    </div>
+
+    <div class="country-badge">
+        🇨🇦 Canada
+    </div>
+
+    <div class="wallet-box">
+        Wallet:
+        <span id="walletBalance">₦0.00</span>
+    </div>
+
+</header>
+
+
+<!-- PRODUCTS -->
+
+<section id="productsSection">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h1>
+                Send a Gift to Canada 🇨🇦
+            </h1>
+
+            <p>
+                Choose a gift and send it to someone special in Canada.
+            </p>
+
+        </div>
+
+        <div
+            class="products"
+            id="products"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- CHECKOUT -->
+
+<section id="checkout">
+
+    <div class="checkout-container">
+
+        <div class="checkout-card">
+
+            <button
+                type="button"
+                class="back-products"
+                id="backProducts"
+            >
+                ← Back to Gifts
+            </button>
+
+            <h2>
+                Canada Checkout 🇨🇦
+            </h2>
+
+
+            <div class="selected-product">
+
+                <img
+                    id="selectedImage"
+                    src=""
+                    alt="Gift"
+                >
+
+                <div>
+
+                    <div
+                        class="selected-name"
+                        id="selectedName"
+                    ></div>
+
+                    <div
+                        class="selected-price"
+                        id="selectedPrice"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTACT INFO -->
+
+            <div class="section-title">
+                Contact Info
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Your Phone
+                </label>
+
+                <input
+                    id="yourPhone"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DELIVERY INFO -->
+
+            <div class="section-title">
+                Canada Delivery Information
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Sender Name
+                </label>
+
+                <input
+                    id="senderName"
+                    type="text"
+                    placeholder="Sender name"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Name
+                </label>
+
+                <input
+                    id="recipientName"
+                    type="text"
+                    placeholder="Recipient name"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Phone
+                </label>
+
+                <input
+                    id="recipientPhone"
+                    type="tel"
+                    placeholder="Recipient phone"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Street / House Address
+                </label>
+
+                <input
+                    id="streetAddress"
+                    type="text"
+                    placeholder="Street / house address"
+                    required
+                >
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        id="city"
+                        type="text"
+                        placeholder="City"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Province
+                    </label>
+
+                    <input
+                        id="state"
+                        type="text"
+                        placeholder="Province"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="form-group">
+
+                    <label>
+                        Country
+                    </label>
+
+                    <input
+                        id="country"
+                        type="text"
+                        value="Canada"
+                        readonly
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Postal Code
+                    </label>
+
+                    <input
+                        id="zipCode"
+                        type="text"
+                        placeholder="Postal Code"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- NOTES -->
+
+            <div class="section-title">
+                Additional Notes
+            </div>
+
+            <div class="form-group">
+
+                <textarea
+                    id="additionalNotes"
+                    placeholder="Gift message or delivery instructions"
+                ></textarea>
+
+            </div>
+
+
+            <!-- PAYMENT SUMMARY -->
+
+            <div class="section-title">
+                Payment Summary
+            </div>
+
+            <div class="summary">
+
+                <div class="summary-row">
+
+                    <span>
+                        Base Price
+                    </span>
+
+                    <strong id="basePrice">
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+                <div class="summary-row summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="totalPrice">
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+                <div class="summary-row">
+
+                    <span>
+                        Your Balance
+                    </span>
+
+                    <strong
+                        class="balance"
+                        id="checkoutBalance"
+                    >
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="confirm-btn"
+                id="confirmOrder"
+            >
+                Confirm Order
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BOTTOM -->
+
+<div class="bottom-area">
+
+    <a
+        href="dashboard.html"
+        class="dashboard-btn"
+    >
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+
+<!-- MESSAGE POPUP -->
+
+<div
+    class="message-overlay"
+    id="messageOverlay"
+>
+
+    <div
+        class="message-box"
+        id="messageBox"
+    >
+
+        <div
+            class="message-icon"
+            id="messageIcon"
+        >
+            ⚠️
+        </div>
+
+        <h3 id="messageTitle">
+            Insufficient wallet balance
+        </h3>
+
+        <p id="messageText">
+            Kindly deposit and make an order
+        </p>
+
+        <button
+            type="button"
+            class="thanks-btn"
+            id="thanksButton"
+        >
+            Thanks
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    auth,
+    db
+} from "./firebase-config.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+    doc,
+    getDoc,
+    addDoc,
+    collection,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =====================================
+   CANADA PRODUCTS
+===================================== */
+
+const products = [
+
+    {
+        name:"Artificial Rose Flower Bouquet",
+        price:45000,
+        image:"https://i.ibb.co/hFyVSV1K/1782108227-6a38d043ac419-Red.webp"
+    },
+
+    {
+        name:"Artificial Rose Flower Bouquet",
+        price:45000,
+        image:"https://i.ibb.co/Xf1WPMJL/1782108227-6a38d043ac377-White.webp"
+    },
+
+    {
+        name:"Artificial Rose Flower Bouquet",
+        price:45000,
+        image:"https://i.ibb.co/BH6BgPkV/1782108227-6a38d043ac2d1-media-6987643776f8e.webp"
+    },
+
+    {
+        name:"Artificial Rose Flower Bouquet",
+        price:45000,
+        image:"https://i.ibb.co/dJP9vk4h/1782108227-6a38d043ac1c8-media-698764375caff.webp"
+    },
+
+    {
+        name:"Glass Flower",
+        price:30000,
+        image:"https://i.ibb.co/Mxwz931X/1782104837-6a38c3058aa7a-x.webp"
+    },
+
+    {
+        name:"Glass Flower",
+        price:30000,
+        image:"https://i.ibb.co/hF1xkKDJ/1782104837-6a38c3058a940-xv-1.webp"
+    },
+
+    {
+        name:"Glass Flower",
+        price:30000,
+        image:"https://i.ibb.co/kgqpY3zv/1782104837-6a38c3058ac3f-Blue-1.webp"
+    },
+
+    {
+        name:"Glass Flower",
+        price:30000,
+        image:"https://i.ibb.co/hFxS2d2M/1782104837-6a38c3058ab65-Purple-1.webp"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://i.ibb.co/4gm2ZTvB/1782106515-6a38c99319235-Red-1.webp"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://i.ibb.co/TqWWc7Z4/1782106515-6a38c9931930b-Blue-1.webp"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://i.ibb.co/2YPDJL9R/1782106515-6a38c993193ae-Yellow-1.webp"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://i.ibb.co/bg55JSGD/1782106515-6a38c9931944a-Black-1.webp"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://i.ibb.co/7tvtcK4V/1782106515-6a38c993194e3-White-1.webp"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:30000,
+        image:"https://i.ibb.co/TqmPr5wJ/1781780667-6a33d0bb194e4-IMG-5378-1.webp"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:30000,
+        image:"https://i.ibb.co/mVhxwbGP/1781780667-6a33d0bb19359-IMG-5380-1.webp"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:30000,
+        image:"https://i.ibb.co/mr1GBYgf/1781780667-6a33d0bb19279-IMG-5381-1.webp"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:30000,
+        image:"https://i.ibb.co/JwFdwyKx/1781780667-6a33d0bb1916b-IMG-5382-1.webp"
+    },
+
+    {
+        name:"Premium Quality Glass Flower",
+        price:55000,
+        image:"https://i.ibb.co/W4BmMTCB/1782108514-6a38d1621186d-media-699832785cec8.webp"
+    },
+
+    {
+        name:"Ladies Handbag",
+        price:60000,
+        image:"https://i.ibb.co/CKyvj6q5/dearsenda-com-ladies-handbag.jpg"
+    },
+
+    {
+        name:"Ladies Handbag",
+        price:60000,
+        image:"https://i.ibb.co/0RDLzx5R/dearsenda-com-ladies-handbag-2.jpg"
+    },
+
+    {
+        name:"Ladies Handbag",
+        price:60000,
+        image:"https://i.ibb.co/LFTQxK1/dearsenda-com-ladies-handbag-3.jpg"
+    },
+
+    {
+        name:"Ladies Handbag",
+        price:60000,
+        image:"https://i.ibb.co/ccH1Lnp6/ladies-handbag-1.jpg"
+    },
+
+    {
+        name:"Quilted Handbag",
+        price:50000,
+        image:"https://i.ibb.co/cmTM36z/quilted-handbag-4.jpg"
+    },
+
+    {
+        name:"Quilted Handbag",
+        price:50000,
+        image:"https://i.ibb.co/spWRkgDb/quilted-handbag-1.jpg"
+    },
+
+    {
+        name:"Quilted Handbag",
+        price:50000,
+        image:"https://i.ibb.co/TqNSPgcM/quilted-handbag-2.jpg"
+    },
+
+    {
+        name:"Quilted Handbag",
+        price:50000,
+        image:"https://i.ibb.co/n8fFqyGB/quilted-handbag.jpg"
+    },
+
+    {
+        name:"Teddy Bear",
+        price:60000,
+        image:"https://i.ibb.co/pjyCqfD6/teddy-bear.webp"
+    },
+
+    {
+        name:"Bible",
+        price:65000,
+        image:"https://i.ibb.co/p69JK4NL/bible.webp"
+    },
+
+    {
+        name:"Quran",
+        price:65000,
+        image:"https://i.ibb.co/rDG6PnZ/quran.webp"
+    },
+
+    {
+        name:"Fresh Cut Flower",
+        price:85000,
+        image:"https://i.ibb.co/wmx1NSh/fresh-cut-flower.jpg"
+    },
+
+    {
+        name:"Handmade Crochet Flower Bouquet",
+        price:65000,
+        image:"https://i.ibb.co/fGN77Jsm/handmade-crochet-flower-bouquet.jpg"
+    },
+
+    {
+        name:"3pc Set Watch, Necklace and Bracelet",
+        price:85000,
+        image:"https://i.ibb.co/Wp2TbnFr/3pc-set-watch-necklace-and-bracelet.jpg"
+    },
+
+    {
+        name:"Men's Watch II",
+        price:80000,
+        image:"https://i.ibb.co/nM0T8N4t/men-s-watch-ii.webp"
+    },
+
+    {
+        name:"Pizza 🍕",
+        price:30000,
+        image:"https://i.ibb.co/0R3n09kt/pizza.jpg"
+    },
+
+    {
+        name:"Pizza And Coke",
+        price:38000,
+        image:"https://i.ibb.co/JFgV0HzP/pizza-and-coke.webp"
+    },
+
+    {
+        name:"Carrot Cake",
+        price:60000,
+        image:"https://i.ibb.co/zh7MRcVp/carrot-cake.jpg"
+    },
+
+    {
+        name:"AMG Benz Car Key",
+        price:250000,
+        image:"https://i.ibb.co/HkP2R3f/amg-benz-car-key.jpg"
+    },
+
+    {
+        name:"Tesla Key",
+        price:150000,
+        image:"https://i.ibb.co/zh4X6cVy/tesla-key.webp"
+    },
+
+    {
+        name:"Tesla Model 3/Y Car Key Card",
+        price:125000,
+        image:"https://i.ibb.co/MDYVYTjD/tesla-model-3-y-car-key-card.jpg"
+    },
+
+    {
+        name:"Ford Key",
+        price:80000,
+        image:"https://i.ibb.co/spX3N0HK/ford-key.webp"
+    },
+
+    {
+        name:"BMW Car Key",
+        price:65000,
+        image:"https://i.ibb.co/mVHtkzMk/bmw-car-key.jpg"
+    },
+
+    {
+        name:"Chevrolet Car Key",
+        price:65000,
+        image:"https://i.ibb.co/8gZGqjqD/chevrolet-car-key.jpg"
+    },
+
+    {
+        name:"House Keys",
+        price:45000,
+        image:"https://i.ibb.co/pjCP7DKD/house-keys.webp"
+    }
+
+];
+
+
+/* =====================================
+   VARIABLES
+===================================== */
+
+let currentUser = null;
+let currentProduct = null;
+let currentBalance = 0;
+let orderProcessing = false;
+
+
+/* =====================================
+   ELEMENTS
+===================================== */
+
+const productsContainer =
+    document.getElementById("products");
+
+const productsSection =
+    document.getElementById("productsSection");
+
+const checkout =
+    document.getElementById("checkout");
+
+const walletBalance =
+    document.getElementById("walletBalance");
+
+const checkoutBalance =
+    document.getElementById("checkoutBalance");
+
+const messageOverlay =
+    document.getElementById("messageOverlay");
+
+const messageBox =
+    document.getElementById("messageBox");
+
+const messageIcon =
+    document.getElementById("messageIcon");
+
+const messageTitle =
+    document.getElementById("messageTitle");
+
+const messageText =
+    document.getElementById("messageText");
+
+const thanksButton =
+    document.getElementById("thanksButton");
+
+
+/* =====================================
+   MONEY
+===================================== */
+
+function money(value){
+
+    return "₦" +
+        Number(value).toLocaleString(
+            "en-NG",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+}
+
+
+/* =====================================
+   RENDER PRODUCTS
+===================================== */
+
+products.forEach(product => {
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "product-card";
+
+    card.innerHTML = `
+
+        <img
+            class="product-image"
+            src="${product.image}"
+            alt="${product.name}"
+            loading="lazy"
+        >
+
+        <div class="product-info">
+
+            <div class="product-name">
+                ${product.name}
+            </div>
+
+            <div class="product-price">
+                ${money(product.price)}
+            </div>
+
+            <button
+                type="button"
+                class="gift-btn"
+            >
+                Send as Gift
+            </button>
+
+        </div>
+    `;
+
+    card
+        .querySelector(".gift-btn")
+        .addEventListener(
+            "click",
+            () => openCheckout(product)
+        );
+
+    productsContainer.appendChild(card);
+
+});
+
+
+/* =====================================
+   AUTH
+===================================== */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            currentUser = null;
+
+            currentBalance = 0;
+
+            walletBalance.textContent =
+                "₦0.00";
+
+            checkoutBalance.textContent =
+                "₦0.00";
+
+            return;
+        }
+
+        currentUser = user;
+
+        await loadWallet();
+
+    }
+);
+
+
+/* =====================================
+   LOAD WALLET
+===================================== */
+
+async function loadWallet(){
+
+    if(!currentUser)
+        return;
+
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            );
+
+        const snap =
+            await getDoc(userRef);
+
+        if(!snap.exists()){
+
+            currentBalance = 0;
+
+        }else{
+
+            const data =
+                snap.data();
+
+            currentBalance =
+                Number(
+                    data.walletBalance || 0
+                );
+        }
+
+        walletBalance.textContent =
+            money(currentBalance);
+
+        checkoutBalance.textContent =
+            money(currentBalance);
+
+    }catch(error){
+
+        console.error(
+            "Wallet error:",
+            error
+        );
+
+    }
+}
+
+
+/* =====================================
+   OPEN CHECKOUT
+===================================== */
+
+function openCheckout(product){
+
+    if(!currentUser){
+
+        showPopup(
+            "login",
+            "Please Login First",
+            "Please login to your Fame Store account before sending a gift."
+        );
+
+        return;
+    }
+
+    currentProduct =
+        product;
+
+    productsSection
+        .classList
+        .add("hidden");
+
+    checkout
+        .classList
+        .add("active");
+
+    document.getElementById(
+        "selectedImage"
+    ).src =
+        product.image;
+
+    document.getElementById(
+        "selectedName"
+    ).textContent =
+        product.name;
+
+    document.getElementById(
+        "selectedPrice"
+    ).textContent =
+        money(product.price);
+
+    document.getElementById(
+        "basePrice"
+    ).textContent =
+        money(product.price);
+
+    document.getElementById(
+        "totalPrice"
+    ).textContent =
+        money(product.price);
+
+    checkoutBalance.textContent =
+        money(currentBalance);
+
+    document.getElementById(
+        "country"
+    ).value =
+        "Canada";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =====================================
+   BACK TO GIFTS
+===================================== */
+
+document
+    .getElementById("backProducts")
+    .addEventListener(
+        "click",
+        () => {
+
+            checkout
+                .classList
+                .remove("active");
+
+            productsSection
+                .classList
+                .remove("hidden");
+
+            currentProduct =
+                null;
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        }
+    );
+
+
+/* =====================================
+   POPUP
+===================================== */
+
+function showPopup(
+    type,
+    title,
+    text
+){
+
+    messageBox.className =
+        "message-box " +
+        (type === "success"
+            ? "success"
+            : "");
+
+    if(type === "success"){
+
+        messageIcon.textContent =
+            "✓";
+
+    }else{
+
+        messageIcon.textContent =
+            type === "login"
+                ? "🔐"
+                : "⚠️";
+    }
+
+    messageTitle.textContent =
+        title;
+
+    messageText.textContent =
+        text;
+
+    messageOverlay
+        .classList
+        .add("show");
+}
+
+
+thanksButton.addEventListener(
+    "click",
+    () => {
+
+        messageOverlay
+            .classList
+            .remove("show");
+
+    }
+);
+
+
+/* =====================================
+   FORM VALIDATION
+===================================== */
+
+function validateForm(){
+
+    const fields = [
+
+        "yourPhone",
+        "senderName",
+        "recipientName",
+        "recipientPhone",
+        "streetAddress",
+        "city",
+        "state",
+        "country",
+        "zipCode"
+
+    ];
+
+    for(
+        const id of fields
+    ){
+
+        const field =
+            document.getElementById(id);
+
+        if(
+            !field.value.trim()
+        ){
+
+            field.focus();
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+/* =====================================
+   CONFIRM ORDER
+===================================== */
+
+document
+    .getElementById("confirmOrder")
+    .addEventListener(
+        "click",
+        async () => {
+
+            if(orderProcessing)
+                return;
+
+            if(!currentUser){
+
+                showPopup(
+                    "login",
+                    "Please Login First",
+                    "Please login to your Fame Store account before making an order."
+                );
+
+                return;
+            }
+
+            if(!currentProduct)
+                return;
+
+            if(!validateForm()){
+
+                showPopup(
+                    "error",
+                    "Information Required",
+                    "Kindly complete all the Canada delivery information before confirming your order."
+                );
+
+                return;
+            }
+
+
+            await loadWallet();
+
+            const total =
+                Number(
+                    currentProduct.price
+                );
+
+
+            /* =================================
+               INSUFFICIENT BALANCE
+            ================================= */
+
+            if(
+                currentBalance < total
+            ){
+
+                showPopup(
+                    "error",
+                    "Insufficient wallet balance",
+                    "Kindly deposit and make an order"
+                );
+
+                return;
+            }
+
+
+            /* =================================
+               PROCESS ORDER
+            ================================= */
+
+            orderProcessing =
+                true;
+
+            const button =
+                document.getElementById(
+                    "confirmOrder"
+                );
+
+            button.disabled =
+                true;
+
+            button.textContent =
+                "Processing...";
+
+
+            try{
+
+                await addDoc(
+                    collection(
+                        db,
+                        "giftOrders"
+                    ),
+                    {
+
+                        customerUID:
+                            currentUser.uid,
+
+                        customerEmail:
+                            currentUser.email || "",
+
+                        destination:
+                            "Canada",
+
+                        country:
+                            "Canada",
+
+                        productName:
+                            currentProduct.name,
+
+                        productImage:
+                            currentProduct.image,
+
+                        basePrice:
+                            total,
+
+                        total:
+                            total,
+
+                        yourPhone:
+                            document
+                                .getElementById(
+                                    "yourPhone"
+                                )
+                                .value
+                                .trim(),
+
+                        senderName:
+                            document
+                                .getElementById(
+                                    "senderName"
+                                )
+                                .value
+                                .trim(),
+
+                        recipientName:
+                            document
+                                .getElementById(
+                                    "recipientName"
+                                )
+                                .value
+                                .trim(),
+
+                        recipientPhone:
+                            document
+                                .getElementById(
+                                    "recipientPhone"
+                                )
+                                .value
+                                .trim(),
+
+                        streetAddress:
+                            document
+                                .getElementById(
+                                    "streetAddress"
+                                )
+                                .value
+                                .trim(),
+
+                        city:
+                            document
+                                .getElementById(
+                                    "city"
+                                )
+                                .value
+                                .trim(),
+
+                        state:
+                            document
+                                .getElementById(
+                                    "state"
+                                )
+                                .value
+                                .trim(),
+
+                        zipCode:
+                            document
+                                .getElementById(
+                                    "zipCode"
+                                )
+                                .value
+                                .trim(),
+
+                        additionalNotes:
+                            document
+                                .getElementById(
+                                    "additionalNotes"
+                                )
+                                .value
+                                .trim(),
+
+                        paymentMethod:
+                            "Wallet",
+
+                        paymentStatus:
+                            "Paid",
+
+                        status:
+                            "Pending",
+
+                        createdAt:
+                            serverTimestamp()
+                    }
+                );
+
+
+                /*
+                 * Get latest wallet balance.
+                 */
+
+                const userRef =
+                    doc(
+                        db,
+                        "users",
+                        currentUser.uid
+                    );
+
+                const latestSnap =
+                    await getDoc(
+                        userRef
+                    );
+
+                const latestData =
+                    latestSnap.exists()
+                        ? latestSnap.data()
+                        : {};
+
+                const latestBalance =
+                    Number(
+                        latestData.walletBalance || 0
+                    );
+
+
+                if(
+                    latestBalance < total
+                ){
+
+                    showPopup(
+                        "error",
+                        "Insufficient wallet balance",
+                        "Kindly deposit and make an order"
+                    );
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "Confirm Order";
+
+                    orderProcessing =
+                        false;
+
+                    return;
+                }
+
+
+                /*
+                 * Display the balance after
+                 * the order amount.
+                 *
+                 * Actual wallet deduction should
+                 * be handled securely server-side.
+                 */
+
+                currentBalance =
+                    latestBalance - total;
+
+
+                walletBalance.textContent =
+                    money(currentBalance);
+
+                checkoutBalance.textContent =
+                    money(currentBalance);
+
+
+                button.textContent =
+                    "Order Completed";
+
+
+                /* =================================
+                   SUCCESS
+                ================================= */
+
+                showPopup(
+                    "success",
+                    "Your order completed",
+                    "It will take less than three business days to deliver your order. Always check your order history."
+                );
+
+
+                clearCheckoutForm();
+
+
+            }catch(error){
+
+                console.error(
+                    "ORDER ERROR:",
+                    error
+                );
+
+                showPopup(
+                    "error",
+                    "Order Failed",
+                    "Unable to complete your order. Please try again."
+                );
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "Confirm Order";
+
+            }finally{
+
+                orderProcessing =
+                    false;
+
+            }
+
+        }
+    );
+
+
+/* =====================================
+   CLEAR FORM
+===================================== */
+
+function clearCheckoutForm(){
+
+    const fields = [
+
+        "yourPhone",
+        "senderName",
+        "recipientName",
+        "recipientPhone",
+        "streetAddress",
+        "city",
+        "state",
+        "zipCode",
+        "additionalNotes"
+
+    ];
+
+    fields.forEach(
+        id => {
+
+            const field =
+                document.getElementById(id);
+
+            if(field)
+                field.value = "";
+
+        }
+    );
+
+    document.getElementById(
+        "country"
+    ).value =
+        "Canada";
+}
+
+
+/* =====================================
+   CLOSE POPUP OUTSIDE
+===================================== */
+
+messageOverlay.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            messageOverlay
+        ){
+
+            messageOverlay
+                .classList
+                .remove("show");
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+              </html>
