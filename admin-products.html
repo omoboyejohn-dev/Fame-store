@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Products | Fame Store Admin</title>
+<title>Products Management | Fame Store</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +43,6 @@ body{
 
 button,
 input,
-textarea,
 select{
     font-family:inherit;
 }
@@ -51,10 +51,21 @@ button{
     cursor:pointer;
 }
 
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
 .header{
-    background:#fff;
+    background:white;
     border-bottom:1px solid var(--border);
-    padding:16px 25px;
+    min-height:70px;
+    padding:15px 25px;
 
     display:flex;
     justify-content:space-between;
@@ -76,10 +87,8 @@ button{
     height:43px;
     background:var(--yellow);
     border-radius:12px;
-
     display:grid;
     place-items:center;
-
     font-size:21px;
 }
 
@@ -91,74 +100,60 @@ button{
 
 .brand-role{
     color:var(--gray);
-    font-size:10px;
+    font-size:9px;
     margin-top:3px;
 }
 
-.back-btn{
-    background:#edf4ff;
+.admin-badge{
+    background:#eaf2ff;
     color:var(--blue);
-
-    border:0;
-    border-radius:9px;
-
-    padding:10px 14px;
-
-    font-size:11px;
-    font-weight:700;
-}
-
-.container{
-    width:min(1250px,100%);
-    margin:auto;
-    padding:25px 18px 50px;
-}
-
-.page-heading{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    gap:15px;
-    margin-bottom:20px;
-}
-
-.page-heading h1{
-    font-size:25px;
-}
-
-.page-heading p{
-    color:var(--gray);
-    font-size:12px;
-    margin-top:5px;
-}
-
-.add-btn{
-    background:var(--blue);
-    color:#fff;
-
-    border:0;
-    border-radius:10px;
-
-    padding:12px 18px;
-
-    font-size:12px;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:10px;
     font-weight:800;
 }
 
-.add-btn:hover{
-    background:var(--dark-blue);
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:min(1200px,100%);
+    margin:auto;
+    padding:28px 18px 60px;
 }
+
+
+/* =========================
+   TITLE
+========================= */
+
+.page-title{
+    margin-bottom:22px;
+}
+
+.page-title h1{
+    font-size:25px;
+    font-weight:800;
+}
+
+.page-title p{
+    color:var(--gray);
+    font-size:12px;
+    margin-top:6px;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
 
 .message{
     display:none;
-
     padding:13px 15px;
-
     border-radius:10px;
-
     margin-bottom:18px;
-
     font-size:12px;
 }
 
@@ -167,43 +162,168 @@ button{
 }
 
 .message.success{
-    background:#ecfff4;
     color:var(--green);
+    background:#ecfff4;
     border:1px solid #b9efd1;
 }
 
 .message.error{
-    background:#fff1f0;
     color:var(--red);
+    background:#fff1f0;
     border:1px solid #ffd3d0;
 }
 
+
+/* =========================
+   ADD PRODUCT CARD
+========================= */
+
+.form-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:25px;
+}
+
+.form-header{
+    margin-bottom:20px;
+}
+
+.form-header h2{
+    font-size:16px;
+}
+
+.form-header p{
+    color:var(--gray);
+    font-size:11px;
+    margin-top:5px;
+}
+
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    font-size:11px;
+    font-weight:700;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    height:45px;
+    border:1px solid #d9e0ea;
+    border-radius:9px;
+    padding:0 13px;
+    outline:none;
+    background:white;
+    font-size:12px;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(7,87,217,.08);
+}
+
+
+.form-actions{
+    margin-top:18px;
+    display:flex;
+    gap:10px;
+}
+
+.primary-btn{
+    height:45px;
+    padding:0 20px;
+    border:0;
+    border-radius:9px;
+    background:var(--blue);
+    color:white;
+    font-size:12px;
+    font-weight:800;
+}
+
+.primary-btn:hover{
+    background:var(--dark-blue);
+}
+
+.secondary-btn{
+    height:45px;
+    padding:0 20px;
+    border:1px solid #d9e0ea;
+    border-radius:9px;
+    background:white;
+    color:#475467;
+    font-size:12px;
+    font-weight:700;
+}
+
+.secondary-btn:hover{
+    background:#f8fafc;
+}
+
+
+/* =========================
+   PRODUCTS HEADER
+========================= */
+
+.products-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.products-header h2{
+    font-size:17px;
+}
+
+.product-count{
+    color:var(--gray);
+    font-size:11px;
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
 .products{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:16px;
 }
 
 .product-card{
-    background:#fff;
+    background:white;
     border:1px solid var(--border);
     border-radius:16px;
-
     overflow:hidden;
-
-    box-shadow:0 2px 8px rgba(16,24,40,.03);
 }
 
 .product-image{
     width:100%;
     height:210px;
-
-    background:#f2f4f7;
-
+    background:#f8fafc;
     display:flex;
     align-items:center;
     justify-content:center;
-
     overflow:hidden;
 }
 
@@ -213,60 +333,51 @@ button{
     object-fit:cover;
 }
 
-.product-image.no-image{
-    font-size:40px;
-    color:#98a2b3;
-}
-
-.product-info{
-    padding:15px;
+.product-content{
+    padding:17px;
 }
 
 .product-name{
-    font-size:13px;
+    font-size:14px;
     font-weight:800;
-
-    min-height:38px;
-
-    line-height:1.45;
+    line-height:1.4;
 }
 
 .product-price{
     color:var(--blue);
-    font-size:17px;
+    font-size:16px;
     font-weight:800;
-
-    margin-top:8px;
+    margin-top:7px;
 }
 
-.product-country{
-    color:var(--gray);
-    font-size:10px;
-
-    margin-top:5px;
+.product-destination{
+    display:inline-block;
+    margin-top:9px;
+    padding:5px 8px;
+    border-radius:15px;
+    background:#f2f4f7;
+    color:#475467;
+    font-size:9px;
+    font-weight:700;
 }
 
 .product-actions{
     display:flex;
     gap:8px;
-
-    margin-top:14px;
+    margin-top:15px;
 }
 
 .edit-btn,
 .delete-btn{
     flex:1;
-
     height:38px;
-
     border-radius:8px;
-
     font-size:10px;
     font-weight:800;
 }
 
 .edit-btn{
-    border:1px solid #cbdcff;
+    border:1px solid #cddcff;
     background:#edf4ff;
     color:var(--blue);
 }
@@ -277,209 +388,121 @@ button{
     color:var(--red);
 }
 
+
+/* =========================
+   LOADING
+========================= */
+
 .loading,
 .empty{
-    background:#fff;
+    background:white;
     border:1px solid var(--border);
     border-radius:15px;
-
-    padding:45px 20px;
-
+    padding:40px 20px;
     text-align:center;
-
     color:var(--gray);
-
-    font-size:13px;
+    font-size:12px;
 }
 
 .empty{
     display:none;
 }
 
-/* MODAL */
+
+/* =========================
+   MODAL
+========================= */
 
 .modal{
-    display:none;
-
     position:fixed;
-
     inset:0;
-
     background:rgba(16,24,40,.55);
 
-    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
 
     padding:20px;
-
-    overflow:auto;
+    z-index:500;
 }
 
 .modal.show{
     display:flex;
-
-    align-items:center;
-    justify-content:center;
 }
 
 .modal-box{
-    width:min(550px,100%);
+    width:min(500px,100%);
+    max-height:90vh;
+    overflow:auto;
 
-    background:#fff;
-
+    background:white;
     border-radius:17px;
-
-    padding:24px;
-
-    box-shadow:0 20px 50px rgba(0,0,0,.18);
+    padding:22px;
 }
 
 .modal-header{
     display:flex;
-
     justify-content:space-between;
     align-items:center;
-
     margin-bottom:20px;
 }
 
 .modal-header h2{
-    font-size:18px;
+    font-size:17px;
 }
 
 .close-btn{
-    border:0;
-    background:#f2f4f7;
-
     width:34px;
     height:34px;
-
-    border-radius:50%;
-
+    border:0;
+    border-radius:8px;
+    background:#f2f4f7;
     font-size:18px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-
-    font-size:11px;
-    font-weight:700;
-
-    margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-    width:100%;
-
-    border:1px solid #d9e0ea;
-
-    border-radius:9px;
-
-    padding:12px;
-
-    outline:none;
-
-    font-size:12px;
-
-    background:#fff;
-}
-
-.form-group textarea{
-    min-height:90px;
-    resize:vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-    border-color:var(--blue);
-}
-
-.form-row{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:12px;
 }
 
 .modal-actions{
     display:flex;
-
     gap:10px;
-
     margin-top:20px;
 }
 
-.cancel-btn,
-.save-btn{
+.modal-actions button{
     flex:1;
-
-    height:45px;
-
-    border-radius:9px;
-
-    font-size:12px;
-    font-weight:800;
 }
 
-.cancel-btn{
-    background:#f2f4f7;
-    border:1px solid var(--border);
-}
 
-.save-btn{
-    background:var(--blue);
-    color:#fff;
-    border:0;
-}
+/* =========================
+   MOBILE
+========================= */
 
-.save-btn:disabled{
-    opacity:.6;
-}
-
-@media(max-width:1000px){
-
-    .products{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-}
-
-@media(max-width:750px){
+@media(max-width:900px){
 
     .products{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .page-heading{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .add-btn{
-        width:100%;
-    }
-
 }
 
-@media(max-width:500px){
+@media(max-width:650px){
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
 
     .products{
         grid-template-columns:1fr;
     }
 
-    .form-row{
-        grid-template-columns:1fr;
+    .header{
+        padding:14px;
     }
 
     .container{
-        padding:20px 12px 40px;
+        padding:20px 12px 50px;
     }
 
 }
@@ -487,6 +510,7 @@ button{
 </style>
 
 </head>
+
 
 <body>
 
@@ -514,44 +538,28 @@ button{
     </div>
 
 
-    <button
-        class="back-btn"
-        onclick="location.href='admin-dashboard.html'">
-
-        ← Dashboard
-
-    </button>
+    <div class="admin-badge">
+        ADMIN
+    </div>
 
 </header>
+
 
 
 <main class="container">
 
 
-<div class="page-heading">
+<section class="page-title">
 
-    <div>
+    <h1>
+        Products Management
+    </h1>
 
-        <h1>
-            Products
-        </h1>
+    <p>
+        Add, edit and manage the products available on Fame Store.
+    </p>
 
-        <p>
-            Add, edit and manage products available in Fame Store.
-        </p>
-
-    </div>
-
-
-    <button
-        class="add-btn"
-        id="addProductBtn">
-
-        + Add New Product
-
-    </button>
-
-</div>
+</section>
 
 
 <div
@@ -560,72 +568,30 @@ button{
 </div>
 
 
-<div
-    id="loading"
-    class="loading">
-
-    Loading products...
-
-</div>
-
-
-<div
-    id="empty"
-    class="empty">
-
-    <div style="font-size:40px;margin-bottom:10px;">
-        🛍️
-    </div>
-
-    <h3 style="margin-bottom:5px;">
-        No Products
-    </h3>
-
-    <p>
-        Add your first Fame Store product.
-    </p>
-
-</div>
-
-
-<div
-    id="products"
-    class="products">
-</div>
-
-
-</main>
-
 
 <!-- =========================
-     PRODUCT MODAL
+     ADD PRODUCT
 ========================= -->
 
-<div
-    class="modal"
-    id="productModal">
+<section class="form-card">
 
-    <div class="modal-box">
+    <div class="form-header">
 
+        <h2>
+            ➕ Add New Product
+        </h2>
 
-        <div class="modal-header">
+        <p>
+            Add a product that customers can order.
+        </p>
 
-            <h2 id="modalTitle">
-                Add Product
-            </h2>
-
-            <button
-                class="close-btn"
-                id="closeModal">
-
-                ×
-
-            </button>
-
-        </div>
+    </div>
 
 
-        <form id="productForm">
+    <form id="productForm">
+
+
+        <div class="form-grid">
 
 
             <div class="form-group">
@@ -643,55 +609,24 @@ button{
             </div>
 
 
-            <div class="form-row">
+            <div class="form-group">
 
+                <label>
+                    Price (NGN)
+                </label>
 
-                <div class="form-group">
-
-                    <label>
-                        Price
-                    </label>
-
-                    <input
-                        type="number"
-                        id="productPrice"
-                        placeholder="45000"
-                        min="0"
-                        step="0.01"
-                        required>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Currency
-                    </label>
-
-                    <select id="productCurrency">
-
-                        <option value="NGN">
-                            NGN ₦
-                        </option>
-
-                        <option value="USD">
-                            USD $
-                        </option>
-
-                        <option value="CAD">
-                            CAD $
-                        </option>
-
-                    </select>
-
-                </div>
-
+                <input
+                    type="number"
+                    id="productPrice"
+                    placeholder="45000"
+                    min="0"
+                    step="0.01"
+                    required>
 
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group full">
 
                 <label>
                     Product Image URL
@@ -700,7 +635,7 @@ button{
                 <input
                     type="url"
                     id="productImage"
-                    placeholder="https://example.com/image.webp"
+                    placeholder="https://i.ibb.co/example/product.webp"
                     required>
 
             </div>
@@ -709,14 +644,10 @@ button{
             <div class="form-group">
 
                 <label>
-                    Destination / Availability
+                    Destination
                 </label>
 
-                <select id="productRegion">
-
-                    <option value="Nigeria">
-                        Nigeria
-                    </option>
+                <select id="productDestination">
 
                     <option value="USA">
                         USA
@@ -726,12 +657,8 @@ button{
                         Canada
                     </option>
 
-                    <option value="USA, Canada">
+                    <option value="USA & Canada">
                         USA & Canada
-                    </option>
-
-                    <option value="Worldwide">
-                        Worldwide
                     </option>
 
                 </select>
@@ -742,12 +669,299 @@ button{
             <div class="form-group">
 
                 <label>
-                    Description
+                    Category
                 </label>
 
-                <textarea
-                    id="productDescription"
-                    placeholder="Describe the product..."></textarea>
+                <select id="productCategory">
+
+                    <option value="Flowers">
+                        Flowers
+                    </option>
+
+                    <option value="Gifts">
+                        Gifts
+                    </option>
+
+                    <option value="Fashion">
+                        Fashion
+                    </option>
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Jewelry">
+                        Jewelry
+                    </option>
+
+                    <option value="Watches">
+                        Watches
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                class="primary-btn"
+                id="addProductBtn">
+
+                Add Product
+
+            </button>
+
+
+            <button
+                type="reset"
+                class="secondary-btn">
+
+                Clear
+
+            </button>
+
+        </div>
+
+
+    </form>
+
+</section>
+
+
+
+<!-- =========================
+     PRODUCT LIST
+========================= -->
+
+<section>
+
+    <div class="products-header">
+
+        <div>
+
+            <h2>
+                Store Products
+            </h2>
+
+            <div
+                class="product-count"
+                id="productCount">
+
+                0 products
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="secondary-btn"
+            id="refreshBtn">
+
+            ↻ Refresh
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="loading"
+        class="loading">
+
+        Loading products...
+
+    </div>
+
+
+    <div
+        id="empty"
+        class="empty">
+
+        <div style="font-size:40px;margin-bottom:10px;">
+            🛍️
+        </div>
+
+        <strong>
+            No products found
+        </strong>
+
+        <p style="margin-top:6px;">
+            Add your first product above.
+        </p>
+
+    </div>
+
+
+    <div
+        id="products"
+        class="products">
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================
+     EDIT MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="editModal">
+
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+            <h2>
+                Edit Product
+            </h2>
+
+            <button
+                class="close-btn"
+                id="closeModal">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="editForm">
+
+
+            <input
+                type="hidden"
+                id="editId">
+
+
+            <div class="form-group"
+                 style="margin-bottom:14px;">
+
+                <label>
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="editName"
+                    required>
+
+            </div>
+
+
+            <div class="form-group"
+                 style="margin-bottom:14px;">
+
+                <label>
+                    Price (NGN)
+                </label>
+
+                <input
+                    type="number"
+                    id="editPrice"
+                    min="0"
+                    step="0.01"
+                    required>
+
+            </div>
+
+
+            <div class="form-group"
+                 style="margin-bottom:14px;">
+
+                <label>
+                    Product Image URL
+                </label>
+
+                <input
+                    type="url"
+                    id="editImage"
+                    required>
+
+            </div>
+
+
+            <div class="form-group"
+                 style="margin-bottom:14px;">
+
+                <label>
+                    Destination
+                </label>
+
+                <select id="editDestination">
+
+                    <option value="USA">
+                        USA
+                    </option>
+
+                    <option value="Canada">
+                        Canada
+                    </option>
+
+                    <option value="USA & Canada">
+                        USA & Canada
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="editCategory">
+
+                    <option value="Flowers">
+                        Flowers
+                    </option>
+
+                    <option value="Gifts">
+                        Gifts
+                    </option>
+
+                    <option value="Fashion">
+                        Fashion
+                    </option>
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Jewelry">
+                        Jewelry
+                    </option>
+
+                    <option value="Watches">
+                        Watches
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
 
             </div>
 
@@ -756,8 +970,8 @@ button{
 
                 <button
                     type="button"
-                    class="cancel-btn"
-                    id="cancelBtn">
+                    class="secondary-btn"
+                    id="cancelEdit">
 
                     Cancel
 
@@ -766,10 +980,10 @@ button{
 
                 <button
                     type="submit"
-                    class="save-btn"
-                    id="saveBtn">
+                    class="primary-btn"
+                    id="saveEditBtn">
 
-                    Save Product
+                    Save Changes
 
                 </button>
 
@@ -783,7 +997,13 @@ button{
 </div>
 
 
+
 <script type="module">
+
+
+/* =====================================
+   FIREBASE
+===================================== */
 
 import {
     auth,
@@ -805,13 +1025,21 @@ import {
     updateDoc,
     deleteDoc,
     serverTimestamp
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-/* =========================
+
+/* =====================================
    ELEMENTS
-========================= */
+===================================== */
+
+const message =
+    document.getElementById("message");
+
+const productForm =
+    document.getElementById("productForm");
 
 const productsContainer =
     document.getElementById("products");
@@ -822,48 +1050,33 @@ const loading =
 const empty =
     document.getElementById("empty");
 
-const message =
-    document.getElementById("message");
+const productCount =
+    document.getElementById("productCount");
 
-const modal =
-    document.getElementById("productModal");
+const refreshBtn =
+    document.getElementById("refreshBtn");
 
-const modalTitle =
-    document.getElementById("modalTitle");
+const editModal =
+    document.getElementById("editModal");
 
-const form =
-    document.getElementById("productForm");
+const editForm =
+    document.getElementById("editForm");
 
-const productName =
-    document.getElementById("productName");
+const closeModal =
+    document.getElementById("closeModal");
 
-const productPrice =
-    document.getElementById("productPrice");
-
-const productCurrency =
-    document.getElementById("productCurrency");
-
-const productImage =
-    document.getElementById("productImage");
-
-const productRegion =
-    document.getElementById("productRegion");
-
-const productDescription =
-    document.getElementById("productDescription");
-
-const saveBtn =
-    document.getElementById("saveBtn");
+const cancelEdit =
+    document.getElementById("cancelEdit");
 
 
-let editingProductId = null;
 
 let currentAdmin = null;
 
 
-/* =========================
+
+/* =====================================
    MESSAGE
-========================= */
+===================================== */
 
 function showMessage(text,type){
 
@@ -872,32 +1085,32 @@ function showMessage(text,type){
     message.className =
         "message show " + type;
 
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+
+    setTimeout(() => {
+
+        message.className =
+            "message";
+
+    },5000);
+
 }
 
 
-/* =========================
+
+/* =====================================
    MONEY
-========================= */
+===================================== */
 
-function formatPrice(
-    amount,
-    currency
-){
+function formatMoney(amount){
 
-    const symbols = {
-
-        NGN:"₦",
-        USD:"$",
-        CAD:"CA$"
-
-    };
-
-    return (
-        symbols[currency] || "₦"
-    ) +
-    Number(amount || 0)
-        .toLocaleString(
-            "en-US",
+    return "₦" +
+        Number(amount || 0).toLocaleString(
+            "en-NG",
             {
                 minimumFractionDigits:2,
                 maximumFractionDigits:2
@@ -907,9 +1120,10 @@ function formatPrice(
 }
 
 
-/* =========================
+
+/* =====================================
    ESCAPE HTML
-========================= */
+===================================== */
 
 function escapeHTML(value){
 
@@ -923,9 +1137,10 @@ function escapeHTML(value){
 }
 
 
-/* =========================
-   ADMIN CHECK
-========================= */
+
+/* =====================================
+   CHECK ADMIN
+===================================== */
 
 async function checkAdmin(user){
 
@@ -957,7 +1172,7 @@ async function checkAdmin(user){
     if(data.role !== "admin"){
 
         throw new Error(
-            "Access denied. Admin account required."
+            "Access denied. This account is not an admin."
         );
 
     }
@@ -968,9 +1183,10 @@ async function checkAdmin(user){
 }
 
 
-/* =========================
+
+/* =====================================
    LOAD PRODUCTS
-========================= */
+===================================== */
 
 async function loadProducts(){
 
@@ -980,7 +1196,8 @@ async function loadProducts(){
     empty.style.display =
         "none";
 
-    productsContainer.innerHTML = "";
+    productsContainer.innerHTML =
+        "";
 
 
     try{
@@ -992,20 +1209,6 @@ async function loadProducts(){
                     "products"
                 )
             );
-
-
-        loading.style.display =
-            "none";
-
-
-        if(snapshot.empty){
-
-            empty.style.display =
-                "block";
-
-            return;
-
-        }
 
 
         const products = [];
@@ -1026,25 +1229,27 @@ async function loadProducts(){
         );
 
 
-        products.sort(
-            (a,b) => {
+        loading.style.display =
+            "none";
 
-                const aTime =
-                    a.createdAt &&
-                    typeof a.createdAt.toMillis === "function"
-                    ? a.createdAt.toMillis()
-                    : 0;
 
-                const bTime =
-                    b.createdAt &&
-                    typeof b.createdAt.toMillis === "function"
-                    ? b.createdAt.toMillis()
-                    : 0;
+        productCount.textContent =
+            products.length +
+            (
+                products.length === 1
+                    ? " product"
+                    : " products"
+            );
 
-                return bTime - aTime;
 
-            }
-        );
+        if(products.length === 0){
+
+            empty.style.display =
+                "block";
+
+            return;
+
+        }
 
 
         products.forEach(
@@ -1060,10 +1265,15 @@ async function loadProducts(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Load products error:",
+            error
+        );
+
 
         loading.style.display =
             "none";
+
 
         showMessage(
             "Unable to load products: " +
@@ -1076,9 +1286,10 @@ async function loadProducts(){
 }
 
 
-/* =========================
+
+/* =====================================
    RENDER PRODUCT
-========================= */
+===================================== */
 
 function renderProduct(product){
 
@@ -1091,70 +1302,87 @@ function renderProduct(product){
 
 
     const image =
-        product.imageUrl ||
         product.image ||
+        product.imageUrl ||
         "";
+
+
+    const name =
+        product.name ||
+        "Unnamed Product";
+
+
+    const price =
+        Number(
+            product.price || 0
+        );
+
+
+    const destination =
+        product.destination ||
+        "USA & Canada";
+
+
+    const category =
+        product.category ||
+        "Other";
 
 
     card.innerHTML = `
 
-        <div class="product-image ${
-            image ? "" : "no-image"
-        }">
+        <div class="product-image">
 
             ${
                 image
-                ? `
-                    <img
-                        src="${escapeHTML(image)}"
-                        alt="${escapeHTML(product.name || "Product")}"
-                        onerror="this.parentElement.innerHTML='🛍️';this.parentElement.classList.add('no-image')">
-                  `
-                : "🛍️"
+                ?
+                `
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(name)}"
+                    loading="lazy"
+                    onerror="this.style.display='none'">
+                `
+                :
+                `
+                <span style="font-size:40px;">
+                    🛍️
+                </span>
+                `
             }
 
         </div>
 
 
-        <div class="product-info">
+        <div class="product-content">
 
             <div class="product-name">
 
-                ${escapeHTML(
-                    product.name ||
-                    "Unnamed Product"
-                )}
+                ${escapeHTML(name)}
 
             </div>
 
 
             <div class="product-price">
 
-                ${formatPrice(
-                    product.price,
-                    product.currency || "NGN"
-                )}
+                ${formatMoney(price)}
 
             </div>
 
 
-            <div class="product-country">
+            <span class="product-destination">
 
-                🌍 ${
-                    escapeHTML(
-                        product.region ||
-                        "Worldwide"
-                    )
-                }
+                🌎 ${escapeHTML(destination)}
 
-            </div>
+                • ${escapeHTML(category)}
+
+            </span>
 
 
             <div class="product-actions">
 
                 <button
                     class="edit-btn"
-                    data-edit="${product.id}">
+                    data-edit>
 
                     ✏️ Edit
 
@@ -1163,7 +1391,7 @@ function renderProduct(product){
 
                 <button
                     class="delete-btn"
-                    data-delete="${product.id}">
+                    data-delete>
 
                     🗑️ Delete
 
@@ -1181,142 +1409,43 @@ function renderProduct(product){
     );
 
 
-    card.querySelector(
-        "[data-edit]"
-    ).addEventListener(
-        "click",
-        () => {
+    card
+        .querySelector("[data-edit]")
+        .addEventListener(
+            "click",
+            () => {
 
-            openEditProduct(
-                product
-            );
+                openEditModal(
+                    product
+                );
 
-        }
-    );
-
-
-    card.querySelector(
-        "[data-delete]"
-    ).addEventListener(
-        "click",
-        () => {
-
-            deleteProduct(
-                product.id,
-                product.name
-            );
-
-        }
-    );
-
-}
+            }
+        );
 
 
-/* =========================
-   OPEN ADD
-========================= */
+    card
+        .querySelector("[data-delete]")
+        .addEventListener(
+            "click",
+            () => {
 
-function openAddProduct(){
+                deleteProduct(
+                    product.id,
+                    name
+                );
 
-    editingProductId = null;
-
-    modalTitle.textContent =
-        "Add New Product";
-
-    saveBtn.textContent =
-        "Save Product";
-
-    form.reset();
-
-    productCurrency.value =
-        "NGN";
-
-    productRegion.value =
-        "Nigeria";
-
-    modal.classList.add(
-        "show"
-    );
+            }
+        );
 
 }
 
 
-/* =========================
-   OPEN EDIT
-========================= */
 
-function openEditProduct(product){
+/* =====================================
+   ADD PRODUCT
+===================================== */
 
-    editingProductId =
-        product.id;
-
-
-    modalTitle.textContent =
-        "Edit Product";
-
-
-    saveBtn.textContent =
-        "Update Product";
-
-
-    productName.value =
-        product.name || "";
-
-
-    productPrice.value =
-        product.price || "";
-
-
-    productCurrency.value =
-        product.currency ||
-        "NGN";
-
-
-    productImage.value =
-        product.imageUrl ||
-        product.image ||
-        "";
-
-
-    productRegion.value =
-        product.region ||
-        "Worldwide";
-
-
-    productDescription.value =
-        product.description ||
-        "";
-
-
-    modal.classList.add(
-        "show"
-    );
-
-}
-
-
-/* =========================
-   CLOSE MODAL
-========================= */
-
-function closeModal(){
-
-    modal.classList.remove(
-        "show"
-    );
-
-    editingProductId = null;
-
-    form.reset();
-
-}
-
-
-/* =========================
-   SAVE PRODUCT
-========================= */
-
-form.addEventListener(
+productForm.addEventListener(
     "submit",
     async event => {
 
@@ -1336,29 +1465,37 @@ form.addEventListener(
 
 
         const name =
-            productName.value.trim();
+            document
+                .getElementById("productName")
+                .value
+                .trim();
 
 
         const price =
             Number(
-                productPrice.value
+                document
+                    .getElementById("productPrice")
+                    .value
             );
 
 
-        const currency =
-            productCurrency.value;
+        const image =
+            document
+                .getElementById("productImage")
+                .value
+                .trim();
 
 
-        const imageUrl =
-            productImage.value.trim();
+        const destination =
+            document
+                .getElementById("productDestination")
+                .value;
 
 
-        const region =
-            productRegion.value;
-
-
-        const description =
-            productDescription.value.trim();
+        const category =
+            document
+                .getElementById("productCategory")
+                .value;
 
 
         if(!name){
@@ -1376,7 +1513,7 @@ form.addEventListener(
         if(!Number.isFinite(price) || price < 0){
 
             showMessage(
-                "Enter a valid product price.",
+                "Enter a valid price.",
                 "error"
             );
 
@@ -1385,7 +1522,7 @@ form.addEventListener(
         }
 
 
-        if(!imageUrl){
+        if(!image){
 
             showMessage(
                 "Enter the product image URL.",
@@ -1397,91 +1534,58 @@ form.addEventListener(
         }
 
 
-        saveBtn.disabled =
+        const button =
+            document.getElementById(
+                "addProductBtn"
+            );
+
+
+        button.disabled =
             true;
 
-
-        saveBtn.textContent =
-            editingProductId
-            ? "Updating..."
-            : "Saving...";
+        button.textContent =
+            "Adding...";
 
 
         try{
 
-            const productData = {
+            await addDoc(
+                collection(
+                    db,
+                    "products"
+                ),
+                {
 
-                name,
+                    name:name,
 
-                price,
+                    price:price,
 
-                currency,
+                    image:image,
 
-                imageUrl,
+                    destination:destination,
 
-                region,
+                    category:category,
 
-                description,
+                    active:true,
 
-                updatedAt:
-                    serverTimestamp(),
+                    createdAt:
+                        serverTimestamp(),
 
-                updatedBy:
-                    currentAdmin.uid
+                    createdBy:
+                        currentAdmin.uid
 
-            };
-
-
-            if(editingProductId){
-
-                await updateDoc(
-                    doc(
-                        db,
-                        "products",
-                        editingProductId
-                    ),
-                    productData
-                );
+                }
+            );
 
 
-                showMessage(
-                    "Product updated successfully.",
-                    "success"
-                );
-
-            }else{
-
-                await addDoc(
-                    collection(
-                        db,
-                        "products"
-                    ),
-                    {
-
-                        ...productData,
-
-                        createdAt:
-                            serverTimestamp(),
-
-                        createdBy:
-                            currentAdmin.uid,
-
-                        active:
-                            true
-
-                    }
-                );
+            showMessage(
+                "Product added successfully.",
+                "success"
+            );
 
 
-                showMessage(
-                    "Product added successfully.",
-                    "success"
-                );
+            productForm.reset();
 
-            }
-
-
-            closeModal();
 
             await loadProducts();
 
@@ -1489,26 +1593,35 @@ form.addEventListener(
         }catch(error){
 
             console.error(
-                "Save product error:",
+                "Add product error:",
                 error
             );
 
 
-            showMessage(
-                "Unable to save product: " +
-                error.message,
-                "error"
-            );
+            if(error.code === "permission-denied"){
+
+                showMessage(
+                    "Permission denied. Your Firestore Rules must allow admins to manage products.",
+                    "error"
+                );
+
+            }else{
+
+                showMessage(
+                    "Unable to add product: " +
+                    error.message,
+                    "error"
+                );
+
+            }
 
         }finally{
 
-            saveBtn.disabled =
+            button.disabled =
                 false;
 
-            saveBtn.textContent =
-                editingProductId
-                ? "Update Product"
-                : "Save Product";
+            button.textContent =
+                "Add Product";
 
         }
 
@@ -1516,9 +1629,292 @@ form.addEventListener(
 );
 
 
-/* =========================
+
+/* =====================================
+   OPEN EDIT
+===================================== */
+
+function openEditModal(product){
+
+    document.getElementById(
+        "editId"
+    ).value =
+        product.id;
+
+
+    document.getElementById(
+        "editName"
+    ).value =
+        product.name || "";
+
+
+    document.getElementById(
+        "editPrice"
+    ).value =
+        product.price || 0;
+
+
+    document.getElementById(
+        "editImage"
+    ).value =
+        product.image ||
+        product.imageUrl ||
+        "";
+
+
+    document.getElementById(
+        "editDestination"
+    ).value =
+        product.destination ||
+        "USA & Canada";
+
+
+    document.getElementById(
+        "editCategory"
+    ).value =
+        product.category ||
+        "Other";
+
+
+    editModal.classList.add(
+        "show"
+    );
+
+}
+
+
+
+/* =====================================
+   CLOSE EDIT
+===================================== */
+
+function closeEditModal(){
+
+    editModal.classList.remove(
+        "show"
+    );
+
+}
+
+
+closeModal.addEventListener(
+    "click",
+    closeEditModal
+);
+
+
+cancelEdit.addEventListener(
+    "click",
+    closeEditModal
+);
+
+
+editModal.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            editModal
+        ){
+
+            closeEditModal();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
+   SAVE EDIT
+===================================== */
+
+editForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        if(!currentAdmin){
+
+            showMessage(
+                "Admin authentication is missing.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const id =
+            document
+                .getElementById("editId")
+                .value;
+
+
+        const name =
+            document
+                .getElementById("editName")
+                .value
+                .trim();
+
+
+        const price =
+            Number(
+                document
+                    .getElementById("editPrice")
+                    .value
+            );
+
+
+        const image =
+            document
+                .getElementById("editImage")
+                .value
+                .trim();
+
+
+        const destination =
+            document
+                .getElementById("editDestination")
+                .value;
+
+
+        const category =
+            document
+                .getElementById("editCategory")
+                .value;
+
+
+        if(!name){
+
+            showMessage(
+                "Product name is required.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(price) ||
+            price < 0
+        ){
+
+            showMessage(
+                "Enter a valid price.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById(
+                "saveEditBtn"
+            );
+
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Saving...";
+
+
+        try{
+
+            await updateDoc(
+                doc(
+                    db,
+                    "products",
+                    id
+                ),
+                {
+
+                    name:name,
+
+                    price:price,
+
+                    image:image,
+
+                    destination:destination,
+
+                    category:category,
+
+                    updatedAt:
+                        serverTimestamp(),
+
+                    updatedBy:
+                        currentAdmin.uid
+
+                }
+            );
+
+
+            closeEditModal();
+
+
+            showMessage(
+                "Product updated successfully.",
+                "success"
+            );
+
+
+            await loadProducts();
+
+
+        }catch(error){
+
+            console.error(
+                "Update product error:",
+                error
+            );
+
+
+            if(error.code === "permission-denied"){
+
+                showMessage(
+                    "Permission denied. Check your Firestore Rules.",
+                    "error"
+                );
+
+            }else{
+
+                showMessage(
+                    "Unable to update product: " +
+                    error.message,
+                    "error"
+                );
+
+            }
+
+        }finally{
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Save Changes";
+
+        }
+
+    }
+);
+
+
+
+/* =====================================
    DELETE PRODUCT
-========================= */
+===================================== */
 
 async function deleteProduct(
     productId,
@@ -1540,12 +1936,15 @@ async function deleteProduct(
     const confirmed =
         confirm(
             "Delete this product?\n\n" +
-            productName
+            productName +
+            "\n\nThis action cannot be undone."
         );
 
 
     if(!confirmed){
+
         return;
+
     }
 
 
@@ -1577,62 +1976,32 @@ async function deleteProduct(
         );
 
 
-        showMessage(
-            "Unable to delete product: " +
-            error.message,
-            "error"
-        );
+        if(error.code === "permission-denied"){
+
+            showMessage(
+                "Permission denied. Check your Firestore Rules.",
+                "error"
+            );
+
+        }else{
+
+            showMessage(
+                "Unable to delete product: " +
+                error.message,
+                "error"
+            );
+
+        }
 
     }
 
 }
 
 
-/* =========================
-   BUTTONS
-========================= */
 
-document.getElementById(
-    "addProductBtn"
-).addEventListener(
-    "click",
-    openAddProduct
-);
-
-
-document.getElementById(
-    "closeModal"
-).addEventListener(
-    "click",
-    closeModal
-);
-
-
-document.getElementById(
-    "cancelBtn"
-).addEventListener(
-    "click",
-    closeModal
-);
-
-
-modal.addEventListener(
-    "click",
-    event => {
-
-        if(event.target === modal){
-
-            closeModal();
-
-        }
-
-    }
-);
-
-
-/* =========================
+/* =====================================
    AUTH
-========================= */
+===================================== */
 
 onAuthStateChanged(
     auth,
@@ -1661,9 +2030,13 @@ onAuthStateChanged(
         }catch(error){
 
             console.error(
-                "Admin verification error:",
+                "Admin authentication error:",
                 error
             );
+
+
+            loading.style.display =
+                "none";
 
 
             showMessage(
@@ -1687,8 +2060,41 @@ onAuthStateChanged(
     }
 );
 
+
+
+/* =====================================
+   REFRESH
+===================================== */
+
+refreshBtn.addEventListener(
+    "click",
+    async () => {
+
+        refreshBtn.disabled =
+            true;
+
+        refreshBtn.textContent =
+            "Refreshing...";
+
+
+        try{
+
+            await loadProducts();
+
+        }finally{
+
+            refreshBtn.disabled =
+                false;
+
+            refreshBtn.textContent =
+                "↻ Refresh";
+
+        }
+
+    }
+);
+
 </script>
 
 </body>
-
-</html>
+    </html>
