@@ -2,30 +2,18 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Admin Dashboard | Fame Store</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet">
-
+rel="stylesheet">
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
     margin:0;
@@ -33,58 +21,33 @@
     box-sizing:border-box;
 }
 
-
 :root{
-
     --blue:#0757d9;
     --dark-blue:#063b91;
-
     --yellow:#ffc928;
-
     --white:#fff;
     --black:#101828;
-
     --gray:#667085;
-
     --light:#f5f8fc;
-
     --border:#e5eaf1;
-
     --green:#087443;
-
     --red:#b42318;
-
+    --orange:#b54708;
 }
-
-
-/* =========================
-   BODY
-========================= */
 
 body{
-
     font-family:"Inter",sans-serif;
-
     background:var(--light);
-
     color:var(--black);
-
 }
-
 
 button{
-
     font-family:inherit;
-
 }
 
-
 a{
-
     text-decoration:none;
-
     color:inherit;
-
 }
 
 
@@ -93,183 +56,100 @@ a{
 ========================= */
 
 .sidebar{
-
     position:fixed;
-
     left:0;
     top:0;
     bottom:0;
-
     width:250px;
-
     background:white;
-
     border-right:1px solid var(--border);
-
     padding:22px 15px;
-
     z-index:1000;
-
 }
-
 
 .brand{
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
     padding:5px 10px 28px;
-
 }
-
 
 .brand-icon{
-
     width:43px;
     height:43px;
-
     background:var(--yellow);
-
     border-radius:12px;
-
     display:grid;
-
     place-items:center;
-
     font-size:21px;
-
 }
-
 
 .brand-name{
-
     font-weight:800;
-
     color:var(--blue);
-
     font-size:17px;
-
 }
-
 
 .brand-role{
-
     color:var(--gray);
-
     font-size:9px;
-
     margin-top:3px;
-
 }
-
-
-/* =========================
-   NAVIGATION
-========================= */
 
 .nav-title{
-
     font-size:9px;
-
     color:#98a2b3;
-
     font-weight:800;
-
     padding:0 11px;
-
     margin-bottom:8px;
-
     text-transform:uppercase;
-
     letter-spacing:.7px;
-
 }
-
 
 .nav{
-
     display:flex;
-
     flex-direction:column;
-
     gap:4px;
-
 }
-
 
 .nav-link{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     padding:12px 11px;
-
     border-radius:10px;
-
     color:#475467;
-
     font-size:12px;
-
     font-weight:600;
-
     transition:.2s;
-
 }
-
 
 .nav-link:hover{
-
     background:#f1f6ff;
-
     color:var(--blue);
-
 }
-
 
 .nav-link.active{
-
     background:#eaf2ff;
-
     color:var(--blue);
-
 }
-
 
 .nav-icon{
-
     width:20px;
-
     text-align:center;
-
     font-size:17px;
-
 }
-
 
 .logout-link{
-
     color:var(--red);
-
     cursor:pointer;
-
 }
 
-
 .sidebar-bottom{
-
     position:absolute;
-
     left:15px;
     right:15px;
-
     bottom:20px;
-
 }
 
 
@@ -278,11 +158,8 @@ a{
 ========================= */
 
 .main{
-
     margin-left:250px;
-
     min-height:100vh;
-
 }
 
 
@@ -291,89 +168,56 @@ a{
 ========================= */
 
 .topbar{
-
     height:70px;
-
     background:white;
-
     border-bottom:1px solid var(--border);
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     padding:0 30px;
-
     position:sticky;
-
     top:0;
-
     z-index:900;
-
 }
 
+.topbar-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
 
 .page-title{
-
     font-size:18px;
-
     font-weight:800;
-
 }
-
 
 .admin-info{
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
 }
-
 
 .admin-avatar{
-
     width:38px;
     height:38px;
-
     background:var(--blue);
-
     color:white;
-
     border-radius:50%;
-
     display:grid;
-
     place-items:center;
-
     font-size:13px;
-
     font-weight:800;
-
 }
-
 
 .admin-name{
-
     font-size:11px;
-
     font-weight:700;
-
 }
 
-
 .admin-email{
-
     color:var(--gray);
-
     font-size:9px;
-
     margin-top:2px;
-
 }
 
 
@@ -382,40 +226,22 @@ a{
 ========================= */
 
 .content{
-
     padding:30px;
-
     max-width:1450px;
-
 }
-
-
-/* =========================
-   WELCOME
-========================= */
 
 .welcome{
-
     margin-bottom:25px;
-
 }
-
 
 .welcome h1{
-
     font-size:26px;
-
 }
 
-
 .welcome p{
-
     color:var(--gray);
-
     font-size:12px;
-
     margin-top:6px;
-
 }
 
 
@@ -424,35 +250,27 @@ a{
 ========================= */
 
 .message{
-
     display:none;
-
     padding:13px 15px;
-
     border-radius:10px;
-
     margin-bottom:20px;
-
     font-size:12px;
-
 }
-
 
 .message.show{
-
     display:block;
-
 }
 
-
 .message.error{
-
     color:var(--red);
-
     background:#fff1f0;
-
     border:1px solid #ffd3d0;
+}
 
+.message.success{
+    color:var(--green);
+    background:#ecfff4;
+    border:1px solid #b9efd1;
 }
 
 
@@ -461,207 +279,142 @@ a{
 ========================= */
 
 .stats{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
+    grid-template-columns:repeat(4,1fr);
     gap:15px;
-
     margin-bottom:25px;
-
 }
-
 
 .stat-card{
-
     background:white;
-
     border:1px solid var(--border);
-
     border-radius:15px;
-
     padding:20px;
-
     transition:.2s;
-
 }
-
 
 .stat-card:hover{
-
     transform:translateY(-2px);
-
-    box-shadow:
-        0 8px 25px
-        rgba(16,24,40,.06);
-
+    box-shadow:0 8px 25px rgba(16,24,40,.06);
 }
-
 
 .stat-top{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
 }
-
 
 .stat-label{
-
     color:var(--gray);
-
     font-size:10px;
-
     font-weight:600;
-
 }
-
 
 .stat-icon{
-
     width:38px;
     height:38px;
-
     background:#edf4ff;
-
     border-radius:10px;
-
     display:grid;
-
     place-items:center;
-
     font-size:18px;
-
 }
-
 
 .stat-value{
-
     font-size:25px;
-
     font-weight:800;
-
     margin-top:13px;
-
 }
 
 
 /* =========================
-   GRID
+   QUICK ACTIONS
 ========================= */
-
-.dashboard-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        1.4fr .8fr;
-
-    gap:20px;
-
-}
-
 
 .card{
-
     background:white;
-
     border:1px solid var(--border);
-
     border-radius:16px;
-
     padding:22px;
-
 }
-
 
 .card-header{
-
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
     margin-bottom:20px;
-
 }
 
-
 .card-header h2{
-
     font-size:15px;
+}
 
+.card-header p{
+    color:var(--gray);
+    font-size:10px;
+    margin-top:4px;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:1.5fr .8fr;
+    gap:20px;
+}
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.action{
+    border:1px solid var(--border);
+    border-radius:11px;
+    padding:15px;
+    transition:.2s;
+}
+
+.action:hover{
+    border-color:var(--blue);
+    background:#f8fbff;
+    transform:translateY(-1px);
+}
+
+.action-icon{
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.action-title{
+    font-size:11px;
+    font-weight:800;
+}
+
+.action-description{
+    color:var(--gray);
+    font-size:9px;
+    margin-top:4px;
+    line-height:1.5;
 }
 
 
 /* =========================
-   ACTIONS
+   IMPORTANT ACTION
 ========================= */
 
-.actions{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:10px;
-
-}
-
-
-.action{
-
-    border:1px solid var(--border);
-
-    border-radius:11px;
-
-    padding:15px;
-
-    transition:.2s;
-
-}
-
-
-.action:hover{
-
-    border-color:var(--blue);
-
+.action.payment{
+    border-color:#dbe8ff;
     background:#f8fbff;
-
-    transform:translateY(-1px);
-
 }
 
-
-.action-icon{
-
-    font-size:20px;
-
-    margin-bottom:8px;
-
+.action.product{
+    border-color:#ffe9a8;
+    background:#fffdf5;
 }
 
-
-.action-title{
-
-    font-size:11px;
-
-    font-weight:800;
-
-}
-
-
-.action-description{
-
-    color:var(--gray);
-
-    font-size:9px;
-
-    margin-top:4px;
-
-    line-height:1.5;
-
+.action.order{
+    border-color:#d8f1e3;
+    background:#f8fffb;
 }
 
 
@@ -670,173 +423,82 @@ a{
 ========================= */
 
 .system-item{
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     padding:13px 0;
-
     border-bottom:1px solid var(--border);
-
 }
-
 
 .system-item:last-child{
-
     border-bottom:0;
-
 }
-
 
 .system-left{
-
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
 }
-
 
 .system-icon{
-
     width:34px;
     height:34px;
-
     background:#f2f4f7;
-
     border-radius:9px;
-
     display:grid;
-
     place-items:center;
-
 }
-
 
 .system-name{
-
     font-size:10px;
-
     font-weight:700;
-
 }
 
-
 .system-status{
-
     color:var(--green);
-
     font-size:9px;
-
     font-weight:700;
-
 }
 
 
 /* =========================
-   RECENT PRODUCTS
+   RECENT ACTIVITY
 ========================= */
 
-.recent-products{
-
+.activity-card{
     margin-top:20px;
-
 }
 
-
-.product-mini-list{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+.activity{
+    display:flex;
+    align-items:center;
     gap:12px;
-
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
 }
 
-
-.product-mini{
-
-    border:1px solid var(--border);
-
-    border-radius:12px;
-
-    overflow:hidden;
-
-    background:#fff;
-
+.activity:last-child{
+    border-bottom:0;
 }
 
-
-.product-mini-image{
-
-    height:120px;
-
-    background:#f2f4f7;
-
+.activity-icon{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:#edf4ff;
+    display:grid;
+    place-items:center;
 }
 
-
-.product-mini-image img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-}
-
-
-.product-mini-info{
-
-    padding:11px;
-
-}
-
-
-.product-mini-name{
-
-    font-size:10px;
-
-    font-weight:800;
-
-    line-height:1.4;
-
-}
-
-
-.product-mini-price{
-
-    color:var(--blue);
-
+.activity-title{
     font-size:11px;
-
-    font-weight:800;
-
-    margin-top:5px;
-
+    font-weight:700;
 }
 
-
-.view-products{
-
-    display:inline-block;
-
-    margin-top:15px;
-
-    color:var(--blue);
-
-    font-size:10px;
-
-    font-weight:800;
-
+.activity-text{
+    color:var(--gray);
+    font-size:9px;
+    margin-top:3px;
 }
 
 
@@ -845,28 +507,20 @@ a{
 ========================= */
 
 .mobile-menu{
-
     display:none;
-
     border:0;
-
     background:transparent;
-
     font-size:22px;
-
     cursor:pointer;
-
 }
 
 
 /* =========================
-   MOBILE OVERLAY
+   OVERLAY
 ========================= */
 
-.sidebar-overlay{
-
+.overlay{
     display:none;
-
 }
 
 
@@ -877,143 +531,90 @@ a{
 @media(max-width:1100px){
 
     .stats{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+        grid-template-columns:repeat(2,1fr);
     }
 
-
     .dashboard-grid{
-
         grid-template-columns:1fr;
-
     }
 
 }
-
 
 @media(max-width:750px){
 
     .sidebar{
-
-        transform:
-            translateX(-100%);
-
+        transform:translateX(-100%);
         transition:.3s;
-
-        box-shadow:
-            10px 0 30px
-            rgba(0,0,0,.08);
-
+        box-shadow:10px 0 30px rgba(0,0,0,.08);
     }
-
 
     .sidebar.open{
-
-        transform:
-            translateX(0);
-
+        transform:translateX(0);
     }
-
 
     .main{
-
         margin-left:0;
-
     }
-
 
     .mobile-menu{
-
         display:inline-block;
-
-        margin-right:8px;
-
     }
-
 
     .topbar{
-
         padding:0 18px;
-
     }
-
 
     .content{
-
         padding:20px 15px;
-
     }
-
 
     .admin-email{
-
         display:none;
-
     }
 
+    .overlay{
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.35);
+        z-index:999;
+    }
 
-    .product-mini-list{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+    .overlay.show{
+        display:block;
     }
 
 }
 
-
 @media(max-width:500px){
 
     .stats{
-
-        grid-template-columns:
-            1fr 1fr;
-
+        grid-template-columns:1fr 1fr;
         gap:10px;
-
     }
-
 
     .stat-card{
-
         padding:15px;
-
     }
-
 
     .stat-value{
-
         font-size:20px;
-
     }
-
 
     .actions{
-
         grid-template-columns:1fr;
-
     }
-
 
     .page-title{
-
         display:none;
-
     }
 
-
-    .product-mini-list{
-
-        grid-template-columns:1fr;
-
+    .welcome h1{
+        font-size:22px;
     }
 
 }
 
 </style>
-
 </head>
 
 
@@ -1024,198 +625,136 @@ a{
      SIDEBAR
 ========================= -->
 
-<aside
-    class="sidebar"
-    id="sidebar">
-
+<aside class="sidebar" id="sidebar">
 
     <div class="brand">
 
-
         <div class="brand-icon">
-
             🛍️
-
         </div>
-
 
         <div>
 
             <div class="brand-name">
-
                 Fame Store
-
             </div>
 
-
             <div class="brand-role">
-
                 ADMIN PANEL
-
             </div>
 
         </div>
-
 
     </div>
 
 
     <div class="nav-title">
-
         Main Menu
-
     </div>
 
 
     <nav class="nav">
 
+        <a href="admin-dashboard.html"
+           class="nav-link active">
 
-        <!-- DASHBOARD -->
-
-        <a
-            href="admin-dashboard.html"
-            class="nav-link active">
-
-            <span class="nav-icon">
-                📊
-            </span>
+            <span class="nav-icon">📊</span>
 
             Dashboard
 
         </a>
 
 
-        <!-- PRODUCTS -->
+        <a href="admin-deposits.html"
+           class="nav-link">
 
-        <a
-            href="admin-products.html"
-            class="nav-link">
+            <span class="nav-icon">💳</span>
 
-            <span class="nav-icon">
-                🛍️
-            </span>
+            Payments
+
+        </a>
+
+
+        <a href="admin-products.html"
+           class="nav-link">
+
+            <span class="nav-icon">🛍️</span>
 
             Products
 
         </a>
 
 
-        <!-- DEPOSITS -->
+        <a href="admin-orders.html"
+           class="nav-link">
 
-        <a
-            href="deposits.html"
-            class="nav-link">
-
-            <span class="nav-icon">
-                💳
-            </span>
-
-            Deposits
-
-        </a>
-
-
-        <!-- CUSTOMERS -->
-
-        <a
-            href="customers.html"
-            class="nav-link">
-
-            <span class="nav-icon">
-                👥
-            </span>
-
-            Customers
-
-        </a>
-
-
-        <!-- ORDERS -->
-
-        <a
-            href="orders.html"
-            class="nav-link">
-
-            <span class="nav-icon">
-                📦
-            </span>
+            <span class="nav-icon">📦</span>
 
             Orders
 
         </a>
 
 
-        <!-- NOTIFICATIONS -->
+        <a href="customers.html"
+           class="nav-link">
 
-        <a
-            href="notifications.html"
-            class="nav-link">
+            <span class="nav-icon">👥</span>
 
-            <span class="nav-icon">
-                🔔
-            </span>
+            Customers
+
+        </a>
+
+
+        <a href="notifications.html"
+           class="nav-link">
+
+            <span class="nav-icon">🔔</span>
 
             Notifications
 
         </a>
 
 
-        <!-- SUPPORT -->
+        <a href="support.html"
+           class="nav-link">
 
-        <a
-            href="support.html"
-            class="nav-link">
-
-            <span class="nav-icon">
-                💬
-            </span>
+            <span class="nav-icon">💬</span>
 
             Support
 
         </a>
 
 
-        <!-- SETTINGS -->
+        <a href="settings.html"
+           class="nav-link">
 
-        <a
-            href="settings.html"
-            class="nav-link">
-
-            <span class="nav-icon">
-                ⚙️
-            </span>
+            <span class="nav-icon">⚙️</span>
 
             Settings
 
         </a>
 
-
     </nav>
 
 
-    <!-- LOGOUT -->
-
     <div class="sidebar-bottom">
 
+        <a href="#"
+           class="nav-link logout-link"
+           id="logoutBtn">
 
-        <a
-            href="#"
-            class="nav-link logout-link"
-            id="logoutBtn">
-
-            <span class="nav-icon">
-                🚪
-            </span>
+            <span class="nav-icon">🚪</span>
 
             Logout
 
         </a>
 
-
     </div>
 
-
 </aside>
+
+
+<div class="overlay" id="overlay"></div>
 
 
 <!-- =========================
@@ -1225,727 +764,567 @@ a{
 <div class="main">
 
 
-    <!-- =========================
-         TOPBAR
-    ========================= -->
+<header class="topbar">
 
-    <header class="topbar">
+    <div class="topbar-left">
 
+        <button
+            class="mobile-menu"
+            id="mobileMenu">
+
+            ☰
+
+        </button>
+
+        <span class="page-title">
+            Admin Dashboard
+        </span>
+
+    </div>
+
+
+    <div class="admin-info">
 
         <div>
 
-            <button
-                class="mobile-menu"
-                id="mobileMenu">
+            <div
+                class="admin-name"
+                id="adminName">
 
-                ☰
-
-            </button>
-
-
-            <span class="page-title">
-
-                Admin Dashboard
-
-            </span>
-
-        </div>
-
-
-        <div class="admin-info">
-
-
-            <div>
-
-                <div
-                    class="admin-name"
-                    id="adminName">
-
-                    Loading...
-
-                </div>
-
-
-                <div
-                    class="admin-email"
-                    id="adminEmail">
-
-                    Loading...
-
-                </div>
+                Loading...
 
             </div>
-
 
             <div
-                class="admin-avatar"
-                id="adminAvatar">
+                class="admin-email"
+                id="adminEmail">
 
-                ?
+                Loading...
 
             </div>
 
-
         </div>
 
-
-    </header>
-
-
-    <!-- =========================
-         CONTENT
-    ========================= -->
-
-    <main class="content">
-
-
-        <!-- WELCOME -->
-
-        <section class="welcome">
-
-
-            <h1>
-
-                Welcome,
-                <span id="welcomeName">
-                    Admin
-                </span>
-                👋
-
-            </h1>
-
-
-            <p>
-
-                Manage Fame Store products,
-                customers, payments and gift orders
-                from one place.
-
-            </p>
-
-
-        </section>
-
-
-        <!-- MESSAGE -->
 
         <div
-            class="message"
-            id="message">
+            class="admin-avatar"
+            id="adminAvatar">
+
+            ?
 
         </div>
 
+    </div>
 
-        <!-- =========================
-             STATS
-        ========================= -->
-
-        <section class="stats">
+</header>
 
 
-            <!-- CUSTOMERS -->
-
-            <div class="stat-card">
+<main class="content">
 
 
-                <div class="stat-top">
+<!-- =========================
+     WELCOME
+========================= -->
+
+<section class="welcome">
+
+    <h1>
+        Welcome, <span id="welcomeName">Admin</span> 👋
+    </h1>
+
+    <p>
+        Manage Fame Store payments, products,
+        customer orders and deliveries from one place.
+    </p>
+
+</section>
 
 
-                    <div class="stat-label">
-
-                        Total Customers
-
-                    </div>
-
-
-                    <div class="stat-icon">
-
-                        👥
-
-                    </div>
+<div
+    class="message"
+    id="message">
+</div>
 
 
-                </div>
+<!-- =========================
+     STATISTICS
+========================= -->
+
+<section class="stats">
 
 
-                <div
-                    class="stat-value"
-                    id="customerCount">
+<div class="stat-card">
 
-                    0
+    <div class="stat-top">
 
-                </div>
+        <div class="stat-label">
+            Total Customers
+        </div>
+
+        <div class="stat-icon">
+            👥
+        </div>
+
+    </div>
+
+    <div
+        class="stat-value"
+        id="customerCount">
+
+        0
+
+    </div>
+
+</div>
 
 
+<div class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-label">
+            Pending Payments
+        </div>
+
+        <div class="stat-icon">
+            💳
+        </div>
+
+    </div>
+
+    <div
+        class="stat-value"
+        id="pendingDeposits">
+
+        0
+
+    </div>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-label">
+            Total Orders
+        </div>
+
+        <div class="stat-icon">
+            📦
+        </div>
+
+    </div>
+
+    <div
+        class="stat-value"
+        id="orderCount">
+
+        0
+
+    </div>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-label">
+            Pending Amount
+        </div>
+
+        <div class="stat-icon">
+            💰
+        </div>
+
+    </div>
+
+    <div
+        class="stat-value"
+        id="pendingAmount">
+
+        ₦0.00
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+     DASHBOARD GRID
+========================= -->
+
+<section class="dashboard-grid">
+
+
+<!-- QUICK ACTIONS -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>
+                Store Management
+            </h2>
+
+            <p>
+                Quickly manage the Fame Store.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="actions">
+
+
+        <!-- PAYMENTS -->
+
+        <a
+            href="admin-deposits.html"
+            class="action payment">
+
+            <div class="action-icon">
+                💳
             </div>
 
-
-            <!-- PENDING DEPOSITS -->
-
-            <div class="stat-card">
-
-
-                <div class="stat-top">
-
-
-                    <div class="stat-label">
-
-                        Pending Deposits
-
-                    </div>
-
-
-                    <div class="stat-icon">
-
-                        💳
-
-                    </div>
-
-
-                </div>
-
-
-                <div
-                    class="stat-value"
-                    id="pendingDeposits">
-
-                    0
-
-                </div>
-
-
+            <div class="action-title">
+                Accept Customer Payments
             </div>
 
-
-            <!-- ORDERS -->
-
-            <div class="stat-card">
-
-
-                <div class="stat-top">
-
-
-                    <div class="stat-label">
-
-                        Total Orders
-
-                    </div>
-
-
-                    <div class="stat-icon">
-
-                        📦
-
-                    </div>
-
-
-                </div>
-
-
-                <div
-                    class="stat-value"
-                    id="orderCount">
-
-                    0
-
-                </div>
-
-
+            <div class="action-description">
+                Review customer payment requests,
+                approve valid payments and update wallets.
             </div>
 
-
-            <!-- PRODUCTS -->
-
-            <div class="stat-card">
+        </a>
 
 
-                <div class="stat-top">
+        <!-- PRODUCTS -->
 
+        <a
+            href="admin-products.html"
+            class="action product">
 
-                    <div class="stat-label">
-
-                        Total Products
-
-                    </div>
-
-
-                    <div class="stat-icon">
-
-                        🛍️
-
-                    </div>
-
-
-                </div>
-
-
-                <div
-                    class="stat-value"
-                    id="productCount">
-
-                    0
-
-                </div>
-
-
+            <div class="action-icon">
+                🛍️
             </div>
 
-
-        </section>
-
-
-        <!-- =========================
-             DASHBOARD GRID
-        ========================= -->
-
-        <section class="dashboard-grid">
-
-
-            <!-- QUICK ACTIONS -->
-
-            <div class="card">
-
-
-                <div class="card-header">
-
-                    <h2>
-
-                        Quick Actions
-
-                    </h2>
-
-                </div>
-
-
-                <div class="actions">
-
-
-                    <!-- PRODUCT MANAGEMENT -->
-
-                    <a
-                        href="admin-products.html"
-                        class="action">
-
-
-                        <div class="action-icon">
-
-                            🛍️
-
-                        </div>
-
-
-                        <div class="action-title">
-
-                            Product Management
-
-                        </div>
-
-
-                        <div class="action-description">
-
-                            Add new products, change prices,
-                            edit names and update product images.
-
-                        </div>
-
-
-                    </a>
-
-
-                    <!-- DEPOSITS -->
-
-                    <a
-                        href="deposits.html"
-                        class="action">
-
-
-                        <div class="action-icon">
-
-                            💳
-
-                        </div>
-
-
-                        <div class="action-title">
-
-                            Deposit Management
-
-                        </div>
-
-
-                        <div class="action-description">
-
-                            Review and approve customer
-                            payment requests.
-
-                        </div>
-
-
-                    </a>
-
-
-                    <!-- CUSTOMERS -->
-
-                    <a
-                        href="customers.html"
-                        class="action">
-
-
-                        <div class="action-icon">
-
-                            👥
-
-                        </div>
-
-
-                        <div class="action-title">
-
-                            Customers
-
-                        </div>
-
-
-                        <div class="action-description">
-
-                            View registered Fame Store
-                            customers.
-
-                        </div>
-
-
-                    </a>
-
-
-                    <!-- ORDERS -->
-
-                    <a
-                        href="orders.html"
-                        class="action">
-
-
-                        <div class="action-icon">
-
-                            📦
-
-                        </div>
-
-
-                        <div class="action-title">
-
-                            Orders
-
-                        </div>
-
-
-                        <div class="action-description">
-
-                            View gift orders and customer
-                            delivery information.
-
-                        </div>
-
-
-                    </a>
-
-
-                    <!-- SUPPORT -->
-
-                    <a
-                        href="support.html"
-                        class="action">
-
-
-                        <div class="action-icon">
-
-                            💬
-
-                        </div>
-
-
-                        <div class="action-title">
-
-                            Customer Support
-
-                        </div>
-
-
-                        <div class="action-description">
-
-                            Respond to customer support
-                            requests.
-
-                        </div>
-
-
-                    </a>
-
-
-                    <!-- NOTIFICATIONS -->
-
-                    <a
-                        href="notifications.html"
-                        class="action">
-
-
-                        <div class="action-icon">
-
-                            🔔
-
-                        </div>
-
-
-                        <div class="action-title">
-
-                            Notifications
-
-                        </div>
-
-
-                        <div class="action-description">
-
-                            Manage customer notifications
-                            and important announcements.
-
-                        </div>
-
-
-                    </a>
-
-
-                </div>
-
-
+            <div class="action-title">
+                Manage Products
             </div>
 
-
-            <!-- =========================
-                 SYSTEM STATUS
-            ========================= -->
-
-            <div class="card">
-
-
-                <div class="card-header">
-
-                    <h2>
-
-                        System Status
-
-                    </h2>
-
-                </div>
-
-
-                <div class="system-item">
-
-
-                    <div class="system-left">
-
-
-                        <div class="system-icon">
-
-                            🔐
-
-                        </div>
-
-
-                        <div class="system-name">
-
-                            Authentication
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="system-status">
-
-                        Active
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="system-item">
-
-
-                    <div class="system-left">
-
-
-                        <div class="system-icon">
-
-                            🗄️
-
-                        </div>
-
-
-                        <div class="system-name">
-
-                            Firestore
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="system-status">
-
-                        Active
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="system-item">
-
-
-                    <div class="system-left">
-
-
-                        <div class="system-icon">
-
-                            🛍️
-
-                        </div>
-
-
-                        <div class="system-name">
-
-                            Product Database
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="system-status">
-
-                        Active
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="system-item">
-
-
-                    <div class="system-left">
-
-
-                        <div class="system-icon">
-
-                            📦
-
-                        </div>
-
-
-                        <div class="system-name">
-
-                            Orders
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="system-status">
-
-                        Active
-
-                    </div>
-
-
-                </div>
-
-
-                <div class="system-item">
-
-
-                    <div class="system-left">
-
-
-                        <div class="system-icon">
-
-                            💳
-
-                        </div>
-
-
-                        <div class="system-name">
-
-                            Payments
-
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="system-status">
-
-                        Active
-
-                    </div>
-
-
-                </div>
-
-
+            <div class="action-description">
+                Add new products, edit names,
+                prices, images and product details.
             </div>
 
-
-        </section>
-
-
-        <!-- =========================
-             RECENT PRODUCTS
-        ========================= -->
-
-        <section class="card recent-products">
+        </a>
 
 
-            <div class="card-header">
+        <!-- ORDERS -->
 
-                <h2>
+        <a
+            href="admin-orders.html"
+            class="action order">
 
-                    Recent Products
-
-                </h2>
-
+            <div class="action-icon">
+                📦
             </div>
 
-
-            <div
-                id="recentProducts"
-                class="product-mini-list">
-
+            <div class="action-title">
+                Customer Orders
             </div>
 
+            <div class="action-description">
+                View what customers ordered,
+                destination details and delivery information.
+            </div>
 
-            <a
-                href="admin-products.html"
-                class="view-products">
-
-                Manage All Products →
-
-            </a>
+        </a>
 
 
-        </section>
+        <!-- CUSTOMERS -->
+
+        <a
+            href="customers.html"
+            class="action">
+
+            <div class="action-icon">
+                👥
+            </div>
+
+            <div class="action-title">
+                Customers
+            </div>
+
+            <div class="action-description">
+                View registered customers and
+                their account information.
+            </div>
+
+        </a>
 
 
-    </main>
+        <!-- NOTIFICATIONS -->
 
+        <a
+            href="notifications.html"
+            class="action">
+
+            <div class="action-icon">
+                🔔
+            </div>
+
+            <div class="action-title">
+                Notifications
+            </div>
+
+            <div class="action-description">
+                Manage customer notifications and
+                important store announcements.
+            </div>
+
+        </a>
+
+
+        <!-- SUPPORT -->
+
+        <a
+            href="support.html"
+            class="action">
+
+            <div class="action-icon">
+                💬
+            </div>
+
+            <div class="action-title">
+                Customer Support
+            </div>
+
+            <div class="action-description">
+                View and respond to customer
+                support requests.
+            </div>
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+<!-- SYSTEM STATUS -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>
+                System Status
+            </h2>
+
+            <p>
+                Current Fame Store services.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="system-item">
+
+        <div class="system-left">
+
+            <div class="system-icon">
+                🔐
+            </div>
+
+            <div class="system-name">
+                Authentication
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            Active
+        </div>
+
+    </div>
+
+
+    <div class="system-item">
+
+        <div class="system-left">
+
+            <div class="system-icon">
+                🗄️
+            </div>
+
+            <div class="system-name">
+                Firestore
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            Active
+        </div>
+
+    </div>
+
+
+    <div class="system-item">
+
+        <div class="system-left">
+
+            <div class="system-icon">
+                🛍️
+            </div>
+
+            <div class="system-name">
+                Products
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            Online
+        </div>
+
+    </div>
+
+
+    <div class="system-item">
+
+        <div class="system-left">
+
+            <div class="system-icon">
+                📦
+            </div>
+
+            <div class="system-name">
+                Orders
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            Online
+        </div>
+
+    </div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+     RECENT ACTIVITY
+========================= -->
+
+<section class="card activity-card">
+
+    <div class="card-header">
+
+        <div>
+
+            <h2>
+                Admin Quick Guide
+            </h2>
+
+            <p>
+                Main actions available from this dashboard.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="activity">
+
+        <div class="activity-icon">
+            💳
+        </div>
+
+        <div>
+
+            <div class="activity-title">
+                Customer Payment
+            </div>
+
+            <div class="activity-text">
+                Open Payments to review and approve customer deposits.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="activity">
+
+        <div class="activity-icon">
+            🛍️
+        </div>
+
+        <div>
+
+            <div class="activity-title">
+                Product Management
+            </div>
+
+            <div class="activity-text">
+                Open Products to change product names, prices, images or add new products.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="activity">
+
+        <div class="activity-icon">
+            📦
+        </div>
+
+        <div>
+
+            <div class="activity-title">
+                Customer Delivery
+            </div>
+
+            <div class="activity-text">
+                Open Orders to see the customer's selected product and delivery destination.
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+</main>
 
 </div>
 
@@ -1956,37 +1335,24 @@ a{
 
 <script type="module">
 
-
-/* =========================
-   FIREBASE IMPORT
-========================= */
-
 import {
-
     auth,
     db
-
 } from "./firebase-config.js";
 
 
 import {
-
     onAuthStateChanged,
     signOut
-
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import {
-
     collection,
     getDocs,
     getDoc,
     doc
-
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
 /* =========================
@@ -1994,91 +1360,70 @@ import {
 ========================= */
 
 const adminName =
-    document.getElementById(
-        "adminName"
-    );
-
+    document.getElementById("adminName");
 
 const adminEmail =
-    document.getElementById(
-        "adminEmail"
-    );
-
+    document.getElementById("adminEmail");
 
 const welcomeName =
-    document.getElementById(
-        "welcomeName"
-    );
-
+    document.getElementById("welcomeName");
 
 const adminAvatar =
-    document.getElementById(
-        "adminAvatar"
-    );
-
+    document.getElementById("adminAvatar");
 
 const customerCount =
-    document.getElementById(
-        "customerCount"
-    );
-
+    document.getElementById("customerCount");
 
 const pendingDeposits =
-    document.getElementById(
-        "pendingDeposits"
-    );
-
+    document.getElementById("pendingDeposits");
 
 const orderCount =
-    document.getElementById(
-        "orderCount"
-    );
+    document.getElementById("orderCount");
 
-
-const productCount =
-    document.getElementById(
-        "productCount"
-    );
-
-
-const recentProducts =
-    document.getElementById(
-        "recentProducts"
-    );
-
+const pendingAmount =
+    document.getElementById("pendingAmount");
 
 const message =
-    document.getElementById(
-        "message"
-    );
-
+    document.getElementById("message");
 
 const logoutBtn =
-    document.getElementById(
-        "logoutBtn"
-    );
-
+    document.getElementById("logoutBtn");
 
 const mobileMenu =
-    document.getElementById(
-        "mobileMenu"
-    );
-
+    document.getElementById("mobileMenu");
 
 const sidebar =
-    document.getElementById(
-        "sidebar"
-    );
+    document.getElementById("sidebar");
+
+const overlay =
+    document.getElementById("overlay");
 
 
 /* =========================
-   ERROR
+   FORMAT MONEY
+========================= */
+
+function formatMoney(amount){
+
+    return "₦" +
+        Number(amount || 0).toLocaleString(
+            "en-NG",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =========================
+   ERROR MESSAGE
 ========================= */
 
 function showError(text){
 
-    message.textContent =
-        text;
+    message.textContent = text;
 
     message.className =
         "message show error";
@@ -2087,81 +1432,24 @@ function showError(text){
 
 
 /* =========================
-   MONEY
+   SUCCESS MESSAGE
 ========================= */
 
-function formatMoney(
-    amount,
-    currency = "NGN"
-){
+function showSuccess(text){
 
-    const symbols = {
+    message.textContent = text;
 
-        NGN:"₦",
-
-        USD:"$",
-
-        CAD:"CA$"
-
-    };
-
-
-    return (
-        symbols[currency] || "₦"
-    ) +
-
-    Number(
-        amount || 0
-    ).toLocaleString(
-        "en-US",
-        {
-            minimumFractionDigits:2,
-            maximumFractionDigits:2
-        }
-    );
+    message.className =
+        "message show success";
 
 }
 
 
 /* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHTML(value){
-
-    return String(
-        value ?? ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
-}
-
-
-/* =========================
-   ADMIN CHECK
+   CHECK ADMIN
 ========================= */
 
 async function checkAdmin(user){
-
 
     const userRef =
         doc(
@@ -2172,9 +1460,7 @@ async function checkAdmin(user){
 
 
     const snapshot =
-        await getDoc(
-            userRef
-        );
+        await getDoc(userRef);
 
 
     if(!snapshot.exists()){
@@ -2210,9 +1496,7 @@ async function checkAdmin(user){
 
 async function loadStatistics(){
 
-
     try{
-
 
         /* =====================
            CUSTOMERS
@@ -2237,10 +1521,7 @@ async function loadStatistics(){
                     userDoc.data();
 
 
-                if(
-                    data.role !==
-                    "admin"
-                ){
+                if(data.role !== "admin"){
 
                     customers++;
 
@@ -2269,6 +1550,8 @@ async function loadStatistics(){
 
         let pending = 0;
 
+        let pendingTotal = 0;
+
 
         depositsSnapshot.forEach(
             depositDoc => {
@@ -2279,17 +1562,19 @@ async function loadStatistics(){
 
                 const status =
                     String(
-                        data.status ||
-                        "pending"
+                        data.status || "pending"
                     ).toLowerCase();
 
 
-                if(
-                    status ===
-                    "pending"
-                ){
+                if(status === "pending"){
 
                     pending++;
+
+
+                    pendingTotal +=
+                        Number(
+                            data.amount || 0
+                        );
 
                 }
 
@@ -2299,6 +1584,12 @@ async function loadStatistics(){
 
         pendingDeposits.textContent =
             pending;
+
+
+        pendingAmount.textContent =
+            formatMoney(
+                pendingTotal
+            );
 
 
         /* =====================
@@ -2318,34 +1609,7 @@ async function loadStatistics(){
             ordersSnapshot.size;
 
 
-        /* =====================
-           PRODUCTS
-        ===================== */
-
-        const productsSnapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "products"
-                )
-            );
-
-
-        productCount.textContent =
-            productsSnapshot.size;
-
-
-        /* =====================
-           RECENT PRODUCTS
-        ===================== */
-
-        loadRecentProducts(
-            productsSnapshot
-        );
-
-
     }catch(error){
-
 
         console.error(
             "Dashboard statistics error:",
@@ -2364,224 +1628,12 @@ async function loadStatistics(){
 
 
 /* =========================
-   RECENT PRODUCTS
-========================= */
-
-function loadRecentProducts(
-    snapshot
-){
-
-
-    recentProducts.innerHTML =
-        "";
-
-
-    if(snapshot.empty){
-
-        recentProducts.innerHTML = `
-
-            <div
-                style="
-                    color:#667085;
-                    font-size:11px;
-                    padding:10px 0;
-                ">
-
-                No products added yet.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const products = [];
-
-
-    snapshot.forEach(
-        productDoc => {
-
-            products.push({
-
-                id:
-                    productDoc.id,
-
-                ...productDoc.data()
-
-            });
-
-        }
-    );
-
-
-    products.sort(
-        (a,b) => {
-
-
-            const aTime =
-                a.createdAt &&
-                typeof
-                a.createdAt.toMillis ===
-                "function"
-
-                ? a.createdAt.toMillis()
-
-                : 0;
-
-
-            const bTime =
-                b.createdAt &&
-                typeof
-                b.createdAt.toMillis ===
-                "function"
-
-                ? b.createdAt.toMillis()
-
-                : 0;
-
-
-            return bTime - aTime;
-
-        }
-    );
-
-
-    products
-        .slice(0,6)
-        .forEach(
-            product => {
-
-                renderMiniProduct(
-                    product
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================
-   MINI PRODUCT
-========================= */
-
-function renderMiniProduct(
-    product
-){
-
-
-    const image =
-        product.imageUrl ||
-        product.image ||
-        "";
-
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-
-    div.className =
-        "product-mini";
-
-
-    div.innerHTML = `
-
-        <div
-            class="product-mini-image">
-
-            ${
-                image
-
-                ?
-
-                `
-                <img
-                    src="${escapeHTML(image)}"
-                    alt="${escapeHTML(
-                        product.name ||
-                        "Product"
-                    )}"
-                    onerror="
-                        this.style.display='none';
-                    "
-                >
-                `
-
-                :
-
-                `
-                <div
-                    style="
-                        width:100%;
-                        height:100%;
-                        display:grid;
-                        place-items:center;
-                        font-size:30px;
-                    ">
-
-                    🛍️
-
-                </div>
-                `
-            }
-
-        </div>
-
-
-        <div
-            class="product-mini-info">
-
-
-            <div
-                class="product-mini-name">
-
-                ${escapeHTML(
-                    product.name ||
-                    "Unnamed Product"
-                )}
-
-            </div>
-
-
-            <div
-                class="product-mini-price">
-
-                ${formatMoney(
-                    product.price,
-                    product.currency ||
-                    "NGN"
-                )}
-
-            </div>
-
-
-        </div>
-
-    `;
-
-
-    recentProducts.appendChild(
-        div
-    );
-
-}
-
-
-/* =========================
    AUTH
 ========================= */
 
 onAuthStateChanged(
-
     auth,
-
     async user => {
-
 
         if(!user){
 
@@ -2594,7 +1646,6 @@ onAuthStateChanged(
 
 
         try{
-
 
             const data =
                 await checkAdmin(
@@ -2634,7 +1685,6 @@ onAuthStateChanged(
 
         }catch(error){
 
-
             console.error(
                 "Admin verification error:",
                 error
@@ -2649,7 +1699,6 @@ onAuthStateChanged(
             setTimeout(
                 async () => {
 
-
                     await signOut(
                         auth
                     );
@@ -2658,7 +1707,6 @@ onAuthStateChanged(
                     window.location.href =
                         "login.html";
 
-
                 },
                 1500
             );
@@ -2666,7 +1714,6 @@ onAuthStateChanged(
         }
 
     }
-
 );
 
 
@@ -2675,11 +1722,8 @@ onAuthStateChanged(
 ========================= */
 
 logoutBtn.addEventListener(
-
     "click",
-
     async event => {
-
 
         event.preventDefault();
 
@@ -2690,15 +1734,20 @@ logoutBtn.addEventListener(
                 auth
             );
 
-        }finally{
 
             window.location.href =
                 "login.html";
 
+        }catch(error){
+
+            showError(
+                "Unable to logout: " +
+                error.message
+            );
+
         }
 
     }
-
 );
 
 
@@ -2706,23 +1755,64 @@ logoutBtn.addEventListener(
    MOBILE MENU
 ========================= */
 
+function closeSidebar(){
+
+    sidebar.classList.remove(
+        "open"
+    );
+
+    overlay.classList.remove(
+        "show"
+    );
+
+}
+
+
 mobileMenu.addEventListener(
-
     "click",
-
     () => {
 
         sidebar.classList.toggle(
             "open"
         );
 
-    }
+        overlay.classList.toggle(
+            "show"
+        );
 
+    }
 );
+
+
+overlay.addEventListener(
+    "click",
+    closeSidebar
+);
+
+
+/* =========================
+   CLOSE MOBILE SIDEBAR
+   WHEN LINK IS CLICKED
+========================= */
+
+document
+    .querySelectorAll(".nav-link")
+    .forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    closeSidebar();
+
+                }
+            );
+
+        }
+    );
 
 </script>
 
-
 </body>
-
-    </html>
+</html>
