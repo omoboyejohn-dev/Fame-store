@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login | Fame Store</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --blue:#0757d9;
+    --dark-blue:#063b91;
+    --yellow:#ffc928;
+    --black:#101828;
+    --gray:#667085;
+    --light:#f5f8fc;
+    --border:#e5eaf1;
+    --red:#b42318;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:
+        linear-gradient(
+            135deg,
+            #f5f9ff,
+            #ffffff,
+            #fffbea
+        );
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    color:var(--black);
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 15px 45px rgba(16,24,40,.08);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.logo-icon{
+    width:60px;
+    height:60px;
+    margin:auto;
+    background:var(--yellow);
+    border-radius:17px;
+    display:grid;
+    place-items:center;
+    font-size:29px;
+}
+
+.logo h1{
+    color:var(--blue);
+    font-size:23px;
+    margin-top:12px;
+}
+
+.logo p{
+    color:var(--gray);
+    font-size:12px;
+    margin-top:5px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.title h2{
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.title p{
+    color:var(--gray);
+    font-size:12px;
+}
+
+.message{
+    display:none;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.message.show{
+    display:block;
+}
+
+.message.error{
+    color:var(--red);
+    background:#fff1f0;
+    border:1px solid #ffd3d0;
+}
+
+.message.success{
+    color:#087443;
+    background:#ecfff4;
+    border:1px solid #b9efd1;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+input{
+    width:100%;
+    height:48px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:0 13px;
+    outline:none;
+    font-size:13px;
+    transition:.2s;
+}
+
+input:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(7,87,217,.08);
+}
+
+.login-btn{
+    width:100%;
+    height:49px;
+    border:0;
+    border-radius:10px;
+    background:var(--blue);
+    color:#fff;
+    font-size:13px;
+    font-weight:800;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.login-btn:hover{
+    background:var(--dark-blue);
+}
+
+.login-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.footer{
+    text-align:center;
+    color:#98a2b3;
+    font-size:10px;
+    margin-top:22px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-box">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🛍️
+        </div>
+
+        <h1>
+            Fame Store
+        </h1>
+
+        <p>
+            Administrator Portal
+        </p>
+
+    </div>
+
+
+    <div class="title">
+
+        <h2>
+            Admin Login
+        </h2>
+
+        <p>
+            Sign in to manage Fame Store
+        </p>
+
+    </div>
+
+
+    <div
+        id="message"
+        class="message">
+    </div>
+
+
+    <form id="loginForm">
+
+
+        <div class="form-group">
+
+            <label for="email">
+                Admin Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter admin email"
+                autocomplete="email"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="login-btn"
+            id="loginBtn">
+
+            Login to Admin Panel
+
+        </button>
+
+
+    </form>
+
+
+    <div class="footer">
+
+        © 2026 Fame Store. Admin access only.
+
+    </div>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* =====================================
+   FIREBASE
+===================================== */
+
+import {
+    auth,
+    db
+} from "./firebase-config.js";
+
+
+import {
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+    doc,
+    getDoc
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =====================================
+   ELEMENTS
+===================================== */
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const emailInput =
+    document.getElementById("email");
+
+const passwordInput =
+    document.getElementById("password");
+
+const loginBtn =
+    document.getElementById("loginBtn");
+
+const message =
+    document.getElementById("message");
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+function showMessage(text,type){
+
+    message.textContent =
+        text;
+
+    message.className =
+        "message show " + type;
+
+}
+
+
+/* =====================================
+   CHECK ADMIN
+===================================== */
+
+async function checkAdmin(user){
+
+    const userRef =
+        doc(
+            db,
+            "users",
+            user.uid
+        );
+
+
+    const snapshot =
+        await getDoc(
+            userRef
+        );
+
+
+    if(!snapshot.exists()){
+
+        throw new Error(
+            "Admin profile was not found."
+        );
+
+    }
+
+
+    const data =
+        snapshot.data();
+
+
+    if(data.role !== "admin"){
+
+        throw new Error(
+            "Access denied. This account is not an admin."
+        );
+
+    }
+
+
+    return data;
+
+}
+
+
+/* =====================================
+   LOGIN
+===================================== */
+
+loginForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        const email =
+            emailInput.value.trim();
+
+        const password =
+            passwordInput.value;
+
+
+        if(!email || !password){
+
+            showMessage(
+                "Enter your admin email and password.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        loginBtn.disabled =
+            true;
+
+        loginBtn.textContent =
+            "Checking access...";
+
+
+        try{
+
+            /*
+             Firebase Authentication
+            */
+
+            const credential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            /*
+             Check Firestore admin role
+            */
+
+            await checkAdmin(
+                credential.user
+            );
+
+
+            showMessage(
+                "Login successful. Opening admin dashboard...",
+                "success"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "admin-dashboard.html";
+
+                },
+                500
+            );
+
+
+        }catch(error){
+
+            console.error(
+                "Admin login error:",
+                error
+            );
+
+
+            let text =
+                "Unable to login.";
+
+
+            if(
+                error.code ===
+                "auth/invalid-credential"
+            ){
+
+                text =
+                    "Incorrect email or password.";
+
+            }
+
+
+            else if(
+                error.code ===
+                "auth/user-not-found"
+            ){
+
+                text =
+                    "No account was found with this email.";
+
+            }
+
+
+            else if(
+                error.code ===
+                "auth/wrong-password"
+            ){
+
+                text =
+                    "Incorrect password.";
+
+            }
+
+
+            else if(
+                error.code ===
+                "auth/too-many-requests"
+            ){
+
+                text =
+                    "Too many login attempts. Please try again later.";
+
+            }
+
+
+            else if(
+                error.message
+            ){
+
+                text =
+                    error.message;
+
+            }
+
+
+            /*
+             If a normal customer
+             logged in, immediately sign out.
+            */
+
+            try{
+
+                await signOut(auth);
+
+            }catch(signOutError){
+
+                console.error(
+                    signOutError
+                );
+
+            }
+
+
+            showMessage(
+                text,
+                "error"
+            );
+
+
+            loginBtn.disabled =
+                false;
+
+            loginBtn.textContent =
+                "Login to Admin Panel";
+
+        }
+
+    }
+);
+
+
+/* =====================================
+   ALREADY LOGGED IN
+===================================== */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+            return;
+        }
+
+
+        try{
+
+            await checkAdmin(
+                user
+            );
+
+
+            /*
+             Already authenticated
+             as admin.
+            */
+
+            window.location.href =
+                "admin-dashboard.html";
+
+
+        }catch{
+
+            /*
+             Logged-in user is not admin.
+             Leave them on login page.
+            */
+
+        }
+
+    }
+);
+
+
+</script>
+
+</body>
+
+</html>
