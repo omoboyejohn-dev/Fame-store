@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Products | Fame Store Admin</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --blue:#0757d9;
+    --dark-blue:#063b91;
+    --yellow:#ffc928;
+    --white:#fff;
+    --black:#101828;
+    --gray:#667085;
+    --light:#f5f8fc;
+    --border:#e5eaf1;
+    --green:#087443;
+    --red:#b42318;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:var(--light);
+    color:var(--black);
+}
+
+button,
+input,
+textarea,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.header{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    padding:16px 25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.brand-icon{
+    width:43px;
+    height:43px;
+    background:var(--yellow);
+    border-radius:12px;
+
+    display:grid;
+    place-items:center;
+
+    font-size:21px;
+}
+
+.brand-name{
+    color:var(--blue);
+    font-size:18px;
+    font-weight:800;
+}
+
+.brand-role{
+    color:var(--gray);
+    font-size:10px;
+    margin-top:3px;
+}
+
+.back-btn{
+    background:#edf4ff;
+    color:var(--blue);
+
+    border:0;
+    border-radius:9px;
+
+    padding:10px 14px;
+
+    font-size:11px;
+    font-weight:700;
+}
+
+.container{
+    width:min(1250px,100%);
+    margin:auto;
+    padding:25px 18px 50px;
+}
+
+.page-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.page-heading h1{
+    font-size:25px;
+}
+
+.page-heading p{
+    color:var(--gray);
+    font-size:12px;
+    margin-top:5px;
+}
+
+.add-btn{
+    background:var(--blue);
+    color:#fff;
+
+    border:0;
+    border-radius:10px;
+
+    padding:12px 18px;
+
+    font-size:12px;
+    font-weight:800;
+}
+
+.add-btn:hover{
+    background:var(--dark-blue);
+}
+
+.message{
+    display:none;
+
+    padding:13px 15px;
+
+    border-radius:10px;
+
+    margin-bottom:18px;
+
+    font-size:12px;
+}
+
+.message.show{
+    display:block;
+}
+
+.message.success{
+    background:#ecfff4;
+    color:var(--green);
+    border:1px solid #b9efd1;
+}
+
+.message.error{
+    background:#fff1f0;
+    color:var(--red);
+    border:1px solid #ffd3d0;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.product-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:16px;
+
+    overflow:hidden;
+
+    box-shadow:0 2px 8px rgba(16,24,40,.03);
+}
+
+.product-image{
+    width:100%;
+    height:210px;
+
+    background:#f2f4f7;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.product-image.no-image{
+    font-size:40px;
+    color:#98a2b3;
+}
+
+.product-info{
+    padding:15px;
+}
+
+.product-name{
+    font-size:13px;
+    font-weight:800;
+
+    min-height:38px;
+
+    line-height:1.45;
+}
+
+.product-price{
+    color:var(--blue);
+    font-size:17px;
+    font-weight:800;
+
+    margin-top:8px;
+}
+
+.product-country{
+    color:var(--gray);
+    font-size:10px;
+
+    margin-top:5px;
+}
+
+.product-actions{
+    display:flex;
+    gap:8px;
+
+    margin-top:14px;
+}
+
+.edit-btn,
+.delete-btn{
+    flex:1;
+
+    height:38px;
+
+    border-radius:8px;
+
+    font-size:10px;
+    font-weight:800;
+}
+
+.edit-btn{
+    border:1px solid #cbdcff;
+    background:#edf4ff;
+    color:var(--blue);
+}
+
+.delete-btn{
+    border:1px solid #ffd3d0;
+    background:#fff1f0;
+    color:var(--red);
+}
+
+.loading,
+.empty{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:15px;
+
+    padding:45px 20px;
+
+    text-align:center;
+
+    color:var(--gray);
+
+    font-size:13px;
+}
+
+.empty{
+    display:none;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(16,24,40,.55);
+
+    z-index:1000;
+
+    padding:20px;
+
+    overflow:auto;
+}
+
+.modal.show{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-box{
+    width:min(550px,100%);
+
+    background:#fff;
+
+    border-radius:17px;
+
+    padding:24px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.18);
+}
+
+.modal-header{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    font-size:18px;
+}
+
+.close-btn{
+    border:0;
+    background:#f2f4f7;
+
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    font-size:18px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+
+    font-size:11px;
+    font-weight:700;
+
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+
+    border:1px solid #d9e0ea;
+
+    border-radius:9px;
+
+    padding:12px;
+
+    outline:none;
+
+    font-size:12px;
+
+    background:#fff;
+}
+
+.form-group textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:var(--blue);
+}
+
+.form-row{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+}
+
+.modal-actions{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.cancel-btn,
+.save-btn{
+    flex:1;
+
+    height:45px;
+
+    border-radius:9px;
+
+    font-size:12px;
+    font-weight:800;
+}
+
+.cancel-btn{
+    background:#f2f4f7;
+    border:1px solid var(--border);
+}
+
+.save-btn{
+    background:var(--blue);
+    color:#fff;
+    border:0;
+}
+
+.save-btn:disabled{
+    opacity:.6;
+}
+
+@media(max-width:1000px){
+
+    .products{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:750px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .page-heading{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .add-btn{
+        width:100%;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        padding:20px 12px 40px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🛍️
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                Fame Store
+            </div>
+
+            <div class="brand-role">
+                PRODUCT MANAGEMENT
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="back-btn"
+        onclick="location.href='admin-dashboard.html'">
+
+        ← Dashboard
+
+    </button>
+
+</header>
+
+
+<main class="container">
+
+
+<div class="page-heading">
+
+    <div>
+
+        <h1>
+            Products
+        </h1>
+
+        <p>
+            Add, edit and manage products available in Fame Store.
+        </p>
+
+    </div>
+
+
+    <button
+        class="add-btn"
+        id="addProductBtn">
+
+        + Add New Product
+
+    </button>
+
+</div>
+
+
+<div
+    id="message"
+    class="message">
+</div>
+
+
+<div
+    id="loading"
+    class="loading">
+
+    Loading products...
+
+</div>
+
+
+<div
+    id="empty"
+    class="empty">
+
+    <div style="font-size:40px;margin-bottom:10px;">
+        🛍️
+    </div>
+
+    <h3 style="margin-bottom:5px;">
+        No Products
+    </h3>
+
+    <p>
+        Add your first Fame Store product.
+    </p>
+
+</div>
+
+
+<div
+    id="products"
+    class="products">
+</div>
+
+
+</main>
+
+
+<!-- =========================
+     PRODUCT MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="productModal">
+
+    <div class="modal-box">
+
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Product
+            </h2>
+
+            <button
+                class="close-btn"
+                id="closeModal">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="productForm">
+
+
+            <div class="form-group">
+
+                <label>
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Example: Artificial Rose Flower Bouquet"
+                    required>
+
+            </div>
+
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        placeholder="45000"
+                        min="0"
+                        step="0.01"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Currency
+                    </label>
+
+                    <select id="productCurrency">
+
+                        <option value="NGN">
+                            NGN ₦
+                        </option>
+
+                        <option value="USD">
+                            USD $
+                        </option>
+
+                        <option value="CAD">
+                            CAD $
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Product Image URL
+                </label>
+
+                <input
+                    type="url"
+                    id="productImage"
+                    placeholder="https://example.com/image.webp"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Destination / Availability
+                </label>
+
+                <select id="productRegion">
+
+                    <option value="Nigeria">
+                        Nigeria
+                    </option>
+
+                    <option value="USA">
+                        USA
+                    </option>
+
+                    <option value="Canada">
+                        Canada
+                    </option>
+
+                    <option value="USA, Canada">
+                        USA & Canada
+                    </option>
+
+                    <option value="Worldwide">
+                        Worldwide
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="productDescription"
+                    placeholder="Describe the product..."></textarea>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelBtn">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                    id="saveBtn">
+
+                    Save Product
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    auth,
+    db
+} from "./firebase-config.js";
+
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+    collection,
+    getDocs,
+    getDoc,
+    doc,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const productsContainer =
+    document.getElementById("products");
+
+const loading =
+    document.getElementById("loading");
+
+const empty =
+    document.getElementById("empty");
+
+const message =
+    document.getElementById("message");
+
+const modal =
+    document.getElementById("productModal");
+
+const modalTitle =
+    document.getElementById("modalTitle");
+
+const form =
+    document.getElementById("productForm");
+
+const productName =
+    document.getElementById("productName");
+
+const productPrice =
+    document.getElementById("productPrice");
+
+const productCurrency =
+    document.getElementById("productCurrency");
+
+const productImage =
+    document.getElementById("productImage");
+
+const productRegion =
+    document.getElementById("productRegion");
+
+const productDescription =
+    document.getElementById("productDescription");
+
+const saveBtn =
+    document.getElementById("saveBtn");
+
+
+let editingProductId = null;
+
+let currentAdmin = null;
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text,type){
+
+    message.textContent = text;
+
+    message.className =
+        "message show " + type;
+
+}
+
+
+/* =========================
+   MONEY
+========================= */
+
+function formatPrice(
+    amount,
+    currency
+){
+
+    const symbols = {
+
+        NGN:"₦",
+        USD:"$",
+        CAD:"CA$"
+
+    };
+
+    return (
+        symbols[currency] || "₦"
+    ) +
+    Number(amount || 0)
+        .toLocaleString(
+            "en-US",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   ADMIN CHECK
+========================= */
+
+async function checkAdmin(user){
+
+    const userRef =
+        doc(
+            db,
+            "users",
+            user.uid
+        );
+
+
+    const snapshot =
+        await getDoc(userRef);
+
+
+    if(!snapshot.exists()){
+
+        throw new Error(
+            "Admin profile was not found."
+        );
+
+    }
+
+
+    const data =
+        snapshot.data();
+
+
+    if(data.role !== "admin"){
+
+        throw new Error(
+            "Access denied. Admin account required."
+        );
+
+    }
+
+
+    currentAdmin = user;
+
+}
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
+
+async function loadProducts(){
+
+    loading.style.display =
+        "block";
+
+    empty.style.display =
+        "none";
+
+    productsContainer.innerHTML = "";
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "products"
+                )
+            );
+
+
+        loading.style.display =
+            "none";
+
+
+        if(snapshot.empty){
+
+            empty.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        const products = [];
+
+
+        snapshot.forEach(
+            productDoc => {
+
+                products.push({
+
+                    id:productDoc.id,
+
+                    ...productDoc.data()
+
+                });
+
+            }
+        );
+
+
+        products.sort(
+            (a,b) => {
+
+                const aTime =
+                    a.createdAt &&
+                    typeof a.createdAt.toMillis === "function"
+                    ? a.createdAt.toMillis()
+                    : 0;
+
+                const bTime =
+                    b.createdAt &&
+                    typeof b.createdAt.toMillis === "function"
+                    ? b.createdAt.toMillis()
+                    : 0;
+
+                return bTime - aTime;
+
+            }
+        );
+
+
+        products.forEach(
+            product => {
+
+                renderProduct(
+                    product
+                );
+
+            }
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        loading.style.display =
+            "none";
+
+        showMessage(
+            "Unable to load products: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   RENDER PRODUCT
+========================= */
+
+function renderProduct(product){
+
+    const card =
+        document.createElement("div");
+
+
+    card.className =
+        "product-card";
+
+
+    const image =
+        product.imageUrl ||
+        product.image ||
+        "";
+
+
+    card.innerHTML = `
+
+        <div class="product-image ${
+            image ? "" : "no-image"
+        }">
+
+            ${
+                image
+                ? `
+                    <img
+                        src="${escapeHTML(image)}"
+                        alt="${escapeHTML(product.name || "Product")}"
+                        onerror="this.parentElement.innerHTML='🛍️';this.parentElement.classList.add('no-image')">
+                  `
+                : "🛍️"
+            }
+
+        </div>
+
+
+        <div class="product-info">
+
+            <div class="product-name">
+
+                ${escapeHTML(
+                    product.name ||
+                    "Unnamed Product"
+                )}
+
+            </div>
+
+
+            <div class="product-price">
+
+                ${formatPrice(
+                    product.price,
+                    product.currency || "NGN"
+                )}
+
+            </div>
+
+
+            <div class="product-country">
+
+                🌍 ${
+                    escapeHTML(
+                        product.region ||
+                        "Worldwide"
+                    )
+                }
+
+            </div>
+
+
+            <div class="product-actions">
+
+                <button
+                    class="edit-btn"
+                    data-edit="${product.id}">
+
+                    ✏️ Edit
+
+                </button>
+
+
+                <button
+                    class="delete-btn"
+                    data-delete="${product.id}">
+
+                    🗑️ Delete
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    productsContainer.appendChild(
+        card
+    );
+
+
+    card.querySelector(
+        "[data-edit]"
+    ).addEventListener(
+        "click",
+        () => {
+
+            openEditProduct(
+                product
+            );
+
+        }
+    );
+
+
+    card.querySelector(
+        "[data-delete]"
+    ).addEventListener(
+        "click",
+        () => {
+
+            deleteProduct(
+                product.id,
+                product.name
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   OPEN ADD
+========================= */
+
+function openAddProduct(){
+
+    editingProductId = null;
+
+    modalTitle.textContent =
+        "Add New Product";
+
+    saveBtn.textContent =
+        "Save Product";
+
+    form.reset();
+
+    productCurrency.value =
+        "NGN";
+
+    productRegion.value =
+        "Nigeria";
+
+    modal.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   OPEN EDIT
+========================= */
+
+function openEditProduct(product){
+
+    editingProductId =
+        product.id;
+
+
+    modalTitle.textContent =
+        "Edit Product";
+
+
+    saveBtn.textContent =
+        "Update Product";
+
+
+    productName.value =
+        product.name || "";
+
+
+    productPrice.value =
+        product.price || "";
+
+
+    productCurrency.value =
+        product.currency ||
+        "NGN";
+
+
+    productImage.value =
+        product.imageUrl ||
+        product.image ||
+        "";
+
+
+    productRegion.value =
+        product.region ||
+        "Worldwide";
+
+
+    productDescription.value =
+        product.description ||
+        "";
+
+
+    modal.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal(){
+
+    modal.classList.remove(
+        "show"
+    );
+
+    editingProductId = null;
+
+    form.reset();
+
+}
+
+
+/* =========================
+   SAVE PRODUCT
+========================= */
+
+form.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        if(!currentAdmin){
+
+            showMessage(
+                "Admin authentication is missing.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const name =
+            productName.value.trim();
+
+
+        const price =
+            Number(
+                productPrice.value
+            );
+
+
+        const currency =
+            productCurrency.value;
+
+
+        const imageUrl =
+            productImage.value.trim();
+
+
+        const region =
+            productRegion.value;
+
+
+        const description =
+            productDescription.value.trim();
+
+
+        if(!name){
+
+            showMessage(
+                "Enter a product name.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!Number.isFinite(price) || price < 0){
+
+            showMessage(
+                "Enter a valid product price.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!imageUrl){
+
+            showMessage(
+                "Enter the product image URL.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        saveBtn.disabled =
+            true;
+
+
+        saveBtn.textContent =
+            editingProductId
+            ? "Updating..."
+            : "Saving...";
+
+
+        try{
+
+            const productData = {
+
+                name,
+
+                price,
+
+                currency,
+
+                imageUrl,
+
+                region,
+
+                description,
+
+                updatedAt:
+                    serverTimestamp(),
+
+                updatedBy:
+                    currentAdmin.uid
+
+            };
+
+
+            if(editingProductId){
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "products",
+                        editingProductId
+                    ),
+                    productData
+                );
+
+
+                showMessage(
+                    "Product updated successfully.",
+                    "success"
+                );
+
+            }else{
+
+                await addDoc(
+                    collection(
+                        db,
+                        "products"
+                    ),
+                    {
+
+                        ...productData,
+
+                        createdAt:
+                            serverTimestamp(),
+
+                        createdBy:
+                            currentAdmin.uid,
+
+                        active:
+                            true
+
+                    }
+                );
+
+
+                showMessage(
+                    "Product added successfully.",
+                    "success"
+                );
+
+            }
+
+
+            closeModal();
+
+            await loadProducts();
+
+
+        }catch(error){
+
+            console.error(
+                "Save product error:",
+                error
+            );
+
+
+            showMessage(
+                "Unable to save product: " +
+                error.message,
+                "error"
+            );
+
+        }finally{
+
+            saveBtn.disabled =
+                false;
+
+            saveBtn.textContent =
+                editingProductId
+                ? "Update Product"
+                : "Save Product";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   DELETE PRODUCT
+========================= */
+
+async function deleteProduct(
+    productId,
+    productName
+){
+
+    if(!currentAdmin){
+
+        showMessage(
+            "Admin authentication is missing.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete this product?\n\n" +
+            productName
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "products",
+                productId
+            )
+        );
+
+
+        showMessage(
+            "Product deleted successfully.",
+            "success"
+        );
+
+
+        await loadProducts();
+
+
+    }catch(error){
+
+        console.error(
+            "Delete product error:",
+            error
+        );
+
+
+        showMessage(
+            "Unable to delete product: " +
+            error.message,
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+document.getElementById(
+    "addProductBtn"
+).addEventListener(
+    "click",
+    openAddProduct
+);
+
+
+document.getElementById(
+    "closeModal"
+).addEventListener(
+    "click",
+    closeModal
+);
+
+
+document.getElementById(
+    "cancelBtn"
+).addEventListener(
+    "click",
+    closeModal
+);
+
+
+modal.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === modal){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        try{
+
+            await checkAdmin(
+                user
+            );
+
+
+            await loadProducts();
+
+
+        }catch(error){
+
+            console.error(
+                "Admin verification error:",
+                error
+            );
+
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                1500
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
