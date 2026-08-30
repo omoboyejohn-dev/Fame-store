@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
+<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>Admin Login | Fame Store</title>
-
-<style>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin Login | Fame Store</title><style>
 *{
     margin:0;
     padding:0;
@@ -27,17 +16,12 @@
     --light:#f5f8fc;
     --border:#e5eaf1;
     --red:#b42318;
+    --green:#087443;
 }
 
 body{
     font-family:Arial,sans-serif;
-    background:
-        linear-gradient(
-            135deg,
-            #f5f9ff,
-            #ffffff,
-            #fffbea
-        );
+    background:linear-gradient(135deg,#f5f9ff,#fff,#fffbea);
     min-height:100vh;
     display:flex;
     align-items:center;
@@ -119,7 +103,7 @@ body{
 }
 
 .message.success{
-    color:#087443;
+    color:var(--green);
     background:#ecfff4;
     border:1px solid #b9efd1;
 }
@@ -143,7 +127,6 @@ input{
     padding:0 13px;
     outline:none;
     font-size:13px;
-    transition:.2s;
 }
 
 input:focus{
@@ -179,143 +162,78 @@ input:focus{
     font-size:10px;
     margin-top:22px;
 }
+</style></head><body><div class="login-box"><div class="logo">
+    <div class="logo-icon">🛍️</div>
 
-</style>
+    <h1>Fame Store</h1>
 
-</head>
-
-
-<body>
-
-
-<div class="login-box">
-
-
-    <div class="logo">
-
-        <div class="logo-icon">
-            🛍️
-        </div>
-
-        <h1>
-            Fame Store
-        </h1>
-
-        <p>
-            Administrator Portal
-        </p>
-
-    </div>
-
-
-    <div class="title">
-
-        <h2>
-            Admin Login
-        </h2>
-
-        <p>
-            Sign in to manage Fame Store
-        </p>
-
-    </div>
-
-
-    <div
-        id="message"
-        class="message">
-    </div>
-
-
-    <form id="loginForm">
-
-
-        <div class="form-group">
-
-            <label for="email">
-                Admin Email
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter admin email"
-                autocomplete="email"
-                required>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="password">
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Enter password"
-                autocomplete="current-password"
-                required>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="login-btn"
-            id="loginBtn">
-
-            Login to Admin Panel
-
-        </button>
-
-
-    </form>
-
-
-    <div class="footer">
-
-        © 2026 Fame Store. Admin access only.
-
-    </div>
-
-
+    <p>Administrator Portal</p>
 </div>
 
+<div class="title">
+    <h2>Admin Login</h2>
+    <p>Sign in to manage Fame Store</p>
+</div>
 
-<script type="module">
+<div id="message" class="message"></div>
 
+<form id="loginForm">
 
-/* =====================================
-   FIREBASE
-===================================== */
+    <div class="form-group">
+        <label for="email">Admin Email</label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter admin email"
+            autocomplete="email"
+            required>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            autocomplete="current-password"
+            required>
+    </div>
+
+    <button
+        type="submit"
+        class="login-btn"
+        id="loginBtn">
+
+        Login to Admin Panel
+
+    </button>
+
+</form>
+
+<div class="footer">
+    © 2026 Fame Store. Admin access only.
+</div>
+
+</div><script type="module">
 
 import {
     auth,
     db
 } from "./firebase-config.js";
 
-
 import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 import {
     doc,
     getDoc
-} from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-
-/* =====================================
-   ELEMENTS
-===================================== */
 
 const loginForm =
     document.getElementById("loginForm");
@@ -333,71 +251,43 @@ const message =
     document.getElementById("message");
 
 
-/* =====================================
-   MESSAGE
-===================================== */
-
 function showMessage(text,type){
 
-    message.textContent =
-        text;
+    message.textContent = text;
 
     message.className =
         "message show " + type;
-
 }
 
-
-/* =====================================
-   CHECK ADMIN
-===================================== */
 
 async function checkAdmin(user){
 
     const userRef =
-        doc(
-            db,
-            "users",
-            user.uid
-        );
-
+        doc(db,"users",user.uid);
 
     const snapshot =
-        await getDoc(
-            userRef
-        );
-
+        await getDoc(userRef);
 
     if(!snapshot.exists()){
 
         throw new Error(
-            "Admin profile was not found."
+            "Admin profile was not found in Firestore."
         );
-
     }
-
 
     const data =
         snapshot.data();
-
 
     if(data.role !== "admin"){
 
         throw new Error(
             "Access denied. This account is not an admin."
         );
-
     }
 
-
     return data;
-
 }
 
-
-/* =====================================
-   LOGIN
-===================================== */
 
 loginForm.addEventListener(
     "submit",
@@ -405,38 +295,18 @@ loginForm.addEventListener(
 
         event.preventDefault();
 
-
         const email =
             emailInput.value.trim();
 
         const password =
             passwordInput.value;
 
-
-        if(!email || !password){
-
-            showMessage(
-                "Enter your admin email and password.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        loginBtn.disabled =
-            true;
+        loginBtn.disabled = true;
 
         loginBtn.textContent =
             "Checking access...";
 
-
         try{
-
-            /*
-             Firebase Authentication
-            */
 
             const credential =
                 await signInWithEmailAndPassword(
@@ -445,32 +315,25 @@ loginForm.addEventListener(
                     password
                 );
 
-
-            /*
-             Check Firestore admin role
-            */
-
             await checkAdmin(
                 credential.user
             );
 
-
             showMessage(
-                "Login successful. Opening admin dashboard...",
+                "Login successful. Opening dashboard...",
                 "success"
             );
-
 
             setTimeout(
                 () => {
 
-                    window.location.href =
-                        "admin-dashboard.html";
+                    window.location.replace(
+                        "admin-dashboard.html"
+                    );
 
                 },
                 500
             );
-
 
         }catch(error){
 
@@ -479,10 +342,12 @@ loginForm.addEventListener(
                 error
             );
 
+            try{
+                await signOut(auth);
+            }catch{}
 
             let text =
                 "Unable to login.";
-
 
             if(
                 error.code ===
@@ -492,10 +357,7 @@ loginForm.addEventListener(
                 text =
                     "Incorrect email or password.";
 
-            }
-
-
-            else if(
+            }else if(
                 error.code ===
                 "auth/user-not-found"
             ){
@@ -503,10 +365,7 @@ loginForm.addEventListener(
                 text =
                     "No account was found with this email.";
 
-            }
-
-
-            else if(
+            }else if(
                 error.code ===
                 "auth/wrong-password"
             ){
@@ -514,69 +373,38 @@ loginForm.addEventListener(
                 text =
                     "Incorrect password.";
 
-            }
-
-
-            else if(
+            }else if(
                 error.code ===
                 "auth/too-many-requests"
             ){
 
                 text =
-                    "Too many login attempts. Please try again later.";
+                    "Too many login attempts. Try again later.";
 
-            }
-
-
-            else if(
-                error.message
-            ){
+            }else if(error.message){
 
                 text =
                     error.message;
-
             }
-
-
-            /*
-             If a normal customer
-             logged in, immediately sign out.
-            */
-
-            try{
-
-                await signOut(auth);
-
-            }catch(signOutError){
-
-                console.error(
-                    signOutError
-                );
-
-            }
-
 
             showMessage(
                 text,
                 "error"
             );
 
-
-            loginBtn.disabled =
-                false;
+            loginBtn.disabled = false;
 
             loginBtn.textContent =
                 "Login to Admin Panel";
-
         }
-
     }
 );
 
 
-/* =====================================
-   ALREADY LOGGED IN
-===================================== */
+/*
+If an admin is already logged in,
+open the dashboard automatically.
+*/
 
 onAuthStateChanged(
     auth,
@@ -586,38 +414,24 @@ onAuthStateChanged(
             return;
         }
 
-
         try{
 
-            await checkAdmin(
-                user
+            await checkAdmin(user);
+
+            window.location.replace(
+                "admin-dashboard.html"
             );
-
-
-            /*
-             Already authenticated
-             as admin.
-            */
-
-            window.location.href =
-                "admin-dashboard.html";
-
 
         }catch{
 
             /*
-             Logged-in user is not admin.
-             Leave them on login page.
+             Not an admin.
+             Remain on login page.
             */
 
         }
-
     }
 );
 
-
-</script>
-
-</body>
-
+</script></body>
 </html>
