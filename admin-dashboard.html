@@ -1,8 +1,20 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin Dashboard | Fame Store</title><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | Fame Store</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
 href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet"><style>
+rel="stylesheet">
+
+<style>
 
 *{
     margin:0;
@@ -239,12 +251,6 @@ button{
     border:1px solid #ffd3d0;
 }
 
-.message.success{
-    color:var(--green);
-    background:#ecfff4;
-    border:1px solid #b9efd1;
-}
-
 
 /* STATS */
 
@@ -291,7 +297,7 @@ button{
 }
 
 
-/* DASHBOARD GRID */
+/* GRID */
 
 .dashboard-grid{
     display:grid;
@@ -499,506 +505,603 @@ button{
     }
 }
 
-</style></head><body><!-- SIDEBAR --><aside class="sidebar" id="sidebar"><div class="brand">
+</style>
+</head>
 
-    <div class="brand-icon">
-        🛍️
+<body>
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">🛍️</div>
+
+        <div>
+
+            <div class="brand-name">
+                Fame Store
+            </div>
+
+            <div class="brand-role">
+                ADMIN PANEL
+            </div>
+
+        </div>
+
     </div>
+
+
+    <div class="nav-title">
+        Main Menu
+    </div>
+
+
+    <nav class="nav">
+
+        <a
+            href="admin-dashboard.html"
+            class="nav-link active">
+
+            <span class="nav-icon">📊</span>
+            Dashboard
+
+        </a>
+
+
+        <a
+            href="admin-products.html"
+            class="nav-link">
+
+            <span class="nav-icon">🛍️</span>
+            Products
+
+        </a>
+
+
+        <a
+            href="admin-orders.html"
+            class="nav-link">
+
+            <span class="nav-icon">📦</span>
+            Orders
+
+        </a>
+
+
+        <a
+            href="admin-deposits.html"
+            class="nav-link">
+
+            <span class="nav-icon">💳</span>
+            Deposits
+
+        </a>
+
+
+        <a
+            href="customers.html"
+            class="nav-link">
+
+            <span class="nav-icon">👥</span>
+            Customers
+
+        </a>
+
+
+        <a
+            href="notifications.html"
+            class="nav-link">
+
+            <span class="nav-icon">🔔</span>
+            Notifications
+
+        </a>
+
+
+        <a
+            href="support.html"
+            class="nav-link">
+
+            <span class="nav-icon">💬</span>
+            Support
+
+        </a>
+
+
+        <a
+            href="settings.html"
+            class="nav-link">
+
+            <span class="nav-icon">⚙️</span>
+            Settings
+
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <a
+            href="#"
+            class="nav-link logout-link"
+            id="logoutBtn">
+
+            <span class="nav-icon">🚪</span>
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+
+<header class="topbar">
 
     <div>
 
-        <div class="brand-name">
-            Fame Store
-        </div>
+        <button
+            class="mobile-menu"
+            id="mobileMenu">
 
-        <div class="brand-role">
-            ADMIN PANEL
-        </div>
+            ☰
+
+        </button>
+
+        <span class="page-title">
+            Admin Dashboard
+        </span>
 
     </div>
 
-</div>
 
+    <div class="admin-info">
 
-<div class="nav-title">
-    Main Menu
-</div>
+        <div>
 
+            <div
+                class="admin-name"
+                id="adminName">
 
-<nav class="nav">
+                Loading...
 
-    <a href="admin-dashboard.html"
-       class="nav-link active">
+            </div>
 
-        <span class="nav-icon">📊</span>
-        Dashboard
+            <div
+                class="admin-email"
+                id="adminEmail">
 
-    </a>
+                Loading...
 
+            </div>
 
-    <a href="admin-products.html"
-       class="nav-link">
+        </div>
 
-        <span class="nav-icon">🛍️</span>
-        Products
-
-    </a>
-
-
-    <a href="admin-orders.html"
-       class="nav-link">
-
-        <span class="nav-icon">📦</span>
-        Orders
-
-    </a>
-
-
-    <a href="admin-deposits.html"
-       class="nav-link">
-
-        <span class="nav-icon">💳</span>
-        Deposits
-
-    </a>
-
-
-    <a href="customers.html"
-       class="nav-link">
-
-        <span class="nav-icon">👥</span>
-        Customers
-
-    </a>
-
-
-    <a href="notifications.html"
-       class="nav-link">
-
-        <span class="nav-icon">🔔</span>
-        Notifications
-
-    </a>
-
-
-    <a href="support.html"
-       class="nav-link">
-
-        <span class="nav-icon">💬</span>
-        Support
-
-    </a>
-
-
-    <a href="settings.html"
-       class="nav-link">
-
-        <span class="nav-icon">⚙️</span>
-        Settings
-
-    </a>
-
-</nav>
-
-
-<div class="sidebar-bottom">
-
-    <a
-        href="#"
-        class="nav-link logout-link"
-        id="logoutBtn">
-
-        <span class="nav-icon">🚪</span>
-        Logout
-
-    </a>
-
-</div>
-
-</aside><!-- MAIN --><div class="main"><header class="topbar"><div>
-
-    <button
-        class="mobile-menu"
-        id="mobileMenu">
-
-        ☰
-
-    </button>
-
-    <span class="page-title">
-        Admin Dashboard
-    </span>
-
-</div>
-
-
-<div class="admin-info">
-
-    <div>
 
         <div
-            class="admin-name"
-            id="adminName">
+            class="admin-avatar"
+            id="adminAvatar">
 
-            Loading...
-
-        </div>
-
-        <div
-            class="admin-email"
-            id="adminEmail">
-
-            Loading...
+            ?
 
         </div>
 
     </div>
 
+</header>
 
-    <div
-        class="admin-avatar"
-        id="adminAvatar">
 
-        ?
+<main class="content">
 
-    </div>
 
-</div>
+<section class="welcome">
 
-</header><main class="content"><section class="welcome"><h1>
-    Welcome, <span id="welcomeName">Admin</span> 👋
-</h1>
-
-<p>
-    Manage Fame Store products, customer payments,
-    orders and deliveries from one place.
-</p>
-
-</section><div
-    class="message"
-    id="message">
-</div><!-- STATS --><section class="stats"><div class="stat-card"><div class="stat-top">
-
-    <div class="stat-label">
-        Total Customers
-    </div>
-
-    <div class="stat-icon">
-        👥
-    </div>
-
-</div>
-
-<div
-    class="stat-value"
-    id="customerCount">
-
-    0
-
-</div>
-
-</div><div class="stat-card"><div class="stat-top">
-
-    <div class="stat-label">
-        Pending Deposits
-    </div>
-
-    <div class="stat-icon">
-        💳
-    </div>
-
-</div>
-
-<div
-    class="stat-value"
-    id="pendingDeposits">
-
-    0
-
-</div>
-
-</div><div class="stat-card"><div class="stat-top">
-
-    <div class="stat-label">
-        Total Orders
-    </div>
-
-    <div class="stat-icon">
-        📦
-    </div>
-
-</div>
-
-<div
-    class="stat-value"
-    id="orderCount">
-
-    0
-
-</div>
-
-</div><div class="stat-card"><div class="stat-top">
-
-    <div class="stat-label">
-        Pending Amount
-    </div>
-
-    <div class="stat-icon">
-        💰
-    </div>
-
-</div>
-
-<div
-    class="stat-value"
-    id="pendingAmount">
-
-    ₦0.00
-
-</div>
-
-</div></section><!-- GRID --><section class="dashboard-grid"><!-- MANAGEMENT --><div class="card"><div class="card-header">
-
-    <h2>
-        Store Management
-    </h2>
+    <h1>
+        Welcome,
+        <span id="welcomeName">
+            Admin
+        </span>
+        👋
+    </h1>
 
     <p>
-        Manage products, payments and customer orders.
+        Manage Fame Store products, customer payments,
+        orders and deliveries from one place.
     </p>
+
+</section>
+
+
+<div
+    class="message"
+    id="message">
+</div>
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+
+<div class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-label">
+            Total Customers
+        </div>
+
+        <div class="stat-icon">
+            👥
+        </div>
+
+    </div>
+
+    <div
+        class="stat-value"
+        id="customerCount">
+
+        0
+
+    </div>
 
 </div>
 
 
-<div class="actions">
+<div class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-label">
+            Pending Deposits
+        </div>
+
+        <div class="stat-icon">
+            💳
+        </div>
+
+    </div>
+
+    <div
+        class="stat-value"
+        id="pendingDeposits">
+
+        0
+
+    </div>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-label">
+            Total Orders
+        </div>
+
+        <div class="stat-icon">
+            📦
+        </div>
+
+    </div>
+
+    <div
+        class="stat-value"
+        id="orderCount">
+
+        0
+
+    </div>
+
+</div>
+
+
+<div class="stat-card">
+
+    <div class="stat-top">
+
+        <div class="stat-label">
+            Pending Amount
+        </div>
+
+        <div class="stat-icon">
+            💰
+        </div>
+
+    </div>
+
+    <div
+        class="stat-value"
+        id="pendingAmount">
+
+        ₦0.00
+
+    </div>
+
+</div>
+
+
+</section>
+
+
+<!-- GRID -->
+
+<section class="dashboard-grid">
+
+
+<!-- MANAGEMENT -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <h2>
+            Store Management
+        </h2>
+
+        <p>
+            Manage products, payments and customer orders.
+        </p>
+
+    </div>
+
+
+    <div class="actions">
+
+
+        <a
+            href="admin-products.html"
+            class="action">
+
+            <div class="action-icon">
+                🛍️
+            </div>
+
+            <div class="action-title">
+                Products
+            </div>
+
+            <div class="action-description">
+                Add new products and change product names,
+                prices and images.
+            </div>
+
+        </a>
+
+
+        <a
+            href="admin-orders.html"
+            class="action">
+
+            <div class="action-icon">
+                📦
+            </div>
+
+            <div class="action-title">
+                Orders
+            </div>
+
+            <div class="action-description">
+                View customer orders and manage delivery details.
+            </div>
+
+        </a>
+
+
+        <a
+            href="admin-deposits.html"
+            class="action">
+
+            <div class="action-icon">
+                💳
+            </div>
+
+            <div class="action-title">
+                Deposits
+            </div>
+
+            <div class="action-description">
+                Review customer payment requests and
+                approve or reject deposits.
+            </div>
+
+        </a>
+
+
+        <a
+            href="customers.html"
+            class="action">
+
+            <div class="action-icon">
+                👥
+            </div>
+
+            <div class="action-title">
+                Customers
+            </div>
+
+            <div class="action-description">
+                View registered customers and their account
+                information.
+            </div>
+
+        </a>
+
+
+        <a
+            href="notifications.html"
+            class="action">
+
+            <div class="action-icon">
+                🔔
+            </div>
+
+            <div class="action-title">
+                Notifications
+            </div>
+
+            <div class="action-description">
+                Manage customer notifications and updates.
+            </div>
+
+        </a>
+
+
+        <a
+            href="support.html"
+            class="action">
+
+            <div class="action-icon">
+                💬
+            </div>
+
+            <div class="action-title">
+                Customer Support
+            </div>
+
+            <div class="action-description">
+                View and respond to customer support requests.
+            </div>
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+<!-- SYSTEM -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <h2>
+            System Status
+        </h2>
+
+        <p>
+            Fame Store services
+        </p>
+
+    </div>
+
+
+    <div class="system-item">
+
+        <div class="system-left">
+
+            <div class="system-icon">
+                🔐
+            </div>
+
+            <div class="system-name">
+                Authentication
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            Active
+        </div>
+
+    </div>
+
+
+    <div class="system-item">
+
+        <div class="system-left">
+
+            <div class="system-icon">
+                🗄️
+            </div>
+
+            <div class="system-name">
+                Firestore
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            Active
+        </div>
+
+    </div>
+
+
+    <div class="system-item">
+
+        <div class="system-left">
+
+            <div class="system-icon">
+                🛍️
+            </div>
+
+            <div class="system-name">
+                Products
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            Connected
+        </div>
+
+    </div>
+
+
+    <div class="system-item">
+
+        <div class="system-left">
+
+            <div class="system-icon">
+                📦
+            </div>
+
+            <div class="system-name">
+                Orders
+            </div>
+
+        </div>
+
+        <div class="system-status">
+            Connected
+        </div>
+
+    </div>
 
 
     <a
         href="admin-products.html"
-        class="action">
+        class="quick-link">
 
-        <div class="action-icon">
-            🛍️
-        </div>
-
-        <div class="action-title">
-            Products
-        </div>
-
-        <div class="action-description">
-            Add new products and change product names,
-            prices and images.
-        </div>
+        Manage Products →
 
     </a>
-
-
-    <a
-        href="admin-orders.html"
-        class="action">
-
-        <div class="action-icon">
-            📦
-        </div>
-
-        <div class="action-title">
-            Orders
-        </div>
-
-        <div class="action-description">
-            View what customers ordered and manage
-            delivery status and destination details.
-        </div>
-
-    </a>
-
-
-    <a
-        href="admin-deposits.html"
-        class="action">
-
-        <div class="action-icon">
-            💳
-        </div>
-
-        <div class="action-title">
-            Deposits
-        </div>
-
-        <div class="action-description">
-            Review customer payment requests and
-            approve or reject deposits.
-        </div>
-
-    </a>
-
-
-    <a
-        href="customers.html"
-        class="action">
-
-        <div class="action-icon">
-            👥
-        </div>
-
-        <div class="action-title">
-            Customers
-        </div>
-
-        <div class="action-description">
-            View registered customers and their account
-            information.
-        </div>
-
-    </a>
-
-
-    <a
-        href="notifications.html"
-        class="action">
-
-        <div class="action-icon">
-            🔔
-        </div>
-
-        <div class="action-title">
-            Notifications
-        </div>
-
-        <div class="action-description">
-            Manage customer notifications and updates.
-        </div>
-
-    </a>
-
-
-    <a
-        href="support.html"
-        class="action">
-
-        <div class="action-icon">
-            💬
-        </div>
-
-        <div class="action-title">
-            Customer Support
-        </div>
-
-        <div class="action-description">
-            View and respond to customer support requests.
-        </div>
-
-    </a>
-
-
-</div>
-
-</div><!-- SYSTEM --><div class="card"><div class="card-header">
-
-    <h2>
-        System Status
-    </h2>
-
-    <p>
-        Fame Store services
-    </p>
 
 </div>
 
 
-<div class="system-item">
+</section>
 
-    <div class="system-left">
-
-        <div class="system-icon">
-            🔐
-        </div>
-
-        <div class="system-name">
-            Authentication
-        </div>
-
-    </div>
-
-    <div class="system-status">
-        Active
-    </div>
+</main>
 
 </div>
 
 
-<div class="system-item">
-
-    <div class="system-left">
-
-        <div class="system-icon">
-            🗄️
-        </div>
-
-        <div class="system-name">
-            Firestore
-        </div>
-
-    </div>
-
-    <div class="system-status">
-        Active
-    </div>
-
-</div>
-
-
-<div class="system-item">
-
-    <div class="system-left">
-
-        <div class="system-icon">
-            🛍️
-        </div>
-
-        <div class="system-name">
-            Products
-        </div>
-
-    </div>
-
-    <div class="system-status">
-        Connected
-    </div>
-
-</div>
-
-
-<div class="system-item">
-
-    <div class="system-left">
-
-        <div class="system-icon">
-            📦
-        </div>
-
-        <div class="system-name">
-            Orders
-        </div>
-
-    </div>
-
-    <div class="system-status">
-        Connected
-    </div>
-
-</div>
-
-
-<a
-    href="admin-products.html"
-    class="quick-link">
-
-    Manage Products →
-
-</a>
-
-</div></section></main></div><script type="module">
+<script type="module">
 
 import {
     auth,
@@ -1055,6 +1158,10 @@ const sidebar =
     document.getElementById("sidebar");
 
 
+/* =========================
+   MONEY
+========================= */
+
 function formatMoney(amount){
 
     return "₦" +
@@ -1065,18 +1172,27 @@ function formatMoney(amount){
                 maximumFractionDigits:2
             }
         );
+
 }
 
+
+/* =========================
+   ERROR
+========================= */
 
 function showError(text){
 
-    message.textContent =
-        text;
+    message.textContent = text;
 
     message.className =
         "message show error";
+
 }
 
+
+/* =========================
+   CHECK ADMIN
+========================= */
 
 async function checkAdmin(user){
 
@@ -1095,27 +1211,39 @@ async function checkAdmin(user){
         throw new Error(
             "Admin profile was not found."
         );
+
     }
 
     const data =
         snapshot.data();
 
-    if(data.role !== "admin"){
+
+    if(
+        String(data.role || "")
+            .toLowerCase() !== "admin"
+    ){
 
         throw new Error(
             "Access denied. This account is not an admin."
         );
+
     }
 
+
     return data;
+
 }
 
+
+/* =========================
+   LOAD STATISTICS
+========================= */
 
 async function loadStatistics(){
 
     try{
 
-        /* CUSTOMERS */
+        /* USERS */
 
         const usersSnapshot =
             await getDocs(
@@ -1125,7 +1253,9 @@ async function loadStatistics(){
                 )
             );
 
+
         let customers = 0;
+
 
         usersSnapshot.forEach(
             userDoc => {
@@ -1133,7 +1263,11 @@ async function loadStatistics(){
                 const data =
                     userDoc.data();
 
-                if(data.role !== "admin"){
+
+                if(
+                    String(data.role || "")
+                        .toLowerCase() !== "admin"
+                ){
 
                     customers++;
 
@@ -1141,6 +1275,7 @@ async function loadStatistics(){
 
             }
         );
+
 
         customerCount.textContent =
             customers;
@@ -1156,9 +1291,11 @@ async function loadStatistics(){
                 )
             );
 
+
         let pending = 0;
 
         let pendingTotal = 0;
+
 
         depositsSnapshot.forEach(
             depositDoc => {
@@ -1166,10 +1303,12 @@ async function loadStatistics(){
                 const data =
                     depositDoc.data();
 
+
                 const status =
                     String(
                         data.status || "pending"
                     ).toLowerCase();
+
 
                 if(status === "pending"){
 
@@ -1185,8 +1324,10 @@ async function loadStatistics(){
             }
         );
 
+
         pendingDeposits.textContent =
             pending;
+
 
         pendingAmount.textContent =
             formatMoney(
@@ -1194,12 +1335,7 @@ async function loadStatistics(){
             );
 
 
-        /*
-         Orders
-
-         Your Firestore project currently uses
-         "giftOrders", so we read that collection.
-        */
+        /* ORDERS */
 
         const ordersSnapshot =
             await getDocs(
@@ -1208,6 +1344,7 @@ async function loadStatistics(){
                     "giftOrders"
                 )
             );
+
 
         orderCount.textContent =
             ordersSnapshot.size;
@@ -1220,15 +1357,34 @@ async function loadStatistics(){
             error
         );
 
-        showError(
-            "Some dashboard statistics could not be loaded: " +
-            error.message
-        );
+
+        let text =
+            "Some dashboard statistics could not be loaded.";
+
+
+        if(error.code === "permission-denied"){
+
+            text =
+                "Firestore permission denied. Check your Firestore Rules.";
+
+        }else{
+
+            text +=
+                " " + error.message;
+
+        }
+
+
+        showError(text);
 
     }
 
 }
 
+
+/* =========================
+   AUTH
+========================= */
 
 onAuthStateChanged(
     auth,
@@ -1244,27 +1400,32 @@ onAuthStateChanged(
 
         }
 
+
         try{
 
             const data =
-                await checkAdmin(
-                    user
-                );
+                await checkAdmin(user);
+
 
             const name =
                 data.fullName ||
+                data.name ||
                 "Fame Store Admin";
+
 
             adminName.textContent =
                 name;
 
+
             welcomeName.textContent =
                 name;
+
 
             adminEmail.textContent =
                 data.email ||
                 user.email ||
                 "";
+
 
             adminAvatar.textContent =
                 name
@@ -1283,9 +1444,11 @@ onAuthStateChanged(
                 error
             );
 
+
             showError(
                 error.message
             );
+
 
             setTimeout(
                 async () => {
@@ -1308,27 +1471,42 @@ onAuthStateChanged(
 );
 
 
+/* =========================
+   LOGOUT
+========================= */
+
 logoutBtn.addEventListener(
     "click",
     async event => {
 
         event.preventDefault();
 
+
         try{
 
             await signOut(auth);
 
-        }finally{
+        }catch(error){
 
-            window.location.replace(
-                "admin-login.html"
+            console.error(
+                "Logout error:",
+                error
             );
 
         }
 
+
+        window.location.replace(
+            "admin-login.html"
+        );
+
     }
 );
 
+
+/* =========================
+   MOBILE MENU
+========================= */
 
 mobileMenu.addEventListener(
     "click",
@@ -1341,4 +1519,7 @@ mobileMenu.addEventListener(
     }
 );
 
-</script></body></html>
+</script>
+
+</body>
+</html>
