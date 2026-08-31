@@ -1,2138 +1,1841 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Fame Store | USA Gifts</title>
-
-<style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    font-family:Arial,sans-serif;
-    background:#f6f9ff;
-    color:#101828;
-}
-
-button,input,textarea{
-    font-family:inherit;
-}
-
-.header{
-    background:#fff;
-    border-bottom:1px solid #e7edf5;
-    padding:22px 18px;
-    text-align:center;
-}
-
-.brand-icon{
-    font-size:34px;
-    margin-bottom:5px;
-}
-
-.brand-name{
-    color:#0757d9;
-    font-size:25px;
-    font-weight:800;
-}
-
-.brand-text{
-    color:#667085;
-    font-size:13px;
-    margin-top:5px;
-}
-
-.wallet-box{
-    display:inline-block;
-    margin-top:14px;
-    background:#eef5ff;
-    color:#0757d9;
-    padding:9px 15px;
-    border-radius:20px;
-    font-size:13px;
-    font-weight:700;
-}
-
-.container{
-    width:min(1200px,100%);
-    margin:auto;
-    padding:25px 16px 35px;
-}
-
-.page-title{
-    text-align:center;
-    margin-bottom:25px;
-}
-
-.page-title h1{
-    font-size:27px;
-    margin-bottom:7px;
-}
-
-.page-title p{
-    color:#667085;
-    font-size:13px;
-}
-
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-    gap:18px;
-}
-
-.product-card{
-    background:#fff;
-    border:1px solid #e4e9f0;
-    border-radius:17px;
-    overflow:hidden;
-    box-shadow:0 8px 25px rgba(16,24,40,.06);
-}
-
-.product-image{
-    width:100%;
-    height:220px;
-    display:block;
-    object-fit:cover;
-    background:#eef2f6;
-}
-
-.product-info{
-    padding:15px;
-}
-
-.product-name{
-    font-size:15px;
-    font-weight:700;
-    line-height:1.4;
-    min-height:42px;
-}
-
-.product-price{
-    color:#0757d9;
-    font-size:18px;
-    font-weight:800;
-    margin:10px 0 13px;
-}
-
-.gift-btn{
-    width:100%;
-    border:0;
-    background:#0757d9;
-    color:#fff;
-    padding:12px;
-    border-radius:9px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.gift-btn:hover{
-    background:#063b91;
-}
-
-.bottom-area{
-    text-align:center;
-    padding:10px 18px 35px;
-}
-
-.dashboard-btn{
-    display:inline-block;
-    text-decoration:none;
-    background:#fff;
-    border:1px solid #d9e1eb;
-    color:#344054;
-    padding:12px 20px;
-    border-radius:10px;
-    font-size:13px;
-    font-weight:700;
-}
-
-
-/* =====================================
-   CHECKOUT
-===================================== */
-
-#checkout{
-    display:none;
-}
-
-#checkout.active{
-    display:block;
-}
-
-#productsSection.hidden{
-    display:none;
-}
-
-.checkout-container{
-    width:min(720px,100%);
-    margin:auto;
-    padding:25px 16px 40px;
-}
-
-.checkout-card{
-    background:#fff;
-    border:1px solid #e4e9f0;
-    border-radius:20px;
-    padding:22px;
-    box-shadow:0 10px 35px rgba(16,24,40,.08);
-}
-
-.back-products{
-    border:0;
-    background:#eef3f8;
-    color:#344054;
-    padding:10px 14px;
-    border-radius:9px;
-    font-weight:700;
-    cursor:pointer;
-    margin-bottom:20px;
-}
-
-.checkout-card h2{
-    font-size:26px;
-    margin-bottom:20px;
-}
-
-.selected-product{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    background:#f5f8fc;
-    padding:12px;
-    border-radius:12px;
-    margin-bottom:25px;
-}
-
-.selected-product img{
-    width:75px;
-    height:75px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.selected-name{
-    font-weight:800;
-    font-size:14px;
-}
-
-.selected-price{
-    color:#0757d9;
-    font-weight:800;
-    margin-top:6px;
-}
-
-.section-title{
-    font-size:17px;
-    font-weight:800;
-    margin:23px 0 13px;
-}
-
-.form-group{
-    margin-bottom:15px;
-}
-
-.form-group label{
-    display:block;
-    font-size:13px;
-    font-weight:700;
-    margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea{
-    width:100%;
-    border:1px solid #d9e1eb;
-    border-radius:10px;
-    outline:none;
-    padding:13px;
-    font-size:14px;
-}
-
-.form-group input{
-    height:49px;
-}
-
-.form-group textarea{
-    min-height:100px;
-    resize:vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus{
-    border-color:#0757d9;
-    box-shadow:0 0 0 3px rgba(7,87,217,.08);
-}
-
-.two-columns{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.summary{
-    background:#f5f8fc;
-    border-radius:13px;
-    padding:17px;
-}
-
-.summary-row{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:13px;
-    font-size:14px;
-}
-
-.summary-total{
-    border-top:1px solid #dce3ec;
-    padding-top:13px;
-    font-size:18px;
-    font-weight:800;
-}
-
-.balance{
-    color:#087443;
-    font-weight:800;
-}
-
-.confirm-btn{
-    width:100%;
-    border:0;
-    background:#ffc928;
-    color:#101828;
-    padding:15px;
-    border-radius:10px;
-    margin-top:18px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.confirm-btn:disabled{
-    opacity:.6;
-    cursor:not-allowed;
-}
-
-
-/* =====================================
-   MESSAGE BOX
-===================================== */
-
-.message-overlay{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(16,24,40,.55);
-    z-index:9999;
-    padding:20px;
-    align-items:center;
-    justify-content:center;
-}
-
-.message-overlay.show{
-    display:flex;
-}
-
-.message-box{
-    width:min(390px,100%);
-    background:#fff;
-    border-radius:20px;
-    padding:28px 22px;
-    text-align:center;
-    box-shadow:0 20px 70px rgba(0,0,0,.2);
-}
-
-.message-icon{
-    width:58px;
-    height:58px;
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-    margin:0 auto 15px;
-    font-size:27px;
-    background:#fff4d6;
-}
-
-.message-box.success .message-icon{
-    background:#e8fff2;
-}
-
-.message-box h3{
-    font-size:20px;
-    margin-bottom:10px;
-}
-
-.message-box p{
-    color:#667085;
-    font-size:14px;
-    line-height:1.6;
-    margin-bottom:20px;
-}
-
-.thanks-btn{
-    width:100%;
-    border:0;
-    background:#0757d9;
-    color:#fff;
-    padding:13px;
-    border-radius:10px;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.thanks-btn:hover{
-    background:#063b91;
-}
-
-
-/* =====================================
-   MOBILE
-===================================== */
-
-@media(max-width:600px){
-
-    .products{
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
-    }
-
-    .product-image{
-        height:175px;
-    }
-
-    .product-info{
-        padding:11px;
-    }
-
-    .product-name{
-        font-size:13px;
-    }
-
-    .product-price{
-        font-size:16px;
-    }
-
-    .gift-btn{
-        font-size:12px;
-        padding:11px 5px;
-    }
-
-    .two-columns{
-        grid-template-columns:1fr;
-        gap:0;
-    }
-
-    .checkout-card{
-        padding:18px;
-    }
-
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- =====================================
-     HEADER
-===================================== -->
-
-<header class="header">
-
-    <div class="brand-icon">
-        🛍️
-    </div>
-
-    <div class="brand-name">
-        Fame Store
-    </div>
-
-    <div class="brand-text">
-        Send gifts 🎁, share love ❤️
-    </div>
-
-    <div class="wallet-box">
-        Wallet:
-        <span id="walletBalance">₦0.00</span>
-    </div>
-
-</header>
-
-
-
-<!-- =====================================
-     PRODUCTS
-===================================== -->
-
-<section id="productsSection">
-
-    <div class="container">
-
-        <div class="page-title">
-
-            <h1>
-                USA Gifts 🇺🇸
-            </h1>
-
-            <p>
-                Choose a gift and send it to someone special in the USA.
-            </p>
-
-        </div>
-
-
-        <div
-            class="products"
-            id="products"
-        >
-
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                padding:40px 10px;
-                color:#667085;
-                font-size:14px;
-            ">
-                Loading gifts...
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================
-     CHECKOUT
-===================================== -->
-
-<section id="checkout">
-
-    <div class="checkout-container">
-
-        <div class="checkout-card">
-
-            <button
-                type="button"
-                class="back-products"
-                id="backProducts"
-            >
-                ← Back to Gifts
-            </button>
-
-
-            <h2>
-                Checkout
-            </h2>
-
-
-            <div class="selected-product">
-
-                <img
-                    id="selectedImage"
-                    src=""
-                    alt="Gift"
-                >
-
-                <div>
-
-                    <div
-                        class="selected-name"
-                        id="selectedName"
-                    ></div>
-
-                    <div
-                        class="selected-price"
-                        id="selectedPrice"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- CONTACT INFO -->
-
-            <div class="section-title">
-                Contact Info
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Your Phone
-                </label>
-
-                <input
-                    id="yourPhone"
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    required
-                >
-
-            </div>
-
-
-
-            <!-- DELIVERY INFO -->
-
-            <div class="section-title">
-                Delivery Info
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Sender Name
-                </label>
-
-                <input
-                    id="senderName"
-                    type="text"
-                    placeholder="Sender name"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Recipient Name
-                </label>
-
-                <input
-                    id="recipientName"
-                    type="text"
-                    placeholder="Recipient name"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Recipient Phone
-                </label>
-
-                <input
-                    id="recipientPhone"
-                    type="tel"
-                    placeholder="Recipient phone"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Street / House Address
-                </label>
-
-                <input
-                    id="streetAddress"
-                    type="text"
-                    placeholder="Street / house address"
-                    required
-                >
-
-            </div>
-
-
-            <div class="two-columns">
-
-                <div class="form-group">
-
-                    <label>
-                        City
-                    </label>
-
-                    <input
-                        id="city"
-                        type="text"
-                        placeholder="City"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        State
-                    </label>
-
-                    <input
-                        id="state"
-                        type="text"
-                        placeholder="State"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="two-columns">
-
-                <div class="form-group">
-
-                    <label>
-                        Country
-                    </label>
-
-                    <input
-                        id="country"
-                        type="text"
-                        placeholder="Country"
-                        value="USA"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        ZIP Code
-                    </label>
-
-                    <input
-                        id="zipCode"
-                        type="text"
-                        placeholder="ZIP Code"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-
-            <!-- NOTES -->
-
-            <div class="section-title">
-                Additional Notes
-            </div>
-
-
-            <div class="form-group">
-
-                <textarea
-                    id="additionalNotes"
-                    placeholder="Gift message or delivery instructions"
-                ></textarea>
-
-            </div>
-
-
-
-            <!-- PAYMENT SUMMARY -->
-
-            <div class="section-title">
-                Payment Summary
-            </div>
-
-
-            <div class="summary">
-
-                <div class="summary-row">
-
-                    <span>
-                        Base Price
-                    </span>
-
-                    <strong id="basePrice">
-                        ₦0.00
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-row summary-total">
-
-                    <span>
-                        Total
-                    </span>
-
-                    <strong id="totalPrice">
-                        ₦0.00
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-row">
-
-                    <span>
-                        Your Balance
-                    </span>
-
-                    <strong
-                        class="balance"
-                        id="checkoutBalance"
-                    >
-                        ₦0.00
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-            <button
-                type="button"
-                class="confirm-btn"
-                id="confirmOrder"
-            >
-                Confirm Order
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================
-     BOTTOM
-===================================== -->
-
-<div class="bottom-area">
-
-    <a
-        href="dashboard.html"
-        class="dashboard-btn"
-    >
-        ← Back to Dashboard
-    </a>
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Fame Store | Send Gifts</title>  <style>  
+*{  
+    box-sizing:border-box;  
+    margin:0;  
+    padding:0;  
+}  
+  
+body{  
+    font-family:Arial,sans-serif;  
+    background:#f6f9ff;  
+    color:#101828;  
+}  
+  
+button,input,textarea{  
+    font-family:inherit;  
+}  
+  
+.header{  
+    background:#fff;  
+    border-bottom:1px solid #e7edf5;  
+    padding:22px 18px;  
+    text-align:center;  
+}  
+  
+.brand-icon{  
+    font-size:34px;  
+    margin-bottom:5px;  
+}  
+  
+.brand-name{  
+    color:#0757d9;  
+    font-size:25px;  
+    font-weight:800;  
+}  
+  
+.brand-text{  
+    color:#667085;  
+    font-size:13px;  
+    margin-top:5px;  
+}  
+  
+.wallet-box{  
+    display:inline-block;  
+    margin-top:14px;  
+    background:#eef5ff;  
+    color:#0757d9;  
+    padding:9px 15px;  
+    border-radius:20px;  
+    font-size:13px;  
+    font-weight:700;  
+}  
+  
+.container{  
+    width:min(1200px,100%);  
+    margin:auto;  
+    padding:25px 16px 35px;  
+}  
+  
+.page-title{  
+    text-align:center;  
+    margin-bottom:25px;  
+}  
+  
+.page-title h1{  
+    font-size:27px;  
+    margin-bottom:7px;  
+}  
+  
+.page-title p{  
+    color:#667085;  
+    font-size:13px;  
+}  
+  
+.products{  
+    display:grid;  
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));  
+    gap:18px;  
+}  
+  
+.product-card{  
+    background:#fff;  
+    border:1px solid #e4e9f0;  
+    border-radius:17px;  
+    overflow:hidden;  
+    box-shadow:0 8px 25px rgba(16,24,40,.06);  
+}  
+  
+.product-image{  
+    width:100%;  
+    height:220px;  
+    display:block;  
+    object-fit:cover;  
+    background:#eef2f6;  
+}  
+  
+.product-info{  
+    padding:15px;  
+}  
+  
+.product-name{  
+    font-size:15px;  
+    font-weight:700;  
+    line-height:1.4;  
+    min-height:42px;  
+}  
+  
+.product-price{  
+    color:#0757d9;  
+    font-size:18px;  
+    font-weight:800;  
+    margin:10px 0 13px;  
+}  
+  
+.gift-btn{  
+    width:100%;  
+    border:0;  
+    background:#0757d9;  
+    color:#fff;  
+    padding:12px;  
+    border-radius:9px;  
+    font-weight:700;  
+    cursor:pointer;  
+}  
+  
+.gift-btn:hover{  
+    background:#063b91;  
+}  
+  
+.bottom-area{  
+    text-align:center;  
+    padding:10px 18px 35px;  
+}  
+  
+.dashboard-btn{  
+    display:inline-block;  
+    text-decoration:none;  
+    background:#fff;  
+    border:1px solid #d9e1eb;  
+    color:#344054;  
+    padding:12px 20px;  
+    border-radius:10px;  
+    font-size:13px;  
+    font-weight:700;  
+}  
+  
+/* CHECKOUT */  
+  
+#checkout{  
+    display:none;  
+}  
+  
+#checkout.active{  
+    display:block;  
+}  
+  
+#productsSection.hidden{  
+    display:none;  
+}  
+  
+.checkout-container{  
+    width:min(720px,100%);  
+    margin:auto;  
+    padding:25px 16px 40px;  
+}  
+  
+.checkout-card{  
+    background:#fff;  
+    border:1px solid #e4e9f0;  
+    border-radius:20px;  
+    padding:22px;  
+    box-shadow:0 10px 35px rgba(16,24,40,.08);  
+}  
+  
+.back-products{  
+    border:0;  
+    background:#eef3f8;  
+    color:#344054;  
+    padding:10px 14px;  
+    border-radius:9px;  
+    font-weight:700;  
+    cursor:pointer;  
+    margin-bottom:20px;  
+}  
+  
+.checkout-card h2{  
+    font-size:26px;  
+    margin-bottom:20px;  
+}  
+  
+.selected-product{  
+    display:flex;  
+    align-items:center;  
+    gap:14px;  
+    background:#f5f8fc;  
+    padding:12px;  
+    border-radius:12px;  
+    margin-bottom:25px;  
+}  
+  
+.selected-product img{  
+    width:75px;  
+    height:75px;  
+    object-fit:cover;  
+    border-radius:10px;  
+}  
+  
+.selected-name{  
+    font-weight:800;  
+    font-size:14px;  
+}  
+  
+.selected-price{  
+    color:#0757d9;  
+    font-weight:800;  
+    margin-top:6px;  
+}  
+  
+.section-title{  
+    font-size:17px;  
+    font-weight:800;  
+    margin:23px 0 13px;  
+}  
+  
+.form-group{  
+    margin-bottom:15px;  
+}  
+  
+.form-group label{  
+    display:block;  
+    font-size:13px;  
+    font-weight:700;  
+    margin-bottom:6px;  
+}  
+  
+.form-group input,  
+.form-group textarea{  
+    width:100%;  
+    border:1px solid #d9e1eb;  
+    border-radius:10px;  
+    outline:none;  
+    padding:13px;  
+    font-size:14px;  
+}  
+  
+.form-group input{  
+    height:49px;  
+}  
+  
+.form-group textarea{  
+    min-height:100px;  
+    resize:vertical;  
+}  
+  
+.form-group input:focus,  
+.form-group textarea:focus{  
+    border-color:#0757d9;  
+    box-shadow:0 0 0 3px rgba(7,87,217,.08);  
+}  
+  
+.two-columns{  
+    display:grid;  
+    grid-template-columns:1fr 1fr;  
+    gap:12px;  
+}  
+  
+.summary{  
+    background:#f5f8fc;  
+    border-radius:13px;  
+    padding:17px;  
+}  
+  
+.summary-row{  
+    display:flex;  
+    justify-content:space-between;  
+    gap:15px;  
+    margin-bottom:13px;  
+    font-size:14px;  
+}  
+  
+.summary-total{  
+    border-top:1px solid #dce3ec;  
+    padding-top:13px;  
+    font-size:18px;  
+    font-weight:800;  
+}  
+  
+.balance{  
+    color:#087443;  
+    font-weight:800;  
+}  
+  
+.confirm-btn{  
+    width:100%;  
+    border:0;  
+    background:#ffc928;  
+    color:#101828;  
+    padding:15px;  
+    border-radius:10px;  
+    margin-top:18px;  
+    font-weight:800;  
+    cursor:pointer;  
+}  
+  
+.confirm-btn:disabled{  
+    opacity:.6;  
+    cursor:not-allowed;  
+}  
+  
+/* MESSAGE BOX */  
+  
+.message-overlay{  
+    display:none;  
+    position:fixed;  
+    inset:0;  
+    background:rgba(16,24,40,.55);  
+    z-index:9999;  
+    padding:20px;  
+    align-items:center;  
+    justify-content:center;  
+}  
+  
+.message-overlay.show{  
+    display:flex;  
+}  
+  
+.message-box{  
+    width:min(390px,100%);  
+    background:#fff;  
+    border-radius:20px;  
+    padding:28px 22px;  
+    text-align:center;  
+    box-shadow:0 20px 70px rgba(0,0,0,.2);  
+}  
+  
+.message-icon{  
+    width:58px;  
+    height:58px;  
+    border-radius:50%;  
+    display:grid;  
+    place-items:center;  
+    margin:0 auto 15px;  
+    font-size:27px;  
+    background:#fff4d6;  
+}  
+  
+.message-box.success .message-icon{  
+    background:#e8fff2;  
+}  
+  
+.message-box h3{  
+    font-size:20px;  
+    margin-bottom:10px;  
+}  
+  
+.message-box p{  
+    color:#667085;  
+    font-size:14px;  
+    line-height:1.6;  
+    margin-bottom:20px;  
+}  
+  
+.thanks-btn{  
+    width:100%;  
+    border:0;  
+    background:#0757d9;  
+    color:#fff;  
+    padding:13px;  
+    border-radius:10px;  
+    font-weight:800;  
+    cursor:pointer;  
+}  
+  
+.thanks-btn:hover{  
+    background:#063b91;  
+}  
+  
+@media(max-width:600px){  
+  
+    .products{  
+        grid-template-columns:repeat(2,1fr);  
+        gap:12px;  
+    }  
+  
+    .product-image{  
+        height:175px;  
+    }  
+  
+    .product-info{  
+        padding:11px;  
+    }  
+  
+    .product-name{  
+        font-size:13px;  
+    }  
+  
+    .product-price{  
+        font-size:16px;  
+    }  
+  
+    .gift-btn{  
+        font-size:12px;  
+        padding:11px 5px;  
+    }  
+  
+    .two-columns{  
+        grid-template-columns:1fr;  
+        gap:0;  
+    }  
+  
+    .checkout-card{  
+        padding:18px;  
+    }  
+}  
+</style>  </head>  <body>  <!-- HEADER -->  <header class="header">  <div class="brand-icon">  
+    🛍️  
+</div>  
+
+<div class="brand-name">  
+    Fame Store  
+</div>  
+
+<div class="brand-text">  
+    Send gifts 🎁, share love ❤️  
+</div>  
+
+<div class="wallet-box">  
+    Wallet:  
+    <span id="walletBalance">₦0.00</span>  
+</div>
+
+</header>  <!-- PRODUCTS -->  <section id="productsSection">  <div class="container">  
+
+    <div class="page-title">  
+
+        <h1>  
+            Send a Gift  
+        </h1>  
+
+        <p>  
+            Choose a gift and send it to someone special.  
+        </p>  
+
+    </div>  
+
+    <div  
+        class="products"  
+        id="products"  
+    ></div>  
 
 </div>
 
+</section>  <!-- CHECKOUT -->  <section id="checkout">  <div class="checkout-container">  
+
+    <div class="checkout-card">  
+
+        <button  
+            type="button"  
+            class="back-products"  
+            id="backProducts"  
+        >  
+            ← Back to Gifts  
+        </button>  
+
+        <h2>  
+            Checkout  
+        </h2>  
 
 
-<!-- =====================================
-     MESSAGE POPUP
-===================================== -->
+        <div class="selected-product">  
 
-<div
-    class="message-overlay"
-    id="messageOverlay"
->
+            <img  
+                id="selectedImage"  
+                src=""  
+                alt="Gift"  
+            >  
 
-    <div
-        class="message-box"
-        id="messageBox"
-    >
+            <div>  
 
-        <div
-            class="message-icon"
-            id="messageIcon"
-        >
-            ⚠️
-        </div>
+                <div  
+                    class="selected-name"  
+                    id="selectedName"  
+                ></div>  
 
+                <div  
+                    class="selected-price"  
+                    id="selectedPrice"  
+                ></div>  
 
-        <h3 id="messageTitle">
-            Insufficient wallet balance
-        </h3>
+            </div>  
+
+        </div>  
 
 
-        <p id="messageText">
-            Kindly deposit and make an order
-        </p>
+        <!-- CONTACT INFO -->  
+
+        <div class="section-title">  
+            Contact Info  
+        </div>  
+
+        <div class="form-group">  
+
+            <label>  
+                Your Phone  
+            </label>  
+
+            <input  
+                id="yourPhone"  
+                type="tel"  
+                placeholder="Enter your phone number"  
+                required  
+            >  
+
+        </div>  
 
 
-        <button
-            type="button"
-            class="thanks-btn"
-            id="thanksButton"
-        >
-            Thanks
-        </button>
+        <!-- DELIVERY INFO -->  
 
-    </div>
+        <div class="section-title">  
+            Delivery Info  
+        </div>  
+
+        <div class="form-group">  
+
+            <label>  
+                Sender Name  
+            </label>  
+
+            <input  
+                id="senderName"  
+                type="text"  
+                placeholder="Sender name"  
+                required  
+            >  
+
+        </div>  
+
+        <div class="form-group">  
+
+            <label>  
+                Recipient Name  
+            </label>  
+
+            <input  
+                id="recipientName"  
+                type="text"  
+                placeholder="Recipient name"  
+                required  
+            >  
+
+        </div>  
+
+        <div class="form-group">  
+
+            <label>  
+                Recipient Phone  
+            </label>  
+
+            <input  
+                id="recipientPhone"  
+                type="tel"  
+                placeholder="Recipient phone"  
+                required  
+            >  
+
+        </div>  
+
+        <div class="form-group">  
+
+            <label>  
+                Street / House Address  
+            </label>  
+
+            <input  
+                id="streetAddress"  
+                type="text"  
+                placeholder="Street / house address"  
+                required  
+            >  
+
+        </div>  
+
+
+        <div class="two-columns">  
+
+            <div class="form-group">  
+
+                <label>  
+                    City  
+                </label>  
+
+                <input  
+                    id="city"  
+                    type="text"  
+                    placeholder="City"  
+                    required  
+                >  
+
+            </div>  
+
+            <div class="form-group">  
+
+                <label>  
+                    State  
+                </label>  
+
+                <input  
+                    id="state"  
+                    type="text"  
+                    placeholder="State"  
+                    required  
+                >  
+
+            </div>  
+
+        </div>  
+
+
+        <div class="two-columns">  
+
+            <div class="form-group">  
+
+                <label>  
+                    Country  
+                </label>  
+
+                <input  
+                    id="country"  
+                    type="text"  
+                    placeholder="Country"  
+                    required  
+                >  
+
+            </div>  
+
+            <div class="form-group">  
+
+                <label>  
+                    ZIP Code  
+                </label>  
+
+                <input  
+                    id="zipCode"  
+                    type="text"  
+                    placeholder="ZIP Code"  
+                    required  
+                >  
+
+            </div>  
+
+        </div>  
+
+
+        <!-- NOTES -->  
+
+        <div class="section-title">  
+            Additional Notes  
+        </div>  
+
+        <div class="form-group">  
+
+            <textarea  
+                id="additionalNotes"  
+                placeholder="Gift message or delivery instructions"  
+            ></textarea>  
+
+        </div>  
+
+
+        <!-- PAYMENT SUMMARY -->  
+
+        <div class="section-title">  
+            Payment Summary  
+        </div>  
+
+        <div class="summary">  
+
+            <div class="summary-row">  
+
+                <span>  
+                    Base Price  
+                </span>  
+
+                <strong id="basePrice">  
+                    ₦0.00  
+                </strong>  
+
+            </div>  
+
+            <div class="summary-row summary-total">  
+
+                <span>  
+                    Total  
+                </span>  
+
+                <strong id="totalPrice">  
+                    ₦0.00  
+                </strong>  
+
+            </div>  
+
+            <div class="summary-row">  
+
+                <span>  
+                    Your Balance  
+                </span>  
+
+                <strong  
+                    class="balance"  
+                    id="checkoutBalance"  
+                >  
+                    ₦0.00  
+                </strong>  
+
+            </div>  
+
+        </div>  
+
+
+        <button  
+            type="button"  
+            class="confirm-btn"  
+            id="confirmOrder"  
+        >  
+            Confirm Order  
+        </button>  
+
+    </div>  
 
 </div>
 
-
-
-<!-- =====================================
-     JAVASCRIPT
-===================================== -->
-
-<script type="module">
-
-
-/* =====================================
-   FIREBASE
-===================================== */
-
-import {
-    auth,
-    db
-} from "./firebase-config.js";
-
-
-import {
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
-
-import {
-    doc,
-    getDoc,
-    addDoc,
-    collection,
-    serverTimestamp,
-    query,
-    where,
-    getDocs
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
-
-
-/* =====================================
-   VARIABLES
-===================================== */
-
-let currentUser = null;
-
-let currentProduct = null;
-
-let currentBalance = 0;
-
-let orderProcessing = false;
-
-
-
-/* =====================================
-   ELEMENTS
-===================================== */
-
-const productsContainer =
-    document.getElementById("products");
-
-
-const productsSection =
-    document.getElementById("productsSection");
-
-
-const checkout =
-    document.getElementById("checkout");
-
-
-const walletBalance =
-    document.getElementById("walletBalance");
-
-
-const checkoutBalance =
-    document.getElementById("checkoutBalance");
-
-
-const messageOverlay =
-    document.getElementById("messageOverlay");
-
-
-const messageBox =
-    document.getElementById("messageBox");
-
-
-const messageIcon =
-    document.getElementById("messageIcon");
-
-
-const messageTitle =
-    document.getElementById("messageTitle");
-
-
-const messageText =
-    document.getElementById("messageText");
-
-
-const thanksButton =
-    document.getElementById("thanksButton");
-
-
-
-/* =====================================
-   MONEY
-===================================== */
-
-function money(value){
-
-    return "₦" +
-
-        Number(value || 0).toLocaleString(
-            "en-NG",
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            }
-        );
-
-}
-
-
-
-/* =====================================
-   ESCAPE HTML
-===================================== */
-
-function escapeHTML(value){
-
-    return String(value || "")
-
-        .replace(/&/g,"&amp;")
-
-        .replace(/</g,"&lt;")
-
-        .replace(/>/g,"&gt;")
-
-        .replace(/"/g,"&quot;")
-
-        .replace(/'/g,"&#039;");
-
-}
-
-
-
-/* =====================================
-   LOAD USA PRODUCTS
-===================================== */
-
-async function loadProducts(){
-
-    productsContainer.innerHTML = `
-
-        <div style="
-            grid-column:1/-1;
-            text-align:center;
-            padding:40px 10px;
-            color:#667085;
-            font-size:14px;
-        ">
-
-            Loading gifts...
-
-        </div>
-
-    `;
-
-
-    try{
-
-
-        /*
-         * Firestore filter:
-         *
-         * active must be true
-         *
-         * destination must be:
-         *
-         * USA
-         *
-         * OR
-         *
-         * USA & Canada
-         */
-
-        const productsQuery = query(
-
-            collection(
-                db,
-                "products"
-            ),
-
-            where(
-                "active",
-                "==",
-                true
-            ),
-
-            where(
-                "destination",
-                "in",
-                [
-                    "USA",
-                    "USA & Canada"
-                ]
-            )
-
-        );
-
-
-        const snapshot =
-            await getDocs(
-                productsQuery
-            );
-
-
-        productsContainer.innerHTML = "";
-
-
-        /* =================================
-           NO PRODUCTS
-        ================================= */
-
-        if(snapshot.empty){
-
-            productsContainer.innerHTML = `
-
-                <div style="
-                    grid-column:1/-1;
-                    text-align:center;
-                    padding:50px 15px;
-                    background:#fff;
-                    border:1px solid #e4e9f0;
-                    border-radius:17px;
-                ">
-
-                    <div style="
-                        font-size:40px;
-                        margin-bottom:12px;
-                    ">
-                        🎁
-                    </div>
-
-
-                    <h3 style="
-                        margin-bottom:7px;
-                        font-size:18px;
-                    ">
-                        No Gifts Available
-                    </h3>
-
-
-                    <p style="
-                        color:#667085;
-                        font-size:13px;
-                    ">
-                        There are currently no gifts available for USA.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-
-        /* =================================
-           DISPLAY PRODUCTS
-        ================================= */
-
-        snapshot.forEach(productDoc => {
-
-
-            const data =
-                productDoc.data();
-
-
-            const product = {
-
-                id:
-                    productDoc.id,
-
-                name:
-                    data.name || "Gift",
-
-                price:
-                    Number(data.price || 0),
-
-                image:
-                    data.image || "",
-
-                destination:
-                    data.destination || "",
-
-                active:
-                    data.active === true
-
-            };
-
-
-
-            const card =
-                document.createElement("div");
-
-
-            card.className =
-                "product-card";
-
-
-            card.innerHTML = `
-
-                <img
-
-                    class="product-image"
-
-                    src="${escapeHTML(product.image)}"
-
-                    alt="${escapeHTML(product.name)}"
-
-                    loading="lazy"
-
-                    onerror="
-                        this.style.display='none';
-                    "
-
-                >
-
-
-                <div class="product-info">
-
-
-                    <div class="product-name">
-
-                        ${escapeHTML(product.name)}
-
-                    </div>
-
-
-                    <div class="product-price">
-
-                        ${money(product.price)}
-
-                    </div>
-
-
-                    <button
-
-                        type="button"
-
-                        class="gift-btn"
-
-                    >
-
-                        Send as Gift
-
-                    </button>
-
-
-                </div>
-
-            `;
-
-
-
-            card
-
-                .querySelector(".gift-btn")
-
-                .addEventListener(
-
-                    "click",
-
-                    () => openCheckout(product)
-
-                );
-
-
-
-            productsContainer.appendChild(card);
-
-        });
-
-
-    }catch(error){
-
-        console.error(
-            "Products loading error:",
-            error
-        );
-
-
-        productsContainer.innerHTML = `
-
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                padding:40px 15px;
-                background:#fff;
-                border:1px solid #e4e9f0;
-                border-radius:17px;
-            ">
-
-                <div style="
-                    font-size:40px;
-                    margin-bottom:12px;
-                ">
-                    ⚠️
-                </div>
-
-
-                <h3 style="
-                    margin-bottom:7px;
-                    font-size:18px;
-                ">
-                    Unable to Load Gifts
-                </h3>
-
-
-                <p style="
-                    color:#667085;
-                    font-size:13px;
-                ">
-                    Please refresh the page and try again.
-                </p>
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-
-/* =====================================
-   AUTH
-===================================== */
-
-onAuthStateChanged(
-
-    auth,
-
-    async user => {
-
-
-        if(!user){
-
-            currentUser = null;
-
-            currentBalance = 0;
-
-
-            walletBalance.textContent =
-                "₦0.00";
-
-
-            checkoutBalance.textContent =
-                "₦0.00";
-
-
-            /*
-             * Products can still be viewed
-             * before login.
-             */
-
-            await loadProducts();
-
-            return;
-
-        }
-
-
-        currentUser =
-            user;
-
-
-        await loadWallet();
-
-
-        await loadProducts();
-
-    }
-
-);
-
-
-
-/* =====================================
-   LOAD WALLET
-===================================== */
-
-async function loadWallet(){
-
-    if(!currentUser)
-        return;
-
-
-    try{
-
-
-        const userRef =
-            doc(
-                db,
-                "users",
-                currentUser.uid
-            );
-
-
-        const snap =
-            await getDoc(
-                userRef
-            );
-
-
-        if(!snap.exists()){
-
-            currentBalance =
-                0;
-
-        }else{
-
-            const data =
-                snap.data();
-
-
-            currentBalance =
-                Number(
-                    data.walletBalance || 0
-                );
-
-        }
-
-
-        walletBalance.textContent =
-            money(currentBalance);
-
-
-        checkoutBalance.textContent =
-            money(currentBalance);
-
-
-    }catch(error){
-
-        console.error(
-            "Wallet error:",
-            error
-        );
-
-    }
-
-}
-
-
-
-/* =====================================
-   OPEN CHECKOUT
-===================================== */
-
-function openCheckout(product){
-
-
-    if(!currentUser){
-
-        showPopup(
-
-            "login",
-
-            "Please Login First",
-
-            "Please login to your Fame Store account before sending a gift."
-
-        );
-
-        return;
-
-    }
-
-
-    currentProduct =
-        product;
-
-
-    productsSection
-        .classList
-        .add("hidden");
-
-
-    checkout
-        .classList
-        .add("active");
-
-
-    document.getElementById(
-        "selectedImage"
-    ).src =
-        product.image;
-
-
-    document.getElementById(
-        "selectedName"
-    ).textContent =
-        product.name;
-
-
-    document.getElementById(
-        "selectedPrice"
-    ).textContent =
-        money(product.price);
-
-
-    document.getElementById(
-        "basePrice"
-    ).textContent =
-        money(product.price);
-
-
-    document.getElementById(
-        "totalPrice"
-    ).textContent =
-        money(product.price);
-
-
-    checkoutBalance.textContent =
-        money(currentBalance);
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
-
-
-
-/* =====================================
-   BACK TO PRODUCTS
-===================================== */
-
-document
-
-    .getElementById("backProducts")
-
-    .addEventListener(
-
-        "click",
-
-        () => {
-
-
-            checkout
-                .classList
-                .remove("active");
-
-
-            productsSection
-                .classList
-                .remove("hidden");
-
-
-            currentProduct =
-                null;
-
-
-            window.scrollTo({
-
-                top:0,
-
-                behavior:"smooth"
-
-            });
-
-        }
-
-    );
-
-
-
-/* =====================================
-   POPUP
-===================================== */
-
-function showPopup(
-    type,
-    title,
-    text
-){
-
-
-    messageBox.className =
-        "message-box " +
-
-        (
-            type === "success"
-                ? "success"
-                : ""
-        );
-
-
-    if(type === "success"){
-
-        messageIcon.textContent =
-            "✓";
-
-    }else{
-
-        messageIcon.textContent =
-
-            type === "login"
-                ? "🔐"
-                : "⚠️";
-
-    }
-
-
-    messageTitle.textContent =
-        title;
-
-
-    messageText.textContent =
-        text;
-
-
-    messageOverlay
-        .classList
-        .add("show");
-
-}
-
-
-
-thanksButton.addEventListener(
-
-    "click",
-
-    () => {
-
-        messageOverlay
-            .classList
-            .remove("show");
-
-    }
-
-);
-
-
-
-/* =====================================
-   FORM VALIDATION
-===================================== */
-
-function validateForm(){
-
-
-    const fields = [
-
-        "yourPhone",
-
-        "senderName",
-
-        "recipientName",
-
-        "recipientPhone",
-
-        "streetAddress",
-
-        "city",
-
-        "state",
-
-        "country",
-
-        "zipCode"
-
-    ];
-
-
-    for(
-
-        const id of fields
-
-    ){
-
-        const field =
-            document.getElementById(id);
-
-
-        if(
-            !field.value.trim()
-        ){
-
-            field.focus();
-
-            return false;
-
-        }
-
-    }
-
-
-    return true;
-
-}
-
-
-
-/* =====================================
-   CONFIRM ORDER
-===================================== */
-
-document
-
-    .getElementById("confirmOrder")
-
-    .addEventListener(
-
-        "click",
-
-        async () => {
-
-
-            if(orderProcessing)
-                return;
-
-
-
-            if(!currentUser){
-
-                showPopup(
-
-                    "login",
-
-                    "Please Login First",
-
-                    "Please login to your Fame Store account before making an order."
-
-                );
-
-                return;
-
-            }
-
-
-
-            if(!currentProduct)
-                return;
-
-
-
-            if(!validateForm()){
-
-                showPopup(
-
-                    "error",
-
-                    "Information Required",
-
-                    "Kindly complete all the delivery information before confirming your order."
-
-                );
-
-                return;
-
-            }
-
-
-
-            await loadWallet();
-
-
-
-            const total =
-                Number(
-                    currentProduct.price || 0
-                );
-
-
-
-            /* =================================
-               BALANCE CHECK
-            ================================= */
-
-            if(
-                currentBalance < total
-            ){
-
-                showPopup(
-
-                    "error",
-
-                    "Insufficient wallet balance",
-
-                    "Kindly deposit and make an order"
-
-                );
-
-                return;
-
-            }
-
-
-
-            /* =================================
-               PROCESSING
-            ================================= */
-
-            orderProcessing =
-                true;
-
-
-            const button =
-                document.getElementById(
-                    "confirmOrder"
-                );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "Processing...";
-
-
-
-            try{
-
-
-                /* =================================
-                   SAVE ORDER
-                ================================= */
-
-                await addDoc(
-
-                    collection(
-                        db,
-                        "giftOrders"
-                    ),
-
-                    {
-
-                        customerUID:
-                            currentUser.uid,
-
-                        customerEmail:
-                            currentUser.email || "",
-
-                        productId:
-                            currentProduct.id || "",
-
-                        productName:
-                            currentProduct.name,
-
-                        productImage:
-                            currentProduct.image,
-
-                        destination:
-                            currentProduct.destination || "USA",
-
-                        basePrice:
-                            total,
-
-                        total:
-                            total,
-
-                        yourPhone:
-                            document
-                                .getElementById(
-                                    "yourPhone"
-                                )
-                                .value
-                                .trim(),
-
-                        senderName:
-                            document
-                                .getElementById(
-                                    "senderName"
-                                )
-                                .value
-                                .trim(),
-
-                        recipientName:
-                            document
-                                .getElementById(
-                                    "recipientName"
-                                )
-                                .value
-                                .trim(),
-
-                        recipientPhone:
-                            document
-                                .getElementById(
-                                    "recipientPhone"
-                                )
-                                .value
-                                .trim(),
-
-                        streetAddress:
-                            document
-                                .getElementById(
-                                    "streetAddress"
-                                )
-                                .value
-                                .trim(),
-
-                        city:
-                            document
-                                .getElementById(
-                                    "city"
-                                )
-                                .value
-                                .trim(),
-
-                        state:
-                            document
-                                .getElementById(
-                                    "state"
-                                )
-                                .value
-                                .trim(),
-
-                        country:
-                            document
-                                .getElementById(
-                                    "country"
-                                )
-                                .value
-                                .trim(),
-
-                        zipCode:
-                            document
-                                .getElementById(
-                                    "zipCode"
-                                )
-                                .value
-                                .trim(),
-
-                        additionalNotes:
-                            document
-                                .getElementById(
-                                    "additionalNotes"
-                                )
-                                .value
-                                .trim(),
-
-                        paymentMethod:
-                            "Wallet",
-
-                        paymentStatus:
-                            "Paid",
-
-                        status:
-                            "Pending",
-
-                        createdAt:
-                            serverTimestamp()
-
-                    }
-
-                );
-
-
-
-                /*
-                 * Update displayed balance.
-                 *
-                 * IMPORTANT:
-                 * This does NOT securely deduct
-                 * the Firestore wallet balance.
-                 *
-                 * A server-side transaction should
-                 * handle the real deduction.
-                 */
-
-                currentBalance =
-                    currentBalance - total;
-
-
-                walletBalance.textContent =
-                    money(currentBalance);
-
-
-                checkoutBalance.textContent =
-                    money(currentBalance);
-
-
-                button.textContent =
-                    "Order Completed";
-
-
-
-                /* =================================
-                   SUCCESS MESSAGE
-                ================================= */
-
-                showPopup(
-
-                    "success",
-
-                    "Your order completed",
-
-                    "It will take less than three business days to deliver your order. Always check your order history"
-
-                );
-
-
-
-                clearCheckoutForm();
-
-
-            }catch(error){
-
-
-                console.error(
-                    "ORDER ERROR:",
-                    error
-                );
-
-
-                showPopup(
-
-                    "error",
-
-                    "Order Failed",
-
-                    "Unable to complete your order. Please try again."
-
-                );
-
-
-                button.disabled =
-                    false;
-
-
-                button.textContent =
-                    "Confirm Order";
-
-            }finally{
-
-                orderProcessing =
-                    false;
-
-            }
-
-        }
-
-    );
-
-
-
-/* =====================================
-   CLEAR FORM
-===================================== */
-
-function clearCheckoutForm(){
-
-
-    const fields = [
-
-        "yourPhone",
-
-        "senderName",
-
-        "recipientName",
-
-        "recipientPhone",
-
-        "streetAddress",
-
-        "city",
-
-        "state",
-
-        "country",
-
-        "zipCode",
-
-        "additionalNotes"
-
-    ];
-
-
-    fields.forEach(
-
-        id => {
-
-
-            const field =
-                document.getElementById(id);
-
-
-            if(field)
-                field.value = "";
-
-        }
-
-    );
-
-
-    /*
-     * Keep USA as the default country
-     * after clearing the form.
-     */
-
-    document.getElementById(
-        "country"
-    ).value =
-        "USA";
-
-}
-
-
-
-/* =====================================
-   CLOSE POPUP OUTSIDE
-===================================== */
-
-messageOverlay.addEventListener(
-
-    "click",
-
-    event => {
-
-
-        if(
-            event.target ===
-            messageOverlay
-        ){
-
-            messageOverlay
-                .classList
-                .remove("show");
-
-        }
-
-    }
-
-);
-
-
-/* =====================================
-   INITIAL LOAD
-===================================== */
-
-loadProducts();
-
-</script>
-
-</body>
-
+</section>  <!-- BOTTOM -->  <div class="bottom-area">  <a  
+    href="dashboard.html"  
+    class="dashboard-btn"  
+>  
+    ← Back to Dashboard  
+</a>
+
+</div>  <!-- MESSAGE POPUP -->  <div  
+    class="message-overlay"  
+    id="messageOverlay"  
+>  <div  
+    class="message-box"  
+    id="messageBox"  
+>  
+
+    <div  
+        class="message-icon"  
+        id="messageIcon"  
+    >  
+        ⚠️  
+    </div>  
+
+    <h3 id="messageTitle">  
+        Insufficient wallet balance  
+    </h3>  
+
+    <p id="messageText">  
+        Kindly deposit and make an order  
+    </p>  
+
+    <button  
+        type="button"  
+        class="thanks-btn"  
+        id="thanksButton"  
+    >  
+        Thanks  
+    </button>  
+
+</div>
+
+</div>  <script type="module">  
+  
+import {  
+    auth,  
+    db  
+} from "./firebase-config.js";  
+  
+import {  
+    onAuthStateChanged  
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";  
+  
+import {  
+    doc,  
+    getDoc,  
+    addDoc,  
+    collection,  
+    serverTimestamp  
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";  
+  
+  
+/* =====================================  
+   PRODUCTS  
+===================================== */  
+  
+const products = [  
+  
+{  
+    name:"Glass Flower",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ab65_Purple"  
+},  
+  
+{  
+    name:"Glass Flower",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ac3f_Blue"  
+},  
+  
+{  
+    name:"Glass Flower",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058a940_xv"  
+},  
+  
+{  
+    name:"Fresh Cut Flower",  
+    price:45000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018b91_media_698d3fd2b0149"  
+},  
+  
+{  
+    name:"Fresh Cut Flower",  
+    price:45000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018a52_media_698d3fd332f71"  
+},  
+  
+{  
+    name:"Fresh Cut Flower",  
+    price:45000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d0188b3_media_698d3fd3b5d0a"  
+},  
+  
+{  
+    name:"Artificial Peonies Flowers",  
+    price:25000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1916b_IMG_5382"  
+},  
+  
+{  
+    name:"Artificial Peonies Flowers",  
+    price:25000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19279_IMG_5381"  
+},  
+  
+{  
+    name:"Artificial Peonies Flowers",  
+    price:25000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19359_IMG_5380"  
+},  
+  
+{  
+    name:"Artificial Peonies Flowers",  
+    price:25000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1942c_IMG_5379"  
+},  
+  
+{  
+    name:"Artificial Peonies Flowers",  
+    price:25000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb194e4_IMG_5378"  
+},  
+  
+{  
+    name:"Artificial Rose Flowers",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931930b_Blue"  
+},  
+  
+{  
+    name:"Artificial Rose Flowers",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993193ae_Yellow"  
+},  
+  
+{  
+    name:"Artificial Rose Flowers",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931944a_Black"  
+},  
+  
+{  
+    name:"Artificial Rose Flowers",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993194e3_White"  
+},  
+  
+{  
+    name:"Artificial Rose Flowers",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c99319235_Red"  
+},  
+  
+{  
+    name:"AMG Benz Car Key",  
+    price:230000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebe39_1000008930"  
+},  
+  
+{  
+    name:"AMG Benz Car Key",  
+    price:230000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebf39_1000008931"  
+},  
+  
+{  
+    name:"Benz Key",  
+    price:45000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238600_6a3acd889a953_1000008917"  
+},  
+  
+{  
+    name:"Tesla Key",  
+    price:135000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238712_6a3acdf8eba67_1000008919"  
+},  
+  
+{  
+    name:"House Keys",  
+    price:30000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238998_6a3acf16450ca_1000008923"  
+},  
+  
+{  
+    name:"Costway 3pcs Patio Acacia Wood Bistro Table Rocking Chair Set All-Weather Rope Outdoor",  
+    price:250000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3pcs-Patio-Acacia-Wood-Bistro-Table-Rocking-Chair-Set-All-Weather-Rope-Outdoor_038a53ef-54cf-4ac9-be33-73863fc4b4fb.25eddf448bcecbf77ff23fe5bea83047"  
+},  
+  
+{  
+    name:"Costway 3 PCS Acacia Wood Patio Bistro Set Folding Table & Chairs Set with Cushions Navy",  
+    price:195000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3-PCS-Acacia-Wood-Patio-Bistro-Set-Folding-Table-Chairs-Set-with-Cushions-Navy_9d86ceee-77ed-4972-a995-7a194c39a22f.cc4b7ebad2af83b9d788acd3f4c94690"  
+},  
+  
+{  
+    name:"Grand Patio 3-Piece Metal Outdoor Folding Bistro Set, Garden-Pea Green, Bistro Table and Chairs",  
+    price:75000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Grand-Patio-Metal-3-Piece-Outdoor-Folding-Bistro-Set-Garden-Pea-Green_52cb114e-076a-4e13-94bc-72011bd08533.4b6dcb8a1b65ea741437a8f7e4d046e5"  
+},  
+  
+{  
+    name:"3-Piece Outdoor Folding Bistro Set Metal Patio Table & Chairs Set",  
+    price:75000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/3-Piece-Outdoor-Folding-Bistro-Set-Metal-Patio-Table-Chairs-Set-Balcony-Backyard-Garden-Weather-Resistant-Small-Bistro-Set-Assembly-Required_8716a781-af35-4be9-8c8b-8e6413d15c8f.cfe1ea998f11fe8a665b314850f08b97"  
+},  
+  
+{  
+    name:"Bistro Table Chairs Set 3-Piece Outdoor Folding Patio Bistro Set",  
+    price:75000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Bistro-Table-Chairs-Set-3-Piece-Outdoor-Folding-Patio-Bistro-Set-Foldable-Steel-Frame-Table-2-Chairs-Balcony-Garden-Yard-Porch-Weather-Resistant-Spac_5e9745c4-8469-4d3a-b668-d7153db27c9a.4c495713856d7b49966b4366664abc55"  
+},  
+  
+{  
+    name:"2.25Ct Round Moissanite 18K White Gold Over Silver Under Halo Bridal Set Wedding Engagement Ring Set",  
+    price:95000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/silrxxx399-1111_1024x"  
+},  
+  
+{  
+    name:"Pizza And Coke",  
+    price:20000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782219179_6a3a81abe67c6_IMG_4529"  
+},  
+  
+{  
+    name:"Wrapster And Pepsi",  
+    price:15000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/wrapster-and-pepsi6846"  
+},  
+  
+{  
+    name:"4 In 1 Boss Combo",  
+    price:25000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4-in-1-boss-combo7174"  
+},  
+  
+{  
+    name:"The Big Boss",  
+    price:33000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/the-big-boss6576"  
+},  
+  
+{  
+    name:"Sweet Chilli Chicken",  
+    price:15000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/sweet-chilli-chicken6236"  
+},  
+  
+{  
+    name:"Chicken Supreme",  
+    price:17500,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/chicken-supreme5834"  
+},  
+  
+{  
+    name:"Chicken Strips 6pcs",  
+    price:15000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/crumbed-chicken-strips5294"  
+},  
+  
+{  
+    name:"Chicken Wings (6pcs)",  
+    price:15000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/saucy-chicken-wings9489"  
+},  
+  
+{  
+    name:"Teddy Bear",  
+    price:150000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4f2623f0890a59b52ad6041c0376a958"  
+},  
+  
+{  
+    name:"Teddy Bear",  
+    price:150000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/f38cec07b07bfc75cace01e4b50ef4c6"  
+},  
+  
+{  
+    name:"Teddy Bear",  
+    price:150000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/531872b26909d00eb50dedfb42c602c8"  
+},  
+  
+{  
+    name:"Teddy Bear",  
+    price:150000,  
+    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/a12d4294ccec72b254eef7d1254f5a51"  
+}  
+];  
+  
+  
+/* =====================================  
+   VARIABLES  
+===================================== */  
+  
+let currentUser = null;  
+let currentProduct = null;  
+let currentBalance = 0;  
+let orderProcessing = false;  
+  
+  
+/* =====================================  
+   ELEMENTS  
+===================================== */  
+  
+const productsContainer =  
+    document.getElementById("products");  
+  
+const productsSection =  
+    document.getElementById("productsSection");  
+  
+const checkout =  
+    document.getElementById("checkout");  
+  
+const walletBalance =  
+    document.getElementById("walletBalance");  
+  
+const checkoutBalance =  
+    document.getElementById("checkoutBalance");  
+  
+const messageOverlay =  
+    document.getElementById("messageOverlay");  
+  
+const messageBox =  
+    document.getElementById("messageBox");  
+  
+const messageIcon =  
+    document.getElementById("messageIcon");  
+  
+const messageTitle =  
+    document.getElementById("messageTitle");  
+  
+const messageText =  
+    document.getElementById("messageText");  
+  
+const thanksButton =  
+    document.getElementById("thanksButton");  
+  
+  
+/* =====================================  
+   MONEY  
+===================================== */  
+  
+function money(value){  
+  
+    return "₦" +  
+        Number(value).toLocaleString(  
+            "en-NG",  
+            {  
+                minimumFractionDigits:2,  
+                maximumFractionDigits:2  
+            }  
+        );  
+}  
+  
+  
+/* =====================================  
+   RENDER PRODUCTS  
+===================================== */  
+  
+products.forEach(product => {  
+  
+    const card =  
+        document.createElement("div");  
+  
+    card.className =  
+        "product-card";  
+  
+    card.innerHTML = `  
+  
+        <img  
+            class="product-image"  
+            src="${product.image}"  
+            alt="${product.name}"  
+            loading="lazy"  
+        >  
+  
+        <div class="product-info">  
+  
+            <div class="product-name">  
+                ${product.name}  
+            </div>  
+  
+            <div class="product-price">  
+                ${money(product.price)}  
+            </div>  
+  
+            <button  
+                type="button"  
+                class="gift-btn"  
+            >  
+                Send as Gift  
+            </button>  
+  
+        </div>  
+    `;  
+  
+    card  
+        .querySelector(".gift-btn")  
+        .addEventListener(  
+            "click",  
+            () => openCheckout(product)  
+        );  
+  
+    productsContainer.appendChild(card);  
+  
+});  
+  
+  
+/* =====================================  
+   AUTH  
+===================================== */  
+  
+onAuthStateChanged(  
+    auth,  
+    async user => {  
+  
+        if(!user){  
+  
+            currentUser = null;  
+  
+            currentBalance = 0;  
+  
+            walletBalance.textContent =  
+                "₦0.00";  
+  
+            checkoutBalance.textContent =  
+                "₦0.00";  
+  
+            return;  
+        }  
+  
+        currentUser = user;  
+  
+        await loadWallet();  
+  
+    }  
+);  
+  
+  
+/* =====================================  
+   LOAD WALLET  
+===================================== */  
+  
+async function loadWallet(){  
+  
+    if(!currentUser)  
+        return;  
+  
+    try{  
+  
+        const userRef =  
+            doc(  
+                db,  
+                "users",  
+                currentUser.uid  
+            );  
+  
+        const snap =  
+            await getDoc(userRef);  
+  
+        if(!snap.exists()){  
+  
+            currentBalance = 0;  
+  
+        }else{  
+  
+            const data =  
+                snap.data();  
+  
+            currentBalance =  
+                Number(  
+                    data.walletBalance || 0  
+                );  
+        }  
+  
+        walletBalance.textContent =  
+            money(currentBalance);  
+  
+        checkoutBalance.textContent =  
+            money(currentBalance);  
+  
+    }catch(error){  
+  
+        console.error(  
+            "Wallet error:",  
+            error  
+        );  
+  
+    }  
+}  
+  
+  
+/* =====================================  
+   OPEN CHECKOUT  
+===================================== */  
+  
+function openCheckout(product){  
+  
+    if(!currentUser){  
+  
+        showPopup(  
+            "login",  
+            "Please Login First",  
+            "Please login to your Fame Store account before sending a gift."  
+        );  
+  
+        return;  
+    }  
+  
+    currentProduct =  
+        product;  
+  
+    productsSection  
+        .classList  
+        .add("hidden");  
+  
+    checkout  
+        .classList  
+        .add("active");  
+  
+    document.getElementById(  
+        "selectedImage"  
+    ).src =  
+        product.image;  
+  
+    document.getElementById(  
+        "selectedName"  
+    ).textContent =  
+        product.name;  
+  
+    document.getElementById(  
+        "selectedPrice"  
+    ).textContent =  
+        money(product.price);  
+  
+    document.getElementById(  
+        "basePrice"  
+    ).textContent =  
+        money(product.price);  
+  
+    document.getElementById(  
+        "totalPrice"  
+    ).textContent =  
+        money(product.price);  
+  
+    checkoutBalance.textContent =  
+        money(currentBalance);  
+  
+    window.scrollTo({  
+        top:0,  
+        behavior:"smooth"  
+    });  
+}  
+  
+  
+/* =====================================  
+   BACK TO GIFTS  
+===================================== */  
+  
+document  
+    .getElementById("backProducts")  
+    .addEventListener(  
+        "click",  
+        () => {  
+  
+            checkout  
+                .classList  
+                .remove("active");  
+  
+            productsSection  
+                .classList  
+                .remove("hidden");  
+  
+            currentProduct =  
+                null;  
+  
+            window.scrollTo({  
+                top:0,  
+                behavior:"smooth"  
+            });  
+  
+        }  
+    );  
+  
+  
+/* =====================================  
+   POPUP  
+===================================== */  
+  
+function showPopup(  
+    type,  
+    title,  
+    text  
+){  
+  
+    messageBox.className =  
+        "message-box " +  
+        (type === "success"  
+            ? "success"  
+            : "");  
+  
+    if(type === "success"){  
+  
+        messageIcon.textContent =  
+            "✓";  
+  
+    }else{  
+  
+        messageIcon.textContent =  
+            type === "login"  
+                ? "🔐"  
+                : "⚠️";  
+    }  
+  
+    messageTitle.textContent =  
+        title;  
+  
+    messageText.textContent =  
+        text;  
+  
+    messageOverlay  
+        .classList  
+        .add("show");  
+}  
+  
+  
+thanksButton.addEventListener(  
+    "click",  
+    () => {  
+  
+        messageOverlay  
+            .classList  
+            .remove("show");  
+  
+    }  
+);  
+  
+  
+/* =====================================  
+   FORM VALIDATION  
+===================================== */  
+  
+function validateForm(){  
+  
+    const fields = [  
+  
+        "yourPhone",  
+        "senderName",  
+        "recipientName",  
+        "recipientPhone",  
+        "streetAddress",  
+        "city",  
+        "state",  
+        "country",  
+        "zipCode"  
+  
+    ];  
+  
+    for(  
+        const id of fields  
+    ){  
+  
+        const field =  
+            document.getElementById(id);  
+  
+        if(  
+            !field.value.trim()  
+        ){  
+  
+            field.focus();  
+  
+            return false;  
+        }  
+    }  
+  
+    return true;  
+}  
+  
+  
+/* =====================================  
+   CONFIRM ORDER  
+===================================== */  
+  
+document  
+    .getElementById("confirmOrder")  
+    .addEventListener(  
+        "click",  
+        async () => {  
+  
+            if(orderProcessing)  
+                return;  
+  
+            if(!currentUser){  
+  
+                showPopup(  
+                    "login",  
+                    "Please Login First",  
+                    "Please login to your Fame Store account before making an order."  
+                );  
+  
+                return;  
+            }  
+  
+            if(!currentProduct)  
+                return;  
+  
+            if(!validateForm()){  
+  
+                showPopup(  
+                    "error",  
+                    "Information Required",  
+                    "Kindly complete all the delivery information before confirming your order."  
+                );  
+  
+                return;  
+            }  
+  
+  
+            /*  
+             * Get the latest balance  
+             * before processing.  
+             */  
+  
+            await loadWallet();  
+  
+            const total =  
+                Number(  
+                    currentProduct.price  
+                );  
+  
+  
+            /* =================================  
+               INSUFFICIENT BALANCE  
+            ================================= */  
+  
+            if(  
+                currentBalance < total  
+            ){  
+  
+                showPopup(  
+                    "error",  
+                    "Insufficient wallet balance",  
+                    "Kindly deposit and make an order"  
+                );  
+  
+                return;  
+            }  
+  
+  
+            /* =================================  
+               PROCESS ORDER  
+            ================================= */  
+  
+            orderProcessing =  
+                true;  
+  
+            const button =  
+                document.getElementById(  
+                    "confirmOrder"  
+                );  
+  
+            button.disabled =  
+                true;  
+  
+            button.textContent =  
+                "Processing...";  
+  
+  
+            try{  
+  
+                /*  
+                 * Save order.  
+                 *  
+                 * NOTE:  
+                 * The order is recorded first.  
+                 */  
+  
+                await addDoc(  
+                    collection(  
+                        db,  
+                        "giftOrders"  
+                    ),  
+                    {  
+  
+                        customerUID:  
+                            currentUser.uid,  
+  
+                        customerEmail:  
+                            currentUser.email || "",  
+  
+                        productName:  
+                            currentProduct.name,  
+  
+                        productImage:  
+                            currentProduct.image,  
+  
+                        basePrice:  
+                            total,  
+  
+                        total:  
+                            total,  
+  
+                        yourPhone:  
+                            document  
+                                .getElementById(  
+                                    "yourPhone"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        senderName:  
+                            document  
+                                .getElementById(  
+                                    "senderName"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        recipientName:  
+                            document  
+                                .getElementById(  
+                                    "recipientName"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        recipientPhone:  
+                            document  
+                                .getElementById(  
+                                    "recipientPhone"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        streetAddress:  
+                            document  
+                                .getElementById(  
+                                    "streetAddress"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        city:  
+                            document  
+                                .getElementById(  
+                                    "city"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        state:  
+                            document  
+                                .getElementById(  
+                                    "state"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        country:  
+                            document  
+                                .getElementById(  
+                                    "country"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        zipCode:  
+                            document  
+                                .getElementById(  
+                                    "zipCode"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        additionalNotes:  
+                            document  
+                                .getElementById(  
+                                    "additionalNotes"  
+                                )  
+                                .value  
+                                .trim(),  
+  
+                        paymentMethod:  
+                            "Wallet",  
+  
+                        paymentStatus:  
+                            "Paid",  
+  
+                        status:  
+                            "Pending",  
+  
+                        createdAt:  
+                            serverTimestamp()  
+                    }  
+                );  
+  
+  
+                /*  
+                 * IMPORTANT:  
+                 *  
+                 * This client-side wallet update  
+                 * should eventually be moved to  
+                 * a trusted backend / Cloud Function  
+                 * for production security.  
+                 */  
+  
+                const userRef =  
+                    doc(  
+                        db,  
+                        "users",  
+                        currentUser.uid  
+                    );  
+  
+  
+                /*  
+                 * This example assumes your  
+                 * existing user document allows  
+                 * the customer to update walletBalance.  
+                 */  
+  
+                const latestSnap =  
+                    await getDoc(  
+                        userRef  
+                    );  
+  
+                const latestData =  
+                    latestSnap.exists()  
+                        ? latestSnap.data()  
+                        : {};  
+  
+                const latestBalance =  
+                    Number(  
+                        latestData.walletBalance || 0  
+                    );  
+  
+  
+                /*  
+                 * Recheck balance.  
+                 */  
+  
+                if(  
+                    latestBalance < total  
+                ){  
+  
+                    showPopup(  
+                        "error",  
+                        "Insufficient wallet balance",  
+                        "Kindly deposit and make an order"  
+                    );  
+  
+                    button.disabled =  
+                        false;  
+  
+                    button.textContent =  
+                        "Confirm Order";  
+  
+                    orderProcessing =  
+                        false;  
+  
+                    return;  
+                }  
+  
+  
+                /*  
+                 * NOTE:  
+                 * Keep your existing wallet  
+                 * update/backend logic here.  
+                 *  
+                 * For security, the actual deduction  
+                 * should be performed server-side.  
+                 */  
+  
+  
+                currentBalance =  
+                    latestBalance - total;  
+  
+  
+                walletBalance.textContent =  
+                    money(currentBalance);  
+  
+                checkoutBalance.textContent =  
+                    money(currentBalance);  
+  
+  
+                button.textContent =  
+                    "Order Completed";  
+  
+  
+                /* =================================  
+                   SUCCESS MESSAGE  
+                ================================= */  
+  
+                showPopup(  
+                    "success",  
+                    "Your order completed",  
+                    "It will take less than three business days to deliver your order. Always check your order history"  
+                );  
+  
+  
+                /*  
+                 * Clear checkout form after  
+                 * successful order.  
+                 */  
+  
+                clearCheckoutForm();  
+  
+  
+            }catch(error){  
+  
+                console.error(  
+                    "ORDER ERROR:",  
+                    error  
+                );  
+  
+                showPopup(  
+                    "error",  
+                    "Order Failed",  
+                    "Unable to complete your order. Please try again."  
+                );  
+  
+                button.disabled =  
+                    false;  
+  
+                button.textContent =  
+                    "Confirm Order";  
+  
+            }finally{  
+  
+                orderProcessing =  
+                    false;  
+  
+            }  
+  
+        }  
+    );  
+  
+  
+/* =====================================  
+   CLEAR FORM  
+===================================== */  
+  
+function clearCheckoutForm(){  
+  
+    const fields = [  
+  
+        "yourPhone",  
+        "senderName",  
+        "recipientName",  
+        "recipientPhone",  
+        "streetAddress",  
+        "city",  
+        "state",  
+        "country",  
+        "zipCode",  
+        "additionalNotes"  
+  
+    ];  
+  
+    fields.forEach(  
+        id => {  
+  
+            const field =  
+                document.getElementById(id);  
+  
+            if(field)  
+                field.value = "";  
+  
+        }  
+    );  
+}  
+  
+  
+/* =====================================  
+   CLOSE POPUP WHEN CLICKING OUTSIDE  
+===================================== */  
+  
+messageOverlay.addEventListener(  
+    "click",  
+    event => {  
+  
+        if(  
+            event.target ===  
+            messageOverlay  
+        ){  
+  
+            messageOverlay  
+                .classList  
+                .remove("show");  
+  
+        }  
+  
+    }  
+);  
+  
+</script>  </body>  
     </html>
