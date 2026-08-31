@@ -1520,8 +1520,7 @@ function validateForm(){
     return true;
 }
 
-
-/* =====================================
+    /* =====================================
    CONFIRM ORDER
 ===================================== */
 
@@ -1534,6 +1533,11 @@ document
             if(orderProcessing)
                 return;
 
+
+            /* ================================
+               LOGIN CHECK
+            ================================= */
+
             if(!currentUser){
 
                 showPopup(
@@ -1545,8 +1549,26 @@ document
                 return;
             }
 
-            if(!currentProduct)
+
+            /* ================================
+               PRODUCT CHECK
+            ================================= */
+
+            if(!currentProduct){
+
+                showPopup(
+                    "error",
+                    "No Gift Selected",
+                    "Please select a gift first."
+                );
+
                 return;
+            }
+
+
+            /* ================================
+               FORM CHECK
+            ================================= */
 
             if(!validateForm()){
 
@@ -1560,174 +1582,51 @@ document
             }
 
 
-            await loadWallet();
-
-            const total =
-                Number(
-                    currentProduct.price
-                );
-
-
-            /* =================================
-               INSUFFICIENT BALANCE
+            /* ================================
+               GET LATEST WALLET
             ================================= */
 
-            if(
-                currentBalance < total
-            ){
+            await loadWallet();
+
+
+            const total =
+                Number(currentProduct.price);
+
+
+            /* ================================
+               BALANCE CHECK
+            ================================= */
+
+            if(currentBalance < total){
 
                 showPopup(
                     "error",
                     "Insufficient wallet balance",
-                    "Kindly deposit and make an order"
+                    "Kindly deposit and make an order."
                 );
 
                 return;
             }
 
 
-            /* =================================
-               PROCESS ORDER
+            /* ================================
+               START PROCESSING
             ================================= */
 
-            orderProcessing =
-                true;
+            orderProcessing = true;
 
             const button =
                 document.getElementById(
                     "confirmOrder"
                 );
 
-            button.disabled =
-                true;
+            button.disabled = true;
 
             button.textContent =
                 "Processing...";
 
 
             try{
-
-                await addDoc(
-                    collection(
-                        db,
-                        "giftOrders"
-                    ),
-                    {
-
-                        customerUID:
-                            currentUser.uid,
-
-                        customerEmail:
-                            currentUser.email || "",
-
-                        destination:
-                            "Canada",
-
-                        country:
-                            "Canada",
-
-                        productName:
-                            currentProduct.name,
-
-                        productImage:
-                            currentProduct.image,
-
-                        basePrice:
-                            total,
-
-                        total:
-                            total,
-
-                        yourPhone:
-                            document
-                                .getElementById(
-                                    "yourPhone"
-                                )
-                                .value
-                                .trim(),
-
-                        senderName:
-                            document
-                                .getElementById(
-                                    "senderName"
-                                )
-                                .value
-                                .trim(),
-
-                        recipientName:
-                            document
-                                .getElementById(
-                                    "recipientName"
-                                )
-                                .value
-                                .trim(),
-
-                        recipientPhone:
-                            document
-                                .getElementById(
-                                    "recipientPhone"
-                                )
-                                .value
-                                .trim(),
-
-                        streetAddress:
-                            document
-                                .getElementById(
-                                    "streetAddress"
-                                )
-                                .value
-                                .trim(),
-
-                        city:
-                            document
-                                .getElementById(
-                                    "city"
-                                )
-                                .value
-                                .trim(),
-
-                        state:
-                            document
-                                .getElementById(
-                                    "state"
-                                )
-                                .value
-                                .trim(),
-
-                        zipCode:
-                            document
-                                .getElementById(
-                                    "zipCode"
-                                )
-                                .value
-                                .trim(),
-
-                        additionalNotes:
-                            document
-                                .getElementById(
-                                    "additionalNotes"
-                                )
-                                .value
-                                .trim(),
-
-                        paymentMethod:
-                            "Wallet",
-
-                        paymentStatus:
-                            "Paid",
-
-                        status:
-                            "Pending",
-
-                        createdAt:
-                            serverTimestamp()
-                    }
-                );
-
-
-                /*
-                 * Get latest wallet balance.
-                 */
 
                 const userRef =
                     doc(
@@ -1736,59 +1635,239 @@ document
                         currentUser.uid
                     );
 
-                const latestSnap =
-                    await getDoc(
-                        userRef
+
+                /*
+                 * Create a unique order reference.
+                 */
+
+                const orderRef =
+                    doc(
+                        collection(
+                            db,
+                            "giftOrders"
+                        )
                     );
-
-                const latestData =
-                    latestSnap.exists()
-                        ? latestSnap.data()
-                        : {};
-
-                const latestBalance =
-                    Number(
-                        latestData.walletBalance || 0
-                    );
-
-
-                if(
-                    latestBalance < total
-                ){
-
-                    showPopup(
-                        "error",
-                        "Insufficient wallet balance",
-                        "Kindly deposit and make an order"
-                    );
-
-                    button.disabled =
-                        false;
-
-                    button.textContent =
-                        "Confirm Order";
-
-                    orderProcessing =
-                        false;
-
-                    return;
-                }
 
 
                 /*
-                 * Display the balance after
-                 * the order amount.
+                 * Everything happens inside
+                 * ONE Firestore transaction.
                  *
-                 * Actual wallet deduction should
-                 * be handled securely server-side.
+                 * If the wallet deduction fails,
+                 * the order is not created.
                  */
 
+                await runTransaction(
+                    db,
+                    async transaction => {
+
+                        /*
+                         * Get latest user wallet.
+                         */
+
+                        const userSnap =
+                            await transaction.get(
+                                userRef
+                            );
+
+
+                        if(!userSnap.exists()){
+
+                            throw new Error(
+                                "USER_NOT_FOUND"
+                            );
+
+                        }
+
+
+                        const userData =
+                            userSnap.data();
+
+
+                        const wallet =
+                            Number(
+                                userData.walletBalance || 0
+                            );
+
+
+                        /*
+                         * Check balance again.
+                         *
+                         * This prevents an old
+                         * browser balance from
+                         * being used.
+                         */
+
+                        if(wallet < total){
+
+                            throw new Error(
+                                "INSUFFICIENT_BALANCE"
+                            );
+
+                        }
+
+
+                        /*
+                         * New balance.
+                         */
+
+                        const newBalance =
+                            wallet - total;
+
+
+                        /*
+                         * Create the gift order.
+                         */
+
+                        transaction.set(
+                            orderRef,
+                            {
+
+                                customerUID:
+                                    currentUser.uid,
+
+                                customerEmail:
+                                    currentUser.email || "",
+
+                                destination:
+                                    "Canada",
+
+                                country:
+                                    "Canada",
+
+                                productName:
+                                    currentProduct.name,
+
+                                productImage:
+                                    currentProduct.image,
+
+                                basePrice:
+                                    total,
+
+                                total:
+                                    total,
+
+                                yourPhone:
+                                    document
+                                        .getElementById(
+                                            "yourPhone"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                senderName:
+                                    document
+                                        .getElementById(
+                                            "senderName"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                recipientName:
+                                    document
+                                        .getElementById(
+                                            "recipientName"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                recipientPhone:
+                                    document
+                                        .getElementById(
+                                            "recipientPhone"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                streetAddress:
+                                    document
+                                        .getElementById(
+                                            "streetAddress"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                city:
+                                    document
+                                        .getElementById(
+                                            "city"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                state:
+                                    document
+                                        .getElementById(
+                                            "state"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                zipCode:
+                                    document
+                                        .getElementById(
+                                            "zipCode"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                additionalNotes:
+                                    document
+                                        .getElementById(
+                                            "additionalNotes"
+                                        )
+                                        .value
+                                        .trim(),
+
+                                paymentMethod:
+                                    "Wallet",
+
+                                paymentStatus:
+                                    "Paid",
+
+                                status:
+                                    "Pending",
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        /*
+                         * Deduct the money from the
+                         * user's Firestore wallet.
+                         */
+
+                        transaction.update(
+                            userRef,
+                            {
+
+                                walletBalance:
+                                    newBalance,
+
+                                lastGiftOrderId:
+                                    orderRef.id
+
+                            }
+                        );
+
+                    }
+                );
+
+
+                /* ================================
+                   UPDATE SCREEN IMMEDIATELY
+                ================================= */
+
                 currentBalance =
-                    latestBalance - total;
+                    currentBalance - total;
 
 
                 walletBalance.textContent =
                     money(currentBalance);
+
 
                 checkoutBalance.textContent =
                     money(currentBalance);
@@ -1798,14 +1877,14 @@ document
                     "Order Completed";
 
 
-                /* =================================
+                /* ================================
                    SUCCESS
                 ================================= */
 
                 showPopup(
                     "success",
                     "Your order completed",
-                    "It will take less than three business days to deliver your order. Always check your order history."
+                    "Your order has been placed successfully. It will take less than three business days to deliver your order. Always check your order history."
                 );
 
 
@@ -1819,14 +1898,51 @@ document
                     error
                 );
 
-                showPopup(
-                    "error",
-                    "Order Failed",
-                    "Unable to complete your order. Please try again."
-                );
 
-                button.disabled =
-                    false;
+                /* ================================
+                   INSUFFICIENT BALANCE
+                ================================= */
+
+                if(
+                    error.message ===
+                    "INSUFFICIENT_BALANCE"
+                ){
+
+                    await loadWallet();
+
+                    showPopup(
+                        "error",
+                        "Insufficient wallet balance",
+                        "Your wallet balance is not enough to make this order."
+                    );
+
+                }
+
+                else if(
+                    error.message ===
+                    "USER_NOT_FOUND"
+                ){
+
+                    showPopup(
+                        "error",
+                        "Account Error",
+                        "Your account profile could not be found. Please contact support."
+                    );
+
+                }
+
+                else{
+
+                    showPopup(
+                        "error",
+                        "Order Failed",
+                        "Unable to complete your order. Please try again."
+                    );
+
+                }
+
+
+                button.disabled = false;
 
                 button.textContent =
                     "Confirm Order";
@@ -1840,68 +1956,6 @@ document
 
         }
     );
-
-
-/* =====================================
-   CLEAR FORM
-===================================== */
-
-function clearCheckoutForm(){
-
-    const fields = [
-
-        "yourPhone",
-        "senderName",
-        "recipientName",
-        "recipientPhone",
-        "streetAddress",
-        "city",
-        "state",
-        "zipCode",
-        "additionalNotes"
-
-    ];
-
-    fields.forEach(
-        id => {
-
-            const field =
-                document.getElementById(id);
-
-            if(field)
-                field.value = "";
-
-        }
-    );
-
-    document.getElementById(
-        "country"
-    ).value =
-        "Canada";
-}
-
-
-/* =====================================
-   CLOSE POPUP OUTSIDE
-===================================== */
-
-messageOverlay.addEventListener(
-    "click",
-    event => {
-
-        if(
-            event.target ===
-            messageOverlay
-        ){
-
-            messageOverlay
-                .classList
-                .remove("show");
-
-        }
-
-    }
-);
 
 </script>
 
