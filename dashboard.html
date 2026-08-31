@@ -1,1490 +1,1255 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 
-<head>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Dashboard | Fame Store</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
 
-    <title>Dashboard | Fame Store</title>
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+<style>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <style>
+    :root {
+        --blue: #0757d9;
+        --dark-blue: #063b91;
+        --yellow: #ffc928;
+        --white: #ffffff;
+        --black: #101828;
+        --gray: #667085;
+        --light: #f5f8fc;
+        --border: #e5eaf1;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+        background: var(--light);
+        color: var(--black);
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    button {
+        font-family: inherit;
+    }
+
+    .container {
+        width: min(1180px, 92%);
+        margin: auto;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+        background: #ffffff;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .header-inner {
+        min-height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .brand-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--yellow);
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+    }
+
+    .brand-name {
+        color: var(--blue);
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .brand-tagline {
+        color: var(--gray);
+        font-size: 9px;
+        margin-top: 2px;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-btn {
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: white;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .header-btn:hover {
+        border-color: var(--blue);
+    }
+
+    .profile-mini {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: var(--blue);
+        color: white;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+
+    /* =========================
+       DASHBOARD
+    ========================= */
+
+    .dashboard {
+        padding: 35px 0 70px;
+    }
+
+    .welcome {
+        margin-bottom: 25px;
+    }
+
+    .welcome h1 {
+        font-size: clamp(24px, 4vw, 34px);
+        line-height: 1.2;
+    }
+
+    .welcome p {
+        color: var(--gray);
+        margin-top: 6px;
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       BALANCE
+    ========================= */
+
+    .balance-card {
+        background: linear-gradient(
+            135deg,
+            var(--blue),
+            var(--dark-blue)
+        );
+
+        border-radius: 22px;
+        color: white;
+        padding: 30px;
+
+        box-shadow:
+            0 20px 45px
+            rgba(7, 87, 217, .20);
+
+        position: relative;
+        overflow: hidden;
+
+        margin-bottom: 25px;
+    }
+
+    .balance-card::after {
+        content: "";
+
+        width: 220px;
+        height: 220px;
+
+        position: absolute;
+
+        right: -80px;
+        top: -80px;
+
+        background:
+            rgba(255, 255, 255, .08);
+
+        border-radius: 50%;
+    }
+
+    .balance-label {
+        font-size: 12px;
+        opacity: .8;
+    }
+
+    .balance-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 20px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .balance-amount {
+        font-size:
+            clamp(32px, 6vw, 46px);
+
+        font-weight: 800;
+        margin-top: 6px;
+    }
+
+    .deposit-btn {
+        border: 0;
+        background: var(--yellow);
+        color: #614800;
+        padding: 13px 22px;
+        border-radius: 10px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .deposit-btn:hover {
+        transform: translateY(-2px);
+        background: #ffd84e;
+    }
+
+
+    /* =========================
+       QUICK ACTIONS
+    ========================= */
+
+    .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 10px;
+        margin-bottom: 35px;
+    }
+
+    .quick-action {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        padding: 15px 8px;
+        text-align: center;
+        transition: .25s;
+    }
+
+    .quick-action:hover {
+        border-color: var(--blue);
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 10px 25px
+            rgba(7, 87, 217, .08);
+    }
+
+    .quick-icon {
+        font-size: 22px;
+        display: block;
+        margin-bottom: 7px;
+    }
+
+    .quick-action span:last-child {
+        font-size: 10px;
+        font-weight: 700;
+        color: #344054;
+    }
+
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    .section-title {
+        margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+        font-size: 23px;
+    }
+
+    .section-title p {
+        color: var(--gray);
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+
+    /* =========================
+       COUNTRY GRID
+    ========================= */
+
+    .delivery-section {
+        margin-top: 40px;
+    }
+
+    .country-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .country-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 22px;
+        cursor: pointer;
+        transition: .25s;
+        position: relative;
+        min-height: 130px;
+    }
+
+    .country-card:hover {
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 12px 30px
+            rgba(7, 87, 217, .09);
+
+        border-color: var(--blue);
+    }
+
+    .country-card:active {
+        transform: scale(.98);
+    }
+
+    .country-flag {
+        font-size: 36px;
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    .country-name {
+        font-weight: 800;
+        font-size: 15px;
+    }
+
+    .country-card::after {
+        content: "→";
+
+        position: absolute;
+        right: 18px;
+        bottom: 20px;
+
+        color: var(--blue);
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+
+    /* =========================
+       OTHER COUNTRIES
+    ========================= */
+
+    .other-country {
+        margin-top: 15px;
+
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 16px;
+
+        padding: 18px;
+
+        cursor: pointer;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        transition: .25s;
+    }
+
+    .other-country:hover {
+        border-color: var(--blue);
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 10px 25px
+            rgba(7, 87, 217, .07);
+    }
+
+    .other-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .other-icon {
+        width: 45px;
+        height: 45px;
+
+        background: #fff7d9;
+
+        border-radius: 12px;
+
+        display: grid;
+        place-items: center;
+
+        font-size: 22px;
+    }
+
+    .other-country strong {
+        display: block;
+        font-size: 14px;
+    }
+
+    .other-country span {
+        color: var(--gray);
+        font-size: 11px;
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .country-modal-overlay {
+        position: fixed;
+        inset: 0;
+
+        background:
+            rgba(0, 0, 0, .60);
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 20px;
+
+        z-index: 10000;
+
+        animation: modalFade .25s ease;
+    }
+
+    .country-modal {
+        width: min(420px, 100%);
+
+        background: #ffffff;
+
+        border-radius: 22px;
+
+        padding: 30px 25px;
+
+        text-align: center;
+
+        box-shadow:
+            0 25px 70px
+            rgba(0, 0, 0, .25);
+
+        animation: modalUp .25s ease;
+    }
+
+    .country-modal-icon {
+        width: 65px;
+        height: 65px;
+
+        margin: 0 auto 15px;
+
+        border-radius: 18px;
+
+        background: #fff7d9;
+
+        display: grid;
+
+        place-items: center;
+
+        font-size: 32px;
+    }
+
+    .country-modal h2 {
+        font-size: 22px;
+        font-weight: 800;
+
+        color: var(--black);
+
+        margin-bottom: 12px;
+    }
+
+    .country-modal p {
+        color: var(--gray);
+
+        font-size: 13px;
+
+        line-height: 1.7;
+
+        margin-bottom: 10px;
+    }
+
+    .whatsapp-btn {
+        display: block;
+
+        width: 100%;
+
+        margin-top: 22px;
+
+        padding: 14px 18px;
+
+        border-radius: 11px;
+
+        background: #25d366;
+
+        color: #ffffff;
+
+        font-size: 13px;
+
+        font-weight: 800;
+
+        transition: .25s;
+    }
+
+    .whatsapp-btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(.95);
+    }
+
+    .close-modal-btn {
+        width: 100%;
+
+        margin-top: 10px;
+
+        padding: 13px 18px;
+
+        border: 1px solid var(--border);
+
+        border-radius: 11px;
+
+        background: #ffffff;
+
+        color: var(--black);
+
+        font-family: inherit;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        transition: .25s;
+    }
+
+    .close-modal-btn:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+    }
+
+    @keyframes modalFade {
+
+        from {
+            opacity: 0;
         }
 
-        :root {
-            --blue: #0757d9;
-            --dark-blue: #063b91;
-            --yellow: #ffc928;
-            --white: #ffffff;
-            --black: #101828;
-            --gray: #667085;
-            --light: #f5f8fc;
-            --border: #e5eaf1;
+        to {
+            opacity: 1;
         }
 
-        html {
-            scroll-behavior: smooth;
+    }
+
+    @keyframes modalUp {
+
+        from {
+            opacity: 0;
+            transform:
+                translateY(20px)
+                scale(.97);
         }
 
-        body {
-            font-family: "Inter", sans-serif;
-            background: var(--light);
-            color: var(--black);
+        to {
+            opacity: 1;
+            transform:
+                translateY(0)
+                scale(1);
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        button {
-            font-family: inherit;
-        }
-
-        .container {
-            width: min(1180px, 92%);
-            margin: auto;
-        }
+    }
 
 
-        /* =========================
-           HEADER
-        ========================= */
+    /* =========================
+       SUPPORT
+    ========================= */
 
-        .header {
-            background: #ffffff;
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    .support-card {
+        margin-top: 35px;
 
-        .header-inner {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
+        background: #fffbea;
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        border: 1px solid #f5df88;
 
-        .brand-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--yellow);
-            border-radius: 12px;
-            display: grid;
-            place-items: center;
-            font-size: 22px;
-        }
+        border-radius: 18px;
 
-        .brand-name {
-            color: var(--blue);
-            font-size: 18px;
-            font-weight: 800;
-        }
+        padding: 25px;
 
-        .brand-tagline {
-            color: var(--gray);
-            font-size: 9px;
-            margin-top: 2px;
-        }
+        display: flex;
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        justify-content: space-between;
 
-        .header-btn {
-            width: 42px;
-            height: 42px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            font-size: 18px;
-        }
+        align-items: center;
 
-        .header-btn:hover {
-            border-color: var(--blue);
-        }
+        gap: 20px;
+    }
 
-        .profile-mini {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: var(--blue);
-            color: white;
-            display: grid;
-            place-items: center;
-            font-weight: 800;
-            cursor: pointer;
-        }
+    .support-card h3 {
+        font-size: 17px;
+    }
+
+    .support-card p {
+        color: var(--gray);
+
+        font-size: 12px;
+
+        margin-top: 5px;
+    }
+
+    .support-btn {
+        background: var(--blue);
+
+        color: white;
+
+        padding: 12px 18px;
+
+        border-radius: 9px;
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        white-space: nowrap;
+    }
 
 
-        /* =========================
-           DASHBOARD
-        ========================= */
+    /* =========================
+       FOOTER
+    ========================= */
 
-        .dashboard {
-            padding: 35px 0 70px;
-        }
+    .footer {
+        background: #061c43;
 
-        .welcome {
-            margin-bottom: 25px;
-        }
+        color: white;
 
-        .welcome h1 {
-            font-size: clamp(24px, 4vw, 34px);
-            line-height: 1.2;
-        }
+        padding: 25px 0;
+    }
 
-        .welcome p {
-            color: var(--gray);
-            margin-top: 6px;
-            font-size: 14px;
-        }
+    .footer-inner {
+        display: flex;
 
+        justify-content: space-between;
 
-        /* =========================
-           BALANCE
-        ========================= */
+        align-items: center;
 
-        .balance-card {
-            background: linear-gradient(
-                135deg,
-                var(--blue),
-                var(--dark-blue)
-            );
+        gap: 15px;
+    }
 
-            border-radius: 22px;
-            color: white;
-            padding: 30px;
-
-            box-shadow:
-                0 20px 45px
-                rgba(7, 87, 217, .20);
-
-            position: relative;
-            overflow: hidden;
-
-            margin-bottom: 25px;
-        }
-
-        .balance-card::after {
-            content: "";
-
-            width: 220px;
-            height: 220px;
-
-            position: absolute;
-
-            right: -80px;
-            top: -80px;
-
-            background:
-                rgba(255, 255, 255, .08);
-
-            border-radius: 50%;
-        }
-
-        .balance-label {
-            font-size: 12px;
-            opacity: .8;
-        }
-
-        .balance-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            gap: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .balance-amount {
-            font-size:
-                clamp(32px, 6vw, 46px);
-
-            font-weight: 800;
-            margin-top: 6px;
-        }
-
-        .deposit-btn {
-            border: 0;
-            background: var(--yellow);
-            color: #614800;
-            padding: 13px 22px;
-            border-radius: 10px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        .deposit-btn:hover {
-            transform: translateY(-2px);
-            background: #ffd84e;
-        }
+    .footer p {
+        color: #9eafc9;
+        font-size: 10px;
+    }
 
 
-        /* =========================
-           QUICK ACTIONS
-        ========================= */
+    /* =========================
+       TOAST
+    ========================= */
+
+    .toast {
+        position: fixed;
+
+        left: 50%;
+
+        bottom: 25px;
+
+        transform:
+            translate(-50%, 100px);
+
+        opacity: 0;
+
+        background: #101828;
+
+        color: white;
+
+        padding: 13px 20px;
+
+        border-radius: 10px;
+
+        font-size: 12px;
+
+        z-index: 9999;
+
+        transition: .3s;
+
+        pointer-events: none;
+    }
+
+    .toast.show {
+        opacity: 1;
+
+        transform:
+            translate(-50%, 0);
+    }
+
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 950px) {
 
         .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            gap: 10px;
-            margin-bottom: 35px;
-        }
-
-        .quick-action {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 13px;
-            padding: 15px 8px;
-            text-align: center;
-            transition: .25s;
-        }
-
-        .quick-action:hover {
-            border-color: var(--blue);
-            transform: translateY(-3px);
-
-            box-shadow:
-                0 10px 25px
-                rgba(7, 87, 217, .08);
-        }
-
-        .quick-icon {
-            font-size: 22px;
-            display: block;
-            margin-bottom: 7px;
-        }
-
-        .quick-action span:last-child {
-            font-size: 10px;
-            font-weight: 700;
-            color: #344054;
-        }
-
-
-        /* =========================
-           SECTION
-        ========================= */
-
-        .section-title {
-            margin-bottom: 18px;
-        }
-
-        .section-title h2 {
-            font-size: 23px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-
-        /* =========================
-           PRODUCTS
-        ========================= */
-
-        .products-section {
-            margin-top: 40px;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .product-card {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            overflow: hidden;
-            transition: .25s;
-            box-shadow:
-                0 5px 20px rgba(16, 24, 40, .03);
-        }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--blue);
-
-            box-shadow:
-                0 14px 35px
-                rgba(7, 87, 217, .10);
-        }
-
-        .product-image-box {
-            width: 100%;
-            height: 220px;
-            background: #f1f4f8;
-            overflow: hidden;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: .3s;
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.03);
-        }
-
-        .product-content {
-            padding: 18px;
-        }
-
-        .product-category {
-            display: inline-block;
-            color: var(--blue);
-            background: #eef5ff;
-            padding: 5px 9px;
-            border-radius: 6px;
-            font-size: 9px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 9px;
-        }
-
-        .product-name {
-            font-size: 16px;
-            font-weight: 800;
-            line-height: 1.4;
-            margin-bottom: 8px;
-        }
-
-        .product-destination {
-            color: var(--gray);
-            font-size: 11px;
-            margin-bottom: 15px;
-        }
-
-        .product-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .product-price {
-            color: var(--blue);
-            font-size: 16px;
-            font-weight: 800;
-        }
-
-        .order-product-btn {
-            border: 0;
-            background: var(--blue);
-            color: white;
-            padding: 10px 14px;
-            border-radius: 9px;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: .2s;
-        }
-
-        .order-product-btn:hover {
-            background: var(--dark-blue);
-            transform: translateY(-1px);
-        }
-
-        .products-loading,
-        .products-empty,
-        .products-error {
-            grid-column: 1 / -1;
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 35px 20px;
-            text-align: center;
-            color: var(--gray);
-            font-size: 13px;
-        }
-
-        .products-error {
-            color: #b42318;
-            background: #fff1f0;
-            border-color: #ffd3d0;
-        }
-
-
-        /* =========================
-           COUNTRY GRID
-        ========================= */
-
-        .delivery-section {
-            margin-top: 40px;
+            grid-template-columns:
+                repeat(4, 1fr);
         }
 
         .country-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+        .dashboard {
+            padding-top: 25px;
+        }
+
+        .header-inner {
+            min-height: 68px;
+        }
+
+        .brand-name {
+            font-size: 16px;
+        }
+
+        .balance-card {
+            padding: 24px;
+        }
+
+        .balance-row {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .deposit-btn {
+            width: 100%;
+        }
+
+        .quick-actions {
+            grid-template-columns:
+                repeat(4, 1fr);
+        }
+
+        .country-grid {
+            grid-template-columns:
+                repeat(2, 1fr);
         }
 
         .country-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 22px;
-            cursor: pointer;
-            transition: .25s;
-            position: relative;
-            min-height: 130px;
-        }
-
-        .country-card:hover {
-            transform: translateY(-4px);
-
-            box-shadow:
-                0 12px 30px
-                rgba(7, 87, 217, .09);
-
-            border-color: var(--blue);
-        }
-
-        .country-card:active {
-            transform: scale(.98);
-        }
-
-        .country-flag {
-            font-size: 36px;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .country-name {
-            font-weight: 800;
-            font-size: 15px;
-        }
-
-        .country-card::after {
-            content: "→";
-
-            position: absolute;
-            right: 18px;
-            bottom: 20px;
-
-            color: var(--blue);
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-
-        /* =========================
-           OTHER COUNTRIES
-        ========================= */
-
-        .other-country {
-            margin-top: 15px;
-
-            background: white;
-
-            border: 1px solid var(--border);
-
-            border-radius: 16px;
-
+            min-height: 120px;
             padding: 18px;
-
-            cursor: pointer;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 15px;
-
-            transition: .25s;
         }
-
-        .other-country:hover {
-            border-color: var(--blue);
-
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 10px 25px
-                rgba(7, 87, 217, .07);
-        }
-
-        .other-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .other-icon {
-            width: 45px;
-            height: 45px;
-
-            background: #fff7d9;
-
-            border-radius: 12px;
-
-            display: grid;
-            place-items: center;
-
-            font-size: 22px;
-        }
-
-        .other-country strong {
-            display: block;
-            font-size: 14px;
-        }
-
-        .other-country span {
-            color: var(--gray);
-            font-size: 11px;
-        }
-
-
-        /* =========================
-           MODAL
-        ========================= */
-
-        .country-modal-overlay {
-            position: fixed;
-            inset: 0;
-
-            background:
-                rgba(0, 0, 0, .60);
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 20px;
-
-            z-index: 10000;
-
-            animation: modalFade .25s ease;
-        }
-
-        .country-modal {
-            width: min(420px, 100%);
-
-            background: #ffffff;
-
-            border-radius: 22px;
-
-            padding: 30px 25px;
-
-            text-align: center;
-
-            box-shadow:
-                0 25px 70px
-                rgba(0, 0, 0, .25);
-
-            animation: modalUp .25s ease;
-        }
-
-        .country-modal-icon {
-            width: 65px;
-            height: 65px;
-
-            margin: 0 auto 15px;
-
-            border-radius: 18px;
-
-            background: #fff7d9;
-
-            display: grid;
-
-            place-items: center;
-
-            font-size: 32px;
-        }
-
-        .country-modal h2 {
-            font-size: 22px;
-            font-weight: 800;
-
-            color: var(--black);
-
-            margin-bottom: 12px;
-        }
-
-        .country-modal p {
-            color: var(--gray);
-
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            margin-bottom: 10px;
-        }
-
-        .whatsapp-btn {
-            display: block;
-
-            width: 100%;
-
-            margin-top: 22px;
-
-            padding: 14px 18px;
-
-            border-radius: 11px;
-
-            background: #25d366;
-
-            color: #ffffff;
-
-            font-size: 13px;
-
-            font-weight: 800;
-
-            transition: .25s;
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(.95);
-        }
-
-        .close-modal-btn {
-            width: 100%;
-
-            margin-top: 10px;
-
-            padding: 13px 18px;
-
-            border: 1px solid var(--border);
-
-            border-radius: 11px;
-
-            background: #ffffff;
-
-            color: var(--black);
-
-            font-family: inherit;
-
-            font-size: 13px;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            transition: .25s;
-        }
-
-        .close-modal-btn:hover {
-            border-color: var(--blue);
-            color: var(--blue);
-        }
-
-        @keyframes modalFade {
-
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-
-        }
-
-        @keyframes modalUp {
-
-            from {
-                opacity: 0;
-                transform:
-                    translateY(20px)
-                    scale(.97);
-            }
-
-            to {
-                opacity: 1;
-                transform:
-                    translateY(0)
-                    scale(1);
-            }
-
-        }
-
-
-        /* =========================
-           SUPPORT
-        ========================= */
 
         .support-card {
-            margin-top: 35px;
-
-            background: #fffbea;
-
-            border: 1px solid #f5df88;
-
-            border-radius: 18px;
-
-            padding: 25px;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            gap: 20px;
-        }
-
-        .support-card h3 {
-            font-size: 17px;
-        }
-
-        .support-card p {
-            color: var(--gray);
-
-            font-size: 12px;
-
-            margin-top: 5px;
+            align-items: flex-start;
+            flex-direction: column;
         }
 
         .support-btn {
-            background: var(--blue);
-
-            color: white;
-
-            padding: 12px 18px;
-
-            border-radius: 9px;
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-            white-space: nowrap;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        .footer {
-            background: #061c43;
-
-            color: white;
-
-            padding: 25px 0;
+            width: 100%;
+            text-align: center;
         }
 
         .footer-inner {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            gap: 15px;
+            align-items: flex-start;
+            flex-direction: column;
         }
 
-        .footer p {
-            color: #9eafc9;
-            font-size: 10px;
+    }
+
+
+    /* =========================
+       SMALL PHONE
+    ========================= */
+
+    @media (max-width: 400px) {
+
+        .quick-actions {
+            grid-template-columns:
+                repeat(2, 1fr);
         }
 
-
-        /* =========================
-           TOAST
-        ========================= */
-
-        .toast {
-            position: fixed;
-
-            left: 50%;
-
-            bottom: 25px;
-
-            transform:
-                translate(-50%, 100px);
-
-            opacity: 0;
-
-            background: #101828;
-
-            color: white;
-
-            padding: 13px 20px;
-
-            border-radius: 10px;
-
-            font-size: 12px;
-
-            z-index: 9999;
-
-            transition: .3s;
-
-            pointer-events: none;
+        .country-grid {
+            grid-template-columns:
+                repeat(2, 1fr);
         }
 
-        .toast.show {
-            opacity: 1;
-
-            transform:
-                translate(-50%, 0);
+        .country-card {
+            padding: 15px;
         }
 
-
-        /* =========================
-           TABLET
-        ========================= */
-
-        @media (max-width: 950px) {
-
-            .quick-actions {
-                grid-template-columns:
-                    repeat(4, 1fr);
-            }
-
-            .products-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .country-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
+        .country-flag {
+            font-size: 30px;
         }
 
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 650px) {
-
-            .dashboard {
-                padding-top: 25px;
-            }
-
-            .header-inner {
-                min-height: 68px;
-            }
-
-            .brand-name {
-                font-size: 16px;
-            }
-
-            .balance-card {
-                padding: 24px;
-            }
-
-            .balance-row {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .deposit-btn {
-                width: 100%;
-            }
-
-            .quick-actions {
-                grid-template-columns:
-                    repeat(4, 1fr);
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .product-image-box {
-                height: 230px;
-            }
-
-            .country-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .country-card {
-                min-height: 120px;
-                padding: 18px;
-            }
-
-            .support-card {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .support-btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .footer-inner {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
+        .country-name {
+            font-size: 13px;
         }
 
+    }
 
-        /* =========================
-           SMALL PHONE
-        ========================= */
+</style>
 
-        @media (max-width: 400px) {
-
-            .quick-actions {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .country-grid {
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-            .country-card {
-                padding: 15px;
-            }
-
-            .country-flag {
-                font-size: 30px;
-            }
-
-            .country-name {
-                font-size: 13px;
-            }
-
-            .product-content {
-                padding: 16px;
-            }
-
-            .product-bottom {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .order-product-btn {
-                width: 100%;
-            }
-
-        }
-
-    </style>
-
-</head>
-
-
-<body>
-
-
-<!-- =========================
+</head><body><!-- =========================
      HEADER
-========================= -->
+========================= --><header class="header"><div class="container header-inner">
 
-<header class="header">
+    <a
+        href="dashboard.html"
+        class="brand">
 
-    <div class="container header-inner">
+        <div class="brand-icon">
+            🛍️
+        </div>
 
-        <a
-            href="dashboard.html"
-            class="brand">
+        <div>
 
-            <div class="brand-icon">
-                🛍️
+            <div class="brand-name">
+                Fame Store
             </div>
 
-            <div>
-
-                <div class="brand-name">
-                    Fame Store
-                </div>
-
-                <div class="brand-tagline">
-                    Send gifts 🎁, share love ❤️
-                </div>
-
+            <div class="brand-tagline">
+                Send gifts 🎁, share love ❤️
             </div>
 
-        </a>
+        </div>
+
+    </a>
 
 
-        <div class="header-actions">
+    <div class="header-actions">
 
-            <button
-                class="header-btn"
-                id="notificationBtn"
-                title="Notifications">
+        <button
+            class="header-btn"
+            id="notificationBtn"
+            title="Notifications">
 
-                🔔
+            🔔
 
-            </button>
+        </button>
 
 
-            <div
-                class="profile-mini"
-                id="profileMini"
-                title="Profile">
+        <div
+            class="profile-mini"
+            id="profileMini"
+            title="Profile">
 
-                ?
-
-            </div>
+            ?
 
         </div>
 
     </div>
 
-</header>
+</div>
 
-
-
-<!-- =========================
+</header><!-- =========================
      DASHBOARD
-========================= -->
+========================= --><main class="dashboard"><div class="container">
 
-<main class="dashboard">
 
-    <div class="container">
+    <!-- =========================
+         WELCOME
+    ========================= -->
 
+    <section class="welcome">
 
-        <!-- =========================
-             WELCOME
-        ========================= -->
+        <h1>
 
-        <section class="welcome">
+            Welcome,
+            <span id="userName">
+                Customer
+            </span>
+            👋
 
-            <h1>
+        </h1>
 
-                Welcome,
-                <span id="userName">
-                    Customer
-                </span>
-                👋
+        <p>
+            Send something special
+            to someone you love.
+        </p>
 
-            </h1>
+    </section>
 
-            <p>
-                Send something special
-                to someone you love.
-            </p>
 
-        </section>
 
+    <!-- =========================
+         BALANCE
+    ========================= -->
 
+    <section class="balance-card">
 
-        <!-- =========================
-             BALANCE
-        ========================= -->
+        <div class="balance-label">
+            Total Balance
+        </div>
 
-        <section class="balance-card">
 
-            <div class="balance-label">
-                Total Balance
-            </div>
-
-
-            <div class="balance-row">
-
-                <div>
-
-                    <div
-                        class="balance-amount"
-                        id="walletBalance">
-
-                        ₦0.00
-
-                    </div>
-
-                </div>
-
-
-                <button
-                    class="deposit-btn"
-                    id="depositBtn">
-
-                    Deposit
-
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             QUICK ACTIONS
-        ========================= -->
-
-        <section class="quick-actions">
-
-
-            <a
-                href="profile.html"
-                class="quick-action">
-
-                <span class="quick-icon">
-                    👤
-                </span>
-
-                <span>
-                    Profile
-                </span>
-
-            </a>
-
-
-            <a
-                href="deposit.html"
-                class="quick-action">
-
-                <span class="quick-icon">
-                    💳
-                </span>
-
-                <span>
-                    Deposit
-                </span>
-
-            </a>
-
-
-            <a
-                href="settings.html"
-                class="quick-action">
-
-                <span class="quick-icon">
-                    ⚙️
-                </span>
-
-                <span>
-                    Settings
-                </span>
-
-            </a>
-
-
-            <a
-                href="notifications.html"
-                class="quick-action">
-
-                <span class="quick-icon">
-                    🔔
-                </span>
-
-                <span>
-                    Notifications
-                </span>
-
-            </a>
-
-
-            <a
-                href="support.html"
-                class="quick-action">
-
-                <span class="quick-icon">
-                    💬
-                </span>
-
-                <span>
-                    Support
-                </span>
-
-            </a>
-
-
-            <a
-                href="payment-history.html"
-                class="quick-action">
-
-                <span class="quick-icon">
-                    💰
-                </span>
-
-                <span>
-                    Payment History
-                </span>
-
-            </a>
-
-
-            <a
-                href="order-history.html"
-                class="quick-action">
-
-                <span class="quick-icon">
-                    📦
-                </span>
-
-                <span>
-                    Order History
-                </span>
-
-            </a>
-
-
-            <a
-                href="#"
-                class="quick-action"
-                id="logoutBtn">
-
-                <span class="quick-icon">
-                    🚪
-                </span>
-
-                <span>
-                    Logout
-                </span>
-
-            </a>
-
-        </section>
-
-
-
-        <!-- =========================
-             PRODUCTS
-        ========================= -->
-
-        <section class="products-section">
-
-            <div class="section-title">
-
-                <h2>
-                    🛍️ Available Gifts
-                </h2>
-
-                <p>
-                    Choose a gift and send something special.
-                </p>
-
-            </div>
-
-
-            <div
-                class="products-grid"
-                id="productsGrid">
-
-                <div class="products-loading">
-
-                    Loading products...
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             GLOBAL DELIVERY
-        ========================= -->
-
-        <section class="delivery-section">
-
-            <div class="section-title">
-
-                <h2>
-                    🌎 Global Delivery
-                </h2>
-
-                <p>
-                    Choose where you want
-                    to send your gift.
-                </p>
-
-            </div>
-
-
-            <div
-                class="country-grid"
-                id="countryGrid">
-
-
-                <!-- USA -->
-
-                <div
-                    class="country-card"
-                    data-page="usa.html">
-
-                    <span class="country-flag">
-                        🇺🇸
-                    </span>
-
-                    <span class="country-name">
-                        USA
-                    </span>
-
-                </div>
-
-
-                <!-- CANADA -->
-
-                <div
-                    class="country-card"
-                    data-page="canada.html">
-
-                    <span class="country-flag">
-                        🇨🇦
-                    </span>
-
-                    <span class="country-name">
-                        Canada
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- OTHER COUNTRIES -->
-
-            <div
-                class="other-country"
-                id="otherCountry">
-
-                <div class="other-left">
-
-                    <div class="other-icon">
-                        🌎
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Other Countries
-                        </strong>
-
-                        <span>
-                            Choose another
-                            delivery destination
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <strong>
-                    →
-                </strong>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================
-             SUPPORT
-        ========================= -->
-
-        <section class="support-card">
+        <div class="balance-row">
 
             <div>
 
-                <h3>
-                    Need help sending a gift?
-                </h3>
+                <div
+                    class="balance-amount"
+                    id="walletBalance">
 
-                <p>
-                    Our support team is available
-                    to help you with your order.
-                </p>
+                    ₦0.00
+
+                </div>
 
             </div>
 
 
-            <a
-                href="support.html"
-                class="support-btn">
+            <button
+                class="deposit-btn"
+                id="depositBtn">
 
-                Contact Support
+                Deposit
 
-            </a>
+            </button>
 
-        </section>
+        </div>
 
-    </div>
-
-</main>
+    </section>
 
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+    <!-- =========================
+         QUICK ACTIONS
+    ========================= -->
 
-<footer class="footer">
-
-    <div class="container footer-inner">
-
-        <p>
-            © 2026 Fame Store.
-            All rights reserved.
-        </p>
-
-        <p>
-            Send gifts today,
-            for a brighter tomorrow ❤️
-        </p>
-
-    </div>
-
-</footer>
+    <section class="quick-actions">
 
 
+        <a
+            href="profile.html"
+            class="quick-action">
 
-<!-- =========================
-     TOAST
-========================= -->
+            <span class="quick-icon">
+                👤
+            </span>
 
-<div
-    class="toast"
-    id="toast">
+            <span>
+                Profile
+            </span>
+
+        </a>
+
+
+        <a
+            href="deposit.html"
+            class="quick-action">
+
+            <span class="quick-icon">
+                💳
+            </span>
+
+            <span>
+                Deposit
+            </span>
+
+        </a>
+
+
+        <a
+            href="settings.html"
+            class="quick-action">
+
+            <span class="quick-icon">
+                ⚙️
+            </span>
+
+            <span>
+                Settings
+            </span>
+
+        </a>
+
+
+        <a
+            href="notifications.html"
+            class="quick-action">
+
+            <span class="quick-icon">
+                🔔
+            </span>
+
+            <span>
+                Notifications
+            </span>
+
+        </a>
+
+
+        <a
+            href="support.html"
+            class="quick-action">
+
+            <span class="quick-icon">
+                💬
+            </span>
+
+            <span>
+                Support
+            </span>
+
+        </a>
+
+
+        <a
+            href="payment-history.html"
+            class="quick-action">
+
+            <span class="quick-icon">
+                💰
+            </span>
+
+            <span>
+                Payment History
+            </span>
+
+        </a>
+
+
+        <a
+            href="order-history.html"
+            class="quick-action">
+
+            <span class="quick-icon">
+                📦
+            </span>
+
+            <span>
+                Order History
+            </span>
+
+        </a>
+
+
+        <a
+            href="#"
+            class="quick-action"
+            id="logoutBtn">
+
+            <span class="quick-icon">
+                🚪
+            </span>
+
+            <span>
+                Logout
+            </span>
+
+        </a>
+
+    </section>
+
+
+
+    <!-- =========================
+         GLOBAL DELIVERY
+    ========================= -->
+
+    <section class="delivery-section">
+
+        <div class="section-title">
+
+            <h2>
+                🌎 Global Delivery
+            </h2>
+
+            <p>
+                Choose where you want
+                to send your gift.
+            </p>
+
+        </div>
+
+
+        <div
+            class="country-grid"
+            id="countryGrid">
+
+
+            <!-- USA -->
+
+            <div
+                class="country-card"
+                data-page="usa.html">
+
+                <span class="country-flag">
+                    🇺🇸
+                </span>
+
+                <span class="country-name">
+                    USA
+                </span>
+
+            </div>
+
+
+            <!-- CANADA -->
+
+            <div
+                class="country-card"
+                data-page="canada.html">
+
+                <span class="country-flag">
+                    🇨🇦
+                </span>
+
+                <span class="country-name">
+                    Canada
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- OTHER COUNTRIES -->
+
+        <div
+            class="other-country"
+            id="otherCountry">
+
+            <div class="other-left">
+
+                <div class="other-icon">
+                    🌎
+                </div>
+
+                <div>
+
+                    <strong>
+                        Other Countries
+                    </strong>
+
+                    <span>
+                        Choose another
+                        delivery destination
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <strong>
+                →
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         SUPPORT
+    ========================= -->
+
+    <section class="support-card">
+
+        <div>
+
+            <h3>
+                Need help sending a gift?
+            </h3>
+
+            <p>
+                Our support team is available
+                to help you with your order.
+            </p>
+
+        </div>
+
+
+        <a
+            href="support.html"
+            class="support-btn">
+
+            Contact Support
+
+        </a>
+
+    </section>
+
 </div>
 
+</main><!-- =========================
+     FOOTER
+========================= --><footer class="footer"><div class="container footer-inner">
 
+    <p>
+        © 2026 Fame Store.
+        All rights reserved.
+    </p>
 
-<!-- =========================
+    <p>
+        Send gifts today,
+        for a brighter tomorrow ❤️
+    </p>
+
+</div>
+
+</footer><!-- =========================
+     TOAST
+========================= --><div
+    class="toast"
+    id="toast">
+</div><!-- =========================
      FIREBASE
-========================= -->
-
-<script type="module">
+========================= --><script type="module">
 
 
     /* =========================
@@ -1508,8 +1273,7 @@
     import {
         getFirestore,
         doc,
-        onSnapshot,
-        collection
+        onSnapshot
     } from
     "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
@@ -1611,12 +1375,6 @@
         );
 
 
-    const productsGrid =
-        document.getElementById(
-            "productsGrid"
-        );
-
-
 
     /* =========================
        TOAST
@@ -1662,599 +1420,6 @@
                     maximumFractionDigits: 2
                 }
             );
-
-    }
-
-
-
-    /* =========================
-       SAFE TEXT
-    ========================= */
-
-    function createTextElement(
-        tag,
-        className,
-        text
-    ) {
-
-        const element =
-            document.createElement(tag);
-
-
-        if (className) {
-
-            element.className =
-                className;
-
-        }
-
-
-        element.textContent =
-            text || "";
-
-
-        return element;
-
-    }
-
-
-
-    /* =========================
-       PRODUCT IMAGE
-    ========================= */
-
-    function createProductImage(
-        imageUrl,
-        productName
-    ) {
-
-        const imageBox =
-            document.createElement(
-                "div"
-            );
-
-
-        imageBox.className =
-            "product-image-box";
-
-
-        const image =
-            document.createElement(
-                "img"
-            );
-
-
-        image.className =
-            "product-image";
-
-
-        image.alt =
-            productName ||
-            "Fame Store Gift";
-
-
-        image.loading =
-            "lazy";
-
-
-        image.src =
-            imageUrl ||
-            "https://placehold.co/800x600/f1f4f8/667085?text=Fame+Store";
-
-
-        image.onerror =
-            function () {
-
-                this.onerror =
-                    null;
-
-                this.src =
-                    "https://placehold.co/800x600/f1f4f8/667085?text=Fame+Store";
-
-            };
-
-
-        imageBox.appendChild(
-            image
-        );
-
-
-        return imageBox;
-
-    }
-
-
-
-    /* =========================
-       PRODUCT DESTINATION
-    ========================= */
-
-    function getProductPage(
-        destination
-    ) {
-
-        const value =
-            String(
-                destination || ""
-            )
-            .trim()
-            .toLowerCase();
-
-
-        if (
-            value === "usa" ||
-            value === "us" ||
-            value === "united states" ||
-            value === "united states of america"
-        ) {
-
-            return "usa.html";
-
-        }
-
-
-        if (
-            value === "canada"
-        ) {
-
-            return "canada.html";
-
-        }
-
-
-        return null;
-
-    }
-
-
-
-    /* =========================
-       LOAD PRODUCTS
-    ========================= */
-
-    function loadProducts() {
-
-        if (!productsGrid) {
-            return;
-        }
-
-
-        const productsRef =
-            collection(
-                db,
-                "products"
-            );
-
-
-        onSnapshot(
-
-            productsRef,
-
-            snapshot => {
-
-                productsGrid.innerHTML =
-                    "";
-
-
-                if (
-                    snapshot.empty
-                ) {
-
-                    const empty =
-                        document.createElement(
-                            "div"
-                        );
-
-
-                    empty.className =
-                        "products-empty";
-
-
-                    empty.textContent =
-                        "No gifts are available yet.";
-
-
-                    productsGrid.appendChild(
-                        empty
-                    );
-
-
-                    return;
-
-                }
-
-
-                const products = [];
-
-
-                snapshot.forEach(
-                    productDoc => {
-
-                        const data =
-                            productDoc.data();
-
-
-                        products.push({
-
-                            id:
-                                productDoc.id,
-
-                            ...data
-
-                        });
-
-                    }
-                );
-
-
-                /*
-                 * Sort newest products first
-                 * when createdAt exists.
-                 *
-                 * If createdAt does not exist,
-                 * the product still displays.
-                 */
-
-                products.sort(
-                    (a, b) => {
-
-                        const aTime =
-                            getTimestamp(
-                                a.createdAt
-                            );
-
-
-                        const bTime =
-                            getTimestamp(
-                                b.createdAt
-                            );
-
-
-                        return bTime - aTime;
-
-                    }
-                );
-
-
-                products.forEach(
-                    product => {
-
-                        createProductCard(
-                            product
-                        );
-
-                    }
-                );
-
-            },
-
-            error => {
-
-                console.error(
-                    "PRODUCT LOAD ERROR:",
-                    error
-                );
-
-
-                productsGrid.innerHTML =
-                    "";
-
-
-                const errorBox =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                errorBox.className =
-                    "products-error";
-
-
-                errorBox.textContent =
-                    "Unable to load products. Please refresh the page.";
-
-
-                productsGrid.appendChild(
-                    errorBox
-                );
-
-            }
-
-        );
-
-    }
-
-
-
-    /* =========================
-       TIMESTAMP HELPER
-    ========================= */
-
-    function getTimestamp(
-        timestamp
-    ) {
-
-        if (!timestamp) {
-            return 0;
-        }
-
-
-        if (
-            typeof timestamp.toMillis ===
-            "function"
-        ) {
-
-            return timestamp.toMillis();
-
-        }
-
-
-        if (
-            timestamp.seconds
-        ) {
-
-            return Number(
-                timestamp.seconds
-            ) * 1000;
-
-        }
-
-
-        if (
-            timestamp instanceof Date
-        ) {
-
-            return timestamp.getTime();
-
-        }
-
-
-        const parsed =
-            Date.parse(
-                timestamp
-            );
-
-
-        return Number.isNaN(parsed)
-            ? 0
-            : parsed;
-
-    }
-
-
-
-    /* =========================
-       CREATE PRODUCT CARD
-    ========================= */
-
-    function createProductCard(
-        product
-    ) {
-
-        const productName =
-            product.name ||
-            product.productName ||
-            "Gift";
-
-
-        const price =
-            product.price ??
-            product.productPrice ??
-            0;
-
-
-        const imageUrl =
-            product.imageUrl ||
-            product.image ||
-            product.productImage ||
-            "";
-
-
-        const destination =
-            product.destination ||
-            "Global Delivery";
-
-
-        const category =
-            product.category ||
-            "Gift";
-
-
-        const card =
-            document.createElement(
-                "div"
-            );
-
-
-        card.className =
-            "product-card";
-
-
-        /* IMAGE */
-
-        card.appendChild(
-            createProductImage(
-                imageUrl,
-                productName
-            )
-        );
-
-
-        /* CONTENT */
-
-        const content =
-            document.createElement(
-                "div"
-            );
-
-
-        content.className =
-            "product-content";
-
-
-        /* CATEGORY */
-
-        const categoryElement =
-            createTextElement(
-                "div",
-                "product-category",
-                category
-            );
-
-
-        content.appendChild(
-            categoryElement
-        );
-
-
-        /* NAME */
-
-        const nameElement =
-            createTextElement(
-                "div",
-                "product-name",
-                productName
-            );
-
-
-        content.appendChild(
-            nameElement
-        );
-
-
-        /* DESTINATION */
-
-        const destinationElement =
-            createTextElement(
-                "div",
-                "product-destination",
-                "📍 " + destination
-            );
-
-
-        content.appendChild(
-            destinationElement
-        );
-
-
-        /* BOTTOM */
-
-        const bottom =
-            document.createElement(
-                "div"
-            );
-
-
-        bottom.className =
-            "product-bottom";
-
-
-        /* PRICE */
-
-        const priceElement =
-            createTextElement(
-                "div",
-                "product-price",
-                formatNaira(price)
-            );
-
-
-        bottom.appendChild(
-            priceElement
-        );
-
-
-        /* BUTTON */
-
-        const orderButton =
-            document.createElement(
-                "button"
-            );
-
-
-        orderButton.type =
-            "button";
-
-
-        orderButton.className =
-            "order-product-btn";
-
-
-        orderButton.textContent =
-            "Send Gift";
-
-
-        orderButton.addEventListener(
-            "click",
-            () => {
-
-                openProduct(
-                    product
-                );
-
-            }
-        );
-
-
-        bottom.appendChild(
-            orderButton
-        );
-
-
-        content.appendChild(
-            bottom
-        );
-
-
-        card.appendChild(
-            content
-        );
-
-
-        productsGrid.appendChild(
-            card
-        );
-
-    }
-
-
-
-    /* =========================
-       OPEN PRODUCT
-    ========================= */
-
-    function openProduct(
-        product
-    ) {
-
-        const destination =
-            product.destination ||
-            "";
-
-
-        const page =
-            getProductPage(
-                destination
-            );
-
-
-        if (page) {
-
-            window.location.href =
-                page +
-                "?product=" +
-                encodeURIComponent(
-                    product.id
-                );
-
-            return;
-
-        }
-
-
-        showToast(
-            "Please contact support to order this gift."
-        );
 
     }
 
@@ -2627,17 +1792,4 @@
     );
 
 
-
-    /* =========================
-       START PRODUCTS
-    ========================= */
-
-    loadProducts();
-
-
-</script>
-
-
-</body>
-
-    </html>
+</script></body></html>
