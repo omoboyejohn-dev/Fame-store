@@ -20,7 +20,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
           rel="stylesheet">
 
-
     <style>
 
         * {
@@ -219,15 +218,10 @@
 
         .balance-row {
             display: flex;
-
             justify-content: space-between;
-
             align-items: end;
-
             gap: 20px;
-
             position: relative;
-
             z-index: 2;
         }
 
@@ -236,31 +230,22 @@
                 clamp(32px, 6vw, 46px);
 
             font-weight: 800;
-
             margin-top: 6px;
         }
 
         .deposit-btn {
             border: 0;
-
             background: var(--yellow);
-
             color: #614800;
-
             padding: 13px 22px;
-
             border-radius: 10px;
-
             font-weight: 800;
-
             cursor: pointer;
-
             transition: .3s;
         }
 
         .deposit-btn:hover {
             transform: translateY(-2px);
-
             background: #ffd84e;
         }
 
@@ -271,35 +256,23 @@
 
         .quick-actions {
             display: grid;
-
-            grid-template-columns:
-                repeat(8, 1fr);
-
+            grid-template-columns: repeat(8, 1fr);
             gap: 10px;
-
             margin-bottom: 35px;
         }
 
         .quick-action {
             background: white;
-
-            border: 1px solid
-                var(--border);
-
+            border: 1px solid var(--border);
             border-radius: 13px;
-
             padding: 15px 8px;
-
             text-align: center;
-
             transition: .25s;
         }
 
         .quick-action:hover {
             border-color: var(--blue);
-
-            transform:
-                translateY(-3px);
+            transform: translateY(-3px);
 
             box-shadow:
                 0 10px 25px
@@ -308,17 +281,13 @@
 
         .quick-icon {
             font-size: 22px;
-
             display: block;
-
             margin-bottom: 7px;
         }
 
         .quick-action span:last-child {
             font-size: 10px;
-
             font-weight: 700;
-
             color: #344054;
         }
 
@@ -337,10 +306,139 @@
 
         .section-title p {
             color: var(--gray);
-
             font-size: 13px;
-
             margin-top: 5px;
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products-section {
+            margin-top: 40px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: .25s;
+            box-shadow:
+                0 5px 20px rgba(16, 24, 40, .03);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--blue);
+
+            box-shadow:
+                0 14px 35px
+                rgba(7, 87, 217, .10);
+        }
+
+        .product-image-box {
+            width: 100%;
+            height: 220px;
+            background: #f1f4f8;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: .3s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.03);
+        }
+
+        .product-content {
+            padding: 18px;
+        }
+
+        .product-category {
+            display: inline-block;
+            color: var(--blue);
+            background: #eef5ff;
+            padding: 5px 9px;
+            border-radius: 6px;
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .product-destination {
+            color: var(--gray);
+            font-size: 11px;
+            margin-bottom: 15px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-price {
+            color: var(--blue);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .order-product-btn {
+            border: 0;
+            background: var(--blue);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .order-product-btn:hover {
+            background: var(--dark-blue);
+            transform: translateY(-1px);
+        }
+
+        .products-loading,
+        .products-empty,
+        .products-error {
+            grid-column: 1 / -1;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 35px 20px;
+            text-align: center;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .products-error {
+            color: #b42318;
+            background: #fff1f0;
+            border-color: #ffd3d0;
         }
 
 
@@ -348,62 +446,49 @@
            COUNTRY GRID
         ========================= */
 
+        .delivery-section {
+            margin-top: 40px;
+        }
+
         .country-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
 
         .country-card {
             background: white;
-
-            border: 1px solid
-                var(--border);
-
+            border: 1px solid var(--border);
             border-radius: 16px;
-
             padding: 22px;
-
             cursor: pointer;
-
             transition: .25s;
-
             position: relative;
-
             min-height: 130px;
         }
 
         .country-card:hover {
-            transform:
-                translateY(-4px);
+            transform: translateY(-4px);
 
             box-shadow:
                 0 12px 30px
                 rgba(7, 87, 217, .09);
 
-            border-color:
-                var(--blue);
+            border-color: var(--blue);
         }
 
         .country-card:active {
-            transform:
-                scale(.98);
+            transform: scale(.98);
         }
 
         .country-flag {
             font-size: 36px;
-
             display: block;
-
             margin-bottom: 12px;
         }
 
         .country-name {
             font-weight: 800;
-
             font-size: 15px;
         }
 
@@ -411,15 +496,11 @@
             content: "→";
 
             position: absolute;
-
             right: 18px;
-
             bottom: 20px;
 
             color: var(--blue);
-
             font-size: 18px;
-
             font-weight: 800;
         }
 
@@ -433,8 +514,7 @@
 
             background: white;
 
-            border: 1px solid
-                var(--border);
+            border: 1px solid var(--border);
 
             border-radius: 16px;
 
@@ -446,8 +526,7 @@
 
             align-items: center;
 
-            justify-content:
-                space-between;
+            justify-content: space-between;
 
             gap: 15px;
 
@@ -455,11 +534,9 @@
         }
 
         .other-country:hover {
-            border-color:
-                var(--blue);
+            border-color: var(--blue);
 
-            transform:
-                translateY(-2px);
+            transform: translateY(-2px);
 
             box-shadow:
                 0 10px 25px
@@ -468,15 +545,12 @@
 
         .other-left {
             display: flex;
-
             align-items: center;
-
             gap: 12px;
         }
 
         .other-icon {
             width: 45px;
-
             height: 45px;
 
             background: #fff7d9;
@@ -484,7 +558,6 @@
             border-radius: 12px;
 
             display: grid;
-
             place-items: center;
 
             font-size: 22px;
@@ -492,24 +565,21 @@
 
         .other-country strong {
             display: block;
-
             font-size: 14px;
         }
 
         .other-country span {
             color: var(--gray);
-
             font-size: 11px;
         }
 
 
         /* =========================
-           OTHER COUNTRIES MODAL
+           MODAL
         ========================= */
 
         .country-modal-overlay {
             position: fixed;
-
             inset: 0;
 
             background:
@@ -518,53 +588,42 @@
             display: flex;
 
             align-items: center;
-
             justify-content: center;
 
             padding: 20px;
 
             z-index: 10000;
 
-            animation:
-                modalFade .25s ease;
+            animation: modalFade .25s ease;
         }
 
         .country-modal {
-            width:
-                min(420px, 100%);
+            width: min(420px, 100%);
 
-            background:
-                #ffffff;
+            background: #ffffff;
 
-            border-radius:
-                22px;
+            border-radius: 22px;
 
-            padding:
-                30px 25px;
+            padding: 30px 25px;
 
-            text-align:
-                center;
+            text-align: center;
 
             box-shadow:
                 0 25px 70px
                 rgba(0, 0, 0, .25);
 
-            animation:
-                modalUp .25s ease;
+            animation: modalUp .25s ease;
         }
 
         .country-modal-icon {
             width: 65px;
-
             height: 65px;
 
-            margin:
-                0 auto 15px;
+            margin: 0 auto 15px;
 
             border-radius: 18px;
 
-            background:
-                #fff7d9;
+            background: #fff7d9;
 
             display: grid;
 
@@ -575,7 +634,6 @@
 
         .country-modal h2 {
             font-size: 22px;
-
             font-weight: 800;
 
             color: var(--black);
@@ -604,8 +662,7 @@
 
             border-radius: 11px;
 
-            background:
-                #25d366;
+            background: #25d366;
 
             color: #ffffff;
 
@@ -617,11 +674,8 @@
         }
 
         .whatsapp-btn:hover {
-            transform:
-                translateY(-2px);
-
-            filter:
-                brightness(.95);
+            transform: translateY(-2px);
+            filter: brightness(.95);
         }
 
         .close-modal-btn {
@@ -631,9 +685,7 @@
 
             padding: 13px 18px;
 
-            border:
-                1px solid
-                var(--border);
+            border: 1px solid var(--border);
 
             border-radius: 11px;
 
@@ -653,11 +705,8 @@
         }
 
         .close-modal-btn:hover {
-            border-color:
-                var(--blue);
-
-            color:
-                var(--blue);
+            border-color: var(--blue);
+            color: var(--blue);
         }
 
         @keyframes modalFade {
@@ -708,8 +757,7 @@
 
             display: flex;
 
-            justify-content:
-                space-between;
+            justify-content: space-between;
 
             align-items: center;
 
@@ -760,8 +808,7 @@
         .footer-inner {
             display: flex;
 
-            justify-content:
-                space-between;
+            justify-content: space-between;
 
             align-items: center;
 
@@ -770,7 +817,6 @@
 
         .footer p {
             color: #9eafc9;
-
             font-size: 10px;
         }
 
@@ -791,13 +837,11 @@
 
             opacity: 0;
 
-            background:
-                #101828;
+            background: #101828;
 
             color: white;
 
-            padding:
-                13px 20px;
+            padding: 13px 20px;
 
             border-radius: 10px;
 
@@ -827,6 +871,11 @@
             .quick-actions {
                 grid-template-columns:
                     repeat(4, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .country-grid {
@@ -860,11 +909,8 @@
             }
 
             .balance-row {
-                align-items:
-                    flex-start;
-
-                flex-direction:
-                    column;
+                align-items: flex-start;
+                flex-direction: column;
             }
 
             .deposit-btn {
@@ -874,6 +920,14 @@
             .quick-actions {
                 grid-template-columns:
                     repeat(4, 1fr);
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image-box {
+                height: 230px;
             }
 
             .country-grid {
@@ -887,25 +941,18 @@
             }
 
             .support-card {
-                align-items:
-                    flex-start;
-
-                flex-direction:
-                    column;
+                align-items: flex-start;
+                flex-direction: column;
             }
 
             .support-btn {
                 width: 100%;
-
                 text-align: center;
             }
 
             .footer-inner {
-                align-items:
-                    flex-start;
-
-                flex-direction:
-                    column;
+                align-items: flex-start;
+                flex-direction: column;
             }
 
         }
@@ -937,6 +984,19 @@
 
             .country-name {
                 font-size: 13px;
+            }
+
+            .product-content {
+                padding: 16px;
+            }
+
+            .product-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .order-product-btn {
+                width: 100%;
             }
 
         }
@@ -1018,7 +1078,9 @@
     <div class="container">
 
 
-        <!-- WELCOME -->
+        <!-- =========================
+             WELCOME
+        ========================= -->
 
         <section class="welcome">
 
@@ -1213,10 +1275,45 @@
 
 
         <!-- =========================
+             PRODUCTS
+        ========================= -->
+
+        <section class="products-section">
+
+            <div class="section-title">
+
+                <h2>
+                    🛍️ Available Gifts
+                </h2>
+
+                <p>
+                    Choose a gift and send something special.
+                </p>
+
+            </div>
+
+
+            <div
+                class="products-grid"
+                id="productsGrid">
+
+                <div class="products-loading">
+
+                    Loading products...
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
              GLOBAL DELIVERY
         ========================= -->
 
-        <section>
+        <section class="delivery-section">
 
             <div class="section-title">
 
@@ -1231,8 +1328,6 @@
 
             </div>
 
-
-            <!-- USA + CANADA -->
 
             <div
                 class="country-grid"
@@ -1275,9 +1370,8 @@
             </div>
 
 
-            <!-- =========================
-                 OTHER COUNTRIES
-            ========================= -->
+
+            <!-- OTHER COUNTRIES -->
 
             <div
                 class="other-country"
@@ -1375,7 +1469,9 @@
 
 
 
-<!-- TOAST -->
+<!-- =========================
+     TOAST
+========================= -->
 
 <div
     class="toast"
@@ -1389,6 +1485,11 @@
 ========================= -->
 
 <script type="module">
+
+
+    /* =========================
+       FIREBASE APP
+    ========================= */
 
     import {
         initializeApp
@@ -1407,7 +1508,8 @@
     import {
         getFirestore,
         doc,
-        onSnapshot
+        onSnapshot,
+        collection
     } from
     "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
@@ -1445,14 +1547,18 @@
 
 
     /* =========================
-       INITIALIZE
+       INITIALIZE FIREBASE
     ========================= */
 
     const app =
-        initializeApp(firebaseConfig);
+        initializeApp(
+            firebaseConfig
+        );
+
 
     const auth =
         getAuth(app);
+
 
     const db =
         getFirestore(app);
@@ -1468,34 +1574,46 @@
             "userName"
         );
 
+
     const walletBalance =
         document.getElementById(
             "walletBalance"
         );
+
 
     const profileMini =
         document.getElementById(
             "profileMini"
         );
 
+
     const logoutBtn =
         document.getElementById(
             "logoutBtn"
         );
+
 
     const depositBtn =
         document.getElementById(
             "depositBtn"
         );
 
+
     const notificationBtn =
         document.getElementById(
             "notificationBtn"
         );
 
+
     const toast =
         document.getElementById(
             "toast"
+        );
+
+
+    const productsGrid =
+        document.getElementById(
+            "productsGrid"
         );
 
 
@@ -1512,6 +1630,7 @@
         toast.classList.add(
             "show"
         );
+
 
         setTimeout(() => {
 
@@ -1534,6 +1653,7 @@
         const number =
             Number(amount) || 0;
 
+
         return "₦" +
             number.toLocaleString(
                 "en-NG",
@@ -1542,6 +1662,599 @@
                     maximumFractionDigits: 2
                 }
             );
+
+    }
+
+
+
+    /* =========================
+       SAFE TEXT
+    ========================= */
+
+    function createTextElement(
+        tag,
+        className,
+        text
+    ) {
+
+        const element =
+            document.createElement(tag);
+
+
+        if (className) {
+
+            element.className =
+                className;
+
+        }
+
+
+        element.textContent =
+            text || "";
+
+
+        return element;
+
+    }
+
+
+
+    /* =========================
+       PRODUCT IMAGE
+    ========================= */
+
+    function createProductImage(
+        imageUrl,
+        productName
+    ) {
+
+        const imageBox =
+            document.createElement(
+                "div"
+            );
+
+
+        imageBox.className =
+            "product-image-box";
+
+
+        const image =
+            document.createElement(
+                "img"
+            );
+
+
+        image.className =
+            "product-image";
+
+
+        image.alt =
+            productName ||
+            "Fame Store Gift";
+
+
+        image.loading =
+            "lazy";
+
+
+        image.src =
+            imageUrl ||
+            "https://placehold.co/800x600/f1f4f8/667085?text=Fame+Store";
+
+
+        image.onerror =
+            function () {
+
+                this.onerror =
+                    null;
+
+                this.src =
+                    "https://placehold.co/800x600/f1f4f8/667085?text=Fame+Store";
+
+            };
+
+
+        imageBox.appendChild(
+            image
+        );
+
+
+        return imageBox;
+
+    }
+
+
+
+    /* =========================
+       PRODUCT DESTINATION
+    ========================= */
+
+    function getProductPage(
+        destination
+    ) {
+
+        const value =
+            String(
+                destination || ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        if (
+            value === "usa" ||
+            value === "us" ||
+            value === "united states" ||
+            value === "united states of america"
+        ) {
+
+            return "usa.html";
+
+        }
+
+
+        if (
+            value === "canada"
+        ) {
+
+            return "canada.html";
+
+        }
+
+
+        return null;
+
+    }
+
+
+
+    /* =========================
+       LOAD PRODUCTS
+    ========================= */
+
+    function loadProducts() {
+
+        if (!productsGrid) {
+            return;
+        }
+
+
+        const productsRef =
+            collection(
+                db,
+                "products"
+            );
+
+
+        onSnapshot(
+
+            productsRef,
+
+            snapshot => {
+
+                productsGrid.innerHTML =
+                    "";
+
+
+                if (
+                    snapshot.empty
+                ) {
+
+                    const empty =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    empty.className =
+                        "products-empty";
+
+
+                    empty.textContent =
+                        "No gifts are available yet.";
+
+
+                    productsGrid.appendChild(
+                        empty
+                    );
+
+
+                    return;
+
+                }
+
+
+                const products = [];
+
+
+                snapshot.forEach(
+                    productDoc => {
+
+                        const data =
+                            productDoc.data();
+
+
+                        products.push({
+
+                            id:
+                                productDoc.id,
+
+                            ...data
+
+                        });
+
+                    }
+                );
+
+
+                /*
+                 * Sort newest products first
+                 * when createdAt exists.
+                 *
+                 * If createdAt does not exist,
+                 * the product still displays.
+                 */
+
+                products.sort(
+                    (a, b) => {
+
+                        const aTime =
+                            getTimestamp(
+                                a.createdAt
+                            );
+
+
+                        const bTime =
+                            getTimestamp(
+                                b.createdAt
+                            );
+
+
+                        return bTime - aTime;
+
+                    }
+                );
+
+
+                products.forEach(
+                    product => {
+
+                        createProductCard(
+                            product
+                        );
+
+                    }
+                );
+
+            },
+
+            error => {
+
+                console.error(
+                    "PRODUCT LOAD ERROR:",
+                    error
+                );
+
+
+                productsGrid.innerHTML =
+                    "";
+
+
+                const errorBox =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                errorBox.className =
+                    "products-error";
+
+
+                errorBox.textContent =
+                    "Unable to load products. Please refresh the page.";
+
+
+                productsGrid.appendChild(
+                    errorBox
+                );
+
+            }
+
+        );
+
+    }
+
+
+
+    /* =========================
+       TIMESTAMP HELPER
+    ========================= */
+
+    function getTimestamp(
+        timestamp
+    ) {
+
+        if (!timestamp) {
+            return 0;
+        }
+
+
+        if (
+            typeof timestamp.toMillis ===
+            "function"
+        ) {
+
+            return timestamp.toMillis();
+
+        }
+
+
+        if (
+            timestamp.seconds
+        ) {
+
+            return Number(
+                timestamp.seconds
+            ) * 1000;
+
+        }
+
+
+        if (
+            timestamp instanceof Date
+        ) {
+
+            return timestamp.getTime();
+
+        }
+
+
+        const parsed =
+            Date.parse(
+                timestamp
+            );
+
+
+        return Number.isNaN(parsed)
+            ? 0
+            : parsed;
+
+    }
+
+
+
+    /* =========================
+       CREATE PRODUCT CARD
+    ========================= */
+
+    function createProductCard(
+        product
+    ) {
+
+        const productName =
+            product.name ||
+            product.productName ||
+            "Gift";
+
+
+        const price =
+            product.price ??
+            product.productPrice ??
+            0;
+
+
+        const imageUrl =
+            product.imageUrl ||
+            product.image ||
+            product.productImage ||
+            "";
+
+
+        const destination =
+            product.destination ||
+            "Global Delivery";
+
+
+        const category =
+            product.category ||
+            "Gift";
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "product-card";
+
+
+        /* IMAGE */
+
+        card.appendChild(
+            createProductImage(
+                imageUrl,
+                productName
+            )
+        );
+
+
+        /* CONTENT */
+
+        const content =
+            document.createElement(
+                "div"
+            );
+
+
+        content.className =
+            "product-content";
+
+
+        /* CATEGORY */
+
+        const categoryElement =
+            createTextElement(
+                "div",
+                "product-category",
+                category
+            );
+
+
+        content.appendChild(
+            categoryElement
+        );
+
+
+        /* NAME */
+
+        const nameElement =
+            createTextElement(
+                "div",
+                "product-name",
+                productName
+            );
+
+
+        content.appendChild(
+            nameElement
+        );
+
+
+        /* DESTINATION */
+
+        const destinationElement =
+            createTextElement(
+                "div",
+                "product-destination",
+                "📍 " + destination
+            );
+
+
+        content.appendChild(
+            destinationElement
+        );
+
+
+        /* BOTTOM */
+
+        const bottom =
+            document.createElement(
+                "div"
+            );
+
+
+        bottom.className =
+            "product-bottom";
+
+
+        /* PRICE */
+
+        const priceElement =
+            createTextElement(
+                "div",
+                "product-price",
+                formatNaira(price)
+            );
+
+
+        bottom.appendChild(
+            priceElement
+        );
+
+
+        /* BUTTON */
+
+        const orderButton =
+            document.createElement(
+                "button"
+            );
+
+
+        orderButton.type =
+            "button";
+
+
+        orderButton.className =
+            "order-product-btn";
+
+
+        orderButton.textContent =
+            "Send Gift";
+
+
+        orderButton.addEventListener(
+            "click",
+            () => {
+
+                openProduct(
+                    product
+                );
+
+            }
+        );
+
+
+        bottom.appendChild(
+            orderButton
+        );
+
+
+        content.appendChild(
+            bottom
+        );
+
+
+        card.appendChild(
+            content
+        );
+
+
+        productsGrid.appendChild(
+            card
+        );
+
+    }
+
+
+
+    /* =========================
+       OPEN PRODUCT
+    ========================= */
+
+    function openProduct(
+        product
+    ) {
+
+        const destination =
+            product.destination ||
+            "";
+
+
+        const page =
+            getProductPage(
+                destination
+            );
+
+
+        if (page) {
+
+            window.location.href =
+                page +
+                "?product=" +
+                encodeURIComponent(
+                    product.id
+                );
+
+            return;
+
+        }
+
+
+        showToast(
+            "Please contact support to order this gift."
+        );
 
     }
 
@@ -1574,20 +2287,26 @@
 
 
             onSnapshot(
+
                 userRef,
 
                 snapshot => {
 
-                    if (!snapshot.exists()) {
+                    if (
+                        !snapshot.exists()
+                    ) {
 
                         userName.textContent =
                             "Customer";
 
+
                         walletBalance.textContent =
                             "₦0.00";
 
+
                         profileMini.textContent =
                             "?";
+
 
                         return;
 
@@ -1610,7 +2329,7 @@
                         name;
 
 
-                    /* PROFILE INITIAL */
+                    /* INITIAL */
 
                     const initial =
                         name
@@ -1623,7 +2342,7 @@
                         initial || "?";
 
 
-                    /* WALLET BALANCE */
+                    /* WALLET */
 
                     const balance =
                         Number(
@@ -1645,10 +2364,12 @@
                         error
                     );
 
+
                     walletBalance.textContent =
                         "₦0.00";
 
                 }
+
             );
 
         }
@@ -1666,9 +2387,13 @@
 
             event.preventDefault();
 
+
             try {
 
-                await signOut(auth);
+                await signOut(
+                    auth
+                );
+
 
                 window.location.href =
                     "login.html";
@@ -1681,6 +2406,7 @@
                     "Logout error:",
                     error
                 );
+
 
                 showToast(
                     "Unable to logout. Please try again."
@@ -1742,7 +2468,7 @@
 
 
     /* =========================
-       COUNTRY DIRECT OPEN
+       COUNTRY PAGES
     ========================= */
 
     const countryCards =
@@ -1833,7 +2559,7 @@
                     <p>
                         Kindly contact us on WhatsApp,
                         and we're going to help arrange
-                        delivery to your destination 😊
+                        delivery to your destination.
                     </p>
 
                     <a
@@ -1863,8 +2589,7 @@
             );
 
 
-
-            /* CLOSE BUTTON */
+            /* CLOSE */
 
             modal
                 .querySelector(
@@ -1880,15 +2605,15 @@
                 );
 
 
-
-            /* CLOSE OUTSIDE */
+            /* OUTSIDE */
 
             modal.addEventListener(
                 "click",
                 event => {
 
                     if (
-                        event.target === modal
+                        event.target ===
+                        modal
                     ) {
 
                         modal.remove();
@@ -1901,8 +2626,18 @@
         }
     );
 
+
+
+    /* =========================
+       START PRODUCTS
+    ========================= */
+
+    loadProducts();
+
+
 </script>
 
 
 </body>
-</html>
+
+    </html>
