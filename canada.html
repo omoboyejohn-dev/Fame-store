@@ -8,6 +8,7 @@
 <title>Fame Store | Canada Gifts</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -332,7 +333,7 @@ button,input,textarea{
     cursor:not-allowed;
 }
 
-/* MESSAGE BOX */
+/* MESSAGE */
 
 .message-overlay{
     display:none;
@@ -371,6 +372,7 @@ button,input,textarea{
 
 .message-box.success .message-icon{
     background:#e8fff2;
+    color:#087443;
 }
 
 .message-box h3{
@@ -437,19 +439,16 @@ button,input,textarea{
         padding:18px;
     }
 }
+
 </style>
 
 </head>
 
 <body>
 
-<!-- HEADER -->
-
 <header class="header">
 
-    <div class="brand-icon">
-        🛍️
-    </div>
+    <div class="brand-icon">🛍️</div>
 
     <div class="brand-name">
         Fame Store
@@ -519,7 +518,6 @@ button,input,textarea{
                 Canada Checkout 🇨🇦
             </h2>
 
-
             <div class="selected-product">
 
                 <img
@@ -545,17 +543,13 @@ button,input,textarea{
             </div>
 
 
-            <!-- CONTACT INFO -->
-
             <div class="section-title">
                 Contact Info
             </div>
 
             <div class="form-group">
 
-                <label>
-                    Your Phone
-                </label>
+                <label>Your Phone</label>
 
                 <input
                     id="yourPhone"
@@ -567,17 +561,13 @@ button,input,textarea{
             </div>
 
 
-            <!-- DELIVERY INFO -->
-
             <div class="section-title">
                 Canada Delivery Information
             </div>
 
             <div class="form-group">
 
-                <label>
-                    Sender Name
-                </label>
+                <label>Sender Name</label>
 
                 <input
                     id="senderName"
@@ -590,9 +580,7 @@ button,input,textarea{
 
             <div class="form-group">
 
-                <label>
-                    Recipient Name
-                </label>
+                <label>Recipient Name</label>
 
                 <input
                     id="recipientName"
@@ -605,9 +593,7 @@ button,input,textarea{
 
             <div class="form-group">
 
-                <label>
-                    Recipient Phone
-                </label>
+                <label>Recipient Phone</label>
 
                 <input
                     id="recipientPhone"
@@ -620,9 +606,7 @@ button,input,textarea{
 
             <div class="form-group">
 
-                <label>
-                    Street / House Address
-                </label>
+                <label>Street / House Address</label>
 
                 <input
                     id="streetAddress"
@@ -638,9 +622,7 @@ button,input,textarea{
 
                 <div class="form-group">
 
-                    <label>
-                        City
-                    </label>
+                    <label>City</label>
 
                     <input
                         id="city"
@@ -653,9 +635,7 @@ button,input,textarea{
 
                 <div class="form-group">
 
-                    <label>
-                        Province
-                    </label>
+                    <label>Province</label>
 
                     <input
                         id="state"
@@ -673,9 +653,7 @@ button,input,textarea{
 
                 <div class="form-group">
 
-                    <label>
-                        Country
-                    </label>
+                    <label>Country</label>
 
                     <input
                         id="country"
@@ -689,9 +667,7 @@ button,input,textarea{
 
                 <div class="form-group">
 
-                    <label>
-                        Postal Code
-                    </label>
+                    <label>Postal Code</label>
 
                     <input
                         id="zipCode"
@@ -704,8 +680,6 @@ button,input,textarea{
 
             </div>
 
-
-            <!-- NOTES -->
 
             <div class="section-title">
                 Additional Notes
@@ -721,8 +695,6 @@ button,input,textarea{
             </div>
 
 
-            <!-- PAYMENT SUMMARY -->
-
             <div class="section-title">
                 Payment Summary
             </div>
@@ -731,9 +703,7 @@ button,input,textarea{
 
                 <div class="summary-row">
 
-                    <span>
-                        Base Price
-                    </span>
+                    <span>Base Price</span>
 
                     <strong id="basePrice">
                         ₦0.00
@@ -743,9 +713,7 @@ button,input,textarea{
 
                 <div class="summary-row summary-total">
 
-                    <span>
-                        Total
-                    </span>
+                    <span>Total</span>
 
                     <strong id="totalPrice">
                         ₦0.00
@@ -755,9 +723,7 @@ button,input,textarea{
 
                 <div class="summary-row">
 
-                    <span>
-                        Your Balance
-                    </span>
+                    <span>Your Balance</span>
 
                     <strong
                         class="balance"
@@ -786,8 +752,6 @@ button,input,textarea{
 </section>
 
 
-<!-- BOTTOM -->
-
 <div class="bottom-area">
 
     <a
@@ -800,7 +764,7 @@ button,input,textarea{
 </div>
 
 
-<!-- MESSAGE POPUP -->
+<!-- POPUP -->
 
 <div
     class="message-overlay"
@@ -820,11 +784,11 @@ button,input,textarea{
         </div>
 
         <h3 id="messageTitle">
-            Insufficient wallet balance
+            Order Failed
         </h3>
 
         <p id="messageText">
-            Kindly deposit and make an order
+            Unable to complete your order.
         </p>
 
         <button
@@ -860,276 +824,276 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-/* =====================================
+/* =====================================================
    CANADA PRODUCTS
-===================================== */
+===================================================== */
 
 const products = [
 
-    {
-        name:"Artificial Rose Flower Bouquet",
-        price:45000,
-        image:"https://i.ibb.co/hFyVSV1K/1782108227-6a38d043ac419-Red.webp"
-    },
+{
+name:"Artificial Rose Flower Bouquet",
+price:45000,
+image:"https://i.ibb.co/hFyVSV1K/1782108227-6a38d043ac419-Red.webp"
+},
 
-    {
-        name:"Artificial Rose Flower Bouquet",
-        price:45000,
-        image:"https://i.ibb.co/Xf1WPMJL/1782108227-6a38d043ac377-White.webp"
-    },
+{
+name:"Artificial Rose Flower Bouquet",
+price:45000,
+image:"https://i.ibb.co/Xf1WPMJL/1782108227-6a38d043ac377-White.webp"
+},
 
-    {
-        name:"Artificial Rose Flower Bouquet",
-        price:45000,
-        image:"https://i.ibb.co/BH6BgPkV/1782108227-6a38d043ac2d1-media-6987643776f8e.webp"
-    },
+{
+name:"Artificial Rose Flower Bouquet",
+price:45000,
+image:"https://i.ibb.co/BH6BgPkV/1782108227-6a38c3058aa7a-media-6987643776f8e.webp"
+},
 
-    {
-        name:"Artificial Rose Flower Bouquet",
-        price:45000,
-        image:"https://i.ibb.co/dJP9vk4h/1782108227-6a38d043ac1c8-media-698764375caff.webp"
-    },
+{
+name:"Artificial Rose Flower Bouquet",
+price:45000,
+image:"https://i.ibb.co/dJP9vk4h/1782108227-6a38d043ac1c8-media-698764375caff.webp"
+},
 
-    {
-        name:"Glass Flower",
-        price:30000,
-        image:"https://i.ibb.co/Mxwz931X/1782104837-6a38c3058aa7a-x.webp"
-    },
+{
+name:"Glass Flower",
+price:30000,
+image:"https://i.ibb.co/Mxwz931X/1782104837-6a38c3058aa7a-x.webp"
+},
 
-    {
-        name:"Glass Flower",
-        price:30000,
-        image:"https://i.ibb.co/hF1xkKDJ/1782104837-6a38c3058a940-xv-1.webp"
-    },
+{
+name:"Glass Flower",
+price:30000,
+image:"https://i.ibb.co/hF1xkKDJ/1782104837-6a38c3058a940-xv-1.webp"
+},
 
-    {
-        name:"Glass Flower",
-        price:30000,
-        image:"https://i.ibb.co/kgqpY3zv/1782104837-6a38c3058ac3f-Blue-1.webp"
-    },
+{
+name:"Glass Flower",
+price:30000,
+image:"https://i.ibb.co/kgqpY3zv/1782104837-6a38c3058ac3f-Blue-1.webp"
+},
 
-    {
-        name:"Glass Flower",
-        price:30000,
-        image:"https://i.ibb.co/hFxS2d2M/1782104837-6a38c3058ab65-Purple-1.webp"
-    },
+{
+name:"Glass Flower",
+price:30000,
+image:"https://i.ibb.co/hFxS2d2M/1782104837-6a38c3058ab65-Purple-1.webp"
+},
 
-    {
-        name:"Artificial Rose Flowers",
-        price:30000,
-        image:"https://i.ibb.co/4gm2ZTvB/1782106515-6a38c99319235-Red-1.webp"
-    },
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://i.ibb.co/4gm2ZTvB/1782106515-6a38c99319235-Red-1.webp"
+},
 
-    {
-        name:"Artificial Rose Flowers",
-        price:30000,
-        image:"https://i.ibb.co/TqWWc7Z4/1782106515-6a38c9931930b-Blue-1.webp"
-    },
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://i.ibb.co/TqWWc7Z4/1782106515-6a38c9931930b-Blue-1.webp"
+},
 
-    {
-        name:"Artificial Rose Flowers",
-        price:30000,
-        image:"https://i.ibb.co/2YPDJL9R/1782106515-6a38c993193ae-Yellow-1.webp"
-    },
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://i.ibb.co/2YPDJL9R/1782106515-6a38c993193ae-Yellow-1.webp"
+},
 
-    {
-        name:"Artificial Rose Flowers",
-        price:30000,
-        image:"https://i.ibb.co/bg55JSGD/1782106515-6a38c9931944a-Black-1.webp"
-    },
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://i.ibb.co/bg55JSGD/1782106515-6a38c9931944a-Black-1.webp"
+},
 
-    {
-        name:"Artificial Rose Flowers",
-        price:30000,
-        image:"https://i.ibb.co/7tvtcK4V/1782106515-6a38c993194e3-White-1.webp"
-    },
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://i.ibb.co/7tvtcK4V/1782106515-6a38c993194e3-White-1.webp"
+},
 
-    {
-        name:"Artificial Peonies Flowers",
-        price:30000,
-        image:"https://i.ibb.co/TqmPr5wJ/1781780667-6a33d0bb194e4-IMG-5378-1.webp"
-    },
+{
+name:"Artificial Peonies Flowers",
+price:30000,
+image:"https://i.ibb.co/TqmPr5wJ/1781780667-6a33d0bb194e4-IMG-5378-1.webp"
+},
 
-    {
-        name:"Artificial Peonies Flowers",
-        price:30000,
-        image:"https://i.ibb.co/mVhxwbGP/1781780667-6a33d0bb19359-IMG-5380-1.webp"
-    },
+{
+name:"Artificial Peonies Flowers",
+price:30000,
+image:"https://i.ibb.co/mVhxwbGP/1781780667-6a33d0bb19359-IMG-5380-1.webp"
+},
 
-    {
-        name:"Artificial Peonies Flowers",
-        price:30000,
-        image:"https://i.ibb.co/mr1GBYgf/1781780667-6a33d0bb19279-IMG-5381-1.webp"
-    },
+{
+name:"Artificial Peonies Flowers",
+price:30000,
+image:"https://i.ibb.co/mr1GBYgf/1781780667-6a33d0bb19279-IMG-5381-1.webp"
+},
 
-    {
-        name:"Artificial Peonies Flowers",
-        price:30000,
-        image:"https://i.ibb.co/JwFdwyKx/1781780667-6a33d0bb1916b-IMG-5382-1.webp"
-    },
+{
+name:"Artificial Peonies Flowers",
+price:30000,
+image:"https://i.ibb.co/JwFdwyKx/1781780667-6a33d0bb1916b-IMG-5382-1.webp"
+},
 
-    {
-        name:"Premium Quality Glass Flower",
-        price:55000,
-        image:"https://i.ibb.co/W4BmMTCB/1782108514-6a38d1621186d-media-699832785cec8.webp"
-    },
+{
+name:"Premium Quality Glass Flower",
+price:55000,
+image:"https://i.ibb.co/W4BmMTCB/1782108514-6a38d1621186d-media-699832785cec8.webp"
+},
 
-    {
-        name:"Ladies Handbag",
-        price:60000,
-        image:"https://i.ibb.co/CKyvj6q5/dearsenda-com-ladies-handbag.jpg"
-    },
+{
+name:"Ladies Handbag",
+price:60000,
+image:"https://i.ibb.co/CKyvj6q5/dearsenda-com-ladies-handbag.jpg"
+},
 
-    {
-        name:"Ladies Handbag",
-        price:60000,
-        image:"https://i.ibb.co/0RDLzx5R/dearsenda-com-ladies-handbag-2.jpg"
-    },
+{
+name:"Ladies Handbag",
+price:60000,
+image:"https://i.ibb.co/0RDLzx5R/dearsenda-com-ladies-handbag-2.jpg"
+},
 
-    {
-        name:"Ladies Handbag",
-        price:60000,
-        image:"https://i.ibb.co/LFTQxK1/dearsenda-com-ladies-handbag-3.jpg"
-    },
+{
+name:"Ladies Handbag",
+price:60000,
+image:"https://i.ibb.co/LFTQxK1/dearsenda-com-ladies-handbag-3.jpg"
+},
 
-    {
-        name:"Ladies Handbag",
-        price:60000,
-        image:"https://i.ibb.co/ccH1Lnp6/ladies-handbag-1.jpg"
-    },
+{
+name:"Ladies Handbag",
+price:60000,
+image:"https://i.ibb.co/ccH1Lnp6/ladies-handbag-1.jpg"
+},
 
-    {
-        name:"Quilted Handbag",
-        price:50000,
-        image:"https://i.ibb.co/cmTM36z/quilted-handbag-4.jpg"
-    },
+{
+name:"Quilted Handbag",
+price:50000,
+image:"https://i.ibb.co/cmTM36z/quilted-handbag-4.jpg"
+},
 
-    {
-        name:"Quilted Handbag",
-        price:50000,
-        image:"https://i.ibb.co/spWRkgDb/quilted-handbag-1.jpg"
-    },
+{
+name:"Quilted Handbag",
+price:50000,
+image:"https://i.ibb.co/spWRkgDb/quilted-handbag-1.jpg"
+},
 
-    {
-        name:"Quilted Handbag",
-        price:50000,
-        image:"https://i.ibb.co/TqNSPgcM/quilted-handbag-2.jpg"
-    },
+{
+name:"Quilted Handbag",
+price:50000,
+image:"https://i.ibb.co/TqNSPgcM/quilted-handbag-2.jpg"
+},
 
-    {
-        name:"Quilted Handbag",
-        price:50000,
-        image:"https://i.ibb.co/n8fFqyGB/quilted-handbag.jpg"
-    },
+{
+name:"Quilted Handbag",
+price:50000,
+image:"https://i.ibb.co/n8fFqyGB/quilted-handbag.jpg"
+},
 
-    {
-        name:"Teddy Bear",
-        price:60000,
-        image:"https://i.ibb.co/pjyCqfD6/teddy-bear.webp"
-    },
+{
+name:"Teddy Bear",
+price:60000,
+image:"https://i.ibb.co/pjyCqfD6/teddy-bear.webp"
+},
 
-    {
-        name:"Bible",
-        price:65000,
-        image:"https://i.ibb.co/p69JK4NL/bible.webp"
-    },
+{
+name:"Bible",
+price:65000,
+image:"https://i.ibb.co/p69JK4NL/bible.webp"
+},
 
-    {
-        name:"Quran",
-        price:65000,
-        image:"https://i.ibb.co/rDG6PnZ/quran.webp"
-    },
+{
+name:"Quran",
+price:65000,
+image:"https://i.ibb.co/rDG6PnZ/quran.webp"
+},
 
-    {
-        name:"Fresh Cut Flower",
-        price:85000,
-        image:"https://i.ibb.co/wmx1NSh/fresh-cut-flower.jpg"
-    },
+{
+name:"Fresh Cut Flower",
+price:85000,
+image:"https://i.ibb.co/wmx1NSh/fresh-cut-flower.jpg"
+},
 
-    {
-        name:"Handmade Crochet Flower Bouquet",
-        price:65000,
-        image:"https://i.ibb.co/fGN77Jsm/handmade-crochet-flower-bouquet.jpg"
-    },
+{
+name:"Handmade Crochet Flower Bouquet",
+price:65000,
+image:"https://i.ibb.co/fGN77Jsm/handmade-crochet-flower-bouquet.jpg"
+},
 
-    {
-        name:"3pc Set Watch, Necklace and Bracelet",
-        price:85000,
-        image:"https://i.ibb.co/Wp2TbnFr/3pc-set-watch-necklace-and-bracelet.jpg"
-    },
+{
+name:"3pc Set Watch, Necklace and Bracelet",
+price:85000,
+image:"https://i.ibb.co/Wp2TbnFr/3pc-set-watch-necklace-and-bracelet.jpg"
+},
 
-    {
-        name:"Men's Watch II",
-        price:80000,
-        image:"https://i.ibb.co/nM0T8N4t/men-s-watch-ii.webp"
-    },
+{
+name:"Men's Watch II",
+price:80000,
+image:"https://i.ibb.co/nM0T8N4t/men-s-watch-ii.webp"
+},
 
-    {
-        name:"Pizza 🍕",
-        price:30000,
-        image:"https://i.ibb.co/0R3n09kt/pizza.jpg"
-    },
+{
+name:"Pizza 🍕",
+price:30000,
+image:"https://i.ibb.co/0R3n09kt/pizza.jpg"
+},
 
-    {
-        name:"Pizza And Coke",
-        price:38000,
-        image:"https://i.ibb.co/JFgV0HzP/pizza-and-coke.webp"
-    },
+{
+name:"Pizza And Coke",
+price:38000,
+image:"https://i.ibb.co/JFgV0HzP/pizza-and-coke.webp"
+},
 
-    {
-        name:"Carrot Cake",
-        price:60000,
-        image:"https://i.ibb.co/zh7MRcVp/carrot-cake.jpg"
-    },
+{
+name:"Carrot Cake",
+price:60000,
+image:"https://i.ibb.co/zh7MRcVp/carrot-cake.jpg"
+},
 
-    {
-        name:"AMG Benz Car Key",
-        price:250000,
-        image:"https://i.ibb.co/HkP2R3f/amg-benz-car-key.jpg"
-    },
+{
+name:"AMG Benz Car Key",
+price:250000,
+image:"https://i.ibb.co/HkP2R3f/amg-benz-car-key.jpg"
+},
 
-    {
-        name:"Tesla Key",
-        price:150000,
-        image:"https://i.ibb.co/zh4X6cVy/tesla-key.webp"
-    },
+{
+name:"Tesla Key",
+price:150000,
+image:"https://i.ibb.co/zh4X6cVy/tesla-key.webp"
+},
 
-    {
-        name:"Tesla Model 3/Y Car Key Card",
-        price:125000,
-        image:"https://i.ibb.co/MDYVYTjD/tesla-model-3-y-car-key-card.jpg"
-    },
+{
+name:"Tesla Model 3/Y Car Key Card",
+price:125000,
+image:"https://i.ibb.co/MDYVYTjD/tesla-model-3-y-car-key-card.jpg"
+},
 
-    {
-        name:"Ford Key",
-        price:80000,
-        image:"https://i.ibb.co/spX3N0HK/ford-key.webp"
-    },
+{
+name:"Ford Key",
+price:80000,
+image:"https://i.ibb.co/spX3N0HK/ford-key.webp"
+},
 
-    {
-        name:"BMW Car Key",
-        price:65000,
-        image:"https://i.ibb.co/mVHtkzMk/bmw-car-key.jpg"
-    },
+{
+name:"BMW Car Key",
+price:65000,
+image:"https://i.ibb.co/mVHtkzMk/bmw-car-key.jpg"
+},
 
-    {
-        name:"Chevrolet Car Key",
-        price:65000,
-        image:"https://i.ibb.co/8gZGqjqD/chevrolet-car-key.jpg"
-    },
+{
+name:"Chevrolet Car Key",
+price:65000,
+image:"https://i.ibb.co/8gZGqjqD/chevrolet-car-key.jpg"
+},
 
-    {
-        name:"House Keys",
-        price:45000,
-        image:"https://i.ibb.co/pjCP7DKD/house-keys.webp"
-    }
+{
+name:"House Keys",
+price:45000,
+image:"https://i.ibb.co/pjCP7DKD/house-keys.webp"
+}
 
 ];
 
 
-/* =====================================
+/* =====================================================
    VARIABLES
-===================================== */
+===================================================== */
 
 let currentUser = null;
 let currentProduct = null;
@@ -1137,827 +1101,968 @@ let currentBalance = 0;
 let orderProcessing = false;
 
 
-/* =====================================
+/* =====================================================
    ELEMENTS
-===================================== */
+===================================================== */
 
 const productsContainer =
-    document.getElementById("products");
+document.getElementById("products");
 
 const productsSection =
-    document.getElementById("productsSection");
+document.getElementById("productsSection");
 
 const checkout =
-    document.getElementById("checkout");
+document.getElementById("checkout");
 
 const walletBalance =
-    document.getElementById("walletBalance");
+document.getElementById("walletBalance");
 
 const checkoutBalance =
-    document.getElementById("checkoutBalance");
+document.getElementById("checkoutBalance");
+
+const confirmButton =
+document.getElementById("confirmOrder");
 
 const messageOverlay =
-    document.getElementById("messageOverlay");
+document.getElementById("messageOverlay");
 
 const messageBox =
-    document.getElementById("messageBox");
+document.getElementById("messageBox");
 
 const messageIcon =
-    document.getElementById("messageIcon");
+document.getElementById("messageIcon");
 
 const messageTitle =
-    document.getElementById("messageTitle");
+document.getElementById("messageTitle");
 
 const messageText =
-    document.getElementById("messageText");
+document.getElementById("messageText");
 
 const thanksButton =
-    document.getElementById("thanksButton");
+document.getElementById("thanksButton");
 
 
-/* =====================================
+/* =====================================================
    MONEY
-===================================== */
+===================================================== */
 
 function money(value){
 
-    return "₦" +
-        Number(value).toLocaleString(
-            "en-NG",
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
-            }
-        );
+return "₦" +
+Number(value || 0).toLocaleString(
+"en-NG",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
 }
 
 
-/* =====================================
+/* =====================================================
    RENDER PRODUCTS
-===================================== */
+===================================================== */
 
 products.forEach(product => {
 
-    const card =
-        document.createElement("div");
+const card =
+document.createElement("div");
 
-    card.className =
-        "product-card";
+card.className =
+"product-card";
 
-    card.innerHTML = `
+card.innerHTML = `
 
-        <img
-            class="product-image"
-            src="${product.image}"
-            alt="${product.name}"
-            loading="lazy"
-        >
+<img
+class="product-image"
+src="${product.image}"
+alt="${product.name}"
+loading="lazy"
+>
 
-        <div class="product-info">
+<div class="product-info">
 
-            <div class="product-name">
-                ${product.name}
-            </div>
+<div class="product-name">
+${product.name}
+</div>
 
-            <div class="product-price">
-                ${money(product.price)}
-            </div>
+<div class="product-price">
+${money(product.price)}
+</div>
 
-            <button
-                type="button"
-                class="gift-btn"
-            >
-                Send as Gift
-            </button>
+<button
+type="button"
+class="gift-btn"
+>
+Send as Gift
+</button>
 
-        </div>
-    `;
+</div>
 
-    card
-        .querySelector(".gift-btn")
-        .addEventListener(
-            "click",
-            () => openCheckout(product)
-        );
+`;
 
-    productsContainer.appendChild(card);
+card
+.querySelector(".gift-btn")
+.addEventListener(
+"click",
+() => openCheckout(product)
+);
+
+productsContainer.appendChild(card);
 
 });
 
 
-/* =====================================
+/* =====================================================
    AUTH
-===================================== */
+===================================================== */
 
 onAuthStateChanged(
-    auth,
-    async user => {
+auth,
+async user => {
 
-        if(!user){
+if(!user){
 
-            currentUser = null;
+currentUser = null;
+currentBalance = 0;
 
-            currentBalance = 0;
+walletBalance.textContent =
+money(0);
 
-            walletBalance.textContent =
-                "₦0.00";
+checkoutBalance.textContent =
+money(0);
 
-            checkoutBalance.textContent =
-                "₦0.00";
+return;
 
-            return;
-        }
+}
 
-        currentUser = user;
+currentUser = user;
 
-        await loadWallet();
+await loadWallet();
 
-    }
+}
 );
 
 
-/* =====================================
+/* =====================================================
    LOAD WALLET
-===================================== */
+===================================================== */
 
 async function loadWallet(){
 
-    if(!currentUser)
-        return;
+if(!currentUser)
+return;
 
-    try{
+try{
 
-        const userRef =
-            doc(
-                db,
-                "users",
-                currentUser.uid
-            );
+const userRef =
+doc(
+db,
+"users",
+currentUser.uid
+);
 
-        const snap =
-            await getDoc(userRef);
+const snap =
+await getDoc(userRef);
 
-        if(!snap.exists()){
+if(!snap.exists()){
 
-            currentBalance = 0;
+currentBalance = 0;
 
-        }else{
+}else{
 
-            const data =
-                snap.data();
+const data = snap.data();
 
-            currentBalance =
-                Number(
-                    data.walletBalance || 0
-                );
-        }
+currentBalance =
+Number(data.walletBalance || 0);
 
-        walletBalance.textContent =
-            money(currentBalance);
+}
 
-        checkoutBalance.textContent =
-            money(currentBalance);
+walletBalance.textContent =
+money(currentBalance);
 
-    }catch(error){
+checkoutBalance.textContent =
+money(currentBalance);
 
-        console.error(
-            "Wallet error:",
-            error
-        );
+}catch(error){
 
-    }
+console.error(
+"LOAD WALLET ERROR:",
+error
+);
+
+}
+
 }
 
 
-/* =====================================
+/* =====================================================
    OPEN CHECKOUT
-===================================== */
+===================================================== */
 
 function openCheckout(product){
 
-    if(!currentUser){
+if(!currentUser){
 
-        showPopup(
-            "login",
-            "Please Login First",
-            "Please login to your Fame Store account before sending a gift."
-        );
+showPopup(
+"login",
+"Please Login First",
+"Please login to your Fame Store account before sending a gift."
+);
 
-        return;
-    }
+return;
 
-    currentProduct =
-        product;
+}
 
-    productsSection
-        .classList
-        .add("hidden");
+currentProduct =
+product;
 
-    checkout
-        .classList
-        .add("active");
+productsSection.classList.add("hidden");
 
-    document.getElementById(
-        "selectedImage"
-    ).src =
-        product.image;
+checkout.classList.add("active");
 
-    document.getElementById(
-        "selectedName"
-    ).textContent =
-        product.name;
+document.getElementById(
+"selectedImage"
+).src =
+product.image;
 
-    document.getElementById(
-        "selectedPrice"
-    ).textContent =
-        money(product.price);
+document.getElementById(
+"selectedName"
+).textContent =
+product.name;
 
-    document.getElementById(
-        "basePrice"
-    ).textContent =
-        money(product.price);
+document.getElementById(
+"selectedPrice"
+).textContent =
+money(product.price);
 
-    document.getElementById(
-        "totalPrice"
-    ).textContent =
-        money(product.price);
+document.getElementById(
+"basePrice"
+).textContent =
+money(product.price);
 
-    checkoutBalance.textContent =
-        money(currentBalance);
+document.getElementById(
+"totalPrice"
+).textContent =
+money(product.price);
 
-    document.getElementById(
-        "country"
-    ).value =
-        "Canada";
+checkoutBalance.textContent =
+money(currentBalance);
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+document.getElementById(
+"country"
+).value =
+"Canada";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
 }
 
 
-/* =====================================
-   BACK TO GIFTS
-===================================== */
+/* =====================================================
+   BACK
+===================================================== */
 
 document
-    .getElementById("backProducts")
-    .addEventListener(
-        "click",
-        () => {
+.getElementById("backProducts")
+.addEventListener(
+"click",
+() => {
 
-            checkout
-                .classList
-                .remove("active");
+checkout.classList.remove("active");
 
-            productsSection
-                .classList
-                .remove("hidden");
+productsSection.classList.remove("hidden");
 
-            currentProduct =
-                null;
+currentProduct = null;
 
-            window.scrollTo({
-                top:0,
-                behavior:"smooth"
-            });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-        }
-    );
+}
+);
 
 
-/* =====================================
+/* =====================================================
    POPUP
-===================================== */
+===================================================== */
 
 function showPopup(
-    type,
-    title,
-    text
+type,
+title,
+text
 ){
 
-    messageBox.className =
-        "message-box " +
-        (type === "success"
-            ? "success"
-            : "");
+messageBox.className =
+"message-box";
 
-    if(type === "success"){
+if(type === "success"){
 
-        messageIcon.textContent =
-            "✓";
+messageBox.classList.add("success");
 
-    }else{
+messageIcon.textContent =
+"✓";
 
-        messageIcon.textContent =
-            type === "login"
-                ? "🔐"
-                : "⚠️";
-    }
+}
 
-    messageTitle.textContent =
-        title;
+else if(type === "login"){
 
-    messageText.textContent =
-        text;
+messageIcon.textContent =
+"🔐";
 
-    messageOverlay
-        .classList
-        .add("show");
+}
+
+else{
+
+messageIcon.textContent =
+"⚠️";
+
+}
+
+messageTitle.textContent =
+title;
+
+messageText.textContent =
+text;
+
+messageOverlay.classList.add("show");
+
 }
 
 
 thanksButton.addEventListener(
-    "click",
-    () => {
+"click",
+() => {
 
-        messageOverlay
-            .classList
-            .remove("show");
+messageOverlay.classList.remove("show");
 
-    }
+}
 );
 
 
-/* =====================================
-   FORM VALIDATION
-===================================== */
+/* =====================================================
+   VALIDATE FORM
+===================================================== */
 
 function validateForm(){
 
-    const fields = [
+const fields = [
 
-        "yourPhone",
-        "senderName",
-        "recipientName",
-        "recipientPhone",
-        "streetAddress",
-        "city",
-        "state",
-        "country",
-        "zipCode"
+"yourPhone",
+"senderName",
+"recipientName",
+"recipientPhone",
+"streetAddress",
+"city",
+"state",
+"country",
+"zipCode"
 
-    ];
+];
 
-    for(
-        const id of fields
-    ){
+for(const id of fields){
 
-        const field =
-            document.getElementById(id);
+const field =
+document.getElementById(id);
 
-        if(
-            !field.value.trim()
-        ){
+if(!field){
 
-            field.focus();
+return false;
 
-            return false;
-        }
-    }
-
-    return true;
 }
 
-    /* =====================================
+if(!field.value.trim()){
+
+field.focus();
+
+return false;
+
+}
+
+}
+
+return true;
+
+}
+
+
+/* =====================================================
+   GET FORM DATA
+===================================================== */
+
+function getFormData(){
+
+return {
+
+yourPhone:
+document.getElementById(
+"yourPhone"
+).value.trim(),
+
+senderName:
+document.getElementById(
+"senderName"
+).value.trim(),
+
+recipientName:
+document.getElementById(
+"recipientName"
+).value.trim(),
+
+recipientPhone:
+document.getElementById(
+"recipientPhone"
+).value.trim(),
+
+streetAddress:
+document.getElementById(
+"streetAddress"
+).value.trim(),
+
+city:
+document.getElementById(
+"city"
+).value.trim(),
+
+state:
+document.getElementById(
+"state"
+).value.trim(),
+
+country:
+"Canada",
+
+zipCode:
+document.getElementById(
+"zipCode"
+).value.trim(),
+
+additionalNotes:
+document.getElementById(
+"additionalNotes"
+).value.trim()
+
+};
+
+}
+
+
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearCheckoutForm(){
+
+const ids = [
+
+"yourPhone",
+"senderName",
+"recipientName",
+"recipientPhone",
+"streetAddress",
+"city",
+"state",
+"zipCode",
+"additionalNotes"
+
+];
+
+ids.forEach(id => {
+
+const field =
+document.getElementById(id);
+
+if(field){
+
+field.value = "";
+
+}
+
+});
+
+}
+
+
+/* =====================================================
    CONFIRM ORDER
-===================================== */
+===================================================== */
 
-document
-    .getElementById("confirmOrder")
-    .addEventListener(
-        "click",
-        async () => {
+confirmButton.addEventListener(
+"click",
+async () => {
 
-            if(orderProcessing)
-                return;
+if(orderProcessing)
+return;
 
 
-            /* ================================
-               LOGIN CHECK
-            ================================= */
+/* -----------------------------------------------
+   LOGIN
+------------------------------------------------ */
 
-            if(!currentUser){
+if(!currentUser){
 
-                showPopup(
-                    "login",
-                    "Please Login First",
-                    "Please login to your Fame Store account before making an order."
-                );
+showPopup(
+"login",
+"Please Login First",
+"Please login to your Fame Store account before making an order."
+);
 
-                return;
-            }
+return;
 
+}
 
-            /* ================================
-               PRODUCT CHECK
-            ================================= */
 
-            if(!currentProduct){
+/* -----------------------------------------------
+   PRODUCT
+------------------------------------------------ */
 
-                showPopup(
-                    "error",
-                    "No Gift Selected",
-                    "Please select a gift first."
-                );
+if(!currentProduct){
 
-                return;
-            }
+showPopup(
+"error",
+"No Gift Selected",
+"Please select a gift first."
+);
 
+return;
 
-            /* ================================
-               FORM CHECK
-            ================================= */
+}
 
-            if(!validateForm()){
 
-                showPopup(
-                    "error",
-                    "Information Required",
-                    "Kindly complete all the Canada delivery information before confirming your order."
-                );
+/* -----------------------------------------------
+   FORM
+------------------------------------------------ */
 
-                return;
-            }
+if(!validateForm()){
 
+showPopup(
+"error",
+"Information Required",
+"Kindly complete all the Canada delivery information before confirming your order."
+);
 
-            /* ================================
-               GET LATEST WALLET
-            ================================= */
+return;
 
-            await loadWallet();
+}
 
 
-            const total =
-                Number(currentProduct.price);
+/* -----------------------------------------------
+   LATEST BALANCE
+------------------------------------------------ */
 
+await loadWallet();
 
-            /* ================================
-               BALANCE CHECK
-            ================================= */
+const total =
+Number(currentProduct.price);
 
-            if(currentBalance < total){
 
-                showPopup(
-                    "error",
-                    "Insufficient wallet balance",
-                    "Kindly deposit and make an order."
-                );
+/* -----------------------------------------------
+   QUICK BALANCE CHECK
+------------------------------------------------ */
 
-                return;
-            }
+if(currentBalance < total){
 
+showPopup(
+"error",
+"Insufficient wallet balance",
+"Kindly deposit and make an order."
+);
 
-            /* ================================
-               START PROCESSING
-            ================================= */
+return;
 
-            orderProcessing = true;
+}
 
-            const button =
-                document.getElementById(
-                    "confirmOrder"
-                );
 
-            button.disabled = true;
+/* -----------------------------------------------
+   START
+------------------------------------------------ */
 
-            button.textContent =
-                "Processing...";
+orderProcessing = true;
 
+confirmButton.disabled = true;
 
-            try{
+confirmButton.textContent =
+"Processing...";
 
-                const userRef =
-                    doc(
-                        db,
-                        "users",
-                        currentUser.uid
-                    );
 
+try{
 
-                /*
-                 * Create a unique order reference.
-                 */
+const userRef =
+doc(
+db,
+"users",
+currentUser.uid
+);
 
-                const orderRef =
-                    doc(
-                        collection(
-                            db,
-                            "giftOrders"
-                        )
-                    );
 
+/*
+Create the order reference before
+starting the transaction.
+*/
 
-                /*
-                 * Everything happens inside
-                 * ONE Firestore transaction.
-                 *
-                 * If the wallet deduction fails,
-                 * the order is not created.
-                 */
+const orderRef =
+doc(
+collection(
+db,
+"giftOrders"
+)
+);
 
-                await runTransaction(
-                    db,
-                    async transaction => {
 
-                        /*
-                         * Get latest user wallet.
-                         */
+/*
+Get all checkout information BEFORE
+the transaction starts.
+*/
 
-                        const userSnap =
-                            await transaction.get(
-                                userRef
-                            );
+const formData =
+getFormData();
 
 
-                        if(!userSnap.exists()){
+/*
+IMPORTANT:
 
-                            throw new Error(
-                                "USER_NOT_FOUND"
-                            );
+Only Firestore reads are done first.
+Then all writes happen together.
 
-                        }
+This prevents the previous
+transaction error caused by mixing
+form operations into the transaction.
+*/
 
+await runTransaction(
+db,
+async transaction => {
 
-                        const userData =
-                            userSnap.data();
 
+/* -----------------------------------------
+   READ USER
+------------------------------------------ */
 
-                        const wallet =
-                            Number(
-                                userData.walletBalance || 0
-                            );
+const userSnap =
+await transaction.get(
+userRef
+);
 
 
-                        /*
-                         * Check balance again.
-                         *
-                         * This prevents an old
-                         * browser balance from
-                         * being used.
-                         */
+if(!userSnap.exists()){
 
-                        if(wallet < total){
+throw new Error(
+"USER_NOT_FOUND"
+);
 
-                            throw new Error(
-                                "INSUFFICIENT_BALANCE"
-                            );
+}
 
-                        }
 
+const userData =
+userSnap.data();
 
-                        /*
-                         * New balance.
-                         */
-
-                        const newBalance =
-                            wallet - total;
-
-
-                        /*
-                         * Create the gift order.
-                         */
-
-                        transaction.set(
-                            orderRef,
-                            {
-
-                                customerUID:
-                                    currentUser.uid,
-
-                                customerEmail:
-                                    currentUser.email || "",
-
-                                destination:
-                                    "Canada",
-
-                                country:
-                                    "Canada",
 
-                                productName:
-                                    currentProduct.name,
+const wallet =
+Number(
+userData.walletBalance || 0
+);
 
-                                productImage:
-                                    currentProduct.image,
 
-                                basePrice:
-                                    total,
-
-                                total:
-                                    total,
+/* -----------------------------------------
+   CHECK BALANCE
+------------------------------------------ */
 
-                                yourPhone:
-                                    document
-                                        .getElementById(
-                                            "yourPhone"
-                                        )
-                                        .value
-                                        .trim(),
+if(wallet < total){
 
-                                senderName:
-                                    document
-                                        .getElementById(
-                                            "senderName"
-                                        )
-                                        .value
-                                        .trim(),
+throw new Error(
+"INSUFFICIENT_BALANCE"
+);
 
-                                recipientName:
-                                    document
-                                        .getElementById(
-                                            "recipientName"
-                                        )
-                                        .value
-                                        .trim(),
+}
 
-                                recipientPhone:
-                                    document
-                                        .getElementById(
-                                            "recipientPhone"
-                                        )
-                                        .value
-                                        .trim(),
 
-                                streetAddress:
-                                    document
-                                        .getElementById(
-                                            "streetAddress"
-                                        )
-                                        .value
-                                        .trim(),
+const newBalance =
+wallet - total;
 
-                                city:
-                                    document
-                                        .getElementById(
-                                            "city"
-                                        )
-                                        .value
-                                        .trim(),
 
-                                state:
-                                    document
-                                        .getElementById(
-                                            "state"
-                                        )
-                                        .value
-                                        .trim(),
+/* -----------------------------------------
+   ORDER DATA
+------------------------------------------ */
 
-                                zipCode:
-                                    document
-                                        .getElementById(
-                                            "zipCode"
-                                        )
-                                        .value
-                                        .trim(),
+const orderData = {
 
-                                additionalNotes:
-                                    document
-                                        .getElementById(
-                                            "additionalNotes"
-                                        )
-                                        .value
-                                        .trim(),
+customerUID:
+currentUser.uid,
 
-                                paymentMethod:
-                                    "Wallet",
+customerEmail:
+currentUser.email || "",
 
-                                paymentStatus:
-                                    "Paid",
+destination:
+"Canada",
 
-                                status:
-                                    "Pending",
+country:
+"Canada",
 
-                                createdAt:
-                                    serverTimestamp()
+productName:
+currentProduct.name,
 
-                            }
-                        );
+productImage:
+currentProduct.image,
 
+basePrice:
+total,
 
-                        /*
-                         * Deduct the money from the
-                         * user's Firestore wallet.
-                         */
+total:
+total,
 
-                        transaction.update(
-                            userRef,
-                            {
+yourPhone:
+formData.yourPhone,
 
-                                walletBalance:
-                                    newBalance,
+senderName:
+formData.senderName,
 
-                                lastGiftOrderId:
-                                    orderRef.id
+recipientName:
+formData.recipientName,
 
-                            }
-                        );
+recipientPhone:
+formData.recipientPhone,
 
-                    }
-                );
+streetAddress:
+formData.streetAddress,
 
+city:
+formData.city,
 
-                /* ================================
-                   UPDATE SCREEN IMMEDIATELY
-                ================================= */
+state:
+formData.state,
 
-                currentBalance =
-                    currentBalance - total;
+zipCode:
+formData.zipCode,
 
+additionalNotes:
+formData.additionalNotes,
 
-                walletBalance.textContent =
-                    money(currentBalance);
+paymentMethod:
+"Wallet",
 
+paymentStatus:
+"Paid",
 
-                checkoutBalance.textContent =
-                    money(currentBalance);
+status:
+"Pending",
 
+orderStatus:
+"Pending",
 
-                button.textContent =
-                    "Order Completed";
+deliveryCountry:
+"Canada",
 
+createdAt:
+serverTimestamp()
 
-                /* ================================
-                   SUCCESS
-                ================================= */
+};
 
-                showPopup(
-                    "success",
-                    "Your order completed",
-                    "Your order has been placed successfully. It will take less than three business days to deliver your order. Always check your order history."
-                );
 
+/* -----------------------------------------
+   CREATE ORDER
+------------------------------------------ */
 
-                clearCheckoutForm();
+transaction.set(
+orderRef,
+orderData
+);
 
 
-            }catch(error){
+/* -----------------------------------------
+   UPDATE WALLET
+------------------------------------------ */
 
-                console.error(
-                    "ORDER ERROR:",
-                    error
-                );
+transaction.update(
+userRef,
+{
 
+walletBalance:
+newBalance,
 
-                /* ================================
-                   INSUFFICIENT BALANCE
-                ================================= */
+lastGiftOrderId:
+orderRef.id,
 
-                if(
-                    error.message ===
-                    "INSUFFICIENT_BALANCE"
-                ){
+lastGiftOrderCountry:
+"Canada",
 
-                    await loadWallet();
+lastGiftOrderAt:
+serverTimestamp()
 
-                    showPopup(
-                        "error",
-                        "Insufficient wallet balance",
-                        "Your wallet balance is not enough to make this order."
-                    );
+}
+);
 
-                }
+}
+);
 
-                else if(
-                    error.message ===
-                    "USER_NOT_FOUND"
-                ){
 
-                    showPopup(
-                        "error",
-                        "Account Error",
-                        "Your account profile could not be found. Please contact support."
-                    );
+/* =================================================
+   SUCCESS
+================================================= */
 
-                }
+currentBalance =
+currentBalance - total;
 
-                else{
+walletBalance.textContent =
+money(currentBalance);
 
-                    showPopup(
-                        "error",
-                        "Order Failed",
-                        "Unable to complete your order. Please try again."
-                    );
+checkoutBalance.textContent =
+money(currentBalance);
 
-                }
 
+/*
+Change button after successful transaction.
+*/
 
-                button.disabled = false;
+confirmButton.textContent =
+"Order Completed";
 
-                button.textContent =
-                    "Confirm Order";
 
-            }finally{
+/*
+Clear form only AFTER successful order.
+*/
 
-                orderProcessing =
-                    false;
+clearCheckoutForm();
 
-            }
 
-        }
-    );
+/*
+SUCCESS POPUP
+*/
+
+showPopup(
+"success",
+"Your order completed",
+"It will take less than three business days to deliver your order. Always check your order history. Thanks"
+);
+
+
+}catch(error){
+
+console.error(
+"CANADA ORDER ERROR:",
+error
+);
+
+
+/* =================================================
+   INSUFFICIENT BALANCE
+================================================= */
+
+if(
+error.message ===
+"INSUFFICIENT_BALANCE"
+){
+
+await loadWallet();
+
+showPopup(
+"error",
+"Insufficient wallet balance",
+"Your wallet balance is not enough to make this order."
+);
+
+}
+
+
+/* =================================================
+   USER NOT FOUND
+================================================= */
+
+else if(
+error.message ===
+"USER_NOT_FOUND"
+){
+
+showPopup(
+"error",
+"Account Error",
+"Your Fame Store account profile could not be found. Please contact support."
+);
+
+}
+
+
+/* =================================================
+   PERMISSION DENIED
+================================================= */
+
+else if(
+error.code ===
+"permission-denied"
+){
+
+showPopup(
+"error",
+"Order Failed",
+"Your account does not currently have permission to complete this order. Please contact support."
+);
+
+}
+
+
+/* =================================================
+   EVERYTHING ELSE
+================================================= */
+
+else{
+
+showPopup(
+"error",
+"Order Failed",
+"Unable to complete your order. Please try again."
+);
+
+}
+
+
+/*
+Allow another attempt.
+*/
+
+confirmButton.disabled =
+false;
+
+confirmButton.textContent =
+"Confirm Order";
+
+
+}finally{
+
+orderProcessing =
+false;
+
+}
+
+}
+);
+
+
+/* =====================================================
+   CLOSE POPUP WHEN CLICKING OUTSIDE
+===================================================== */
+
+messageOverlay.addEventListener(
+"click",
+event => {
+
+if(
+event.target ===
+messageOverlay
+){
+
+messageOverlay.classList.remove(
+"show"
+);
+
+}
+
+});
 
 </script>
 
 </body>
-              </html>
+</html>
