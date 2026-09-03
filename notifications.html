@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Notifications | Fame Store</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
 body{
     font-family:Arial,sans-serif;
@@ -74,6 +79,11 @@ body{
     cursor:pointer;
 }
 
+.refresh:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
 .notifications{
     display:grid;
     gap:12px;
@@ -84,10 +94,16 @@ body{
     border:1px solid #e5eaf1;
     border-radius:15px;
     padding:17px;
+    transition:.2s;
+}
+
+.notification:hover{
+    transform:translateY(-1px);
 }
 
 .notification.unread{
     border-left:4px solid #0757d9;
+    background:#fbfdff;
 }
 
 .notification-top{
@@ -107,9 +123,13 @@ body{
     font-size:19px;
 }
 
+.notification-content{
+    flex:1;
+}
+
 .notification h3{
     font-size:14px;
-    margin-bottom:5px;
+    margin-bottom:6px;
 }
 
 .notification p{
@@ -118,10 +138,44 @@ body{
     line-height:1.6;
 }
 
+.order-info{
+    margin-top:10px;
+    padding:9px 11px;
+    background:#f7f9fc;
+    border-radius:8px;
+    color:#475467;
+    font-size:10px;
+    line-height:1.6;
+}
+
 .date{
     color:#98a2b3;
     font-size:10px;
     margin-top:10px;
+}
+
+.status{
+    display:inline-block;
+    margin-top:8px;
+    padding:5px 8px;
+    border-radius:6px;
+    font-size:9px;
+    font-weight:700;
+}
+
+.status.successful{
+    background:#e9f9ef;
+    color:#16803c;
+}
+
+.status.cancelled{
+    background:#fff0f0;
+    color:#d92d20;
+}
+
+.status.info{
+    background:#eaf2ff;
+    color:#0757d9;
 }
 
 .empty{
@@ -174,6 +228,7 @@ body{
 
 </header>
 
+
 <main class="container">
 
     <div class="top">
@@ -190,23 +245,34 @@ body{
 
     </div>
 
-    <div id="loading" class="loading">
+
+    <div
+        id="loading"
+        class="loading">
+
         Loading notifications...
+
     </div>
+
 
     <div
         id="notifications"
         class="notifications">
     </div>
 
+
     <div
         id="empty"
         class="empty"
         style="display:none">
 
-        <div class="empty-icon">🔔</div>
+        <div class="empty-icon">
+            🔔
+        </div>
 
-        <h3>No Notifications</h3>
+        <h3>
+            No Notifications
+        </h3>
 
         <p>
             You don't have any notifications yet.
@@ -214,11 +280,17 @@ body{
 
     </div>
 
-    <a href="dashboard.html" class="back">
+
+    <a
+        href="dashboard.html"
+        class="back">
+
         ← Back to Dashboard
+
     </a>
 
 </main>
+
 
 <script type="module">
 
@@ -230,15 +302,18 @@ import {
 
 import {
     collection,
-    getDocs,
     query,
-    orderBy
+    where,
+    orderBy,
+    onSnapshot,
+    getDocs
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 const loading =
     document.getElementById("loading");
 
-const container =
+const notificationsContainer =
     document.getElementById("notifications");
 
 const empty =
@@ -247,11 +322,19 @@ const empty =
 const refreshButton =
     document.getElementById("refreshButton");
 
-let currentUser=null;
+
+let currentUser = null;
+
+let unsubscribeNotifications = null;
+
+
+/* ================================
+   ESCAPE HTML
+================================ */
 
 function escapeHTML(value){
 
-    return String(value || "")
+    return String(value ?? "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -260,21 +343,36 @@ function escapeHTML(value){
 
 }
 
+
+/* ================================
+   FORMAT DATE
+================================ */
+
 function formatDate(timestamp){
 
-    if(!timestamp) return "Date unavailable";
+    if(!timestamp){
+
+        return "Date unavailable";
+
+    }
 
     try{
 
-        return timestamp.toDate().toLocaleString(
-            "en-NG",
-            {
-                dateStyle:"medium",
-                timeStyle:"short"
-            }
-        );
+        if(typeof timestamp.toDate === "function"){
 
-    }catch{
+            return timestamp.toDate().toLocaleString(
+                "en-NG",
+                {
+                    dateStyle:"medium",
+                    timeStyle:"short"
+                }
+            );
+
+        }
+
+        return "Date unavailable";
+
+    }catch(error){
 
         return "Date unavailable";
 
@@ -282,134 +380,135 @@ function formatDate(timestamp){
 
 }
 
-async function loadNotifications(){
 
-    if(!currentUser) return;
+/* ================================
+   GET STATUS
+================================ */
 
-    loading.style.display="block";
-    container.innerHTML="";
-    empty.style.display="none";
+function getStatusClass(notification){
 
-    try{
+    const type =
+        String(notification.type || "")
+        .toLowerCase();
 
-        const q=query(
-            collection(db,"notifications"),
-            orderBy("createdAt","desc")
-        );
+    const status =
+        String(notification.status || "")
+        .toLowerCase();
 
-        const snapshot=await getDocs(q);
 
-        const list=[];
+    if(
+        type.includes("success") ||
+        type.includes("deliver") ||
+        status === "successful"
+    ){
 
-        snapshot.forEach(notificationDoc=>{
+        return "successful";
 
-            const data=notificationDoc.data();
+    }
 
-            /*
-             * Notifications with:
-             * uid = customer's UID
-             * OR customerUid = customer's UID
-             * OR recipientUid = customer's UID
-             * OR broadcast = true
-             */
 
-            const belongsToUser =
-                data.uid === currentUser.uid ||
-                data.customerUid === currentUser.uid ||
-                data.recipientUid === currentUser.uid ||
-                data.broadcast === true ||
-                data.type === "global";
+    if(
+        type.includes("cancel") ||
+        type.includes("refund") ||
+        status === "cancelled"
+    ){
 
-            if(belongsToUser){
+        return "cancelled";
 
-                list.push({
-                    id:notificationDoc.id,
-                    ...data
-                });
+    }
 
-            }
 
-        });
+    return "info";
 
-        loading.style.display="none";
+}
 
-        if(list.length===0){
 
-            empty.style.display="block";
-            return;
+/* ================================
+   RENDER NOTIFICATION
+================================ */
 
-        }
+function renderNotification(notification){
 
-        list.forEach(notification=>{
+    const card =
+        document.createElement("div");
 
-            const card=document.createElement("div");
 
-            card.className =
-                "notification " +
-                (
-                    notification.read === false
-                    ? "unread"
+    const isUnread =
+        notification.read === false ||
+        notification.read === undefined;
+
+
+    card.className =
+        "notification " +
+        (isUnread ? "unread" : "");
+
+
+    const statusClass =
+        getStatusClass(notification);
+
+
+    let statusText = "";
+
+
+    if(statusClass === "successful"){
+
+        statusText =
+            `<span class="status successful">
+                ✓ Gift Delivered Successfully
+             </span>`;
+
+    }
+    else if(statusClass === "cancelled"){
+
+        statusText =
+            `<span class="status cancelled">
+                ✕ Order Cancelled / Refunded
+             </span>`;
+
+    }
+    else{
+
+        statusText =
+            `<span class="status info">
+                ℹ Information
+             </span>`;
+
+    }
+
+
+    let orderInfo = "";
+
+
+    if(
+        notification.orderId ||
+        notification.productName ||
+        notification.total
+    ){
+
+        orderInfo = `
+
+            <div class="order-info">
+
+                ${
+                    notification.orderId
+                    ? `<b>Order:</b>
+                       ${escapeHTML(notification.orderId)}<br>`
                     : ""
-                );
+                }
 
-            card.innerHTML=`
+                ${
+                    notification.productName
+                    ? `<b>Gift:</b>
+                       ${escapeHTML(notification.productName)}<br>`
+                    : ""
+                }
 
-                <div class="notification-top">
-
-                    <div class="icon">
-                        ${escapeHTML(
-                            notification.icon || "🔔"
-                        )}
-                    </div>
-
-                    <div>
-
-                        <h3>
-                            ${escapeHTML(
-                                notification.title ||
-                                "Fame Store Notification"
-                            )}
-                        </h3>
-
-                        <p>
-                            ${escapeHTML(
-                                notification.message ||
-                                notification.body ||
-                                "You have a new notification."
-                            )}
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="date">
-                    ${formatDate(notification.createdAt)}
-                </div>
-
-            `;
-
-            container.appendChild(card);
-
-        });
-
-    }catch(error){
-
-        console.error(error);
-
-        loading.style.display="none";
-
-        container.innerHTML=`
-
-            <div class="empty">
-
-                <div class="empty-icon">⚠️</div>
-
-                <h3>Unable to Load Notifications</h3>
-
-                <p>
-                    ${escapeHTML(error.message)}
-                </p>
+                ${
+                    notification.total
+                    ? `<b>Total:</b>
+                       ₦${Number(notification.total).toLocaleString("en-NG")}`
+                    : ""
+                }
 
             </div>
 
@@ -417,34 +516,353 @@ async function loadNotifications(){
 
     }
 
+
+    card.innerHTML = `
+
+        <div class="notification-top">
+
+            <div class="icon">
+
+                ${escapeHTML(
+                    notification.icon || "🔔"
+                )}
+
+            </div>
+
+
+            <div class="notification-content">
+
+                <h3>
+
+                    ${escapeHTML(
+                        notification.title ||
+                        "Fame Store Notification"
+                    )}
+
+                </h3>
+
+
+                <p>
+
+                    ${escapeHTML(
+                        notification.message ||
+                        notification.body ||
+                        "You have a new notification."
+                    )}
+
+                </p>
+
+
+                ${statusText}
+
+                ${orderInfo}
+
+            </div>
+
+        </div>
+
+
+        <div class="date">
+
+            ${formatDate(
+                notification.createdAt
+            )}
+
+        </div>
+
+    `;
+
+
+    notificationsContainer.appendChild(card);
+
 }
 
-onAuthStateChanged(auth,async user=>{
 
-    if(!user){
+/* ================================
+   DISPLAY NOTIFICATIONS
+================================ */
 
-        window.location.href="login.html";
+function displayNotifications(list){
+
+    notificationsContainer.innerHTML = "";
+
+    loading.style.display = "none";
+
+
+    if(!list.length){
+
+        empty.style.display = "block";
+
         return;
 
     }
 
-    currentUser=user;
 
-    await loadNotifications();
+    empty.style.display = "none";
 
-});
+
+    list.forEach(notification => {
+
+        renderNotification(notification);
+
+    });
+
+}
+
+
+/* ================================
+   LOAD NOTIFICATIONS REALTIME
+================================ */
+
+function listenForNotifications(){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    if(unsubscribeNotifications){
+
+        unsubscribeNotifications();
+
+        unsubscribeNotifications = null;
+
+    }
+
+
+    loading.style.display = "block";
+
+    empty.style.display = "none";
+
+    notificationsContainer.innerHTML = "";
+
+
+    /*
+     * IMPORTANT:
+     *
+     * We query only the current
+     * customer's notifications.
+     *
+     * This matches the Firestore
+     * security rules.
+     */
+
+    const notificationsQuery = query(
+
+        collection(db,"notifications"),
+
+        where(
+            "uid",
+            "==",
+            currentUser.uid
+        ),
+
+        orderBy(
+            "createdAt",
+            "desc"
+        )
+
+    );
+
+
+    unsubscribeNotifications =
+        onSnapshot(
+
+            notificationsQuery,
+
+            snapshot => {
+
+                const list = [];
+
+
+                snapshot.forEach(notificationDoc => {
+
+                    list.push({
+
+                        id: notificationDoc.id,
+
+                        ...notificationDoc.data()
+
+                    });
+
+                });
+
+
+                displayNotifications(list);
+
+            },
+
+
+            error => {
+
+                console.error(
+                    "Notification error:",
+                    error
+                );
+
+
+                loading.style.display = "none";
+
+
+                notificationsContainer.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            ⚠️
+                        </div>
+
+                        <h3>
+                            Unable to Load Notifications
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(
+                                error.message
+                            )}
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        );
+
+}
+
+
+/* ================================
+   MANUAL REFRESH
+================================ */
+
+async function refreshNotifications(){
+
+    if(!currentUser){
+
+        return;
+
+    }
+
+
+    refreshButton.disabled = true;
+
+    refreshButton.textContent =
+        "Refreshing...";
+
+
+    try{
+
+        const notificationsQuery = query(
+
+            collection(db,"notifications"),
+
+            where(
+                "uid",
+                "==",
+                currentUser.uid
+            ),
+
+            orderBy(
+                "createdAt",
+                "desc"
+            )
+
+        );
+
+
+        const snapshot =
+            await getDocs(
+                notificationsQuery
+            );
+
+
+        const list = [];
+
+
+        snapshot.forEach(notificationDoc => {
+
+            list.push({
+
+                id: notificationDoc.id,
+
+                ...notificationDoc.data()
+
+            });
+
+        });
+
+
+        displayNotifications(list);
+
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+
+    refreshButton.disabled = false;
+
+    refreshButton.textContent =
+        "↻ Refresh";
+
+}
+
+
+/* ================================
+   AUTH
+================================ */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if(!user){
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        currentUser = user;
+
+        listenForNotifications();
+
+    }
+);
+
+
+/* ================================
+   REFRESH BUTTON
+================================ */
 
 refreshButton.addEventListener(
     "click",
-    async()=>{
+    refreshNotifications
+);
 
-        refreshButton.disabled=true;
-        refreshButton.textContent="Refreshing...";
 
-        await loadNotifications();
+/* ================================
+   CLEANUP
+================================ */
 
-        refreshButton.disabled=false;
-        refreshButton.textContent="↻ Refresh";
+window.addEventListener(
+    "beforeunload",
+    () => {
+
+        if(unsubscribeNotifications){
+
+            unsubscribeNotifications();
+
+        }
 
     }
 );
