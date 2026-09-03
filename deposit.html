@@ -3,707 +3,698 @@
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Deposit Funds | Fame Store</title>
-
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --blue: #0757d9;
-            --blue-dark: #0647b5;
-            --blue-light: #eef5ff;
-            --yellow: #ffc928;
-            --yellow-dark: #e9b400;
-            --text: #101828;
-            --muted: #667085;
-            --border: #e4eaf2;
-            --white: #ffffff;
-            --green: #087443;
-        }
-
-        body {
-            font-family:
-                Inter,
-                Arial,
-                Helvetica,
-                sans-serif;
-
-            min-height: 100vh;
-
-            background:
-                radial-gradient(
-                    circle at top right,
-                    rgba(7, 87, 217, .10),
-                    transparent 35%
-                ),
-                radial-gradient(
-                    circle at bottom left,
-                    rgba(255, 201, 40, .12),
-                    transparent 35%
-                ),
-                linear-gradient(
-                    135deg,
-                    #f5f9ff 0%,
-                    #ffffff 48%,
-                    #fffbea 100%
-                );
-
-            color: var(--text);
-
-            padding:
-                20px 15px 40px;
-        }
-
-        .container {
-            width: min(540px, 100%);
-            margin: auto;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        .header {
-            text-align: center;
-            padding: 12px 0 25px;
-        }
-
-        .logo {
-            width: 64px;
-            height: 64px;
-
-            margin: 0 auto 12px;
-
-            display: grid;
-            place-items: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--yellow),
-                    #ffe27a
-                );
-
-            border-radius: 19px;
-
-            font-size: 30px;
-
-            box-shadow:
-                0 12px 30px
-                rgba(255, 201, 40, .25);
-        }
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Deposit | Fame Store</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --blue:#0757d9;
+    --blue-dark:#0647b5;
+    --blue-light:#eef5ff;
+    --yellow:#ffc928;
+    --yellow-dark:#eab400;
+    --text:#101828;
+    --muted:#667085;
+    --border:#e4eaf2;
+    --green:#087443;
+}
+
+body{
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(7,87,217,.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(255,201,40,.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #f5f9ff,
+            #ffffff,
+            #fffbea
+        );
+
+    color:var(--text);
+
+    padding:20px 15px 40px;
+}
 
-        .header h1 {
-            font-size: 27px;
-            font-weight: 800;
-            color: var(--blue);
-            letter-spacing: -.5px;
-        }
+.container{
+    width:min(540px,100%);
+    margin:auto;
+}
 
-        .header p {
-            margin-top: 6px;
-            color: var(--muted);
-            font-size: 13px;
-        }
+/* HEADER */
 
-        /* =========================
-           MAIN CARD
-        ========================= */
+.header{
+    text-align:center;
+    padding:12px 0 25px;
+}
 
-        .card {
-            background: var(--white);
+.logo{
+    width:64px;
+    height:64px;
 
-            border:
-                1px solid var(--border);
+    margin:0 auto 12px;
 
-            border-radius: 22px;
+    display:grid;
+    place-items:center;
 
-            padding: 25px;
+    background:
+        linear-gradient(
+            135deg,
+            var(--yellow),
+            #ffe27a
+        );
 
-            margin-bottom: 18px;
+    border-radius:19px;
 
-            box-shadow:
-                0 20px 55px
-                rgba(7, 87, 217, .09);
-        }
+    font-size:30px;
 
-        .card-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 13px;
+    box-shadow:
+        0 12px 30px
+        rgba(255,201,40,.25);
+}
 
-            margin-bottom: 8px;
-        }
+.header h1{
+    font-size:27px;
+    font-weight:800;
+    color:var(--blue);
+}
 
-        .card-icon {
-            width: 43px;
-            height: 43px;
+.header p{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:13px;
+}
 
-            flex-shrink: 0;
+/* CARD */
 
-            display: grid;
-            place-items: center;
+.card{
+    background:#fff;
 
-            border-radius: 13px;
+    border:1px solid var(--border);
 
-            background: var(--blue-light);
+    border-radius:22px;
 
-            font-size: 20px;
-        }
+    padding:25px;
 
-        .card h2 {
-            font-size: 20px;
-            font-weight: 800;
-            line-height: 1.3;
-        }
+    margin-bottom:18px;
 
-        .description {
-            color: var(--muted);
+    box-shadow:
+        0 20px 55px
+        rgba(7,87,217,.09);
+}
 
-            font-size: 13px;
+.card-header{
+    display:flex;
+    align-items:center;
+    gap:13px;
 
-            line-height: 1.65;
+    margin-bottom:10px;
+}
 
-            margin:
-                10px 0 21px;
-        }
+.card-icon{
+    width:45px;
+    height:45px;
 
-        /* =========================
-           BANK ACCOUNT
-        ========================= */
+    flex-shrink:0;
 
-        .bank-box {
-            background:
-                linear-gradient(
-                    135deg,
-                    #f5f9ff,
-                    #ffffff
-                );
+    display:grid;
+    place-items:center;
 
-            border:
-                1px solid #dbe7fa;
+    background:var(--blue-light);
 
-            border-radius: 17px;
+    border-radius:13px;
 
-            padding: 8px 17px;
-        }
+    font-size:21px;
+}
 
-        .bank-row {
-            padding: 14px 0;
+.card h2{
+    font-size:20px;
+    font-weight:800;
+}
 
-            border-bottom:
-                1px solid #e6edf7;
-        }
+.description{
+    color:var(--muted);
 
-        .bank-row:last-child {
-            border-bottom: none;
-        }
+    font-size:13px;
 
-        .label {
-            display: block;
+    line-height:1.65;
 
-            color: var(--muted);
+    margin:
+        10px 0 21px;
+}
 
-            font-size: 11px;
+/* GENERATE ACCOUNT */
 
-            font-weight: 600;
+.generate-box{
+    text-align:center;
 
-            margin-bottom: 5px;
+    background:
+        linear-gradient(
+            135deg,
+            #f5f9ff,
+            #ffffff
+        );
 
-            text-transform: uppercase;
+    border:
+        1px solid #dbe7fa;
 
-            letter-spacing: .4px;
-        }
+    border-radius:17px;
 
-        .value {
-            display: block;
+    padding:25px 18px;
+}
 
-            color: var(--text);
+.generate-icon{
+    width:58px;
+    height:58px;
 
-            font-size: 15px;
+    margin:0 auto 14px;
 
-            font-weight: 750;
-        }
+    display:grid;
+    place-items:center;
 
-        .account-number {
-            color: var(--blue);
+    border-radius:17px;
 
-            font-size: 23px;
+    background:#fffbea;
 
-            letter-spacing: 1.5px;
-        }
+    border:1px solid #f5df91;
 
-        /* =========================
-           NOTICE
-        ========================= */
+    font-size:27px;
+}
 
-        .notice {
-            display: flex;
+.generate-box h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
 
-            gap: 10px;
+.generate-box p{
+    color:var(--muted);
 
-            align-items: flex-start;
+    font-size:12px;
 
-            background: #fffbea;
+    line-height:1.6;
 
-            border:
-                1px solid #f5df91;
+    max-width:350px;
 
-            color: #735600;
+    margin:auto;
+}
 
-            border-radius: 13px;
+/* BUTTON */
 
-            padding: 13px;
+.btn{
+    width:100%;
 
-            font-size: 11px;
+    min-height:52px;
 
-            line-height: 1.65;
+    border:0;
 
-            margin-top: 17px;
-        }
+    border-radius:12px;
 
-        .notice-icon {
-            font-size: 17px;
-            flex-shrink: 0;
-        }
+    margin-top:19px;
 
-        /* =========================
-           BUTTONS
-        ========================= */
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            #176ce8
+        );
 
-        .btn {
-            width: 100%;
+    color:#fff;
 
-            min-height: 52px;
+    font-family:inherit;
 
-            border: none;
+    font-size:14px;
 
-            border-radius: 12px;
+    font-weight:800;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--blue),
-                    #176ce8
-                );
+    cursor:pointer;
 
-            color: #fff;
+    box-shadow:
+        0 10px 25px
+        rgba(7,87,217,.18);
 
-            font-family: inherit;
+    transition:.2s;
+}
 
-            font-size: 14px;
+.btn:hover{
+    transform:translateY(-1px);
 
-            font-weight: 800;
+    box-shadow:
+        0 13px 30px
+        rgba(7,87,217,.23);
+}
 
-            cursor: pointer;
+.btn:active{
+    transform:translateY(0);
+}
 
-            margin-top: 19px;
+.btn:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+    transform:none;
+}
 
-            box-shadow:
-                0 10px 25px
-                rgba(7, 87, 217, .18);
+/* GENERATE BUTTON */
 
-            transition:
-                transform .2s ease,
-                box-shadow .2s ease,
-                background .2s ease;
-        }
+.generate-btn{
+    background:
+        linear-gradient(
+            135deg,
+            var(--yellow),
+            #ffd84f
+        );
 
-        .btn:hover {
-            transform: translateY(-1px);
+    color:#171717;
 
-            box-shadow:
-                0 13px 30px
-                rgba(7, 87, 217, .23);
-        }
+    box-shadow:
+        0 10px 25px
+        rgba(255,201,40,.22);
+}
 
-        .btn:active {
-            transform: translateY(0);
-        }
+.generate-btn:hover{
+    background:
+        linear-gradient(
+            135deg,
+            #f4bd00,
+            var(--yellow)
+        );
+}
 
-        .btn:disabled {
-            opacity: .65;
-            cursor: not-allowed;
-            transform: none;
-        }
+/* BANK */
 
-        .paid-btn {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--yellow),
-                    #ffd84f
-                );
+.bank-box{
+    background:
+        linear-gradient(
+            135deg,
+            #f5f9ff,
+            #ffffff
+        );
 
-            color: #171717;
+    border:
+        1px solid #dbe7fa;
 
-            box-shadow:
-                0 10px 25px
-                rgba(255, 201, 40, .22);
-        }
+    border-radius:17px;
 
-        .paid-btn:hover {
-            background:
-                linear-gradient(
-                    135deg,
-                    #f4bd00,
-                    var(--yellow)
-                );
-        }
+    padding:8px 17px;
+}
 
-        /* =========================
-           PAYMENT FORM
-        ========================= */
+.bank-row{
+    padding:14px 0;
 
-        .form-group {
-            margin-bottom: 18px;
-        }
+    border-bottom:
+        1px solid #e6edf7;
+}
 
-        label {
-            display: block;
+.bank-row:last-child{
+    border-bottom:0;
+}
 
-            color: #344054;
+.label{
+    display:block;
 
-            font-size: 12px;
+    color:var(--muted);
 
-            font-weight: 750;
+    font-size:11px;
 
-            margin-bottom: 7px;
-        }
+    font-weight:600;
 
-        input {
-            width: 100%;
+    margin-bottom:5px;
 
-            height: 51px;
+    text-transform:uppercase;
 
-            border:
-                1px solid #d9e0ea;
+    letter-spacing:.4px;
+}
 
-            border-radius: 11px;
+.value{
+    display:block;
 
-            padding:
-                0 14px;
+    color:var(--text);
 
-            color: var(--text);
+    font-size:15px;
 
-            background: #fff;
+    font-weight:750;
+}
 
-            font-family: inherit;
+.account-number{
+    color:var(--blue);
 
-            font-size: 14px;
+    font-size:23px;
 
-            outline: none;
+    letter-spacing:1.5px;
+}
 
-            transition:
-                border-color .2s,
-                box-shadow .2s;
-        }
+/* NOTICE */
 
-        input::placeholder {
-            color: #98a2b3;
-        }
+.notice{
+    display:flex;
 
-        input:focus {
-            border-color: var(--blue);
+    gap:10px;
 
-            box-shadow:
-                0 0 0 4px
-                rgba(7, 87, 217, .08);
-        }
+    align-items:flex-start;
 
-        input[type="number"] {
-            appearance: textfield;
-        }
+    background:#fffbea;
 
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            appearance: none;
-        }
+    border:
+        1px solid #f5df91;
 
-        /* =========================
-           MESSAGE
-        ========================= */
+    color:#735600;
 
-        .message {
-            display: none;
+    border-radius:13px;
 
-            padding: 13px;
+    padding:13px;
 
-            border-radius: 11px;
+    font-size:11px;
 
-            font-size: 12px;
+    line-height:1.65;
 
-            line-height: 1.5;
+    margin-top:17px;
+}
 
-            margin-bottom: 17px;
-        }
+.notice-icon{
+    font-size:17px;
+    flex-shrink:0;
+}
 
-        .message.error {
-            display: block;
+/* FORM */
 
-            color: #b42318;
+.form-group{
+    margin-bottom:18px;
+}
 
-            background: #fff1f0;
+label{
+    display:block;
 
-            border:
-                1px solid #ffd3d0;
-        }
+    color:#344054;
 
-        .message.success {
-            display: block;
+    font-size:12px;
 
-            color: #087443;
+    font-weight:750;
 
-            background: #ecfff4;
+    margin-bottom:7px;
+}
 
-            border:
-                1px solid #b9efd1;
-        }
+input{
+    width:100%;
 
-        /* =========================
-           SECURITY NOTICE
-        ========================= */
+    height:51px;
 
-        .security-notice {
-            margin-top: 17px;
+    border:
+        1px solid #d9e0ea;
 
-            padding: 12px;
+    border-radius:11px;
 
-            border-radius: 11px;
+    padding:0 14px;
 
-            background: #f8fafc;
+    color:var(--text);
 
-            border:
-                1px solid #e6eaf0;
+    background:#fff;
 
-            color: #667085;
+    font-family:inherit;
 
-            font-size: 11px;
+    font-size:14px;
 
-            line-height: 1.6;
-        }
+    outline:none;
 
-        /* =========================
-           BACK LINK
-        ========================= */
+    transition:
+        border-color .2s,
+        box-shadow .2s;
+}
 
-        .back {
-            display: block;
+input::placeholder{
+    color:#98a2b3;
+}
 
-            text-align: center;
+input:focus{
+    border-color:var(--blue);
 
-            color: var(--blue);
+    box-shadow:
+        0 0 0 4px
+        rgba(7,87,217,.08);
+}
 
-            text-decoration: none;
+input[type="number"]{
+    appearance:textfield;
+}
 
-            font-size: 12px;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    appearance:none;
+}
 
-            font-weight: 700;
+/* MESSAGE */
 
-            margin:
-                22px 0;
-        }
+.message{
+    display:none;
 
-        .back:hover {
-            text-decoration: underline;
-        }
+    padding:13px;
 
-        /* =========================
-           SUCCESS SCREEN
-        ========================= */
+    border-radius:11px;
 
-        .success-screen {
-            display: none;
+    font-size:12px;
 
-            text-align: center;
+    line-height:1.5;
 
-            background: #fff;
+    margin-bottom:17px;
+}
 
-            border:
-                1px solid var(--border);
+.message.error{
+    display:block;
 
-            border-radius: 22px;
+    color:#b42318;
 
-            padding:
-                42px 25px;
+    background:#fff1f0;
 
-            box-shadow:
-                0 20px 55px
-                rgba(7, 87, 217, .09);
-        }
+    border:1px solid #ffd3d0;
+}
 
-        .success-icon {
-            width: 72px;
-            height: 72px;
+/* SECURITY */
 
-            margin:
-                0 auto 20px;
+.security-notice{
+    margin-top:17px;
 
-            border-radius: 50%;
+    padding:12px;
 
-            display: grid;
-            place-items: center;
+    border-radius:11px;
 
-            background: #ecfff4;
+    background:#f8fafc;
 
-            color: var(--green);
+    border:1px solid #e6eaf0;
 
-            border:
-                1px solid #b9efd1;
+    color:#667085;
 
-            font-size: 35px;
+    font-size:11px;
 
-            font-weight: 900;
-        }
+    line-height:1.6;
+}
 
-        .success-screen h2 {
-            color: var(--text);
+/* BACK */
 
-            font-size: 21px;
+.back{
+    display:block;
 
-            line-height: 1.4;
+    text-align:center;
 
-            margin-bottom: 12px;
-        }
+    color:var(--blue);
 
-        .success-message {
-            color: var(--muted);
+    text-decoration:none;
 
-            font-size: 13px;
+    font-size:12px;
 
-            line-height: 1.7;
+    font-weight:700;
 
-            margin-bottom: 20px;
-        }
+    margin:22px 0;
+}
 
-        .pending-text {
-            display: inline-block;
+.back:hover{
+    text-decoration:underline;
+}
 
-            background: #fffbea;
+/* SUCCESS */
 
-            border:
-                1px solid #f5df91;
+.success-screen{
+    display:none;
 
-            color: #735600;
+    text-align:center;
 
-            padding:
-                9px 14px;
+    background:#fff;
 
-            border-radius: 20px;
+    border:1px solid var(--border);
 
-            font-size: 11px;
+    border-radius:22px;
 
-            font-weight: 800;
+    padding:42px 25px;
 
-            margin-bottom: 23px;
-        }
+    box-shadow:
+        0 20px 55px
+        rgba(7,87,217,.09);
+}
 
-        .support-link {
-            display: block;
+.success-icon{
+    width:72px;
+    height:72px;
 
-            color: var(--blue);
+    margin:
+        0 auto 20px;
 
-            font-size: 13px;
+    border-radius:50%;
 
-            font-weight: 750;
+    display:grid;
+    place-items:center;
 
-            text-decoration: none;
+    background:#ecfff4;
 
-            line-height: 1.5;
+    color:var(--green);
 
-            margin-bottom: 22px;
-        }
+    border:
+        1px solid #b9efd1;
 
-        .support-link:hover {
-            text-decoration: underline;
-        }
+    font-size:35px;
 
-        .dashboard-btn {
-            display: block;
+    font-weight:900;
+}
 
-            width: 100%;
+.success-screen h2{
+    font-size:21px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--blue),
-                    #176ce8
-                );
+    line-height:1.4;
 
-            color: #fff;
+    margin-bottom:12px;
+}
 
-            padding:
-                15px 20px;
+.success-message{
+    color:var(--muted);
 
-            border-radius: 11px;
+    font-size:13px;
 
-            font-size: 13px;
+    line-height:1.7;
 
-            font-weight: 800;
+    margin-bottom:20px;
+}
 
-            text-decoration: none;
-        }
+.pending-text{
+    display:inline-block;
 
-        .dashboard-btn:hover {
-            background: var(--blue-dark);
-        }
+    background:#fffbea;
 
-        /* =========================
-           HIDDEN
-        ========================= */
+    border:
+        1px solid #f5df91;
 
-        .hidden {
-            display: none !important;
-        }
+    color:#735600;
 
-        /* =========================
-           MOBILE
-        ========================= */
+    padding:
+        9px 14px;
 
-        @media (max-width: 500px) {
+    border-radius:20px;
 
-            body {
-                padding:
-                    12px 12px 30px;
-            }
+    font-size:11px;
 
-            .header {
-                padding-top: 10px;
-            }
+    font-weight:800;
 
-            .header h1 {
-                font-size: 24px;
-            }
+    margin-bottom:23px;
+}
 
-            .card {
-                padding: 20px;
-                border-radius: 19px;
-            }
+.support-link{
+    display:block;
 
-            .account-number {
-                font-size: 21px;
-            }
+    color:var(--blue);
 
-            .success-screen {
-                padding:
-                    35px 20px;
-            }
+    font-size:13px;
 
-        }
+    font-weight:750;
 
-    </style>
+    text-decoration:none;
+
+    margin-bottom:22px;
+}
+
+.dashboard-btn{
+    display:block;
+
+    width:100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--blue),
+            #176ce8
+        );
+
+    color:#fff;
+
+    padding:15px 20px;
+
+    border-radius:11px;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    text-decoration:none;
+}
+
+/* HIDDEN */
+
+.hidden{
+    display:none !important;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    body{
+        padding:
+            12px 12px 30px;
+    }
+
+    .header h1{
+        font-size:24px;
+    }
+
+    .card{
+        padding:20px;
+        border-radius:19px;
+    }
+
+    .account-number{
+        font-size:21px;
+    }
+
+    .success-screen{
+        padding:
+            35px 20px;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -714,353 +705,388 @@
 <div class="container">
 
 
-    <!-- =========================
-         HEADER
-    ========================= -->
+<!-- =========================
+     HEADER
+========================= -->
 
-    <div class="header">
+<div class="header">
 
-        <div class="logo">
-            🛍️
+    <div class="logo">
+        🛍️
+    </div>
+
+    <h1>
+        Fame Store
+    </h1>
+
+    <p>
+        Send gifts 🎁, share love ❤️
+    </p>
+
+</div>
+
+
+<!-- =========================
+     STEP 1
+     GENERATE ACCOUNT
+========================= -->
+
+<div
+    class="card"
+    id="generateCard"
+>
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🏦
         </div>
 
-        <h1>
-            Fame Store
-        </h1>
+        <h2>
+            Deposit Funds
+        </h2>
+
+    </div>
+
+
+    <p class="description">
+
+        Generate your virtual account below
+        to get the Fame Store account details
+        you will use for your deposit.
+
+    </p>
+
+
+    <div class="generate-box">
+
+        <div class="generate-icon">
+            💳
+        </div>
+
+        <h3>
+            Generate Your Virtual Account
+        </h3>
 
         <p>
-            Send gifts 🎁, share love ❤️
+            Tap the button below to display
+            the account details for making
+            your deposit.
         </p>
 
     </div>
 
 
-    <!-- =========================
-         BANK DETAILS
-    ========================= -->
-
-    <div
-        class="card"
-        id="bankCard"
+    <button
+        type="button"
+        class="btn generate-btn"
+        id="generateButton"
     >
 
-        <div class="card-header">
+        GENERATE VIRTUAL ACCOUNT
 
-            <div class="card-icon">
-                🏦
-            </div>
+    </button>
 
-            <div>
+</div>
 
-                <h2>
-                    Deposit Funds
-                </h2>
 
-            </div>
+<!-- =========================
+     STEP 2
+     ACCOUNT DETAILS
+========================= -->
+
+<div
+    class="card hidden"
+    id="bankCard"
+>
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🏦
+        </div>
+
+        <h2>
+            Your Virtual Account
+        </h2>
+
+    </div>
+
+
+    <p class="description">
+
+        Transfer the amount you want to deposit
+        to the account below.
+
+    </p>
+
+
+    <div class="bank-box">
+
+
+        <div class="bank-row">
+
+            <span class="label">
+                Bank Name
+            </span>
+
+            <span class="value">
+                TENN-MFB
+            </span>
 
         </div>
 
 
-        <p class="description">
+        <div class="bank-row">
 
-            Transfer the amount you want to deposit
-            to the Fame Store account below.
+            <span class="label">
+                Account Number
+            </span>
 
-        </p>
-
-
-        <!-- BANK -->
-
-        <div class="bank-box">
-
-
-            <div class="bank-row">
-
-                <span class="label">
-                    Bank Name
-                </span>
-
-                <span class="value">
-                    TENN-MFB
-                </span>
-
-            </div>
-
-
-            <div class="bank-row">
-
-                <span class="label">
-                    Account Number
-                </span>
-
-                <span class="value account-number">
-                    5777198543
-                </span>
-
-            </div>
-
-
-            <div class="bank-row">
-
-                <span class="label">
-                    Account Name
-                </span>
-
-                <span class="value">
-                    Promise Omowumi Adeyeye
-                </span>
-
-            </div>
-
+            <span class="value account-number">
+                5777198543
+            </span>
 
         </div>
 
 
-        <!-- NOTICE -->
+        <div class="bank-row">
 
-        <div class="notice">
+            <span class="label">
+                Account Name
+            </span>
 
-            <div class="notice-icon">
-                ℹ️
-            </div>
-
-            <div>
-
-                After making the transfer, click
-                <strong>I Have Paid</strong>
-                and provide your payment details.
-
-            </div>
+            <span class="value">
+                Promise Omowumi Adeyeye
+            </span>
 
         </div>
 
 
-        <!-- PAID BUTTON -->
+    </div>
+
+
+    <div class="notice">
+
+        <div class="notice-icon">
+            ℹ️
+        </div>
+
+        <div>
+
+            After making the transfer, click
+            <strong>I Have Paid</strong>
+            and provide your payment details.
+
+        </div>
+
+    </div>
+
+
+    <button
+        type="button"
+        class="btn"
+        id="paidButton"
+    >
+
+        I HAVE PAID
+
+    </button>
+
+</div>
+
+
+<!-- =========================
+     STEP 3
+     PAYMENT DETAILS
+========================= -->
+
+<div
+    class="card hidden"
+    id="paymentCard"
+>
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            🧾
+        </div>
+
+        <h2>
+            Payment Details
+        </h2>
+
+    </div>
+
+
+    <p class="description">
+
+        Enter the details of the payment you
+        just made. Your payment will be reviewed
+        by Fame Store administration.
+
+    </p>
+
+
+    <div
+        id="message"
+        class="message"
+    ></div>
+
+
+    <form id="depositForm">
+
+
+        <div class="form-group">
+
+            <label for="amount">
+                Amount Paid (₦)
+            </label>
+
+            <input
+                type="number"
+                id="amount"
+                min="1"
+                step="0.01"
+                inputmode="decimal"
+                placeholder="Example: 10000"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="senderName">
+                Sender Name
+            </label>
+
+            <input
+                type="text"
+                id="senderName"
+                placeholder="Name used for the transfer"
+                autocomplete="name"
+                maxlength="100"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="transactionReference">
+                Transaction Reference
+            </label>
+
+            <input
+                type="text"
+                id="transactionReference"
+                placeholder="Enter transaction reference"
+                maxlength="150"
+                required
+            >
+
+        </div>
+
 
         <button
-            type="button"
-            class="btn paid-btn"
-            id="paidButton"
+            type="submit"
+            class="btn"
+            id="submitButton"
         >
 
-            I Have Paid
+            SUBMIT PAYMENT
 
         </button>
 
 
+    </form>
+
+
+    <div class="security-notice">
+
+        🔒 Your payment information is securely
+        submitted to Fame Store administration
+        for review. Your wallet will only be
+        credited after your payment is approved.
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SUCCESS
+========================= -->
+
+<div
+    class="success-screen"
+    id="successScreen"
+>
+
+    <div class="success-icon">
+        ✓
     </div>
 
 
-    <!-- =========================
-         PAYMENT DETAILS
-    ========================= -->
+    <h2>
+        Payment Submitted Successfully
+    </h2>
 
-    <div
-        class="card hidden"
-        id="paymentCard"
+
+    <p class="success-message">
+
+        Your deposit is now pending.
+
+        <br><br>
+
+        Please wait 1 to 10 minutes while we
+        confirm your payment.
+
+    </p>
+
+
+    <div class="pending-text">
+        ⏳ Deposit Pending
+    </div>
+
+
+    <a
+        href="support.html"
+        class="support-link"
     >
 
-        <div class="card-header">
+        Payment not reflecting?
+        Click to contact support
 
-            <div class="card-icon">
-                🧾
-            </div>
+    </a>
 
-            <div>
-
-                <h2>
-                    Payment Details
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <p class="description">
-
-            Enter the details of the payment you
-            just made. Your payment will be reviewed
-            by Fame Store administration.
-
-        </p>
-
-
-        <!-- MESSAGE -->
-
-        <div
-            id="message"
-            class="message"
-        ></div>
-
-
-        <!-- FORM -->
-
-        <form id="depositForm">
-
-
-            <!-- AMOUNT -->
-
-            <div class="form-group">
-
-                <label for="amount">
-                    Amount Paid (₦)
-                </label>
-
-                <input
-                    type="number"
-                    id="amount"
-                    min="1"
-                    step="0.01"
-                    inputmode="decimal"
-                    placeholder="Example: 10000"
-                    required
-                >
-
-            </div>
-
-
-            <!-- SENDER -->
-
-            <div class="form-group">
-
-                <label for="senderName">
-                    Sender Name
-                </label>
-
-                <input
-                    type="text"
-                    id="senderName"
-                    placeholder="Name used for the transfer"
-                    autocomplete="name"
-                    maxlength="100"
-                    required
-                >
-
-            </div>
-
-
-            <!-- REFERENCE -->
-
-            <div class="form-group">
-
-                <label for="transactionReference">
-                    Transaction Reference
-                </label>
-
-                <input
-                    type="text"
-                    id="transactionReference"
-                    placeholder="Enter transaction reference"
-                    maxlength="150"
-                    required
-                >
-
-            </div>
-
-
-            <!-- SUBMIT -->
-
-            <button
-                type="submit"
-                class="btn"
-                id="submitButton"
-            >
-
-                Submit Payment
-
-            </button>
-
-
-        </form>
-
-
-        <div class="security-notice">
-
-            🔒 Your payment information is securely
-            submitted to Fame Store administration
-            for review. Your wallet will only be
-            credited after the payment is approved.
-
-        </div>
-
-
-    </div>
-
-
-    <!-- =========================
-         SUCCESS SCREEN
-    ========================= -->
-
-    <div
-        class="success-screen"
-        id="successScreen"
-    >
-
-        <div class="success-icon">
-            ✓
-        </div>
-
-
-        <h2>
-            Payment submitted successfully.
-        </h2>
-
-
-        <p class="success-message">
-
-            Your deposit is now pending.
-
-            <br><br>
-
-            Please wait 1 to 10 minutes while we
-            confirm your payment.
-
-        </p>
-
-
-        <div class="pending-text">
-            ⏳ Deposit Pending
-        </div>
-
-
-        <a
-            href="support.html"
-            class="support-link"
-        >
-
-            Payment not reflecting?
-            Click to contact support
-
-        </a>
-
-
-        <a
-            href="dashboard.html"
-            class="dashboard-btn"
-        >
-
-            Go Back to Dashboard
-
-        </a>
-
-
-    </div>
-
-
-    <!-- =========================
-         BACK
-    ========================= -->
 
     <a
         href="dashboard.html"
-        class="back"
-        id="backLink"
+        class="dashboard-btn"
     >
 
-        ← Back to Dashboard
+        Go Back to Dashboard
 
     </a>
+
+</div>
+
+
+<!-- BACK -->
+
+<a
+    href="dashboard.html"
+    class="back"
+    id="backLink"
+>
+
+    ← Back to Dashboard
+
+</a>
 
 
 </div>
@@ -1074,43 +1100,31 @@
 <script type="module">
 
 
-/* =====================================
-   FIREBASE IMPORTS
-===================================== */
+/* FIREBASE */
 
 import {
-
     initializeApp
-
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import {
-
     getAuth,
-
     onAuthStateChanged
-
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import {
-
     getFirestore,
-
     collection,
-
     addDoc,
-
     serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-
-
-/* =====================================
-   FIREBASE CONFIG
-===================================== */
+/* CONFIG */
 
 const firebaseConfig = {
 
@@ -1138,10 +1152,7 @@ const firebaseConfig = {
 };
 
 
-
-/* =====================================
-   INITIALIZE FIREBASE
-===================================== */
+/* INITIALIZE */
 
 const app =
     initializeApp(firebaseConfig);
@@ -1153,19 +1164,26 @@ const db =
     getFirestore(app);
 
 
+/* ELEMENTS */
 
-/* =====================================
-   ELEMENTS
-===================================== */
-
-const paidButton =
+const generateCard =
     document.getElementById(
-        "paidButton"
+        "generateCard"
+    );
+
+const generateButton =
+    document.getElementById(
+        "generateButton"
     );
 
 const bankCard =
     document.getElementById(
         "bankCard"
+    );
+
+const paidButton =
+    document.getElementById(
+        "paidButton"
     );
 
 const paymentCard =
@@ -1214,20 +1232,14 @@ const message =
     );
 
 
-
-/* =====================================
-   CURRENT USER
-===================================== */
+/* CURRENT USER */
 
 let currentUser = null;
 
 let isSubmitting = false;
 
 
-
-/* =====================================
-   AUTH CHECK
-===================================== */
+/* AUTH */
 
 onAuthStateChanged(
     auth,
@@ -1242,18 +1254,49 @@ onAuthStateChanged(
 
         }
 
-
         currentUser = user;
-
-
-        console.log(
-            "Fame Store user:",
-            currentUser.uid
-        );
 
     }
 );
 
+
+/* =====================================
+   GENERATE VIRTUAL ACCOUNT
+===================================== */
+
+generateButton.addEventListener(
+    "click",
+    () => {
+
+        generateButton.disabled = true;
+
+        generateButton.textContent =
+            "ACCOUNT READY ✓";
+
+
+        setTimeout(
+            () => {
+
+                generateCard.classList.add(
+                    "hidden"
+                );
+
+                bankCard.classList.remove(
+                    "hidden"
+                );
+
+
+                bankCard.scrollIntoView({
+                    behavior:"smooth",
+                    block:"start"
+                });
+
+            },
+            500
+        );
+
+    }
+);
 
 
 /* =====================================
@@ -1264,56 +1307,40 @@ paidButton.addEventListener(
     "click",
     () => {
 
-        if (
-            paymentCard.classList.contains(
-                "hidden"
-            )
-        ) {
-
-            paymentCard.classList.remove(
-                "hidden"
-            );
-
-        }
-
+        paymentCard.classList.remove(
+            "hidden"
+        );
 
         paidButton.disabled = true;
 
         paidButton.textContent =
-            "Payment Details";
+            "PAYMENT DETAILS";
 
 
         paymentCard.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+            behavior:"smooth",
+            block:"start"
         });
 
     }
 );
 
 
+/* MESSAGE */
 
-/* =====================================
-   SHOW MESSAGE
-===================================== */
-
-function showMessage(
-    text,
-    type = "error"
-) {
+function showMessage(text){
 
     message.textContent =
         text;
 
     message.className =
-        "message " + type;
+        "message error";
 
 }
 
 
-
 /* =====================================
-   SUBMIT PAYMENT
+   SUBMIT DEPOSIT
 ===================================== */
 
 depositForm.addEventListener(
@@ -1323,18 +1350,10 @@ depositForm.addEventListener(
         event.preventDefault();
 
 
-        /* =========================
-           PREVENT DUPLICATE SUBMIT
-        ========================= */
-
         if (isSubmitting) {
             return;
         }
 
-
-        /* =========================
-           AUTH CHECK
-        ========================= */
 
         if (!currentUser) {
 
@@ -1347,25 +1366,21 @@ depositForm.addEventListener(
         }
 
 
-        /* =========================
-           GET VALUES
-        ========================= */
-
         const depositAmount =
             Number(
                 amountInput.value
             );
 
+
         const senderName =
             senderInput.value.trim();
+
 
         const transactionReference =
             referenceInput.value.trim();
 
 
-        /* =========================
-           VALIDATION
-        ========================= */
+        /* VALIDATION */
 
         if (
             !Number.isFinite(
@@ -1411,28 +1426,20 @@ depositForm.addEventListener(
         }
 
 
-        /* =========================
-           START SUBMIT
-        ========================= */
+        /* LOADING */
 
         isSubmitting = true;
 
         submitButton.disabled = true;
 
         submitButton.textContent =
-            "Submitting...";
+            "SUBMITTING...";
 
 
         try {
 
-            console.log(
-                "Submitting Fame Store deposit..."
-            );
 
-
-            /* =========================
-               CREATE DEPOSIT
-            ========================= */
+            /* CREATE DEPOSIT */
 
             const depositRef =
                 await addDoc(
@@ -1477,21 +1484,18 @@ depositForm.addEventListener(
 
 
             console.log(
-                "Deposit created:",
+                "Deposit submitted:",
                 depositRef.id
             );
 
 
-            /* =========================
-               RESET FORM
-            ========================= */
+            /* SUCCESS */
 
             depositForm.reset();
 
-
-            /* =========================
-               HIDE OTHER SCREENS
-            ========================= */
+            generateCard.classList.add(
+                "hidden"
+            );
 
             bankCard.classList.add(
                 "hidden"
@@ -1502,26 +1506,23 @@ depositForm.addEventListener(
             );
 
 
-            /* =========================
-               SHOW SUCCESS
-            ========================= */
-
             successScreen.style.display =
                 "block";
+
 
             backLink.style.display =
                 "none";
 
 
             successScreen.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
+                behavior:"smooth",
+                block:"start"
             });
 
 
         }
 
-        catch (error) {
+        catch(error){
 
             console.error(
                 "FIREBASE ERROR:",
@@ -1529,59 +1530,37 @@ depositForm.addEventListener(
             );
 
 
-            console.error(
-                "ERROR CODE:",
-                error.code
-            );
-
-
-            console.error(
-                "ERROR MESSAGE:",
-                error.message
-            );
-
-
             let errorMessage =
                 "Unable to submit payment. Please try again.";
 
 
-            if (
+            if(
                 error.code ===
                 "permission-denied"
-            ) {
+            ){
 
                 errorMessage =
                     "Payment submission was denied by Firestore. Please check your Firestore Rules.";
 
             }
 
-            else if (
+            else if(
                 error.code ===
                 "unauthenticated"
-            ) {
+            ){
 
                 errorMessage =
-                    "Your login session has expired. Please login again.";
+                    "You are not logged in. Please login again.";
 
             }
 
-            else if (
+            else if(
                 error.code ===
                 "unavailable"
-            ) {
+            ){
 
                 errorMessage =
-                    "Firebase is temporarily unavailable. Please check your internet connection and try again.";
-
-            }
-
-            else if (
-                error.code ===
-                "failed-precondition"
-            ) {
-
-                errorMessage =
-                    "Firestore is not ready. Please check your Firebase configuration.";
+                    "Firebase is temporarily unavailable. Check your internet connection.";
 
             }
 
@@ -1597,13 +1576,12 @@ depositForm.addEventListener(
                 false;
 
             submitButton.textContent =
-                "Submit Payment";
+                "SUBMIT PAYMENT";
 
         }
 
     }
 );
-
 
 </script>
 
