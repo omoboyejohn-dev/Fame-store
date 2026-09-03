@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Fame Store | Admin Orders</title>
 
@@ -21,6 +25,10 @@ body{
     color:#101828;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .header{
     background:#0757d9;
     color:#fff;
@@ -30,9 +38,11 @@ body{
 .header-inner{
     width:min(1200px,100%);
     margin:auto;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     gap:15px;
 }
 
@@ -52,17 +62,35 @@ body{
     border:0;
     background:#fff;
     color:#0757d9;
+
     padding:10px 15px;
+
     border-radius:9px;
+
     font-weight:800;
+
     cursor:pointer;
 }
+
+.logout-btn:hover{
+    background:#f1f5ff;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
     width:min(1200px,100%);
     margin:auto;
     padding:25px 16px 50px;
 }
+
+
+/* =========================
+   TITLE
+========================= */
 
 .page-title{
     margin-bottom:22px;
@@ -78,31 +106,52 @@ body{
     font-size:14px;
 }
 
+
+/* =========================
+   STATS
+========================= */
+
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
+
     gap:15px;
+
     margin-bottom:25px;
 }
 
 .stat-card{
     background:#fff;
+
     border:1px solid #e4e9f0;
+
     border-radius:15px;
+
     padding:18px;
-    box-shadow:0 5px 20px rgba(16,24,40,.05);
+
+    box-shadow:
+        0 5px 20px
+        rgba(16,24,40,.05);
 }
 
 .stat-label{
     color:#667085;
+
     font-size:13px;
+
     margin-bottom:8px;
 }
 
 .stat-number{
     font-size:26px;
+
     font-weight:800;
 }
+
+
+/* =========================
+   ORDERS
+========================= */
 
 .orders{
     display:flex;
@@ -112,40 +161,71 @@ body{
 
 .order-card{
     background:#fff;
+
     border:1px solid #e4e9f0;
+
     border-radius:17px;
+
     overflow:hidden;
-    box-shadow:0 7px 25px rgba(16,24,40,.06);
+
+    box-shadow:
+        0 7px 25px
+        rgba(16,24,40,.06);
 }
+
+
+/* =========================
+   ORDER TOP
+========================= */
 
 .order-top{
     padding:17px 18px;
+
     background:#f8fafc;
+
     border-bottom:1px solid #e4e9f0;
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
 }
 
 .order-id{
     font-size:13px;
+
     font-weight:800;
+
     word-break:break-all;
 }
 
 .order-date{
     color:#667085;
+
     font-size:12px;
+
     margin-top:5px;
 }
 
+
+/* =========================
+   STATUS
+========================= */
+
 .status{
     display:inline-block;
+
     padding:7px 11px;
+
     border-radius:20px;
+
     font-size:12px;
+
     font-weight:800;
+
     white-space:nowrap;
 }
 
@@ -164,48 +244,81 @@ body{
     color:#c1121f;
 }
 
+
+/* =========================
+   BODY
+========================= */
+
 .order-body{
     padding:18px;
 }
 
+
+/* =========================
+   PRODUCT
+========================= */
+
 .product-section{
     display:flex;
+
     align-items:center;
+
     gap:15px;
+
     padding-bottom:18px;
+
     border-bottom:1px solid #edf0f4;
 }
 
 .product-image{
     width:85px;
     height:85px;
+
     object-fit:cover;
+
     border-radius:12px;
+
     background:#eef2f6;
+
+    flex-shrink:0;
 }
 
 .product-name{
     font-size:16px;
+
     font-weight:800;
+
     margin-bottom:7px;
 }
 
 .product-price{
     color:#0757d9;
+
     font-size:17px;
+
     font-weight:800;
 }
 
+
+/* =========================
+   DETAILS
+========================= */
+
 .details{
     display:grid;
+
     grid-template-columns:1fr 1fr;
+
     gap:13px;
+
     margin-top:18px;
 }
 
 .detail{
     background:#f8fafc;
+
     border-radius:10px;
+
     padding:12px;
 }
 
@@ -215,79 +328,175 @@ body{
 
 .detail-label{
     color:#667085;
+
     font-size:11px;
+
     font-weight:700;
+
     margin-bottom:5px;
+
     text-transform:uppercase;
 }
 
 .detail-value{
     font-size:14px;
+
     font-weight:700;
+
     line-height:1.5;
+
     word-break:break-word;
 }
 
+
+/* =========================
+   ACTIONS
+========================= */
+
 .order-actions{
     padding:16px 18px;
+
     border-top:1px solid #edf0f4;
+
     display:flex;
+
     gap:10px;
 }
 
-.success-btn{
+.cancel-order-btn,
+.success-order-btn{
     flex:1;
+
     border:0;
-    background:#087443;
-    color:#fff;
+
     padding:13px;
+
     border-radius:9px;
+
     font-weight:800;
+
     cursor:pointer;
+
+    transition:.2s;
 }
 
-.success-btn:hover{
+.cancel-order-btn{
+    background:#fff0f0;
+
+    color:#c1121f;
+
+    border:1px solid #ffd0d0;
+}
+
+.cancel-order-btn:hover{
+    background:#ffe1e1;
+}
+
+.success-order-btn{
+    background:#087443;
+
+    color:#fff;
+}
+
+.success-order-btn:hover{
     background:#065b35;
 }
 
-.success-btn:disabled{
-    opacity:.6;
+.cancel-order-btn:disabled,
+.success-order-btn:disabled{
+    opacity:.55;
+
     cursor:not-allowed;
 }
 
-.cancel-btn{
-    border:0;
-    background:#fff0f0;
-    color:#c1121f;
-    padding:13px 18px;
-    border-radius:9px;
-    font-weight:800;
-    cursor:pointer;
+
+/* =========================
+   REFUND INFO
+========================= */
+
+.refund-box{
+    margin-top:18px;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    background:#fff8e1;
+
+    border:1px solid #f5df88;
+
+    color:#745600;
+
+    font-size:12px;
+
+    line-height:1.5;
 }
+
+.refund-success{
+    background:#e8fff2;
+
+    border-color:#b7efd0;
+
+    color:#087443;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty{
     background:#fff;
+
     border:1px solid #e4e9f0;
+
     border-radius:15px;
+
     padding:40px 20px;
+
     text-align:center;
+
     color:#667085;
 }
+
+.empty h3{
+    color:#101828;
+}
+
+
+/* =========================
+   LOADING
+========================= */
 
 .loading{
     text-align:center;
+
     padding:40px;
+
     color:#667085;
 }
 
+
+/* =========================
+   MESSAGE MODAL
+========================= */
+
 .message-overlay{
     display:none;
+
     position:fixed;
+
     inset:0;
-    background:rgba(16,24,40,.55);
+
+    background:
+        rgba(16,24,40,.55);
+
     z-index:9999;
+
     padding:20px;
+
     align-items:center;
+
     justify-content:center;
 }
 
@@ -297,46 +506,191 @@ body{
 
 .message-box{
     width:min(390px,100%);
+
     background:#fff;
+
     border-radius:20px;
+
     padding:28px 22px;
+
     text-align:center;
-    box-shadow:0 20px 70px rgba(0,0,0,.2);
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.2);
 }
 
 .message-icon{
     width:58px;
     height:58px;
+
     border-radius:50%;
+
     display:grid;
+
     place-items:center;
+
     margin:0 auto 15px;
+
     font-size:27px;
+
     background:#e8fff2;
 }
 
 .message-box h3{
     font-size:20px;
+
     margin-bottom:10px;
 }
 
 .message-box p{
     color:#667085;
+
     font-size:14px;
+
     line-height:1.6;
+
     margin-bottom:20px;
 }
 
 .close-btn{
     width:100%;
+
     border:0;
+
     background:#0757d9;
+
     color:#fff;
+
     padding:13px;
+
     border-radius:10px;
+
     font-weight:800;
+
     cursor:pointer;
 }
+
+
+/* =========================
+   CONFIRM MODAL
+========================= */
+
+.confirm-overlay{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(16,24,40,.60);
+
+    z-index:10000;
+
+    padding:20px;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.confirm-overlay.show{
+    display:flex;
+}
+
+.confirm-box{
+    width:min(430px,100%);
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:27px 22px;
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.25);
+}
+
+.confirm-icon{
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:#fff4d6;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:28px;
+
+    margin:0 auto 15px;
+}
+
+.confirm-box h3{
+    text-align:center;
+
+    font-size:20px;
+
+    margin-bottom:10px;
+}
+
+.confirm-box p{
+    text-align:center;
+
+    color:#667085;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
+}
+
+.confirm-actions{
+    display:flex;
+
+    gap:10px;
+}
+
+.confirm-cancel,
+.confirm-proceed{
+    flex:1;
+
+    border:0;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+.confirm-cancel{
+    background:#f2f4f7;
+
+    color:#344054;
+}
+
+.confirm-proceed{
+    background:#c1121f;
+
+    color:#fff;
+}
+
+.confirm-proceed:hover{
+    background:#a60f1a;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px){
 
@@ -358,6 +712,7 @@ body{
 
     .order-top{
         align-items:flex-start;
+
         flex-direction:column;
     }
 
@@ -365,8 +720,12 @@ body{
         flex-direction:column;
     }
 
-    .cancel-btn{
-        width:100%;
+    .confirm-actions{
+        flex-direction:column;
+    }
+
+    .product-section{
+        align-items:flex-start;
     }
 
 }
@@ -375,16 +734,28 @@ body{
 
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
     <div class="header-inner">
 
         <div class="brand">
+
             🛍️ Fame Store
-            <small>Admin Order Management</small>
+
+            <small>
+                Admin Order Management
+            </small>
+
         </div>
+
 
         <button
             class="logout-btn"
@@ -398,7 +769,13 @@ body{
 </header>
 
 
+
+<!-- =========================
+     MAIN
+========================= -->
+
 <main class="container">
+
 
     <div class="page-title">
 
@@ -413,7 +790,13 @@ body{
     </div>
 
 
+
+    <!-- =========================
+         STATS
+    ========================= -->
+
     <div class="stats">
+
 
         <div class="stat-card">
 
@@ -431,6 +814,7 @@ body{
         </div>
 
 
+
         <div class="stat-card">
 
             <div class="stat-label">
@@ -445,6 +829,7 @@ body{
             </div>
 
         </div>
+
 
 
         <div class="stat-card">
@@ -465,6 +850,11 @@ body{
     </div>
 
 
+
+    <!-- =========================
+         ORDERS
+    ========================= -->
+
     <div
         class="orders"
         id="orders"
@@ -479,7 +869,10 @@ body{
 </main>
 
 
-<!-- MESSAGE -->
+
+<!-- =========================
+     MESSAGE MODAL
+========================= -->
 
 <div
     class="message-overlay"
@@ -515,7 +908,64 @@ body{
 </div>
 
 
+
+<!-- =========================
+     CONFIRM CANCEL MODAL
+========================= -->
+
+<div
+    class="confirm-overlay"
+    id="confirmOverlay"
+>
+
+    <div class="confirm-box">
+
+        <div class="confirm-icon">
+            ⚠️
+        </div>
+
+        <h3>
+            Cancel Order?
+        </h3>
+
+        <p id="confirmText">
+
+            This will cancel the order and
+            return the customer's payment
+            to their Fame Store wallet.
+
+        </p>
+
+        <div class="confirm-actions">
+
+            <button
+                class="confirm-cancel"
+                id="confirmCancel"
+            >
+                Go Back
+            </button>
+
+            <button
+                class="confirm-proceed"
+                id="confirmProceed"
+            >
+                Yes, Cancel & Refund
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
 <script type="module">
+
+
+/* ==========================================
+   FIREBASE
+========================================== */
 
 import {
     auth,
@@ -532,13 +982,15 @@ import {
 import {
     collection,
     getDocs,
-    doc,
     getDoc,
+    doc,
     updateDoc,
     query,
     orderBy,
+    runTransaction,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 
 /* ==========================================
@@ -548,32 +1000,66 @@ import {
 const ordersContainer =
     document.getElementById("orders");
 
+
 const totalOrders =
     document.getElementById("totalOrders");
+
 
 const pendingOrders =
     document.getElementById("pendingOrders");
 
+
 const successfulOrders =
     document.getElementById("successfulOrders");
+
 
 const logoutBtn =
     document.getElementById("logoutBtn");
 
+
 const messageOverlay =
     document.getElementById("messageOverlay");
+
 
 const messageIcon =
     document.getElementById("messageIcon");
 
+
 const messageTitle =
     document.getElementById("messageTitle");
+
 
 const messageText =
     document.getElementById("messageText");
 
+
 const closeMessage =
     document.getElementById("closeMessage");
+
+
+const confirmOverlay =
+    document.getElementById("confirmOverlay");
+
+
+const confirmText =
+    document.getElementById("confirmText");
+
+
+const confirmCancel =
+    document.getElementById("confirmCancel");
+
+
+const confirmProceed =
+    document.getElementById("confirmProceed");
+
+
+
+/* ==========================================
+   CURRENT CANCEL ORDER
+========================================== */
+
+let selectedCancelOrder = null;
+
 
 
 /* ==========================================
@@ -594,6 +1080,7 @@ function money(value){
 }
 
 
+
 /* ==========================================
    ESCAPE HTML
 ========================================== */
@@ -610,28 +1097,39 @@ function escapeHTML(value){
 }
 
 
+
 /* ==========================================
    DATE
 ========================================== */
 
 function formatDate(timestamp){
 
-    if(!timestamp)
+    if(!timestamp){
+
         return "Date unavailable";
+
+    }
+
 
     try{
 
-        if(typeof timestamp.toDate === "function"){
+        if(
+            typeof timestamp.toDate ===
+            "function"
+        ){
 
-            return timestamp.toDate().toLocaleString(
-                "en-NG",
-                {
-                    dateStyle:"medium",
-                    timeStyle:"short"
-                }
-            );
+            return timestamp
+                .toDate()
+                .toLocaleString(
+                    "en-NG",
+                    {
+                        dateStyle:"medium",
+                        timeStyle:"short"
+                    }
+                );
 
         }
+
 
         return "Date unavailable";
 
@@ -644,8 +1142,43 @@ function formatDate(timestamp){
 }
 
 
+
 /* ==========================================
-   POPUP
+   GET ORDER AMOUNT
+========================================== */
+
+function getOrderAmount(order){
+
+    const possibleAmount =
+        order.total ??
+        order.productPrice ??
+        order.basePrice ??
+        order.amount ??
+        0;
+
+
+    const amount =
+        Number(possibleAmount);
+
+
+    if(
+        !Number.isFinite(amount) ||
+        amount <= 0
+    ){
+
+        return 0;
+
+    }
+
+
+    return amount;
+
+}
+
+
+
+/* ==========================================
+   MESSAGE
 ========================================== */
 
 function showMessage(
@@ -657,13 +1190,18 @@ function showMessage(
     messageIcon.textContent =
         success ? "✓" : "⚠️";
 
+
     messageTitle.textContent =
         title;
+
 
     messageText.textContent =
         text;
 
-    messageOverlay.classList.add("show");
+
+    messageOverlay.classList.add(
+        "show"
+    );
 
 }
 
@@ -672,10 +1210,36 @@ closeMessage.addEventListener(
     "click",
     () => {
 
-        messageOverlay.classList.remove("show");
+        messageOverlay.classList.remove(
+            "show"
+        );
 
     }
 );
+
+
+
+/* ==========================================
+   CLOSE CONFIRM MODAL
+========================================== */
+
+function closeConfirm(){
+
+    confirmOverlay.classList.remove(
+        "show"
+    );
+
+    selectedCancelOrder =
+        null;
+
+}
+
+
+confirmCancel.addEventListener(
+    "click",
+    closeConfirm
+);
+
 
 
 /* ==========================================
@@ -693,11 +1257,16 @@ async function checkAdmin(user){
                 user.uid
             );
 
+
         const userSnap =
-            await getDoc(userRef);
+            await getDoc(
+                userRef
+            );
 
 
-        if(!userSnap.exists()){
+        if(
+            !userSnap.exists()
+        ){
 
             return false;
 
@@ -708,7 +1277,10 @@ async function checkAdmin(user){
             userSnap.data();
 
 
-        return userData.role === "admin";
+        return (
+            userData.role ===
+            "admin"
+        );
 
     }catch(error){
 
@@ -717,6 +1289,7 @@ async function checkAdmin(user){
             error
         );
 
+
         return false;
 
     }
@@ -724,8 +1297,9 @@ async function checkAdmin(user){
 }
 
 
+
 /* ==========================================
-   AUTHENTICATION
+   AUTH
 ========================================== */
 
 onAuthStateChanged(
@@ -743,7 +1317,9 @@ onAuthStateChanged(
 
 
         const admin =
-            await checkAdmin(user);
+            await checkAdmin(
+                user
+            );
 
 
         if(!admin){
@@ -760,13 +1336,18 @@ onAuthStateChanged(
 
                     try{
 
-                        await signOut(auth);
+                        await signOut(
+                            auth
+                        );
 
                     }catch(error){
 
-                        console.error(error);
+                        console.error(
+                            error
+                        );
 
                     }
+
 
                     window.location.href =
                         "admin-login.html";
@@ -774,6 +1355,7 @@ onAuthStateChanged(
                 },
                 1800
             );
+
 
             return;
 
@@ -784,6 +1366,7 @@ onAuthStateChanged(
 
     }
 );
+
 
 
 /* ==========================================
@@ -798,6 +1381,7 @@ async function loadOrders(){
         </div>
     `;
 
+
     try{
 
         const ordersRef =
@@ -810,9 +1394,7 @@ async function loadOrders(){
         let snapshot;
 
 
-        /*
-         * Try newest orders first.
-         */
+        /* Try newest first */
 
         try{
 
@@ -866,18 +1448,22 @@ async function loadOrders(){
         );
 
 
-        /*
-         * Sort newest first.
-         */
+        /* Sort newest first */
 
         orders.sort(
             (a,b) => {
 
                 const aTime =
-                    a.createdAt?.toMillis?.() || 0;
+                    a.createdAt
+                        ?.toMillis?.() ||
+                    0;
+
 
                 const bTime =
-                    b.createdAt?.toMillis?.() || 0;
+                    b.createdAt
+                        ?.toMillis?.() ||
+                    0;
+
 
                 return bTime - aTime;
 
@@ -899,6 +1485,7 @@ async function loadOrders(){
 
 
         ordersContainer.innerHTML = `
+
             <div class="empty">
 
                 <h3>
@@ -906,15 +1493,20 @@ async function loadOrders(){
                 </h3>
 
                 <p style="margin-top:8px;">
-                    Please check your Firestore rules and try again.
+
+                    Please check your Firestore
+                    rules and try again.
+
                 </p>
 
             </div>
+
         `;
 
     }
 
 }
+
 
 
 /* ==========================================
@@ -930,18 +1522,26 @@ function renderOrders(orders){
     const pending =
         orders.filter(
             order =>
+
                 String(
-                    order.status || "pending"
-                ).toLowerCase() === "pending"
+                    order.status ||
+                    "pending"
+                ).toLowerCase() ===
+                "pending"
+
         ).length;
 
 
     const successful =
         orders.filter(
             order =>
+
                 String(
-                    order.status || ""
-                ).toLowerCase() === "successful"
+                    order.status ||
+                    ""
+                ).toLowerCase() ===
+                "successful"
+
         ).length;
 
 
@@ -956,6 +1556,7 @@ function renderOrders(orders){
     if(!orders.length){
 
         ordersContainer.innerHTML = `
+
             <div class="empty">
 
                 <h3>
@@ -963,10 +1564,14 @@ function renderOrders(orders){
                 </h3>
 
                 <p style="margin-top:8px;">
-                    Customer gift orders will appear here.
+
+                    Customer gift orders
+                    will appear here.
+
                 </p>
 
             </div>
+
         `;
 
         return;
@@ -974,7 +1579,8 @@ function renderOrders(orders){
     }
 
 
-    ordersContainer.innerHTML = "";
+    ordersContainer.innerHTML =
+        "";
 
 
     orders.forEach(
@@ -986,14 +1592,19 @@ function renderOrders(orders){
 
 
             const normalizedStatus =
-                String(status).toLowerCase();
+                String(
+                    status
+                ).toLowerCase();
 
 
             let statusClass =
                 "pending";
 
 
-            if(normalizedStatus === "successful"){
+            if(
+                normalizedStatus ===
+                "successful"
+            ){
 
                 statusClass =
                     "successful";
@@ -1001,7 +1612,10 @@ function renderOrders(orders){
             }
 
 
-            if(normalizedStatus === "cancelled"){
+            if(
+                normalizedStatus ===
+                "cancelled"
+            ){
 
                 statusClass =
                     "cancelled";
@@ -1009,8 +1623,16 @@ function renderOrders(orders){
             }
 
 
+            const amount =
+                getOrderAmount(
+                    order
+                );
+
+
             const card =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
 
             card.className =
@@ -1024,12 +1646,21 @@ function renderOrders(orders){
                     <div>
 
                         <div class="order-id">
+
                             Order ID:
-                            ${escapeHTML(order.id)}
+                            ${escapeHTML(
+                                order.id
+                            )}
+
                         </div>
 
+
                         <div class="order-date">
-                            ${formatDate(order.createdAt)}
+
+                            ${formatDate(
+                                order.createdAt
+                            )}
+
                         </div>
 
                     </div>
@@ -1038,28 +1669,41 @@ function renderOrders(orders){
                     <span
                         class="status ${statusClass}"
                     >
-                        ${escapeHTML(status)}
+
+                        ${escapeHTML(
+                            status
+                        )}
+
                     </span>
 
                 </div>
 
 
+
                 <div class="order-body">
+
 
                     <div class="product-section">
 
                         ${
                             order.productImage
                             ?
+
                             `
                             <img
                                 class="product-image"
-                                src="${escapeHTML(order.productImage)}"
+                                src="${escapeHTML(
+                                    order.productImage
+                                )}"
                                 alt="Gift"
-                                onerror="this.style.display='none'"
+                                onerror="
+                                    this.style.display='none'
+                                "
                             >
                             `
+
                             :
+
                             `
                             <div
                                 class="product-image"
@@ -1078,19 +1722,21 @@ function renderOrders(orders){
                         <div>
 
                             <div class="product-name">
+
                                 ${escapeHTML(
                                     order.productName ||
                                     "Gift"
                                 )}
+
                             </div>
 
+
                             <div class="product-price">
+
                                 ${money(
-                                    order.total ??
-                                    order.productPrice ??
-                                    order.basePrice ??
-                                    0
+                                    amount
                                 )}
+
                             </div>
 
                         </div>
@@ -1098,7 +1744,9 @@ function renderOrders(orders){
                     </div>
 
 
+
                     <div class="details">
+
 
                         <div class="detail">
 
@@ -1107,13 +1755,16 @@ function renderOrders(orders){
                             </div>
 
                             <div class="detail-value">
+
                                 ${escapeHTML(
                                     order.customerEmail ||
                                     "Not provided"
                                 )}
+
                             </div>
 
                         </div>
+
 
 
                         <div class="detail">
@@ -1123,14 +1774,17 @@ function renderOrders(orders){
                             </div>
 
                             <div class="detail-value">
+
                                 ${escapeHTML(
                                     order.yourPhone ||
                                     order.customerPhone ||
                                     "Not provided"
                                 )}
+
                             </div>
 
                         </div>
+
 
 
                         <div class="detail">
@@ -1140,13 +1794,16 @@ function renderOrders(orders){
                             </div>
 
                             <div class="detail-value">
+
                                 ${escapeHTML(
                                     order.senderName ||
                                     "Not provided"
                                 )}
+
                             </div>
 
                         </div>
+
 
 
                         <div class="detail">
@@ -1156,13 +1813,16 @@ function renderOrders(orders){
                             </div>
 
                             <div class="detail-value">
+
                                 ${escapeHTML(
                                     order.recipientName ||
                                     "Not provided"
                                 )}
+
                             </div>
 
                         </div>
+
 
 
                         <div class="detail">
@@ -1172,13 +1832,16 @@ function renderOrders(orders){
                             </div>
 
                             <div class="detail-value">
+
                                 ${escapeHTML(
                                     order.recipientPhone ||
                                     "Not provided"
                                 )}
+
                             </div>
 
                         </div>
+
 
 
                         <div class="detail">
@@ -1188,14 +1851,17 @@ function renderOrders(orders){
                             </div>
 
                             <div class="detail-value">
+
                                 ${escapeHTML(
                                     order.country ||
                                     order.destination ||
                                     "Not provided"
                                 )}
+
                             </div>
 
                         </div>
+
 
 
                         <div class="detail full">
@@ -1265,6 +1931,7 @@ function renderOrders(orders){
                         </div>
 
 
+
                         <div class="detail full">
 
                             <div class="detail-label">
@@ -1282,6 +1949,7 @@ function renderOrders(orders){
                             </div>
 
                         </div>
+
 
 
                         <div class="detail">
@@ -1309,17 +1977,17 @@ function renderOrders(orders){
                         </div>
 
 
+
                         <div class="detail">
 
                             <div class="detail-label">
-                                Product ID
+                                Order Amount
                             </div>
 
                             <div class="detail-value">
 
-                                ${escapeHTML(
-                                    order.productId ||
-                                    "Not provided"
+                                ${money(
+                                    amount
                                 )}
 
                             </div>
@@ -1328,36 +1996,128 @@ function renderOrders(orders){
 
                     </div>
 
+
+
+                    ${
+                        normalizedStatus ===
+                        "cancelled"
+
+                        ?
+
+                        `
+
+                        <div
+                            class="refund-box refund-success"
+                        >
+
+                            ✓ Refund completed.
+
+                            ${
+                                order.refundAmount
+                                ?
+                                `
+
+                                ${money(
+                                    order.refundAmount
+                                )}
+                                returned to
+                                the sender's wallet.
+
+                                `
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                        `
+
+                        :
+
+                        ""
+                    }
+
+
                 </div>
 
 
+
                 ${
-                    normalizedStatus === "pending"
+                    normalizedStatus ===
+                    "pending"
+
                     ?
+
                     `
 
                     <div class="order-actions">
 
+
                         <button
-                            class="success-btn"
-                            data-id="${escapeHTML(order.id)}"
+                            class="cancel-order-btn"
+                            data-id="${escapeHTML(
+                                order.id
+                            )}"
                         >
-                            ✓ Mark as Successful
+
+                            ❌ Order Cancel
+
                         </button>
+
+
+                        <button
+                            class="success-order-btn"
+                            data-id="${escapeHTML(
+                                order.id
+                            )}"
+                        >
+
+                            ✓ Order Successful
+
+                        </button>
+
 
                     </div>
 
                     `
+
                     :
+
                     ""
                 }
 
             `;
 
 
+            /* Cancel button */
+
+            const cancelButton =
+                card.querySelector(
+                    ".cancel-order-btn"
+                );
+
+
+            if(cancelButton){
+
+                cancelButton.addEventListener(
+                    "click",
+                    () => {
+
+                        openCancelConfirmation(
+                            order
+                        );
+
+                    }
+                );
+
+            }
+
+
+            /* Successful button */
+
             const successButton =
                 card.querySelector(
-                    ".success-btn"
+                    ".success-order-btn"
                 );
 
 
@@ -1365,10 +2125,14 @@ function renderOrders(orders){
 
                 successButton.addEventListener(
                     "click",
-                    () => markSuccessful(
-                        order.id,
-                        successButton
-                    )
+                    () => {
+
+                        markSuccessful(
+                            order.id,
+                            successButton
+                        );
+
+                    }
                 );
 
             }
@@ -1382,6 +2146,391 @@ function renderOrders(orders){
     );
 
 }
+
+
+
+/* ==========================================
+   OPEN CANCEL CONFIRMATION
+========================================== */
+
+function openCancelConfirmation(
+    order
+){
+
+    const amount =
+        getOrderAmount(
+            order
+        );
+
+
+    if(amount <= 0){
+
+        showMessage(
+            "Refund Error",
+            "This order does not contain a valid payment amount. The order cannot be automatically refunded.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    if(!order.userId){
+
+        showMessage(
+            "Refund Error",
+            "This order does not contain the sender's user ID. The customer cannot be identified for the refund.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    selectedCancelOrder =
+        order;
+
+
+    confirmText.textContent =
+        `This will cancel this order and return ${money(amount)} to the sender's Fame Store wallet. This action cannot be undone.`;
+
+
+    confirmOverlay.classList.add(
+        "show"
+    );
+
+}
+
+
+
+/* ==========================================
+   CONFIRM CANCEL + REFUND
+========================================== */
+
+confirmProceed.addEventListener(
+    "click",
+    async () => {
+
+        if(
+            !selectedCancelOrder
+        ){
+
+            return;
+
+        }
+
+
+        const order =
+            selectedCancelOrder;
+
+
+        const orderId =
+            order.id;
+
+
+        confirmProceed.disabled =
+            true;
+
+
+        confirmCancel.disabled =
+            true;
+
+
+        confirmProceed.textContent =
+            "Processing Refund...";
+
+
+        try{
+
+            await cancelOrderAndRefund(
+                orderId
+            );
+
+
+            closeConfirm();
+
+
+            showMessage(
+                "Order Cancelled",
+                `${money(
+                    getOrderAmount(order)
+                )} has been returned to the sender's Fame Store wallet.`
+            );
+
+
+            await loadOrders();
+
+
+        }catch(error){
+
+            console.error(
+                "CANCEL AND REFUND ERROR:",
+                error
+            );
+
+
+            confirmProceed.disabled =
+                false;
+
+
+            confirmCancel.disabled =
+                false;
+
+
+            confirmProceed.textContent =
+                "Yes, Cancel & Refund";
+
+
+            let errorMessage =
+                "Unable to cancel the order and process the refund.";
+
+
+            if(
+                error?.message
+            ){
+
+                errorMessage =
+                    error.message;
+
+            }
+
+
+            showMessage(
+                "Refund Failed",
+                errorMessage,
+                false
+            );
+
+        }
+
+    }
+);
+
+
+
+/* ==========================================
+   CANCEL ORDER + REFUND
+========================================== */
+
+async function cancelOrderAndRefund(
+    orderId
+){
+
+    const admin =
+        auth.currentUser;
+
+
+    if(!admin){
+
+        throw new Error(
+            "Admin session expired. Please login again."
+        );
+
+    }
+
+
+    const orderRef =
+        doc(
+            db,
+            "giftOrders",
+            orderId
+        );
+
+
+    await runTransaction(
+        db,
+        async transaction => {
+
+            /*
+             * IMPORTANT:
+             * All reads happen before writes.
+             */
+
+            const orderSnap =
+                await transaction.get(
+                    orderRef
+                );
+
+
+            if(
+                !orderSnap.exists()
+            ){
+
+                throw new Error(
+                    "This order no longer exists."
+                );
+
+            }
+
+
+            const orderData =
+                orderSnap.data();
+
+
+            const currentStatus =
+                String(
+                    orderData.status ||
+                    "pending"
+                ).toLowerCase();
+
+
+            /*
+             * Only pending orders
+             * can be cancelled/refunded.
+             */
+
+            if(
+                currentStatus !==
+                "pending"
+            ){
+
+                throw new Error(
+                    "This order has already been processed and cannot be refunded again."
+                );
+
+            }
+
+
+            const userId =
+                orderData.userId;
+
+
+            if(!userId){
+
+                throw new Error(
+                    "This order has no sender user ID."
+                );
+
+            }
+
+
+            const refundAmount =
+                getOrderAmount(
+                    orderData
+                );
+
+
+            if(
+                refundAmount <= 0
+            ){
+
+                throw new Error(
+                    "This order does not contain a valid refund amount."
+                );
+
+            }
+
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    userId
+                );
+
+
+            const userSnap =
+                await transaction.get(
+                    userRef
+                );
+
+
+            if(
+                !userSnap.exists()
+            ){
+
+                throw new Error(
+                    "The sender's account could not be found."
+                );
+
+            }
+
+
+            const userData =
+                userSnap.data();
+
+
+            const currentBalance =
+                Number(
+                    userData.walletBalance || 0
+                );
+
+
+            if(
+                !Number.isFinite(
+                    currentBalance
+                )
+            ){
+
+                throw new Error(
+                    "The sender's wallet balance is invalid."
+                );
+
+            }
+
+
+            const newBalance =
+                currentBalance +
+                refundAmount;
+
+
+            /*
+             * UPDATE WALLET
+             */
+
+            transaction.update(
+                userRef,
+                {
+
+                    walletBalance:
+                        newBalance,
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            /*
+             * UPDATE ORDER
+             */
+
+            transaction.update(
+                orderRef,
+                {
+
+                    status:
+                        "cancelled",
+
+                    refundStatus:
+                        "refunded",
+
+                    refundAmount:
+                        refundAmount,
+
+                    refundedAt:
+                        serverTimestamp(),
+
+                    refundedBy:
+                        admin.email || "",
+
+                    updatedAt:
+                        serverTimestamp(),
+
+                    cancellationReason:
+                        "Order cancelled by admin"
+
+                }
+            );
+
+        }
+    );
+
+}
+
 
 
 /* ==========================================
@@ -1409,6 +2558,7 @@ async function markSuccessful(
     button.disabled =
         true;
 
+
     button.textContent =
         "Updating...";
 
@@ -1421,6 +2571,51 @@ async function markSuccessful(
                 "giftOrders",
                 orderId
             );
+
+
+        /*
+         * First verify the order is
+         * still pending.
+         */
+
+        const orderSnap =
+            await getDoc(
+                orderRef
+            );
+
+
+        if(
+            !orderSnap.exists()
+        ){
+
+            throw new Error(
+                "This order no longer exists."
+            );
+
+        }
+
+
+        const orderData =
+            orderSnap.data();
+
+
+        const status =
+            String(
+                orderData.status ||
+                "pending"
+            ).toLowerCase();
+
+
+        if(
+            status !==
+            "pending"
+        ){
+
+            throw new Error(
+                "This order has already been processed."
+            );
+
+        }
 
 
         await updateDoc(
@@ -1437,7 +2632,8 @@ async function markSuccessful(
                     serverTimestamp(),
 
                 successfulBy:
-                    auth.currentUser?.email || ""
+                    auth.currentUser?.email ||
+                    ""
 
             }
         );
@@ -1463,12 +2659,14 @@ async function markSuccessful(
         button.disabled =
             false;
 
+
         button.textContent =
-            "✓ Mark as Successful";
+            "✓ Order Successful";
 
 
         showMessage(
             "Update Failed",
+            error?.message ||
             "Unable to update this order. Please check your Firestore rules.",
             false
         );
@@ -1476,6 +2674,7 @@ async function markSuccessful(
     }
 
 }
+
 
 
 /* ==========================================
@@ -1488,7 +2687,10 @@ logoutBtn.addEventListener(
 
         try{
 
-            await signOut(auth);
+            await signOut(
+                auth
+            );
+
 
             window.location.href =
                 "admin-login.html";
@@ -1508,4 +2710,5 @@ logoutBtn.addEventListener(
 </script>
 
 </body>
-</html>
+
+    </html>
