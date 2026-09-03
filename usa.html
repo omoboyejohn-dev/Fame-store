@@ -668,7 +668,7 @@ textarea{
             </div>
 
 
-            <!-- FIXED COUNTRY -->
+            <!-- COUNTRY -->
 
             <div class="form-group">
 
@@ -841,6 +841,10 @@ textarea{
 
 <script type="module">
 
+
+/* =====================================
+   FIREBASE
+===================================== */
 
 import {
     auth,
@@ -1106,7 +1110,6 @@ const products = [
 ];
 
 
-
 /* =====================================
    VARIABLES
 ===================================== */
@@ -1121,27 +1124,15 @@ let orderProcessing = false;
    COUNTRY
 ===================================== */
 
-/*
-   The country can come from:
-
-   1. URL:
-      checkout.html?country=Canada
-
-   2. localStorage:
-      selectedCountry
-
-   If neither exists, USA is used.
-*/
-
-const urlParams = new URLSearchParams(
-    window.location.search
-);
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
 
 let selectedCountry =
     urlParams.get("country") ||
     localStorage.getItem("selectedCountry") ||
     "USA";
-
 
 selectedCountry =
     String(selectedCountry).trim();
@@ -1151,7 +1142,6 @@ function getCountryInfo(){
 
     const value =
         selectedCountry.toLowerCase();
-
 
     if(
         value === "canada" ||
@@ -1168,7 +1158,6 @@ function getCountryInfo(){
 
     }
 
-
     return {
         country:"United States",
         stateLabel:"State",
@@ -1182,7 +1171,6 @@ function getCountryInfo(){
 
 const countryInfo =
     getCountryInfo();
-
 
 
 /* =====================================
@@ -1222,6 +1210,8 @@ const messageText =
 const thanksButton =
     document.getElementById("thanksButton");
 
+const confirmButton =
+    document.getElementById("confirmOrder");
 
 
 /* =====================================
@@ -1266,7 +1256,6 @@ function applyCountry(){
 applyCountry();
 
 
-
 /* =====================================
    MONEY
 ===================================== */
@@ -1283,7 +1272,6 @@ function money(value){
         );
 
 }
-
 
 
 /* =====================================
@@ -1339,7 +1327,6 @@ products.forEach(product => {
 });
 
 
-
 /* =====================================
    AUTH
 ===================================== */
@@ -1369,7 +1356,6 @@ onAuthStateChanged(
 
     }
 );
-
 
 
 /* =====================================
@@ -1425,7 +1411,6 @@ async function loadWallet(){
     }
 
 }
-
 
 
 /* =====================================
@@ -1502,7 +1487,6 @@ function openCheckout(product){
 }
 
 
-
 /* =====================================
    BACK TO GIFTS
 ===================================== */
@@ -1531,7 +1515,6 @@ document
 
         }
     );
-
 
 
 /* =====================================
@@ -1581,7 +1564,6 @@ function showPopup(
 }
 
 
-
 thanksButton.addEventListener(
     "click",
     () => {
@@ -1592,7 +1574,6 @@ thanksButton.addEventListener(
 
     }
 );
-
 
 
 /* =====================================
@@ -1623,7 +1604,6 @@ function validateForm(){
         const field =
             document.getElementById(id);
 
-
         if(
             !field.value.trim()
         ){
@@ -1636,420 +1616,609 @@ function validateForm(){
 
     }
 
-
     return true;
 
 }
-
 
 
 /* =====================================
    CONFIRM ORDER
 ===================================== */
 
-document
-    .getElementById("confirmOrder")
-    .addEventListener(
-        "click",
-        async () => {
+confirmButton.addEventListener(
+    "click",
+    async () => {
 
-            if(orderProcessing)
-                return;
+        if(orderProcessing)
+            return;
 
 
-            if(!currentUser){
+        if(!currentUser){
 
-                showPopup(
-                    "login",
-                    "Please Login First",
-                    "Please login to your Fame Store account before making an order."
+            showPopup(
+                "login",
+                "Please Login First",
+                "Please login to your Fame Store account before making an order."
+            );
+
+            return;
+
+        }
+
+
+        if(!currentProduct)
+            return;
+
+
+        if(!validateForm()){
+
+            showPopup(
+                "error",
+                "Information Required",
+                "Kindly complete all the delivery information before confirming your order."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * Get the latest wallet balance
+         * before starting the transaction.
+         */
+
+        await loadWallet();
+
+
+        const total =
+            Number(
+                currentProduct.price
+            );
+
+
+        if(
+            !Number.isFinite(total) ||
+            total <= 0
+        ){
+
+            showPopup(
+                "error",
+                "Invalid Product Price",
+                "This product has an invalid price. Please try another product."
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * QUICK BALANCE CHECK
+         *
+         * This is only for the user interface.
+         * The transaction below checks again
+         * using the latest Firestore balance.
+         */
+
+        if(
+            currentBalance < total
+        ){
+
+            showPopup(
+                "error",
+                "Insufficient wallet balance",
+                "Kindly deposit and make an order."
+            );
+
+            return;
+
+        }
+
+
+        orderProcessing =
+            true;
+
+
+        confirmButton.disabled =
+            true;
+
+        confirmButton.textContent =
+            "Processing...";
+
+
+        try{
+
+            /*
+             * ==========================================
+             * CREATE REFERENCES
+             * ==========================================
+             */
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
                 );
 
-                return;
 
-            }
+            /*
+             * Create the order ID BEFORE the transaction.
+             *
+             * This is important because the user's
+             * lastGiftOrderId must point to this exact
+             * gift order.
+             */
 
-
-            if(!currentProduct)
-                return;
-
-
-            if(!validateForm()){
-
-                showPopup(
-                    "error",
-                    "Information Required",
-                    "Kindly complete all the delivery information before confirming your order."
-                );
-
-                return;
-
-            }
-
-
-            await loadWallet();
-
-
-            const total =
-                Number(
-                    currentProduct.price
+            const orderRef =
+                doc(
+                    collection(
+                        db,
+                        "giftOrders"
+                    )
                 );
 
 
-            /* =================================
-               QUICK BALANCE CHECK
-            ================================= */
+            /*
+             * ==========================================
+             * READ FORM VALUES BEFORE TRANSACTION
+             * ==========================================
+             */
+
+            const yourPhone =
+                document
+                    .getElementById(
+                        "yourPhone"
+                    )
+                    .value
+                    .trim();
+
+
+            const senderName =
+                document
+                    .getElementById(
+                        "senderName"
+                    )
+                    .value
+                    .trim();
+
+
+            const recipientName =
+                document
+                    .getElementById(
+                        "recipientName"
+                    )
+                    .value
+                    .trim();
+
+
+            const recipientPhone =
+                document
+                    .getElementById(
+                        "recipientPhone"
+                    )
+                    .value
+                    .trim();
+
+
+            const streetAddress =
+                document
+                    .getElementById(
+                        "streetAddress"
+                    )
+                    .value
+                    .trim();
+
+
+            const city =
+                document
+                    .getElementById(
+                        "city"
+                    )
+                    .value
+                    .trim();
+
+
+            const state =
+                document
+                    .getElementById(
+                        "state"
+                    )
+                    .value
+                    .trim();
+
+
+            const zipCode =
+                document
+                    .getElementById(
+                        "zipCode"
+                    )
+                    .value
+                    .trim();
+
+
+            const additionalNotes =
+                document
+                    .getElementById(
+                        "additionalNotes"
+                    )
+                    .value
+                    .trim();
+
+
+            /*
+             * ==========================================
+             * ATOMIC TRANSACTION
+             *
+             * 1. Read user wallet
+             * 2. Check latest balance
+             * 3. Deduct wallet
+             * 4. Save lastGiftOrderId
+             * 5. Create gift order
+             *
+             * Everything succeeds together or nothing
+             * is committed.
+             * ==========================================
+             */
+
+            const result =
+                await runTransaction(
+                    db,
+                    async transaction => {
+
+                        /*
+                         * Read USER first.
+                         */
+
+                        const userSnap =
+                            await transaction.get(
+                                userRef
+                            );
+
+
+                        if(
+                            !userSnap.exists()
+                        ){
+
+                            throw new Error(
+                                "USER_NOT_FOUND"
+                            );
+
+                        }
+
+
+                        const userData =
+                            userSnap.data();
+
+
+                        /*
+                         * Always use the latest
+                         * Firestore wallet balance.
+                         */
+
+                        const latestBalance =
+                            Number(
+                                userData.walletBalance || 0
+                            );
+
+
+                        /*
+                         * Check latest balance.
+                         */
+
+                        if(
+                            !Number.isFinite(
+                                latestBalance
+                            ) ||
+                            latestBalance < total
+                        ){
+
+                            throw new Error(
+                                "INSUFFICIENT_BALANCE"
+                            );
+
+                        }
+
+
+                        const newBalance =
+                            latestBalance - total;
+
+
+                        /*
+                         * ==================================
+                         * UPDATE USER
+                         * ==================================
+                         *
+                         * IMPORTANT:
+                         *
+                         * lastGiftOrderId points to the
+                         * exact order being created.
+                         *
+                         * Your Firestore rules use this
+                         * to verify the wallet deduction.
+                         */
+
+                        transaction.update(
+                            userRef,
+                            {
+
+                                walletBalance:
+                                    newBalance,
+
+                                lastGiftOrderId:
+                                    orderRef.id
+
+                            }
+                        );
+
+
+                        /*
+                         * ==================================
+                         * CREATE GIFT ORDER
+                         * ==================================
+                         */
+
+                        transaction.set(
+                            orderRef,
+                            {
+
+                                /*
+                                 * SENDER UID
+                                 *
+                                 * This is extremely important
+                                 * for future refunds.
+                                 */
+
+                                customerUID:
+                                    currentUser.uid,
+
+
+                                customerEmail:
+                                    currentUser.email || "",
+
+
+                                /*
+                                 * PRODUCT
+                                 */
+
+                                productName:
+                                    currentProduct.name,
+
+                                productImage:
+                                    currentProduct.image || "",
+
+
+                                /*
+                                 * PRICE
+                                 */
+
+                                basePrice:
+                                    total,
+
+                                total:
+                                    total,
+
+
+                                /*
+                                 * CONTACT
+                                 */
+
+                                yourPhone:
+                                    yourPhone,
+
+
+                                /*
+                                 * SENDER
+                                 */
+
+                                senderName:
+                                    senderName,
+
+
+                                /*
+                                 * RECIPIENT
+                                 */
+
+                                recipientName:
+                                    recipientName,
+
+                                recipientPhone:
+                                    recipientPhone,
+
+
+                                /*
+                                 * DELIVERY ADDRESS
+                                 */
+
+                                streetAddress:
+                                    streetAddress,
+
+                                city:
+                                    city,
+
+                                state:
+                                    state,
+
+                                country:
+                                    countryInfo.country,
+
+                                zipCode:
+                                    zipCode,
+
+
+                                /*
+                                 * NOTES
+                                 */
+
+                                additionalNotes:
+                                    additionalNotes,
+
+
+                                /*
+                                 * PAYMENT
+                                 */
+
+                                paymentMethod:
+                                    "Wallet",
+
+                                paymentStatus:
+                                    "Paid",
+
+
+                                /*
+                                 * INITIAL ORDER STATUS
+                                 */
+
+                                status:
+                                    "Pending",
+
+
+                                /*
+                                 * TIMESTAMP
+                                 */
+
+                                createdAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        return {
+                            newBalance:
+                                newBalance,
+
+                            orderId:
+                                orderRef.id
+
+                        };
+
+                    }
+                );
+
+
+            /*
+             * ==========================================
+             * SUCCESS
+             * ==========================================
+             */
+
+            currentBalance =
+                result.newBalance;
+
+
+            walletBalance.textContent =
+                money(currentBalance);
+
+
+            checkoutBalance.textContent =
+                money(currentBalance);
+
+
+            confirmButton.textContent =
+                "Order Completed";
+
+
+            showPopup(
+                "success",
+                "Your order completed",
+                "Your order has been placed successfully. It will take less than three business days to deliver. Always check your Order History."
+            );
+
+
+            /*
+             * Clear customer information
+             * after successful order.
+             */
+
+            clearCheckoutForm();
+
+
+        }catch(error){
+
+            console.error(
+                "ORDER ERROR:",
+                error
+            );
+
+
+            /*
+             * ==========================================
+             * INSUFFICIENT BALANCE
+             * ==========================================
+             */
 
             if(
-                currentBalance < total
+                error.message ===
+                "INSUFFICIENT_BALANCE"
             ){
+
+                await loadWallet();
+
 
                 showPopup(
                     "error",
                     "Insufficient wallet balance",
-                    "Kindly deposit and make an order"
+                    "Your wallet balance is not enough to complete this order. Kindly deposit and try again."
                 );
 
-                return;
 
             }
 
 
-            orderProcessing =
-                true;
-
-
-            const button =
-                document.getElementById(
-                    "confirmOrder"
-                );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "Processing...";
-
-
-            try{
-
-                /* =================================
-                   FIRESTORE TRANSACTION
-
-                   This does BOTH:
-
-                   1. Deduct wallet
-                   2. Create order
-
-                   atomically.
-                ================================= */
-
-                const userRef =
-                    doc(
-                        db,
-                        "users",
-                        currentUser.uid
-                    );
-
-
-                const orderRef =
-                    doc(
-                        collection(
-                            db,
-                            "giftOrders"
-                        )
-                    );
-
-
-                const result =
-                    await runTransaction(
-                        db,
-                        async transaction => {
-
-                            const userSnap =
-                                await transaction.get(
-                                    userRef
-                                );
-
-
-                            if(
-                                !userSnap.exists()
-                            ){
-
-                                throw new Error(
-                                    "USER_NOT_FOUND"
-                                );
-
-                            }
-
-
-                            const userData =
-                                userSnap.data();
-
-
-                            const latestBalance =
-                                Number(
-                                    userData.walletBalance || 0
-                                );
-
-
-                            /* =========================
-                               CHECK BALANCE AGAIN
-                            ========================= */
-
-                            if(
-                                latestBalance < total
-                            ){
-
-                                throw new Error(
-                                    "INSUFFICIENT_BALANCE"
-                                );
-
-                            }
-
-
-                            const newBalance =
-                                latestBalance - total;
-
-
-                            /* =========================
-                               DEDUCT WALLET
-                            ========================= */
-
-                            transaction.update(
-                                userRef,
-                                {
-                                    walletBalance:
-                                        newBalance
-                                }
-                            );
-
-
-                            /* =========================
-                               CREATE ORDER
-                            ========================= */
-
-                            transaction.set(
-                                orderRef,
-                                {
-
-                                    customerUID:
-                                        currentUser.uid,
-
-                                    customerEmail:
-                                        currentUser.email || "",
-
-                                    productName:
-                                        currentProduct.name,
-
-                                    productImage:
-                                        currentProduct.image,
-
-                                    basePrice:
-                                        total,
-
-                                    total:
-                                        total,
-
-
-                                    yourPhone:
-                                        document
-                                            .getElementById(
-                                                "yourPhone"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    senderName:
-                                        document
-                                            .getElementById(
-                                                "senderName"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    recipientName:
-                                        document
-                                            .getElementById(
-                                                "recipientName"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    recipientPhone:
-                                        document
-                                            .getElementById(
-                                                "recipientPhone"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    streetAddress:
-                                        document
-                                            .getElementById(
-                                                "streetAddress"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    city:
-                                        document
-                                            .getElementById(
-                                                "city"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    state:
-                                        document
-                                            .getElementById(
-                                                "state"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    country:
-                                        countryInfo.country,
-
-
-                                    zipCode:
-                                        document
-                                            .getElementById(
-                                                "zipCode"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    additionalNotes:
-                                        document
-                                            .getElementById(
-                                                "additionalNotes"
-                                            )
-                                            .value
-                                            .trim(),
-
-
-                                    paymentMethod:
-                                        "Wallet",
-
-
-                                    paymentStatus:
-                                        "Paid",
-
-
-                                    status:
-                                        "Pending",
-
-
-                                    createdAt:
-                                        serverTimestamp()
-
-                                }
-                            );
-
-
-                            return {
-                                newBalance
-                            };
-
-                        }
-                    );
-
-
-                /* =================================
-                   UPDATE SCREEN BALANCE
-                ================================= */
-
-                currentBalance =
-                    result.newBalance;
-
-
-                walletBalance.textContent =
-                    money(currentBalance);
-
-
-                checkoutBalance.textContent =
-                    money(currentBalance);
-
-
-                button.textContent =
-                    "Order Completed";
-
-
-                /* =================================
-                   SUCCESS
-                ================================= */
+            /*
+             * ==========================================
+             * USER NOT FOUND
+             * ==========================================
+             */
+
+            else if(
+                error.message ===
+                "USER_NOT_FOUND"
+            ){
 
                 showPopup(
-                    "success",
-                    "Your order completed",
-                    "It will take less than three business days to deliver your order. Always check your order history"
+                    "error",
+                    "Account Error",
+                    "Your Fame Store account profile could not be found. Please contact support."
                 );
-
-
-                clearCheckoutForm();
-
-
-            }catch(error){
-
-                console.error(
-                    "ORDER ERROR:",
-                    error
-                );
-
-
-                if(
-                    error.message ===
-                    "INSUFFICIENT_BALANCE"
-                ){
-
-                    await loadWallet();
-
-
-                    showPopup(
-                        "error",
-                        "Insufficient wallet balance",
-                        "Kindly deposit and make an order"
-                    );
-
-                }else{
-
-                    showPopup(
-                        "error",
-                        "Order Failed",
-                        "Unable to complete your order. Please try again."
-                    );
-
-                }
-
-
-                button.disabled =
-                    false;
-
-
-                button.textContent =
-                    "Confirm Order";
-
-            }finally{
-
-                orderProcessing =
-                    false;
 
             }
 
-        }
-    );
 
+            /*
+             * ==========================================
+             * OTHER FIREBASE / FIRESTORE ERRORS
+             * ==========================================
+             */
+
+            else{
+
+                showPopup(
+                    "error",
+                    "Order Failed",
+                    "Unable to complete your order. Please try again."
+                );
+
+            }
+
+
+            confirmButton.disabled =
+                false;
+
+            confirmButton.textContent =
+                "Confirm Order";
+
+        }finally{
+
+            orderProcessing =
+                false;
+
+        }
+
+    }
+);
 
 
 /* =====================================
@@ -2079,7 +2248,6 @@ function clearCheckoutForm(){
             const field =
                 document.getElementById(id);
 
-
             if(field)
                 field.value = "";
 
@@ -2088,15 +2256,45 @@ function clearCheckoutForm(){
 
 
     /*
-       Do NOT clear country.
-       It must remain fixed to
-       USA or Canada.
-    */
+     * Keep the selected country.
+     */
 
     applyCountry();
 
-}
 
+    /*
+     * Reset current product.
+     */
+
+    currentProduct =
+        null;
+
+
+    /*
+     * Return to products after
+     * successful order.
+     */
+
+    checkout
+        .classList
+        .remove("active");
+
+    productsSection
+        .classList
+        .remove("hidden");
+
+
+    /*
+     * Reset button for the next order.
+     */
+
+    confirmButton.disabled =
+        false;
+
+    confirmButton.textContent =
+        "Confirm Order";
+
+}
 
 
 /* =====================================
@@ -2121,9 +2319,8 @@ messageOverlay.addEventListener(
     }
 );
 
-
 </script>
 
 </body>
 
-    </html>
+</html>
