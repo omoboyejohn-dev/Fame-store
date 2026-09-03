@@ -4,12 +4,14 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
 >
 
 <title>Fame Store | Admin Orders</title>
+
 
 <style>
 
@@ -24,6 +26,7 @@ body{
     background:#f5f7fb;
     color:#101828;
 }
+
 
 /* =========================
    HEADER
@@ -405,7 +408,6 @@ body{
 .cancel-order-btn:disabled,
 .success-order-btn:disabled{
     opacity:.55;
-
     cursor:not-allowed;
 }
 
@@ -438,6 +440,29 @@ body{
     border-color:#b7efd0;
 
     color:#087443;
+}
+
+
+/* =========================
+   SUCCESS INFO
+========================= */
+
+.success-box{
+    margin-top:18px;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    background:#e8fff2;
+
+    border:1px solid #b7efd0;
+
+    color:#087443;
+
+    font-size:12px;
+
+    line-height:1.5;
 }
 
 
@@ -712,7 +737,6 @@ body{
 
     .order-top{
         align-items:flex-start;
-
         flex-direction:column;
     }
 
@@ -737,10 +761,6 @@ body{
 
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
@@ -770,10 +790,6 @@ body{
 
 
 
-<!-- =========================
-     MAIN
-========================= -->
-
 <main class="container">
 
 
@@ -791,12 +807,7 @@ body{
 
 
 
-    <!-- =========================
-         STATS
-    ========================= -->
-
     <div class="stats">
-
 
         <div class="stat-card">
 
@@ -814,7 +825,6 @@ body{
         </div>
 
 
-
         <div class="stat-card">
 
             <div class="stat-label">
@@ -829,7 +839,6 @@ body{
             </div>
 
         </div>
-
 
 
         <div class="stat-card">
@@ -851,10 +860,6 @@ body{
 
 
 
-    <!-- =========================
-         ORDERS
-    ========================= -->
-
     <div
         class="orders"
         id="orders"
@@ -870,9 +875,7 @@ body{
 
 
 
-<!-- =========================
-     MESSAGE MODAL
-========================= -->
+<!-- MESSAGE -->
 
 <div
     class="message-overlay"
@@ -909,9 +912,7 @@ body{
 
 
 
-<!-- =========================
-     CONFIRM CANCEL MODAL
-========================= -->
+<!-- CANCEL CONFIRMATION -->
 
 <div
     class="confirm-overlay"
@@ -931,8 +932,7 @@ body{
         <p id="confirmText">
 
             This will cancel the order and
-            return the customer's payment
-            to their Fame Store wallet.
+            refund the customer's wallet.
 
         </p>
 
@@ -984,7 +984,6 @@ import {
     getDocs,
     getDoc,
     doc,
-    updateDoc,
     query,
     orderBy,
     runTransaction,
@@ -1000,63 +999,45 @@ import {
 const ordersContainer =
     document.getElementById("orders");
 
-
 const totalOrders =
     document.getElementById("totalOrders");
-
 
 const pendingOrders =
     document.getElementById("pendingOrders");
 
-
 const successfulOrders =
     document.getElementById("successfulOrders");
-
 
 const logoutBtn =
     document.getElementById("logoutBtn");
 
-
 const messageOverlay =
     document.getElementById("messageOverlay");
-
 
 const messageIcon =
     document.getElementById("messageIcon");
 
-
 const messageTitle =
     document.getElementById("messageTitle");
-
 
 const messageText =
     document.getElementById("messageText");
 
-
 const closeMessage =
     document.getElementById("closeMessage");
-
 
 const confirmOverlay =
     document.getElementById("confirmOverlay");
 
-
 const confirmText =
     document.getElementById("confirmText");
-
 
 const confirmCancel =
     document.getElementById("confirmCancel");
 
-
 const confirmProceed =
     document.getElementById("confirmProceed");
 
-
-
-/* ==========================================
-   CURRENT CANCEL ORDER
-========================================== */
 
 let selectedCancelOrder = null;
 
@@ -1110,7 +1091,6 @@ function formatDate(timestamp){
 
     }
 
-
     try{
 
         if(
@@ -1130,7 +1110,6 @@ function formatDate(timestamp){
 
         }
 
-
         return "Date unavailable";
 
     }catch{
@@ -1144,22 +1123,19 @@ function formatDate(timestamp){
 
 
 /* ==========================================
-   GET ORDER AMOUNT
+   ORDER AMOUNT
 ========================================== */
 
 function getOrderAmount(order){
 
-    const possibleAmount =
-        order.total ??
-        order.productPrice ??
-        order.basePrice ??
-        order.amount ??
-        0;
-
-
     const amount =
-        Number(possibleAmount);
-
+        Number(
+            order.total ??
+            order.basePrice ??
+            order.productPrice ??
+            order.amount ??
+            0
+        );
 
     if(
         !Number.isFinite(amount) ||
@@ -1169,7 +1145,6 @@ function getOrderAmount(order){
         return 0;
 
     }
-
 
     return amount;
 
@@ -1190,14 +1165,11 @@ function showMessage(
     messageIcon.textContent =
         success ? "✓" : "⚠️";
 
-
     messageTitle.textContent =
         title;
 
-
     messageText.textContent =
         text;
-
 
     messageOverlay.classList.add(
         "show"
@@ -1220,7 +1192,7 @@ closeMessage.addEventListener(
 
 
 /* ==========================================
-   CLOSE CONFIRM MODAL
+   CONFIRM MODAL
 ========================================== */
 
 function closeConfirm(){
@@ -1229,8 +1201,7 @@ function closeConfirm(){
         "show"
     );
 
-    selectedCancelOrder =
-        null;
+    selectedCancelOrder = null;
 
 }
 
@@ -1257,12 +1228,10 @@ async function checkAdmin(user){
                 user.uid
             );
 
-
         const userSnap =
             await getDoc(
                 userRef
             );
-
 
         if(
             !userSnap.exists()
@@ -1272,13 +1241,8 @@ async function checkAdmin(user){
 
         }
 
-
-        const userData =
-            userSnap.data();
-
-
         return (
-            userData.role ===
+            userSnap.data().role ===
             "admin"
         );
 
@@ -1288,7 +1252,6 @@ async function checkAdmin(user){
             "ADMIN CHECK ERROR:",
             error
         );
-
 
         return false;
 
@@ -1315,12 +1278,8 @@ onAuthStateChanged(
 
         }
 
-
         const admin =
-            await checkAdmin(
-                user
-            );
-
+            await checkAdmin(user);
 
         if(!admin){
 
@@ -1330,24 +1289,18 @@ onAuthStateChanged(
                 false
             );
 
-
             setTimeout(
                 async () => {
 
                     try{
 
-                        await signOut(
-                            auth
-                        );
+                        await signOut(auth);
 
                     }catch(error){
 
-                        console.error(
-                            error
-                        );
+                        console.error(error);
 
                     }
-
 
                     window.location.href =
                         "admin-login.html";
@@ -1356,11 +1309,9 @@ onAuthStateChanged(
                 1800
             );
 
-
             return;
 
         }
-
 
         await loadOrders();
 
@@ -1381,7 +1332,6 @@ async function loadOrders(){
         </div>
     `;
 
-
     try{
 
         const ordersRef =
@@ -1390,11 +1340,7 @@ async function loadOrders(){
                 "giftOrders"
             );
 
-
         let snapshot;
-
-
-        /* Try newest first */
 
         try{
 
@@ -1407,7 +1353,6 @@ async function loadOrders(){
                     )
                 );
 
-
             snapshot =
                 await getDocs(
                     ordersQuery
@@ -1416,10 +1361,9 @@ async function loadOrders(){
         }catch(error){
 
             console.warn(
-                "Order sorting unavailable:",
+                "Sorting unavailable:",
                 error
             );
-
 
             snapshot =
                 await getDocs(
@@ -1448,22 +1392,16 @@ async function loadOrders(){
         );
 
 
-        /* Sort newest first */
-
         orders.sort(
             (a,b) => {
 
                 const aTime =
                     a.createdAt
-                        ?.toMillis?.() ||
-                    0;
-
+                        ?.toMillis?.() || 0;
 
                 const bTime =
                     b.createdAt
-                        ?.toMillis?.() ||
-                    0;
-
+                        ?.toMillis?.() || 0;
 
                 return bTime - aTime;
 
@@ -1471,9 +1409,7 @@ async function loadOrders(){
         );
 
 
-        renderOrders(
-            orders
-        );
+        renderOrders(orders);
 
 
     }catch(error){
@@ -1482,7 +1418,6 @@ async function loadOrders(){
             "LOAD ORDERS ERROR:",
             error
         );
-
 
         ordersContainer.innerHTML = `
 
@@ -1493,10 +1428,9 @@ async function loadOrders(){
                 </h3>
 
                 <p style="margin-top:8px;">
-
-                    Please check your Firestore
-                    rules and try again.
-
+                    ${escapeHTML(
+                        error.message
+                    )}
                 </p>
 
             </div>
@@ -1522,32 +1456,25 @@ function renderOrders(orders){
     const pending =
         orders.filter(
             order =>
-
                 String(
-                    order.status ||
-                    "pending"
+                    order.status || "Pending"
                 ).toLowerCase() ===
                 "pending"
-
         ).length;
 
 
     const successful =
         orders.filter(
             order =>
-
                 String(
-                    order.status ||
-                    ""
+                    order.status || ""
                 ).toLowerCase() ===
                 "successful"
-
         ).length;
 
 
     pendingOrders.textContent =
         pending;
-
 
     successfulOrders.textContent =
         successful;
@@ -1564,10 +1491,8 @@ function renderOrders(orders){
                 </h3>
 
                 <p style="margin-top:8px;">
-
                     Customer gift orders
                     will appear here.
-
                 </p>
 
             </div>
@@ -1579,165 +1504,172 @@ function renderOrders(orders){
     }
 
 
-    ordersContainer.innerHTML =
-        "";
+    ordersContainer.innerHTML = "";
 
 
-    orders.forEach(
-        order => {
+    orders.forEach(order => {
 
-            const status =
-                order.status ||
-                "pending";
+        const status =
+            order.status || "Pending";
 
 
-            const normalizedStatus =
-                String(
-                    status
-                ).toLowerCase();
+        const normalizedStatus =
+            String(status).toLowerCase();
 
 
-            let statusClass =
-                "pending";
+        let statusClass =
+            "pending";
 
 
-            if(
-                normalizedStatus ===
-                "successful"
-            ){
+        if(
+            normalizedStatus ===
+            "successful"
+        ){
 
-                statusClass =
-                    "successful";
+            statusClass =
+                "successful";
 
-            }
-
-
-            if(
-                normalizedStatus ===
-                "cancelled"
-            ){
-
-                statusClass =
-                    "cancelled";
-
-            }
+        }
 
 
-            const amount =
-                getOrderAmount(
-                    order
-                );
+        if(
+            normalizedStatus ===
+            "cancelled"
+        ){
+
+            statusClass =
+                "cancelled";
+
+        }
 
 
-            const card =
-                document.createElement(
-                    "div"
-                );
+        const amount =
+            getOrderAmount(order);
 
 
-            card.className =
-                "order-card";
+        const card =
+            document.createElement("div");
 
 
-            card.innerHTML = `
+        card.className =
+            "order-card";
 
-                <div class="order-top">
+
+        card.innerHTML = `
+
+            <div class="order-top">
+
+                <div>
+
+                    <div class="order-id">
+
+                        Order ID:
+                        ${escapeHTML(order.id)}
+
+                    </div>
+
+                    <div class="order-date">
+
+                        ${formatDate(
+                            order.createdAt
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <span
+                    class="status ${statusClass}"
+                >
+
+                    ${escapeHTML(status)}
+
+                </span>
+
+            </div>
+
+
+
+            <div class="order-body">
+
+
+                <div class="product-section">
+
+                    ${
+                        order.productImage
+
+                        ?
+
+                        `
+                        <img
+                            class="product-image"
+                            src="${escapeHTML(
+                                order.productImage
+                            )}"
+                            alt="Gift"
+                            onerror="
+                                this.style.display='none'
+                            "
+                        >
+                        `
+
+                        :
+
+                        `
+                        <div
+                            class="product-image"
+                            style="
+                                display:grid;
+                                place-items:center;
+                                font-size:30px;
+                            "
+                        >
+                            🎁
+                        </div>
+                        `
+                    }
+
 
                     <div>
 
-                        <div class="order-id">
+                        <div class="product-name">
 
-                            Order ID:
                             ${escapeHTML(
-                                order.id
+                                order.productName ||
+                                "Gift"
                             )}
 
                         </div>
 
 
-                        <div class="order-date">
+                        <div class="product-price">
 
-                            ${formatDate(
-                                order.createdAt
-                            )}
+                            ${money(amount)}
 
                         </div>
 
                     </div>
-
-
-                    <span
-                        class="status ${statusClass}"
-                    >
-
-                        ${escapeHTML(
-                            status
-                        )}
-
-                    </span>
 
                 </div>
 
 
 
-                <div class="order-body">
+                <div class="details">
 
 
-                    <div class="product-section">
+                    <div class="detail">
 
-                        ${
-                            order.productImage
-                            ?
+                        <div class="detail-label">
+                            Customer Email
+                        </div>
 
-                            `
-                            <img
-                                class="product-image"
-                                src="${escapeHTML(
-                                    order.productImage
-                                )}"
-                                alt="Gift"
-                                onerror="
-                                    this.style.display='none'
-                                "
-                            >
-                            `
+                        <div class="detail-value">
 
-                            :
-
-                            `
-                            <div
-                                class="product-image"
-                                style="
-                                    display:grid;
-                                    place-items:center;
-                                    font-size:30px;
-                                "
-                            >
-                                🎁
-                            </div>
-                            `
-                        }
-
-
-                        <div>
-
-                            <div class="product-name">
-
-                                ${escapeHTML(
-                                    order.productName ||
-                                    "Gift"
-                                )}
-
-                            </div>
-
-
-                            <div class="product-price">
-
-                                ${money(
-                                    amount
-                                )}
-
-                            </div>
+                            ${escapeHTML(
+                                order.customerEmail ||
+                                "Not provided"
+                            )}
 
                         </div>
 
@@ -1745,252 +1677,19 @@ function renderOrders(orders){
 
 
 
-                    <div class="details">
+                    <div class="detail">
 
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                Customer Email
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${escapeHTML(
-                                    order.customerEmail ||
-                                    "Not provided"
-                                )}
-
-                            </div>
-
+                        <div class="detail-label">
+                            Customer Phone
                         </div>
 
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                Customer Phone
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${escapeHTML(
-                                    order.yourPhone ||
-                                    order.customerPhone ||
-                                    "Not provided"
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                Sender
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${escapeHTML(
-                                    order.senderName ||
-                                    "Not provided"
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                Recipient
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${escapeHTML(
-                                    order.recipientName ||
-                                    "Not provided"
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                Recipient Phone
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${escapeHTML(
-                                    order.recipientPhone ||
-                                    "Not provided"
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                Country
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${escapeHTML(
-                                    order.country ||
-                                    order.destination ||
-                                    "Not provided"
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="detail full">
-
-                            <div class="detail-label">
-                                Delivery Address
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${
-                                    order.streetAddress
-                                    ?
-                                    escapeHTML(
-                                        order.streetAddress
-                                    )
-                                    :
-                                    ""
-                                }
-
-                                ${
-                                    order.city
-                                    ?
-                                    ", " +
-                                    escapeHTML(
-                                        order.city
-                                    )
-                                    :
-                                    ""
-                                }
-
-                                ${
-                                    order.state
-                                    ?
-                                    ", " +
-                                    escapeHTML(
-                                        order.state
-                                    )
-                                    :
-                                    ""
-                                }
-
-                                ${
-                                    order.zipCode
-                                    ?
-                                    ", " +
-                                    escapeHTML(
-                                        order.zipCode
-                                    )
-                                    :
-                                    ""
-                                }
-
-                                ${
-                                    order.country
-                                    ?
-                                    ", " +
-                                    escapeHTML(
-                                        order.country
-                                    )
-                                    :
-                                    ""
-                                }
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="detail full">
-
-                            <div class="detail-label">
-                                Additional Notes
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${escapeHTML(
-                                    order.additionalNotes ||
-                                    order.message ||
-                                    "No additional notes"
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                Payment
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${escapeHTML(
-                                    order.paymentMethod ||
-                                    "Wallet"
-                                )}
-
-                                -
-
-                                ${escapeHTML(
-                                    order.paymentStatus ||
-                                    "Paid"
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="detail">
-
-                            <div class="detail-label">
-                                Order Amount
-                            </div>
-
-                            <div class="detail-value">
-
-                                ${money(
-                                    amount
-                                )}
-
-                            </div>
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                order.yourPhone ||
+                                order.customerPhone ||
+                                "Not provided"
+                            )}
 
                         </div>
 
@@ -1998,87 +1697,231 @@ function renderOrders(orders){
 
 
 
-                    ${
-                        normalizedStatus ===
-                        "cancelled"
+                    <div class="detail">
 
-                        ?
+                        <div class="detail-label">
+                            Sender
+                        </div>
 
-                        `
+                        <div class="detail-value">
 
-                        <div
-                            class="refund-box refund-success"
-                        >
+                            ${escapeHTML(
+                                order.senderName ||
+                                "Not provided"
+                            )}
 
-                            ✓ Refund completed.
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Recipient
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                order.recipientName ||
+                                "Not provided"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Recipient Phone
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                order.recipientPhone ||
+                                "Not provided"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Country
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                order.country ||
+                                order.destination ||
+                                "Not provided"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="detail full">
+
+                        <div class="detail-label">
+                            Delivery Address
+                        </div>
+
+                        <div class="detail-value">
 
                             ${
-                                order.refundAmount
+                                order.streetAddress
                                 ?
-                                `
+                                escapeHTML(
+                                    order.streetAddress
+                                )
+                                :
+                                ""
+                            }
 
-                                ${money(
-                                    order.refundAmount
-                                )}
-                                returned to
-                                the sender's wallet.
+                            ${
+                                order.city
+                                ?
+                                ", " +
+                                escapeHTML(order.city)
+                                :
+                                ""
+                            }
 
-                                `
+                            ${
+                                order.state
+                                ?
+                                ", " +
+                                escapeHTML(order.state)
+                                :
+                                ""
+                            }
+
+                            ${
+                                order.zipCode
+                                ?
+                                ", " +
+                                escapeHTML(order.zipCode)
+                                :
+                                ""
+                            }
+
+                            ${
+                                order.country
+                                ?
+                                ", " +
+                                escapeHTML(order.country)
                                 :
                                 ""
                             }
 
                         </div>
 
-                        `
+                    </div>
 
-                        :
 
-                        ""
-                    }
 
+                    <div class="detail full">
+
+                        <div class="detail-label">
+                            Additional Notes
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                order.additionalNotes ||
+                                order.message ||
+                                "No additional notes"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Payment
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${escapeHTML(
+                                order.paymentMethod ||
+                                "Wallet"
+                            )}
+
+                            -
+
+                            ${escapeHTML(
+                                order.paymentStatus ||
+                                "Paid"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="detail">
+
+                        <div class="detail-label">
+                            Order Amount
+                        </div>
+
+                        <div class="detail-value">
+
+                            ${money(amount)}
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
 
                 ${
-                    normalizedStatus ===
-                    "pending"
+                    normalizedStatus === "cancelled"
 
                     ?
 
                     `
+                    <div class="refund-box refund-success">
 
-                    <div class="order-actions">
+                        ✓ Refund completed.
 
-
-                        <button
-                            class="cancel-order-btn"
-                            data-id="${escapeHTML(
-                                order.id
-                            )}"
-                        >
-
-                            ❌ Order Cancel
-
-                        </button>
-
-
-                        <button
-                            class="success-order-btn"
-                            data-id="${escapeHTML(
-                                order.id
-                            )}"
-                        >
-
-                            ✓ Order Successful
-
-                        </button>
-
+                        ${
+                            order.refundAmount
+                            ?
+                            `
+                            ${money(
+                                order.refundAmount
+                            )}
+                            returned to the sender's wallet.
+                            `
+                            :
+                            ""
+                        }
 
                     </div>
-
                     `
 
                     :
@@ -2086,88 +1929,137 @@ function renderOrders(orders){
                     ""
                 }
 
-            `;
 
 
-            /* Cancel button */
+                ${
+                    normalizedStatus === "successful"
 
-            const cancelButton =
-                card.querySelector(
-                    ".cancel-order-btn"
-                );
+                    ?
+
+                    `
+                    <div class="success-box">
+
+                        ✓ This gift order has been successfully
+                        completed and the customer has been notified.
+
+                    </div>
+                    `
+
+                    :
+
+                    ""
+                }
+
+            </div>
 
 
-            if(cancelButton){
 
-                cancelButton.addEventListener(
-                    "click",
-                    () => {
+            ${
+                normalizedStatus === "pending"
 
-                        openCancelConfirmation(
-                            order
-                        );
+                ?
 
-                    }
-                );
+                `
+                <div class="order-actions">
 
+                    <button
+                        class="cancel-order-btn"
+                        data-id="${escapeHTML(order.id)}"
+                    >
+
+                        ❌ Order Cancel
+
+                    </button>
+
+
+                    <button
+                        class="success-order-btn"
+                        data-id="${escapeHTML(order.id)}"
+                    >
+
+                        ✓ Order Successful
+
+                    </button>
+
+                </div>
+                `
+
+                :
+
+                ""
             }
 
-
-            /* Successful button */
-
-            const successButton =
-                card.querySelector(
-                    ".success-order-btn"
-                );
+        `;
 
 
-            if(successButton){
-
-                successButton.addEventListener(
-                    "click",
-                    () => {
-
-                        markSuccessful(
-                            order.id,
-                            successButton
-                        );
-
-                    }
-                );
-
-            }
+        const cancelButton =
+            card.querySelector(
+                ".cancel-order-btn"
+            );
 
 
-            ordersContainer.appendChild(
-                card
+        if(cancelButton){
+
+            cancelButton.addEventListener(
+                "click",
+                () => {
+
+                    openCancelConfirmation(
+                        order
+                    );
+
+                }
             );
 
         }
-    );
+
+
+        const successButton =
+            card.querySelector(
+                ".success-order-btn"
+            );
+
+
+        if(successButton){
+
+            successButton.addEventListener(
+                "click",
+                () => {
+
+                    markSuccessful(
+                        order.id,
+                        successButton
+                    );
+
+                }
+            );
+
+        }
+
+
+        ordersContainer.appendChild(card);
+
+    });
 
 }
 
 
 
 /* ==========================================
-   OPEN CANCEL CONFIRMATION
+   OPEN CANCEL
 ========================================== */
 
-function openCancelConfirmation(
-    order
-){
+function openCancelConfirmation(order){
 
     const amount =
-        getOrderAmount(
-            order
-        );
+        getOrderAmount(order);
 
 
     if(amount <= 0){
 
         showMessage(
             "Refund Error",
-            "This order does not contain a valid payment amount. The order cannot be automatically refunded.",
+            "This order does not contain a valid payment amount.",
             false
         );
 
@@ -2176,11 +2068,16 @@ function openCancelConfirmation(
     }
 
 
-    if(!order.userId){
+    /*
+     * IMPORTANT:
+     * New orders use customerUID.
+     */
+
+    if(!order.customerUID){
 
         showMessage(
             "Refund Error",
-            "This order does not contain the sender's user ID. The customer cannot be identified for the refund.",
+            "This order does not contain the customer's UID. This order cannot be automatically refunded.",
             false
         );
 
@@ -2194,7 +2091,7 @@ function openCancelConfirmation(
 
 
     confirmText.textContent =
-        `This will cancel this order and return ${money(amount)} to the sender's Fame Store wallet. This action cannot be undone.`;
+        `This will cancel the order and return ${money(amount)} to the customer's Fame Store wallet. A refund notification will also be sent. This action cannot be undone.`;
 
 
     confirmOverlay.classList.add(
@@ -2206,16 +2103,14 @@ function openCancelConfirmation(
 
 
 /* ==========================================
-   CONFIRM CANCEL + REFUND
+   CANCEL + REFUND + NOTIFICATION
 ========================================== */
 
 confirmProceed.addEventListener(
     "click",
     async () => {
 
-        if(
-            !selectedCancelOrder
-        ){
+        if(!selectedCancelOrder){
 
             return;
 
@@ -2226,26 +2121,20 @@ confirmProceed.addEventListener(
             selectedCancelOrder;
 
 
-        const orderId =
-            order.id;
-
-
         confirmProceed.disabled =
             true;
-
 
         confirmCancel.disabled =
             true;
 
-
         confirmProceed.textContent =
-            "Processing Refund...";
+            "Processing...";
 
 
         try{
 
             await cancelOrderAndRefund(
-                orderId
+                order.id
             );
 
 
@@ -2256,7 +2145,7 @@ confirmProceed.addEventListener(
                 "Order Cancelled",
                 `${money(
                     getOrderAmount(order)
-                )} has been returned to the sender's Fame Store wallet.`
+                )} has been returned to the customer's wallet and a notification has been sent.`
             );
 
 
@@ -2266,7 +2155,7 @@ confirmProceed.addEventListener(
         }catch(error){
 
             console.error(
-                "CANCEL AND REFUND ERROR:",
+                "CANCEL ERROR:",
                 error
             );
 
@@ -2274,32 +2163,17 @@ confirmProceed.addEventListener(
             confirmProceed.disabled =
                 false;
 
-
             confirmCancel.disabled =
                 false;
-
 
             confirmProceed.textContent =
                 "Yes, Cancel & Refund";
 
 
-            let errorMessage =
-                "Unable to cancel the order and process the refund.";
-
-
-            if(
-                error?.message
-            ){
-
-                errorMessage =
-                    error.message;
-
-            }
-
-
             showMessage(
                 "Refund Failed",
-                errorMessage,
+                error?.message ||
+                "Unable to cancel and refund this order.",
                 false
             );
 
@@ -2311,7 +2185,7 @@ confirmProceed.addEventListener(
 
 
 /* ==========================================
-   CANCEL ORDER + REFUND
+   CANCEL ORDER
 ========================================== */
 
 async function cancelOrderAndRefund(
@@ -2344,8 +2218,9 @@ async function cancelOrderAndRefund(
         async transaction => {
 
             /*
-             * IMPORTANT:
-             * All reads happen before writes.
+             * ================================
+             * READ ORDER
+             * ================================
              */
 
             const orderSnap =
@@ -2354,9 +2229,7 @@ async function cancelOrderAndRefund(
                 );
 
 
-            if(
-                !orderSnap.exists()
-            ){
+            if(!orderSnap.exists()){
 
                 throw new Error(
                     "This order no longer exists."
@@ -2372,14 +2245,9 @@ async function cancelOrderAndRefund(
             const currentStatus =
                 String(
                     orderData.status ||
-                    "pending"
+                    "Pending"
                 ).toLowerCase();
 
-
-            /*
-             * Only pending orders
-             * can be cancelled/refunded.
-             */
 
             if(
                 currentStatus !==
@@ -2387,24 +2255,36 @@ async function cancelOrderAndRefund(
             ){
 
                 throw new Error(
-                    "This order has already been processed and cannot be refunded again."
+                    "This order has already been processed."
                 );
 
             }
 
 
-            const userId =
-                orderData.userId;
+            /*
+             * ================================
+             * CUSTOMER UID
+             * ================================
+             */
+
+            const customerUID =
+                orderData.customerUID;
 
 
-            if(!userId){
+            if(!customerUID){
 
                 throw new Error(
-                    "This order has no sender user ID."
+                    "This order has no customerUID. Automatic refund is not possible."
                 );
 
             }
 
+
+            /*
+             * ================================
+             * AMOUNT
+             * ================================
+             */
 
             const refundAmount =
                 getOrderAmount(
@@ -2412,22 +2292,26 @@ async function cancelOrderAndRefund(
                 );
 
 
-            if(
-                refundAmount <= 0
-            ){
+            if(refundAmount <= 0){
 
                 throw new Error(
-                    "This order does not contain a valid refund amount."
+                    "This order has an invalid refund amount."
                 );
 
             }
 
 
+            /*
+             * ================================
+             * READ CUSTOMER
+             * ================================
+             */
+
             const userRef =
                 doc(
                     db,
                     "users",
-                    userId
+                    customerUID
                 );
 
 
@@ -2437,12 +2321,10 @@ async function cancelOrderAndRefund(
                 );
 
 
-            if(
-                !userSnap.exists()
-            ){
+            if(!userSnap.exists()){
 
                 throw new Error(
-                    "The sender's account could not be found."
+                    "The customer's account could not be found."
                 );
 
             }
@@ -2465,7 +2347,7 @@ async function cancelOrderAndRefund(
             ){
 
                 throw new Error(
-                    "The sender's wallet balance is invalid."
+                    "The customer's wallet balance is invalid."
                 );
 
             }
@@ -2477,7 +2359,24 @@ async function cancelOrderAndRefund(
 
 
             /*
+             * ================================
+             * CREATE NOTIFICATION
+             * ================================
+             */
+
+            const notificationRef =
+                doc(
+                    collection(
+                        db,
+                        "notifications"
+                    )
+                );
+
+
+            /*
+             * ================================
              * UPDATE WALLET
+             * ================================
              */
 
             transaction.update(
@@ -2495,7 +2394,11 @@ async function cancelOrderAndRefund(
 
 
             /*
+             * ================================
              * UPDATE ORDER
+             * ================================
+             *
+             * Capital C is important.
              */
 
             transaction.update(
@@ -2503,10 +2406,13 @@ async function cancelOrderAndRefund(
                 {
 
                     status:
-                        "cancelled",
+                        "Cancelled",
+
+                    paymentStatus:
+                        "Refunded",
 
                     refundStatus:
-                        "refunded",
+                        "Refunded",
 
                     refundAmount:
                         refundAmount,
@@ -2517,11 +2423,62 @@ async function cancelOrderAndRefund(
                     refundedBy:
                         admin.email || "",
 
-                    updatedAt:
-                        serverTimestamp(),
-
                     cancellationReason:
-                        "Order cancelled by admin"
+                        "Order cancelled by admin",
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            /*
+             * ================================
+             * CUSTOMER NOTIFICATION
+             * ================================
+             */
+
+            transaction.set(
+                notificationRef,
+                {
+
+                    uid:
+                        customerUID,
+
+                    title:
+                        "Order Cancelled & Refunded",
+
+                    message:
+                        `${orderData.productName || "Your gift order"} has been cancelled. ${money(refundAmount)} has been returned to your Fame Store wallet.`,
+
+                    body:
+                        `${money(refundAmount)} has been refunded to your Fame Store wallet.`,
+
+                    icon:
+                        "💰",
+
+                    type:
+                        "order_cancelled",
+
+                    status:
+                        "Cancelled",
+
+                    orderId:
+                        orderId,
+
+                    productName:
+                        orderData.productName ||
+                        "Gift",
+
+                    total:
+                        refundAmount,
+
+                    read:
+                        false,
+
+                    createdAt:
+                        serverTimestamp()
 
                 }
             );
@@ -2535,6 +2492,7 @@ async function cancelOrderAndRefund(
 
 /* ==========================================
    MARK SUCCESSFUL
+   + CUSTOMER NOTIFICATION
 ========================================== */
 
 async function markSuccessful(
@@ -2544,7 +2502,7 @@ async function markSuccessful(
 
     const confirmed =
         confirm(
-            "Are you sure you want to change this order from Pending to Successful?"
+            "Are you sure you want to mark this gift order as Successful? The customer will receive a notification."
         );
 
 
@@ -2558,12 +2516,24 @@ async function markSuccessful(
     button.disabled =
         true;
 
-
     button.textContent =
         "Updating...";
 
 
     try{
+
+        const admin =
+            auth.currentUser;
+
+
+        if(!admin){
+
+            throw new Error(
+                "Admin session expired."
+            );
+
+        }
+
 
         const orderRef =
             doc(
@@ -2573,67 +2543,168 @@ async function markSuccessful(
             );
 
 
-        /*
-         * First verify the order is
-         * still pending.
-         */
+        await runTransaction(
+            db,
+            async transaction => {
 
-        const orderSnap =
-            await getDoc(
-                orderRef
-            );
+                /*
+                 * ================================
+                 * READ ORDER
+                 * ================================
+                 */
 
-
-        if(
-            !orderSnap.exists()
-        ){
-
-            throw new Error(
-                "This order no longer exists."
-            );
-
-        }
+                const orderSnap =
+                    await transaction.get(
+                        orderRef
+                    );
 
 
-        const orderData =
-            orderSnap.data();
+                if(!orderSnap.exists()){
+
+                    throw new Error(
+                        "This order no longer exists."
+                    );
+
+                }
 
 
-        const status =
-            String(
-                orderData.status ||
-                "pending"
-            ).toLowerCase();
+                const orderData =
+                    orderSnap.data();
 
 
-        if(
-            status !==
-            "pending"
-        ){
-
-            throw new Error(
-                "This order has already been processed."
-            );
-
-        }
+                const currentStatus =
+                    String(
+                        orderData.status ||
+                        "Pending"
+                    ).toLowerCase();
 
 
-        await updateDoc(
-            orderRef,
-            {
+                if(
+                    currentStatus !==
+                    "pending"
+                ){
 
-                status:
-                    "successful",
+                    throw new Error(
+                        "This order has already been processed."
+                    );
 
-                updatedAt:
-                    serverTimestamp(),
+                }
 
-                successfulAt:
-                    serverTimestamp(),
 
-                successfulBy:
-                    auth.currentUser?.email ||
-                    ""
+                /*
+                 * ================================
+                 * CUSTOMER UID
+                 * ================================
+                 */
+
+                const customerUID =
+                    orderData.customerUID;
+
+
+                if(!customerUID){
+
+                    throw new Error(
+                        "This order has no customerUID. The customer cannot receive a notification."
+                    );
+
+                }
+
+
+                /*
+                 * ================================
+                 * CREATE NOTIFICATION
+                 * ================================
+                 */
+
+                const notificationRef =
+                    doc(
+                        collection(
+                            db,
+                            "notifications"
+                        )
+                    );
+
+
+                /*
+                 * ================================
+                 * UPDATE ORDER
+                 * ================================
+                 *
+                 * Capital S is required by
+                 * the Firestore rules.
+                 */
+
+                transaction.update(
+                    orderRef,
+                    {
+
+                        status:
+                            "Successful",
+
+                        successfulAt:
+                            serverTimestamp(),
+
+                        successfulBy:
+                            admin.email || "",
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                /*
+                 * ================================
+                 * CUSTOMER NOTIFICATION
+                 * ================================
+                 */
+
+                transaction.set(
+                    notificationRef,
+                    {
+
+                        uid:
+                            customerUID,
+
+                        title:
+                            "Gift Delivered Successfully",
+
+                        message:
+                            `${orderData.productName || "Your gift"} has been successfully delivered.`,
+
+                        body:
+                            "Your gift order has been successfully completed and delivered.",
+
+                        icon:
+                            "🎁",
+
+                        type:
+                            "order_successful",
+
+                        status:
+                            "Successful",
+
+                        orderId:
+                            orderId,
+
+                        productName:
+                            orderData.productName ||
+                            "Gift",
+
+                        total:
+                            getOrderAmount(
+                                orderData
+                            ),
+
+                        read:
+                            false,
+
+                        createdAt:
+                            serverTimestamp()
+
+                    }
+                );
 
             }
         );
@@ -2641,7 +2712,7 @@ async function markSuccessful(
 
         showMessage(
             "Order Successful",
-            "The order has been changed from Pending to Successful."
+            "The order has been marked Successful and the customer has been notified."
         );
 
 
@@ -2651,14 +2722,13 @@ async function markSuccessful(
     }catch(error){
 
         console.error(
-            "MARK SUCCESSFUL ERROR:",
+            "SUCCESSFUL ORDER ERROR:",
             error
         );
 
 
         button.disabled =
             false;
-
 
         button.textContent =
             "✓ Order Successful";
@@ -2667,7 +2737,7 @@ async function markSuccessful(
         showMessage(
             "Update Failed",
             error?.message ||
-            "Unable to update this order. Please check your Firestore rules.",
+            "Unable to mark this order as Successful.",
             false
         );
 
@@ -2687,10 +2757,7 @@ logoutBtn.addEventListener(
 
         try{
 
-            await signOut(
-                auth
-            );
-
+            await signOut(auth);
 
             window.location.href =
                 "admin-login.html";
@@ -2711,4 +2778,4 @@ logoutBtn.addEventListener(
 
 </body>
 
-    </html>
+</html>
