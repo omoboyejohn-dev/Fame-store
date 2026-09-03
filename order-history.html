@@ -126,19 +126,19 @@ body{
     display:inline-flex;
     align-items:center;
     gap:6px;
-    padding:7px 11px;
+    padding:8px 12px;
     border-radius:20px;
     font-size:12px;
     font-weight:800;
     margin-bottom:14px;
 }
 
-.status.processing{
+.status.pending{
     background:#fff4d6;
     color:#9a6700;
 }
 
-.status.completed{
+.status.successful{
     background:#e8fff2;
     color:#087443;
 }
@@ -146,6 +146,23 @@ body{
 .status.cancelled{
     background:#ffe8e8;
     color:#b42318;
+}
+
+.refund-box{
+    background:#e8fff2;
+    border:1px solid #b7ebcf;
+    color:#087443;
+    border-radius:11px;
+    padding:12px;
+    margin-bottom:14px;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.refund-box strong{
+    display:block;
+    font-size:13px;
+    margin-bottom:3px;
 }
 
 .details{
@@ -321,7 +338,7 @@ import {
     collection,
     query,
     where,
-    getDocs
+    onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
@@ -372,7 +389,7 @@ function formatDate(timestamp){
             }
         );
 
-    }catch(error){
+    }catch{
 
         return "Processing";
 
@@ -382,35 +399,65 @@ function formatDate(timestamp){
 
 
 /* ==================================================
-   STATUS
+   STATUS NORMALIZATION
+================================================== */
+
+function normalizeStatus(status){
+
+    const value =
+        String(
+            status || "pending"
+        ).trim().toLowerCase();
+
+    if(
+        value === "successful" ||
+        value === "success" ||
+        value === "delivered" ||
+        value === "completed"
+    ){
+
+        return "successful";
+
+    }
+
+    if(
+        value === "cancelled" ||
+        value === "canceled"
+    ){
+
+        return "cancelled";
+
+    }
+
+    return "pending";
+
+}
+
+
+/* ==================================================
+   STATUS CLASS
 ================================================== */
 
 function statusClass(status){
 
     const value =
-        String(
-            status || "Processing"
-        ).toLowerCase();
+        normalizeStatus(status);
 
-    if(value === "completed")
-        return "completed";
-
-    if(value === "cancelled")
-        return "cancelled";
-
-    return "processing";
+    return value;
 
 }
 
 
+/* ==================================================
+   STATUS ICON
+================================================== */
+
 function statusIcon(status){
 
     const value =
-        String(
-            status || "Processing"
-        ).toLowerCase();
+        normalizeStatus(status);
 
-    if(value === "completed")
+    if(value === "successful")
         return "✓";
 
     if(value === "cancelled")
@@ -422,12 +469,32 @@ function statusIcon(status){
 
 
 /* ==================================================
+   STATUS TEXT
+================================================== */
+
+function statusText(status){
+
+    const value =
+        normalizeStatus(status);
+
+    if(value === "successful")
+        return "Successful";
+
+    if(value === "cancelled")
+        return "Order Cancelled";
+
+    return "Pending";
+
+}
+
+
+/* ==================================================
    AUTH
 ================================================== */
 
 onAuthStateChanged(
     auth,
-    async user => {
+    user => {
 
         if(!user){
 
@@ -456,7 +523,7 @@ onAuthStateChanged(
         }
 
 
-        await loadOrders(
+        loadOrders(
             user.uid
         );
 
@@ -468,7 +535,7 @@ onAuthStateChanged(
    LOAD ORDERS
 ================================================== */
 
-async function loadOrders(uid){
+function loadOrders(uid){
 
     try{
 
@@ -480,9 +547,8 @@ async function loadOrders(uid){
 
 
         /*
-         * Only use WHERE.
-         * No orderBy here, so a composite
-         * Firestore index is not required.
+         * Customer can only see their
+         * own orders.
          */
 
         const ordersQuery =
@@ -496,305 +562,131 @@ async function loadOrders(uid){
             );
 
 
-        const snapshot =
-            await getDocs(
-                ordersQuery
-            );
-
-
-        if(snapshot.empty){
-
-            ordersBox.innerHTML = `
-
-                <div class="empty">
-
-                    <div class="empty-icon">
-                        🎁
-                    </div>
-
-                    <h3>
-                        No Orders Yet
-                    </h3>
-
-                    <p>
-                        You have not placed any gift orders yet.
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
         /*
-         * Convert Firestore documents
-         * into an array.
+         * REAL-TIME LISTENER
+         *
+         * When admin changes:
+         *
+         * Pending → Successful
+         *
+         * or
+         *
+         * Pending → Cancelled
+         *
+         * the customer page updates
+         * automatically.
          */
 
-        const orders = [];
+        onSnapshot(
 
+            ordersQuery,
 
-        snapshot.forEach(
-            orderDoc => {
+            snapshot => {
 
-                orders.push({
+                if(snapshot.empty){
 
-                    id:
-                        orderDoc.id,
+                    ordersBox.innerHTML = `
 
-                    data:
-                        orderDoc.data()
+                        <div class="empty">
 
-                });
-
-            }
-        );
-
-
-        /*
-         * Sort newest orders first.
-         */
-
-        orders.sort(
-            (a,b) => {
-
-                const dateA =
-                    a.data.createdAt
-                    ?.toMillis?.() || 0;
-
-                const dateB =
-                    b.data.createdAt
-                    ?.toMillis?.() || 0;
-
-                return dateB - dateA;
-
-            }
-        );
-
-
-        ordersBox.innerHTML = "";
-
-
-        orders.forEach(
-            orderItem => {
-
-                const order =
-                    orderItem.data;
-
-                const orderId =
-                    orderItem.id;
-
-
-                const status =
-                    order.status ||
-                    "Processing";
-
-
-                const image =
-                    order.productImage ||
-                    "";
-
-
-                const productName =
-                    order.productName ||
-                    "Gift";
-
-
-                const total =
-                    order.total ||
-                    order.price ||
-                    0;
-
-
-                const recipient =
-                    order.recipientName ||
-                    "-";
-
-
-                const recipientPhone =
-                    order.recipientPhone ||
-                    "-";
-
-
-                const address =
-                    [
-                        order.streetAddress,
-                        order.city,
-                        order.state,
-                        order.zipCode
-                    ]
-                    .filter(Boolean)
-                    .join(", ") || "-";
-
-
-                const card =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                card.className =
-                    "order-card";
-
-
-                card.innerHTML = `
-
-                    <div class="order-top">
-
-                        <div class="product">
-
-                            <img
-                                src="${escapeHTML(image)}"
-                                alt="Gift"
-                            >
-
-                            <div>
-
-                                <div class="product-name">
-                                    ${escapeHTML(
-                                        productName
-                                    )}
-                                </div>
-
-                                <div class="country">
-
-                                    ${order.countryFlag || "🌍"}
-
-                                    ${escapeHTML(
-                                        order.country ||
-                                        "International"
-                                    )}
-
-                                </div>
-
+                            <div class="empty-icon">
+                                🎁
                             </div>
 
-                        </div>
+                            <h3>
+                                No Orders Yet
+                            </h3>
 
-
-                        <div class="price">
-
-                            ${money(total)}
-
-                        </div>
-
-                    </div>
-
-
-                    <div>
-
-                        <span
-                            class="status ${statusClass(status)}">
-
-                            ${statusIcon(status)}
-
-                            ${escapeHTML(status)}
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="details">
-
-
-                        <div class="detail-row">
-
-                            <span>
-                                Order ID
-                            </span>
-
-                            <strong>
-                                ${escapeHTML(orderId)}
-                            </strong>
+                            <p>
+                                You have not placed any gift orders yet.
+                            </p>
 
                         </div>
 
+                    `;
 
-                        <div class="detail-row">
+                    return;
 
-                            <span>
-                                Recipient
-                            </span>
-
-                            <strong>
-                                ${escapeHTML(recipient)}
-                            </strong>
-
-                        </div>
+                }
 
 
-                        <div class="detail-row">
-
-                            <span>
-                                Recipient Phone
-                            </span>
-
-                            <strong>
-                                ${escapeHTML(recipientPhone)}
-                            </strong>
-
-                        </div>
+                const orders = [];
 
 
-                        <div class="detail-row">
+                snapshot.forEach(
+                    orderDoc => {
 
-                            <span>
-                                Delivery Address
-                            </span>
+                        orders.push({
 
-                            <strong>
-                                ${escapeHTML(address)}
-                            </strong>
+                            id:
+                                orderDoc.id,
 
-                        </div>
+                            data:
+                                orderDoc.data()
 
+                        });
 
-                        <div class="detail-row">
-
-                            <span>
-                                Payment
-                            </span>
-
-                            <strong>
-                                ${escapeHTML(
-                                    order.paymentStatus ||
-                                    "Paid"
-                                )}
-                            </strong>
-
-                        </div>
+                    }
+                );
 
 
-                        <div class="detail-row">
+                /*
+                 * Newest first.
+                 */
 
-                            <span>
-                                Order Date
-                            </span>
+                orders.sort(
+                    (a,b) => {
 
-                            <strong>
-                                ${formatDate(
-                                    order.createdAt
-                                )}
-                            </strong>
+                        const dateA =
+                            a.data.createdAt
+                            ?.toMillis?.() || 0;
 
-                        </div>
+                        const dateB =
+                            b.data.createdAt
+                            ?.toMillis?.() || 0;
+
+                        return dateB - dateA;
+
+                    }
+                );
+
+
+                renderOrders(
+                    orders
+                );
+
+            },
+
+            error => {
+
+                console.error(
+                    "ORDER HISTORY ERROR:",
+                    error
+                );
+
+
+                ordersBox.innerHTML = `
+
+                    <div class="error">
+
+                        <strong>
+                            Unable to load your order history.
+                        </strong>
+
+                        <br><br>
+
+                        ${escapeHTML(
+                            error.message ||
+                            "Please try again."
+                        )}
 
                     </div>
 
                 `;
 
-
-                ordersBox.appendChild(
-                    card
-                );
-
             }
-        );
 
+        );
 
     }catch(error){
 
@@ -803,27 +695,365 @@ async function loadOrders(uid){
             error
         );
 
-
-        ordersBox.innerHTML = `
-
-            <div class="error">
-
-                <strong>
-                    Unable to load your order history.
-                </strong>
-
-                <br><br>
-
-                ${escapeHTML(
-                    error.message ||
-                    "Please try again."
-                )}
-
-            </div>
-
-        `;
-
     }
+
+}
+
+
+/* ==================================================
+   RENDER ORDERS
+================================================== */
+
+function renderOrders(orders){
+
+    ordersBox.innerHTML = "";
+
+
+    orders.forEach(
+        orderItem => {
+
+            const order =
+                orderItem.data;
+
+            const orderId =
+                orderItem.id;
+
+
+            const status =
+                normalizeStatus(
+                    order.status
+                );
+
+
+            const image =
+                order.productImage ||
+                "";
+
+
+            const productName =
+                order.productName ||
+                "Gift";
+
+
+            const total =
+                Number(
+                    order.total ??
+                    order.price ??
+                    order.basePrice ??
+                    order.productPrice ??
+                    0
+                );
+
+
+            const recipient =
+                order.recipientName ||
+                "-";
+
+
+            const recipientPhone =
+                order.recipientPhone ||
+                "-";
+
+
+            const address =
+                [
+                    order.streetAddress,
+                    order.city,
+                    order.state,
+                    order.zipCode,
+                    order.country
+                ]
+                .filter(Boolean)
+                .join(", ") || "-";
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "order-card";
+
+
+            let refundHTML = "";
+
+
+            /*
+             * Show refund message only
+             * after the order has been cancelled
+             * and the admin has processed the refund.
+             */
+
+            if(
+                status === "cancelled" &&
+                order.refundProcessed === true
+            ){
+
+                const refundAmount =
+                    Number(
+                        order.refundAmount ??
+                        total
+                    );
+
+
+                refundHTML = `
+
+                    <div class="refund-box">
+
+                        <strong>
+                            💰 Money Returned to Wallet
+                        </strong>
+
+                        ${money(refundAmount)}
+                        has been returned to your Fame Store wallet.
+
+                    </div>
+
+                `;
+
+            }
+
+
+            card.innerHTML = `
+
+                <div class="order-top">
+
+                    <div class="product">
+
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="Gift"
+                            onerror="this.style.display='none'"
+                        >
+
+                        <div>
+
+                            <div class="product-name">
+                                ${escapeHTML(
+                                    productName
+                                )}
+                            </div>
+
+                            <div class="country">
+
+                                ${escapeHTML(
+                                    order.countryFlag ||
+                                    "🌍"
+                                )}
+
+                                ${escapeHTML(
+                                    order.country ||
+                                    "International"
+                                )}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        ${money(total)}
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span
+                        class="status ${statusClass(status)}"
+                    >
+
+                        ${statusIcon(status)}
+
+                        ${statusText(status)}
+
+                    </span>
+
+                </div>
+
+
+                ${refundHTML}
+
+
+                <div class="details">
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Order ID
+                        </span>
+
+                        <strong>
+                            ${escapeHTML(orderId)}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Recipient
+                        </span>
+
+                        <strong>
+                            ${escapeHTML(recipient)}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Recipient Phone
+                        </span>
+
+                        <strong>
+                            ${escapeHTML(recipientPhone)}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Delivery Address
+                        </span>
+
+                        <strong>
+                            ${escapeHTML(address)}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Payment
+                        </span>
+
+                        <strong>
+
+                            ${escapeHTML(
+                                order.refundProcessed === true
+                                    ? "Refunded to Wallet"
+                                    : (
+                                        order.paymentStatus ||
+                                        "Paid"
+                                    )
+                            )}
+
+                        </strong>
+
+                    </div>
+
+
+                    ${
+                        order.refundProcessed === true
+                        ? `
+
+                        <div class="detail-row">
+
+                            <span>
+                                Refund Amount
+                            </span>
+
+                            <strong>
+                                ${money(
+                                    order.refundAmount ??
+                                    total
+                                )}
+                            </strong>
+
+                        </div>
+
+                        `
+                        : ""
+                    }
+
+
+                    <div class="detail-row">
+
+                        <span>
+                            Order Date
+                        </span>
+
+                        <strong>
+                            ${formatDate(
+                                order.createdAt
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    ${
+                        order.cancelledAt
+                        ? `
+
+                        <div class="detail-row">
+
+                            <span>
+                                Cancelled Date
+                            </span>
+
+                            <strong>
+                                ${formatDate(
+                                    order.cancelledAt
+                                )}
+                            </strong>
+
+                        </div>
+
+                        `
+                        : ""
+                    }
+
+
+                    ${
+                        order.successfulAt
+                        ? `
+
+                        <div class="detail-row">
+
+                            <span>
+                                Successful Date
+                            </span>
+
+                            <strong>
+                                ${formatDate(
+                                    order.successfulAt
+                                )}
+                            </strong>
+
+                        </div>
+
+                        `
+                        : ""
+                    }
+
+                </div>
+
+            `;
+
+
+            ordersBox.appendChild(
+                card
+            );
+
+        }
+    );
 
 }
 
@@ -834,12 +1064,29 @@ async function loadOrders(uid){
 
 function escapeHTML(value){
 
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+    return String(
+        value ?? ""
+    )
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
 
 }
 
