@@ -5,10 +5,12 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Deposit | Fame Store</title>
+    <title>Deposit Funds | Fame Store</title>
 
     <style>
 
@@ -18,226 +20,500 @@
             padding: 0;
         }
 
+        :root {
+            --blue: #0757d9;
+            --blue-dark: #0647b5;
+            --blue-light: #eef5ff;
+            --yellow: #ffc928;
+            --yellow-dark: #e9b400;
+            --text: #101828;
+            --muted: #667085;
+            --border: #e4eaf2;
+            --white: #ffffff;
+            --green: #087443;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family:
+                Inter,
+                Arial,
+                Helvetica,
+                sans-serif;
+
             min-height: 100vh;
-            background: linear-gradient(
-                135deg,
-                #f5f9ff,
-                #ffffff,
-                #fffbea
-            );
-            color: #101828;
-            padding: 20px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(7, 87, 217, .10),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom left,
+                    rgba(255, 201, 40, .12),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f5f9ff 0%,
+                    #ffffff 48%,
+                    #fffbea 100%
+                );
+
+            color: var(--text);
+
+            padding:
+                20px 15px 40px;
         }
 
         .container {
-            width: min(520px, 100%);
+            width: min(540px, 100%);
             margin: auto;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
 
         .header {
             text-align: center;
-            margin: 20px 0 25px;
+            padding: 12px 0 25px;
         }
 
         .logo {
-            width: 58px;
-            height: 58px;
-            background: #ffc928;
-            border-radius: 16px;
+            width: 64px;
+            height: 64px;
+
+            margin: 0 auto 12px;
+
             display: grid;
             place-items: center;
-            margin: auto;
-            font-size: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--yellow),
+                    #ffe27a
+                );
+
+            border-radius: 19px;
+
+            font-size: 30px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(255, 201, 40, .25);
         }
 
         .header h1 {
-            color: #0757d9;
-            margin-top: 10px;
-            font-size: 25px;
+            font-size: 27px;
+            font-weight: 800;
+            color: var(--blue);
+            letter-spacing: -.5px;
         }
 
         .header p {
-            color: #667085;
+            margin-top: 6px;
+            color: var(--muted);
             font-size: 13px;
-            margin-top: 5px;
         }
 
-        /* CARD */
+        /* =========================
+           MAIN CARD
+        ========================= */
 
         .card {
-            background: #ffffff;
-            border: 1px solid #e5eaf1;
-            border-radius: 20px;
+            background: var(--white);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 22px;
+
             padding: 25px;
+
             margin-bottom: 18px;
+
             box-shadow:
-                0 15px 45px rgba(7, 87, 217, 0.08);
+                0 20px 55px
+                rgba(7, 87, 217, .09);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+
+            margin-bottom: 8px;
+        }
+
+        .card-icon {
+            width: 43px;
+            height: 43px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            background: var(--blue-light);
+
+            font-size: 20px;
         }
 
         .card h2 {
             font-size: 20px;
-            margin-bottom: 7px;
+            font-weight: 800;
+            line-height: 1.3;
         }
 
         .description {
-            color: #667085;
+            color: var(--muted);
+
             font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 20px;
+
+            line-height: 1.65;
+
+            margin:
+                10px 0 21px;
         }
 
-        /* BANK */
+        /* =========================
+           BANK ACCOUNT
+        ========================= */
 
         .bank-box {
-            background: #f5f9ff;
-            border: 1px solid #dce8ff;
-            border-radius: 14px;
-            padding: 17px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5f9ff,
+                    #ffffff
+                );
+
+            border:
+                1px solid #dbe7fa;
+
+            border-radius: 17px;
+
+            padding: 8px 17px;
         }
 
         .bank-row {
-            padding: 11px 0;
-            border-bottom: 1px solid #e1e9f5;
+            padding: 14px 0;
+
+            border-bottom:
+                1px solid #e6edf7;
         }
 
         .bank-row:last-child {
-            border-bottom: 0;
+            border-bottom: none;
         }
 
         .label {
             display: block;
-            color: #667085;
+
+            color: var(--muted);
+
             font-size: 11px;
+
+            font-weight: 600;
+
             margin-bottom: 5px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .4px;
         }
 
         .value {
             display: block;
+
+            color: var(--text);
+
             font-size: 15px;
-            font-weight: 700;
+
+            font-weight: 750;
         }
 
         .account-number {
-            color: #0757d9;
-            font-size: 21px;
-            letter-spacing: 1px;
+            color: var(--blue);
+
+            font-size: 23px;
+
+            letter-spacing: 1.5px;
         }
 
-        /* BUTTON */
+        /* =========================
+           NOTICE
+        ========================= */
+
+        .notice {
+            display: flex;
+
+            gap: 10px;
+
+            align-items: flex-start;
+
+            background: #fffbea;
+
+            border:
+                1px solid #f5df91;
+
+            color: #735600;
+
+            border-radius: 13px;
+
+            padding: 13px;
+
+            font-size: 11px;
+
+            line-height: 1.65;
+
+            margin-top: 17px;
+        }
+
+        .notice-icon {
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
 
         .btn {
             width: 100%;
-            height: 51px;
-            border: 0;
-            border-radius: 11px;
-            background: #0757d9;
-            color: #ffffff;
+
+            min-height: 52px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    #176ce8
+                );
+
+            color: #fff;
+
+            font-family: inherit;
+
             font-size: 14px;
-            font-weight: 700;
+
+            font-weight: 800;
+
             cursor: pointer;
-            margin-top: 18px;
-            transition: .2s;
+
+            margin-top: 19px;
+
+            box-shadow:
+                0 10px 25px
+                rgba(7, 87, 217, .18);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
         }
 
         .btn:hover {
-            background: #063b91;
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 13px 30px
+                rgba(7, 87, 217, .23);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         .btn:disabled {
-            opacity: .6;
+            opacity: .65;
             cursor: not-allowed;
+            transform: none;
         }
 
         .paid-btn {
-            background: #ffc928;
-            color: #101828;
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--yellow),
+                    #ffd84f
+                );
+
+            color: #171717;
+
+            box-shadow:
+                0 10px 25px
+                rgba(255, 201, 40, .22);
         }
 
         .paid-btn:hover {
-            background: #eab400;
+            background:
+                linear-gradient(
+                    135deg,
+                    #f4bd00,
+                    var(--yellow)
+                );
         }
 
-        /* FORM */
+        /* =========================
+           PAYMENT FORM
+        ========================= */
 
         .form-group {
-            margin-bottom: 17px;
+            margin-bottom: 18px;
         }
 
         label {
             display: block;
+
+            color: #344054;
+
             font-size: 12px;
-            font-weight: 700;
+
+            font-weight: 750;
+
             margin-bottom: 7px;
         }
 
         input {
             width: 100%;
-            height: 49px;
-            border: 1px solid #d9e0ea;
-            border-radius: 10px;
-            padding: 0 14px;
+
+            height: 51px;
+
+            border:
+                1px solid #d9e0ea;
+
+            border-radius: 11px;
+
+            padding:
+                0 14px;
+
+            color: var(--text);
+
+            background: #fff;
+
             font-family: inherit;
+
             font-size: 14px;
+
             outline: none;
-            background: #ffffff;
+
+            transition:
+                border-color .2s,
+                box-shadow .2s;
+        }
+
+        input::placeholder {
+            color: #98a2b3;
         }
 
         input:focus {
-            border-color: #0757d9;
+            border-color: var(--blue);
+
             box-shadow:
-                0 0 0 3px rgba(7, 87, 217, .08);
+                0 0 0 4px
+                rgba(7, 87, 217, .08);
         }
 
-        /* MESSAGE */
+        input[type="number"] {
+            appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            appearance: none;
+        }
+
+        /* =========================
+           MESSAGE
+        ========================= */
 
         .message {
             display: none;
+
             padding: 13px;
-            border-radius: 10px;
+
+            border-radius: 11px;
+
             font-size: 12px;
+
             line-height: 1.5;
+
             margin-bottom: 17px;
         }
 
         .message.error {
             display: block;
+
             color: #b42318;
+
             background: #fff1f0;
-            border: 1px solid #ffd3d0;
+
+            border:
+                1px solid #ffd3d0;
         }
 
-        /* HIDDEN */
+        .message.success {
+            display: block;
 
-        .hidden {
-            display: none !important;
+            color: #087443;
+
+            background: #ecfff4;
+
+            border:
+                1px solid #b9efd1;
         }
 
-        /* INFO */
+        /* =========================
+           SECURITY NOTICE
+        ========================= */
 
-        .notice {
-            background: #fffbea;
-            border: 1px solid #f5df91;
-            color: #735600;
-            border-radius: 10px;
-            padding: 12px;
-            font-size: 11px;
-            line-height: 1.6;
+        .security-notice {
             margin-top: 17px;
+
+            padding: 12px;
+
+            border-radius: 11px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e6eaf0;
+
+            color: #667085;
+
+            font-size: 11px;
+
+            line-height: 1.6;
         }
 
-        /* BACK */
+        /* =========================
+           BACK LINK
+        ========================= */
 
         .back {
             display: block;
+
             text-align: center;
-            color: #0757d9;
+
+            color: var(--blue);
+
             text-decoration: none;
+
             font-size: 12px;
-            margin: 22px 0;
+
+            font-weight: 700;
+
+            margin:
+                22px 0;
         }
 
         .back:hover {
@@ -250,63 +526,103 @@
 
         .success-screen {
             display: none;
+
             text-align: center;
-            background: #ffffff;
-            border: 1px solid #e5eaf1;
-            border-radius: 20px;
-            padding: 40px 25px;
-            margin-bottom: 18px;
+
+            background: #fff;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 22px;
+
+            padding:
+                42px 25px;
+
             box-shadow:
-                0 15px 45px rgba(7, 87, 217, 0.08);
+                0 20px 55px
+                rgba(7, 87, 217, .09);
         }
 
         .success-icon {
-            width: 68px;
-            height: 68px;
-            margin: 0 auto 20px;
+            width: 72px;
+            height: 72px;
+
+            margin:
+                0 auto 20px;
+
             border-radius: 50%;
-            background: #ecfff4;
-            color: #087443;
+
             display: grid;
             place-items: center;
-            font-size: 34px;
-            font-weight: 800;
-            border: 1px solid #b9efd1;
+
+            background: #ecfff4;
+
+            color: var(--green);
+
+            border:
+                1px solid #b9efd1;
+
+            font-size: 35px;
+
+            font-weight: 900;
         }
 
         .success-screen h2 {
-            color: #101828;
+            color: var(--text);
+
             font-size: 21px;
+
             line-height: 1.4;
+
             margin-bottom: 12px;
         }
 
         .success-message {
-            color: #667085;
+            color: var(--muted);
+
             font-size: 13px;
+
             line-height: 1.7;
-            margin-bottom: 22px;
+
+            margin-bottom: 20px;
         }
 
         .pending-text {
             display: inline-block;
+
             background: #fffbea;
-            border: 1px solid #f5df91;
+
+            border:
+                1px solid #f5df91;
+
             color: #735600;
-            padding: 9px 13px;
+
+            padding:
+                9px 14px;
+
             border-radius: 20px;
+
             font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 22px;
+
+            font-weight: 800;
+
+            margin-bottom: 23px;
         }
 
         .support-link {
             display: block;
-            color: #0757d9;
+
+            color: var(--blue);
+
             font-size: 13px;
-            font-weight: 700;
+
+            font-weight: 750;
+
             text-decoration: none;
+
             line-height: 1.5;
+
             margin-bottom: 22px;
         }
 
@@ -316,34 +632,73 @@
 
         .dashboard-btn {
             display: block;
+
             width: 100%;
-            background: #0757d9;
-            color: #ffffff;
-            padding: 14px 20px;
-            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--blue),
+                    #176ce8
+                );
+
+            color: #fff;
+
+            padding:
+                15px 20px;
+
+            border-radius: 11px;
+
             font-size: 13px;
+
             font-weight: 800;
+
             text-decoration: none;
         }
 
         .dashboard-btn:hover {
-            background: #063b91;
+            background: var(--blue-dark);
         }
 
-        /* MOBILE */
+        /* =========================
+           HIDDEN
+        ========================= */
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 500px) {
 
             body {
-                padding: 15px;
+                padding:
+                    12px 12px 30px;
+            }
+
+            .header {
+                padding-top: 10px;
+            }
+
+            .header h1 {
+                font-size: 24px;
             }
 
             .card {
                 padding: 20px;
+                border-radius: 19px;
+            }
+
+            .account-number {
+                font-size: 21px;
             }
 
             .success-screen {
-                padding: 35px 20px;
+                padding:
+                    35px 20px;
             }
 
         }
@@ -359,7 +714,9 @@
 <div class="container">
 
 
-    <!-- HEADER -->
+    <!-- =========================
+         HEADER
+    ========================= -->
 
     <div class="header">
 
@@ -378,22 +735,41 @@
     </div>
 
 
-
     <!-- =========================
          BANK DETAILS
     ========================= -->
 
-    <div class="card" id="bankCard">
+    <div
+        class="card"
+        id="bankCard"
+    >
 
-        <h2>
-            Deposit Funds
-        </h2>
+        <div class="card-header">
+
+            <div class="card-icon">
+                🏦
+            </div>
+
+            <div>
+
+                <h2>
+                    Deposit Funds
+                </h2>
+
+            </div>
+
+        </div>
+
 
         <p class="description">
+
             Transfer the amount you want to deposit
             to the Fame Store account below.
+
         </p>
 
+
+        <!-- BANK -->
 
         <div class="bank-box">
 
@@ -440,19 +816,32 @@
         </div>
 
 
+        <!-- NOTICE -->
+
         <div class="notice">
 
-            After making the transfer, click
-            <strong>I Have Paid</strong> and provide
-            your payment details.
+            <div class="notice-icon">
+                ℹ️
+            </div>
+
+            <div>
+
+                After making the transfer, click
+                <strong>I Have Paid</strong>
+                and provide your payment details.
+
+            </div>
 
         </div>
 
 
+        <!-- PAID BUTTON -->
+
         <button
             type="button"
             class="btn paid-btn"
-            id="paidButton">
+            id="paidButton"
+        >
 
             I Have Paid
 
@@ -462,19 +851,30 @@
     </div>
 
 
-
     <!-- =========================
-         PAYMENT FORM
+         PAYMENT DETAILS
     ========================= -->
 
     <div
         class="card hidden"
-        id="paymentCard">
+        id="paymentCard"
+    >
 
+        <div class="card-header">
 
-        <h2>
-            Payment Details
-        </h2>
+            <div class="card-icon">
+                🧾
+            </div>
+
+            <div>
+
+                <h2>
+                    Payment Details
+                </h2>
+
+            </div>
+
+        </div>
 
 
         <p class="description">
@@ -490,13 +890,13 @@
 
         <div
             id="message"
-            class="message">
+            class="message"
+        ></div>
 
-        </div>
 
+        <!-- FORM -->
 
-        <form
-            id="depositForm">
+        <form id="depositForm">
 
 
             <!-- AMOUNT -->
@@ -512,8 +912,10 @@
                     id="amount"
                     min="1"
                     step="0.01"
+                    inputmode="decimal"
                     placeholder="Example: 10000"
-                    required>
+                    required
+                >
 
             </div>
 
@@ -531,7 +933,9 @@
                     id="senderName"
                     placeholder="Name used for the transfer"
                     autocomplete="name"
-                    required>
+                    maxlength="100"
+                    required
+                >
 
             </div>
 
@@ -548,7 +952,9 @@
                     type="text"
                     id="transactionReference"
                     placeholder="Enter transaction reference"
-                    required>
+                    maxlength="150"
+                    required
+                >
 
             </div>
 
@@ -558,7 +964,8 @@
             <button
                 type="submit"
                 class="btn"
-                id="submitButton">
+                id="submitButton"
+            >
 
                 Submit Payment
 
@@ -568,8 +975,17 @@
         </form>
 
 
-    </div>
+        <div class="security-notice">
 
+            🔒 Your payment information is securely
+            submitted to Fame Store administration
+            for review. Your wallet will only be
+            credited after the payment is approved.
+
+        </div>
+
+
+    </div>
 
 
     <!-- =========================
@@ -578,8 +994,8 @@
 
     <div
         class="success-screen"
-        id="successScreen">
-
+        id="successScreen"
+    >
 
         <div class="success-icon">
             ✓
@@ -594,8 +1010,11 @@
         <p class="success-message">
 
             Your deposit is now pending.
-            <br>
-            Please wait 1 to 10 minutes while we confirm your payment.
+
+            <br><br>
+
+            Please wait 1 to 10 minutes while we
+            confirm your payment.
 
         </p>
 
@@ -607,7 +1026,8 @@
 
         <a
             href="support.html"
-            class="support-link">
+            class="support-link"
+        >
 
             Payment not reflecting?
             Click to contact support
@@ -617,7 +1037,8 @@
 
         <a
             href="dashboard.html"
-            class="dashboard-btn">
+            class="dashboard-btn"
+        >
 
             Go Back to Dashboard
 
@@ -627,7 +1048,6 @@
     </div>
 
 
-
     <!-- =========================
          BACK
     ========================= -->
@@ -635,7 +1055,8 @@
     <a
         href="dashboard.html"
         class="back"
-        id="backLink">
+        id="backLink"
+    >
 
         ← Back to Dashboard
 
@@ -719,16 +1140,14 @@ const firebaseConfig = {
 
 
 /* =====================================
-   INITIALIZE
+   INITIALIZE FIREBASE
 ===================================== */
 
 const app =
     initializeApp(firebaseConfig);
 
-
 const auth =
     getAuth(app);
-
 
 const db =
     getFirestore(app);
@@ -744,60 +1163,50 @@ const paidButton =
         "paidButton"
     );
 
-
 const bankCard =
     document.getElementById(
         "bankCard"
     );
-
 
 const paymentCard =
     document.getElementById(
         "paymentCard"
     );
 
-
 const successScreen =
     document.getElementById(
         "successScreen"
     );
-
 
 const backLink =
     document.getElementById(
         "backLink"
     );
 
-
 const depositForm =
     document.getElementById(
         "depositForm"
     );
-
 
 const amountInput =
     document.getElementById(
         "amount"
     );
 
-
 const senderInput =
     document.getElementById(
         "senderName"
     );
-
 
 const referenceInput =
     document.getElementById(
         "transactionReference"
     );
 
-
 const submitButton =
     document.getElementById(
         "submitButton"
     );
-
 
 const message =
     document.getElementById(
@@ -811,6 +1220,8 @@ const message =
 ===================================== */
 
 let currentUser = null;
+
+let isSubmitting = false;
 
 
 
@@ -836,14 +1247,8 @@ onAuthStateChanged(
 
 
         console.log(
-            "Logged in UID:",
+            "Fame Store user:",
             currentUser.uid
-        );
-
-
-        console.log(
-            "Logged in email:",
-            currentUser.email
         );
 
     }
@@ -859,22 +1264,28 @@ paidButton.addEventListener(
     "click",
     () => {
 
+        if (
+            paymentCard.classList.contains(
+                "hidden"
+            )
+        ) {
 
-        paymentCard.classList.remove(
-            "hidden"
-        );
+            paymentCard.classList.remove(
+                "hidden"
+            );
+
+        }
 
 
-        paidButton.disabled =
-            true;
-
+        paidButton.disabled = true;
 
         paidButton.textContent =
             "Payment Details";
 
 
         paymentCard.scrollIntoView({
-            behavior: "smooth"
+            behavior: "smooth",
+            block: "start"
         });
 
     }
@@ -883,18 +1294,19 @@ paidButton.addEventListener(
 
 
 /* =====================================
-   SHOW ERROR
+   SHOW MESSAGE
 ===================================== */
 
 function showMessage(
-    text
+    text,
+    type = "error"
 ) {
 
     message.textContent =
         text;
 
     message.className =
-        "message error";
+        "message " + type;
 
 }
 
@@ -908,9 +1320,16 @@ depositForm.addEventListener(
     "submit",
     async event => {
 
-
         event.preventDefault();
 
+
+        /* =========================
+           PREVENT DUPLICATE SUBMIT
+        ========================= */
+
+        if (isSubmitting) {
+            return;
+        }
 
 
         /* =========================
@@ -928,7 +1347,6 @@ depositForm.addEventListener(
         }
 
 
-
         /* =========================
            GET VALUES
         ========================= */
@@ -938,14 +1356,11 @@ depositForm.addEventListener(
                 amountInput.value
             );
 
-
         const senderName =
             senderInput.value.trim();
 
-
         const transactionReference =
             referenceInput.value.trim();
-
 
 
         /* =========================
@@ -953,13 +1368,17 @@ depositForm.addEventListener(
         ========================= */
 
         if (
-            !depositAmount ||
+            !Number.isFinite(
+                depositAmount
+            ) ||
             depositAmount <= 0
         ) {
 
             showMessage(
                 "Please enter a valid deposit amount."
             );
+
+            amountInput.focus();
 
             return;
 
@@ -972,6 +1391,8 @@ depositForm.addEventListener(
                 "Please enter the sender name."
             );
 
+            senderInput.focus();
+
             return;
 
         }
@@ -983,43 +1404,30 @@ depositForm.addEventListener(
                 "Please enter the transaction reference."
             );
 
+            referenceInput.focus();
+
             return;
 
         }
 
 
-
         /* =========================
-           LOADING
+           START SUBMIT
         ========================= */
 
-        submitButton.disabled =
-            true;
+        isSubmitting = true;
+
+        submitButton.disabled = true;
 
         submitButton.textContent =
             "Submitting...";
 
 
-
         try {
 
-
             console.log(
-                "Submitting deposit..."
+                "Submitting Fame Store deposit..."
             );
-
-
-            console.log(
-                "UID:",
-                currentUser.uid
-            );
-
-
-            console.log(
-                "Amount:",
-                depositAmount
-            );
-
 
 
             /* =========================
@@ -1068,49 +1476,52 @@ depositForm.addEventListener(
                 );
 
 
-
             console.log(
-                "Deposit ID:",
+                "Deposit created:",
                 depositRef.id
             );
 
 
-
             /* =========================
-               SUCCESS SCREEN
+               RESET FORM
             ========================= */
 
             depositForm.reset();
 
 
+            /* =========================
+               HIDE OTHER SCREENS
+            ========================= */
+
             bankCard.classList.add(
                 "hidden"
             );
-
 
             paymentCard.classList.add(
                 "hidden"
             );
 
 
+            /* =========================
+               SHOW SUCCESS
+            ========================= */
+
             successScreen.style.display =
                 "block";
-
 
             backLink.style.display =
                 "none";
 
 
             successScreen.scrollIntoView({
-                behavior: "smooth"
+                behavior: "smooth",
+                block: "start"
             });
 
 
         }
 
-
         catch (error) {
-
 
             console.error(
                 "FIREBASE ERROR:",
@@ -1130,11 +1541,6 @@ depositForm.addEventListener(
             );
 
 
-
-            /* =========================
-               ERROR MESSAGE
-            ========================= */
-
             let errorMessage =
                 "Unable to submit payment. Please try again.";
 
@@ -1145,10 +1551,9 @@ depositForm.addEventListener(
             ) {
 
                 errorMessage =
-                    "Firestore permission denied. Please check your Firestore Rules.";
+                    "Payment submission was denied by Firestore. Please check your Firestore Rules.";
 
             }
-
 
             else if (
                 error.code ===
@@ -1156,10 +1561,9 @@ depositForm.addEventListener(
             ) {
 
                 errorMessage =
-                    "You are not logged in. Please login again.";
+                    "Your login session has expired. Please login again.";
 
             }
-
 
             else if (
                 error.code ===
@@ -1167,10 +1571,9 @@ depositForm.addEventListener(
             ) {
 
                 errorMessage =
-                    "Firebase is temporarily unavailable. Check your internet connection.";
+                    "Firebase is temporarily unavailable. Please check your internet connection and try again.";
 
             }
-
 
             else if (
                 error.code ===
@@ -1188,9 +1591,10 @@ depositForm.addEventListener(
             );
 
 
+            isSubmitting = false;
+
             submitButton.disabled =
                 false;
-
 
             submitButton.textContent =
                 "Submit Payment";
