@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
@@ -17,833 +22,1343 @@
 
 <style>
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    :root {
-        --blue: #0757d9;
-        --dark-blue: #063b91;
-        --yellow: #ffc928;
-        --white: #ffffff;
-        --black: #101828;
-        --gray: #667085;
-        --light: #f5f8fc;
-        --border: #e5eaf1;
-    }
+:root{
 
-    html {
-        scroll-behavior: smooth;
-    }
+    --blue:#0757d9;
+    --dark-blue:#063b91;
+    --yellow:#ffc928;
+    --white:#ffffff;
+    --black:#101828;
+    --gray:#667085;
+    --light:#f5f8fc;
+    --border:#e5eaf1;
 
-    body {
-        font-family: "Inter", sans-serif;
-        background: var(--light);
-        color: var(--black);
-    }
+}
 
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
+html{
+    scroll-behavior:smooth;
+}
 
-    button {
-        font-family: inherit;
-    }
+body{
 
-    .container {
-        width: min(1180px, 92%);
-        margin: auto;
-    }
+    font-family:"Inter",sans-serif;
 
+    background:var(--light);
 
-    /* =========================
-       HEADER
-    ========================= */
+    color:var(--black);
 
-    .header {
-        background: #ffffff;
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
+}
 
-    .header-inner {
-        min-height: 76px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-    }
+a{
 
-    .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+    text-decoration:none;
 
-    .brand-icon {
-        width: 44px;
-        height: 44px;
-        background: var(--yellow);
-        border-radius: 12px;
-        display: grid;
-        place-items: center;
-        font-size: 22px;
-    }
+    color:inherit;
 
-    .brand-name {
-        color: var(--blue);
-        font-size: 18px;
-        font-weight: 800;
-    }
+}
 
-    .brand-tagline {
-        color: var(--gray);
-        font-size: 9px;
-        margin-top: 2px;
-    }
+button{
 
-    .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+    font-family:inherit;
 
-    .header-btn {
-        width: 42px;
-        height: 42px;
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        background: white;
-        cursor: pointer;
-        font-size: 18px;
-    }
+}
 
-    .header-btn:hover {
-        border-color: var(--blue);
-    }
+.container{
 
-    .profile-mini {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: var(--blue);
-        color: white;
-        display: grid;
-        place-items: center;
-        font-weight: 800;
-        cursor: pointer;
-    }
+    width:min(1180px,92%);
 
+    margin:auto;
 
-    /* =========================
-       DASHBOARD
-    ========================= */
+}
 
-    .dashboard {
-        padding: 35px 0 70px;
-    }
 
-    .welcome {
-        margin-bottom: 25px;
-    }
+/* =========================
+   HEADER
+========================= */
 
-    .welcome h1 {
-        font-size: clamp(24px, 4vw, 34px);
-        line-height: 1.2;
-    }
+.header{
 
-    .welcome p {
-        color: var(--gray);
-        margin-top: 6px;
-        font-size: 14px;
-    }
+    background:#ffffff;
 
+    border-bottom:1px solid var(--border);
 
-    /* =========================
-       BALANCE
-    ========================= */
+    position:sticky;
 
-    .balance-card {
-        background: linear-gradient(
-            135deg,
-            var(--blue),
-            var(--dark-blue)
-        );
+    top:0;
 
-        border-radius: 22px;
-        color: white;
-        padding: 30px;
+    z-index:1000;
 
-        box-shadow:
-            0 20px 45px
-            rgba(7, 87, 217, .20);
+}
 
-        position: relative;
-        overflow: hidden;
+.header-inner{
 
-        margin-bottom: 25px;
-    }
+    min-height:76px;
 
-    .balance-card::after {
-        content: "";
+    display:flex;
 
-        width: 220px;
-        height: 220px;
+    align-items:center;
 
-        position: absolute;
+    justify-content:space-between;
 
-        right: -80px;
-        top: -80px;
+    gap:20px;
 
-        background:
-            rgba(255, 255, 255, .08);
+}
 
-        border-radius: 50%;
-    }
+.brand{
 
-    .balance-label {
-        font-size: 12px;
-        opacity: .8;
-    }
+    display:flex;
 
-    .balance-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        gap: 20px;
-        position: relative;
-        z-index: 2;
-    }
+    align-items:center;
 
-    .balance-amount {
-        font-size:
-            clamp(32px, 6vw, 46px);
+    gap:10px;
 
-        font-weight: 800;
-        margin-top: 6px;
-    }
+}
 
-    .deposit-btn {
-        border: 0;
-        background: var(--yellow);
-        color: #614800;
-        padding: 13px 22px;
-        border-radius: 10px;
-        font-weight: 800;
-        cursor: pointer;
-        transition: .3s;
-    }
+.brand-icon{
 
-    .deposit-btn:hover {
-        transform: translateY(-2px);
-        background: #ffd84e;
-    }
+    width:44px;
 
+    height:44px;
 
-    /* =========================
-       QUICK ACTIONS
-    ========================= */
+    background:var(--yellow);
 
-    .quick-actions {
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
-        gap: 10px;
-        margin-bottom: 35px;
-    }
+    border-radius:12px;
 
-    .quick-action {
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 13px;
-        padding: 15px 8px;
-        text-align: center;
-        transition: .25s;
-    }
+    display:grid;
 
-    .quick-action:hover {
-        border-color: var(--blue);
-        transform: translateY(-3px);
+    place-items:center;
 
-        box-shadow:
-            0 10px 25px
-            rgba(7, 87, 217, .08);
-    }
+    font-size:22px;
 
-    .quick-icon {
-        font-size: 22px;
-        display: block;
-        margin-bottom: 7px;
-    }
+}
 
-    .quick-action span:last-child {
-        font-size: 10px;
-        font-weight: 700;
-        color: #344054;
-    }
+.brand-name{
 
+    color:var(--blue);
 
-    /* =========================
-       SECTION
-    ========================= */
+    font-size:18px;
 
-    .section-title {
-        margin-bottom: 18px;
-    }
+    font-weight:800;
 
-    .section-title h2 {
-        font-size: 23px;
-    }
+}
 
-    .section-title p {
-        color: var(--gray);
-        font-size: 13px;
-        margin-top: 5px;
-    }
+.brand-tagline{
 
+    color:var(--gray);
 
-    /* =========================
-       COUNTRY GRID
-    ========================= */
+    font-size:9px;
 
-    .delivery-section {
-        margin-top: 40px;
-    }
+    margin-top:2px;
 
-    .country-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
+}
 
-    .country-card {
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 22px;
-        cursor: pointer;
-        transition: .25s;
-        position: relative;
-        min-height: 130px;
-    }
+.header-actions{
 
-    .country-card:hover {
-        transform: translateY(-4px);
+    display:flex;
 
-        box-shadow:
-            0 12px 30px
-            rgba(7, 87, 217, .09);
+    align-items:center;
 
-        border-color: var(--blue);
-    }
+    gap:10px;
 
-    .country-card:active {
-        transform: scale(.98);
-    }
+}
 
-    .country-flag {
-        font-size: 36px;
-        display: block;
-        margin-bottom: 12px;
-    }
+.header-btn{
 
-    .country-name {
-        font-weight: 800;
-        font-size: 15px;
-    }
+    width:42px;
 
-    .country-card::after {
-        content: "→";
+    height:42px;
 
-        position: absolute;
-        right: 18px;
-        bottom: 20px;
+    border:1px solid var(--border);
 
-        color: var(--blue);
-        font-size: 18px;
-        font-weight: 800;
-    }
+    border-radius:10px;
 
+    background:white;
 
-    /* =========================
-       OTHER COUNTRIES
-    ========================= */
+    cursor:pointer;
 
-    .other-country {
-        margin-top: 15px;
+    font-size:18px;
 
-        background: white;
+}
 
-        border: 1px solid var(--border);
+.header-btn:hover{
 
-        border-radius: 16px;
+    border-color:var(--blue);
 
-        padding: 18px;
+}
 
-        cursor: pointer;
+.profile-mini{
 
-        display: flex;
+    width:42px;
 
-        align-items: center;
+    height:42px;
 
-        justify-content: space-between;
+    border-radius:50%;
 
-        gap: 15px;
+    background:var(--blue);
 
-        transition: .25s;
-    }
+    color:white;
 
-    .other-country:hover {
-        border-color: var(--blue);
+    display:grid;
 
-        transform: translateY(-2px);
+    place-items:center;
 
-        box-shadow:
-            0 10px 25px
-            rgba(7, 87, 217, .07);
-    }
+    font-weight:800;
 
-    .other-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
+    cursor:pointer;
 
-    .other-icon {
-        width: 45px;
-        height: 45px;
+}
 
-        background: #fff7d9;
 
-        border-radius: 12px;
+/* =========================
+   RECENT ACTIVITY
+========================= */
 
-        display: grid;
-        place-items: center;
+.activity-box{
 
-        font-size: 22px;
-    }
+    background:#ffffff;
 
-    .other-country strong {
-        display: block;
-        font-size: 14px;
-    }
+    border:1px solid var(--border);
 
-    .other-country span {
-        color: var(--gray);
-        font-size: 11px;
-    }
+    border-radius:16px;
 
+    margin-bottom:25px;
 
-    /* =========================
-       MODAL
-    ========================= */
+    overflow:hidden;
 
-    .country-modal-overlay {
-        position: fixed;
-        inset: 0;
+    box-shadow:
+        0 6px 20px rgba(16,24,40,.05);
 
-        background:
-            rgba(0, 0, 0, .60);
+}
 
-        display: flex;
+.activity-header{
 
-        align-items: center;
-        justify-content: center;
+    min-height:42px;
 
-        padding: 20px;
+    padding:10px 14px;
 
-        z-index: 10000;
+    display:flex;
 
-        animation: modalFade .25s ease;
-    }
+    align-items:center;
 
-    .country-modal {
-        width: min(420px, 100%);
+    justify-content:space-between;
 
-        background: #ffffff;
+    border-bottom:1px solid #edf0f4;
 
-        border-radius: 22px;
+}
 
-        padding: 30px 25px;
+.activity-title{
 
-        text-align: center;
+    display:flex;
 
-        box-shadow:
-            0 25px 70px
-            rgba(0, 0, 0, .25);
+    align-items:center;
 
-        animation: modalUp .25s ease;
-    }
+    gap:8px;
 
-    .country-modal-icon {
-        width: 65px;
-        height: 65px;
+    font-size:12px;
 
-        margin: 0 auto 15px;
+    font-weight:800;
 
-        border-radius: 18px;
+    color:var(--black);
 
-        background: #fff7d9;
+}
 
-        display: grid;
+.live-dot{
 
-        place-items: center;
+    width:8px;
 
-        font-size: 32px;
-    }
+    height:8px;
 
-    .country-modal h2 {
-        font-size: 22px;
-        font-weight: 800;
+    border-radius:50%;
 
-        color: var(--black);
+    background:#22c55e;
 
-        margin-bottom: 12px;
-    }
+    box-shadow:
+        0 0 0 4px rgba(34,197,94,.12);
 
-    .country-modal p {
-        color: var(--gray);
+    animation:livePulse 1.7s infinite;
 
-        font-size: 13px;
+}
 
-        line-height: 1.7;
+.activity-demo{
 
-        margin-bottom: 10px;
-    }
+    font-size:9px;
 
-    .whatsapp-btn {
-        display: block;
+    color:#98a2b3;
 
-        width: 100%;
+    font-weight:600;
 
-        margin-top: 22px;
+}
 
-        padding: 14px 18px;
+.activity-window{
 
-        border-radius: 11px;
+    height:55px;
 
-        background: #25d366;
+    overflow:hidden;
 
-        color: #ffffff;
+    position:relative;
 
-        font-size: 13px;
+}
 
-        font-weight: 800;
+.activity-track{
 
-        transition: .25s;
-    }
+    width:100%;
 
-    .whatsapp-btn:hover {
-        transform: translateY(-2px);
-        filter: brightness(.95);
-    }
+    position:absolute;
 
-    .close-modal-btn {
-        width: 100%;
+    top:0;
 
-        margin-top: 10px;
+    left:0;
 
-        padding: 13px 18px;
+    transition:
+        transform .55s cubic-bezier(.22,.61,.36,1);
 
-        border: 1px solid var(--border);
+}
 
-        border-radius: 11px;
+.activity-item{
 
-        background: #ffffff;
+    height:55px;
 
-        color: var(--black);
+    width:100%;
 
-        font-family: inherit;
+    display:flex;
 
-        font-size: 13px;
+    align-items:center;
 
-        font-weight: 700;
+    gap:11px;
 
-        cursor: pointer;
+    padding:0 14px;
 
-        transition: .25s;
-    }
+}
 
-    .close-modal-btn:hover {
-        border-color: var(--blue);
-        color: var(--blue);
-    }
+.activity-icon{
 
-    @keyframes modalFade {
+    width:34px;
 
-        from {
-            opacity: 0;
-        }
+    height:34px;
 
-        to {
-            opacity: 1;
-        }
+    border-radius:10px;
 
-    }
+    background:#fff7d9;
 
-    @keyframes modalUp {
-
-        from {
-            opacity: 0;
-            transform:
-                translateY(20px)
-                scale(.97);
-        }
-
-        to {
-            opacity: 1;
-            transform:
-                translateY(0)
-                scale(1);
-        }
+    display:grid;
 
-    }
+    place-items:center;
+
+    font-size:17px;
+
+    flex-shrink:0;
+
+}
 
+.activity-content{
 
-    /* =========================
-       SUPPORT
-    ========================= */
+    min-width:0;
 
-    .support-card {
-        margin-top: 35px;
+    flex:1;
 
-        background: #fffbea;
+}
 
-        border: 1px solid #f5df88;
+.activity-name{
 
-        border-radius: 18px;
+    font-size:12px;
 
-        padding: 25px;
+    font-weight:800;
 
-        display: flex;
+    color:#101828;
 
-        justify-content: space-between;
+}
 
-        align-items: center;
+.activity-message{
 
-        gap: 20px;
+    font-size:11px;
+
+    color:#667085;
+
+    margin-top:2px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}
+
+.activity-time{
+
+    font-size:9px;
+
+    color:#98a2b3;
+
+    white-space:nowrap;
+
+}
+
+@keyframes livePulse{
+
+    0%,100%{
+        opacity:1;
+        transform:scale(1);
     }
 
-    .support-card h3 {
-        font-size: 17px;
+    50%{
+        opacity:.45;
+        transform:scale(.82);
     }
 
-    .support-card p {
-        color: var(--gray);
+}
 
-        font-size: 12px;
 
-        margin-top: 5px;
-    }
+/* =========================
+   DASHBOARD
+========================= */
 
-    .support-btn {
-        background: var(--blue);
+.dashboard{
 
-        color: white;
+    padding:25px 0 70px;
 
-        padding: 12px 18px;
+}
 
-        border-radius: 9px;
 
-        font-size: 12px;
+/* =========================
+   WELCOME
+========================= */
 
-        font-weight: 700;
+.welcome{
 
-        white-space: nowrap;
-    }
+    margin-bottom:25px;
 
+}
 
-    /* =========================
-       FOOTER
-    ========================= */
+.welcome h1{
 
-    .footer {
-        background: #061c43;
+    font-size:clamp(24px,4vw,34px);
 
-        color: white;
+    line-height:1.2;
 
-        padding: 25px 0;
-    }
+}
 
-    .footer-inner {
-        display: flex;
+.welcome p{
 
-        justify-content: space-between;
+    color:var(--gray);
 
-        align-items: center;
+    margin-top:6px;
 
-        gap: 15px;
-    }
+    font-size:14px;
+
+}
+
+
+/* =========================
+   BALANCE
+========================= */
+
+.balance-card{
+
+    background:linear-gradient(
+        135deg,
+        var(--blue),
+        var(--dark-blue)
+    );
+
+    border-radius:22px;
+
+    color:white;
+
+    padding:30px;
+
+    box-shadow:
+        0 20px 45px rgba(7,87,217,.20);
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-bottom:25px;
+
+}
+
+.balance-card::after{
+
+    content:"";
+
+    width:220px;
+
+    height:220px;
+
+    position:absolute;
+
+    right:-80px;
+
+    top:-80px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+}
+
+.balance-label{
+
+    font-size:12px;
+
+    opacity:.8;
+
+}
+
+.balance-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    gap:20px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.balance-amount{
+
+    font-size:clamp(32px,6vw,46px);
+
+    font-weight:800;
+
+    margin-top:6px;
+
+}
+
+.deposit-btn{
+
+    border:0;
+
+    background:var(--yellow);
+
+    color:#614800;
+
+    padding:13px 22px;
+
+    border-radius:10px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.deposit-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:#ffd84e;
+
+}
+
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-actions{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(8,1fr);
+
+    gap:10px;
+
+    margin-bottom:35px;
+
+}
+
+.quick-action{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:13px;
+
+    padding:15px 8px;
+
+    text-align:center;
+
+    transition:.25s;
+
+}
+
+.quick-action:hover{
+
+    border-color:var(--blue);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(7,87,217,.08);
+
+}
+
+.quick-icon{
+
+    font-size:22px;
+
+    display:block;
+
+    margin-bottom:7px;
+
+}
+
+.quick-action span:last-child{
+
+    font-size:10px;
+
+    font-weight:700;
+
+    color:#344054;
+
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+
+    margin-bottom:18px;
+
+}
+
+.section-title h2{
+
+    font-size:23px;
 
-    .footer p {
-        color: #9eafc9;
-        font-size: 10px;
+}
+
+.section-title p{
+
+    color:var(--gray);
+
+    font-size:13px;
+
+    margin-top:5px;
+
+}
+
+
+/* =========================
+   COUNTRY GRID
+========================= */
+
+.delivery-section{
+
+    margin-top:40px;
+
+}
+
+.country-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+.country-card{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:22px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    position:relative;
+
+    min-height:130px;
+
+}
+
+.country-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(7,87,217,.09);
+
+    border-color:var(--blue);
+
+}
+
+.country-card:active{
+
+    transform:scale(.98);
+
+}
+
+.country-flag{
+
+    font-size:36px;
+
+    display:block;
+
+    margin-bottom:12px;
+
+}
+
+.country-name{
+
+    font-weight:800;
+
+    font-size:15px;
+
+}
+
+.country-card::after{
+
+    content:"→";
+
+    position:absolute;
+
+    right:18px;
+
+    bottom:20px;
+
+    color:var(--blue);
+
+    font-size:18px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================
+   OTHER COUNTRIES
+========================= */
+
+.other-country{
+
+    margin-top:15px;
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    padding:18px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    transition:.25s;
+
+}
+
+.other-country:hover{
+
+    border-color:var(--blue);
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(7,87,217,.07);
+
+}
+
+.other-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.other-icon{
+
+    width:45px;
+
+    height:45px;
+
+    background:#fff7d9;
+
+    border-radius:12px;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:22px;
+
+}
+
+.other-country strong{
+
+    display:block;
+
+    font-size:14px;
+
+}
+
+.other-country span{
+
+    color:var(--gray);
+
+    font-size:11px;
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.country-modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(0,0,0,.60);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:10000;
+
+    animation:modalFade .25s ease;
+
+}
+
+.country-modal{
+
+    width:min(420px,100%);
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:30px 25px;
+
+    text-align:center;
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.25);
+
+    animation:modalUp .25s ease;
+
+}
+
+.country-modal-icon{
+
+    width:65px;
+
+    height:65px;
+
+    margin:0 auto 15px;
+
+    border-radius:18px;
+
+    background:#fff7d9;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:32px;
+
+}
+
+.country-modal h2{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:var(--black);
+
+    margin-bottom:12px;
+
+}
+
+.country-modal p{
+
+    color:var(--gray);
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    margin-bottom:10px;
+
+}
+
+.whatsapp-btn{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:22px;
+
+    padding:14px 18px;
+
+    border-radius:11px;
+
+    background:#25d366;
+
+    color:#ffffff;
+
+    font-size:13px;
+
+    font-weight:800;
+
+    transition:.25s;
+
+}
+
+.whatsapp-btn:hover{
+
+    transform:translateY(-2px);
+
+    filter:brightness(.95);
+
+}
+
+.close-modal-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:13px 18px;
+
+    border:1px solid var(--border);
+
+    border-radius:11px;
+
+    background:#ffffff;
+
+    color:var(--black);
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.close-modal-btn:hover{
+
+    border-color:var(--blue);
+
+    color:var(--blue);
+
+}
+
+@keyframes modalFade{
+
+    from{
+        opacity:0;
     }
 
+    to{
+        opacity:1;
+    }
 
-    /* =========================
-       TOAST
-    ========================= */
+}
 
-    .toast {
-        position: fixed;
+@keyframes modalUp{
 
-        left: 50%;
+    from{
 
-        bottom: 25px;
+        opacity:0;
 
         transform:
-            translate(-50%, 100px);
+            translateY(20px)
+            scale(.97);
 
-        opacity: 0;
-
-        background: #101828;
-
-        color: white;
-
-        padding: 13px 20px;
-
-        border-radius: 10px;
-
-        font-size: 12px;
-
-        z-index: 9999;
-
-        transition: .3s;
-
-        pointer-events: none;
     }
 
-    .toast.show {
-        opacity: 1;
+    to{
+
+        opacity:1;
 
         transform:
-            translate(-50%, 0);
-    }
-
-
-    /* =========================
-       TABLET
-    ========================= */
-
-    @media (max-width: 950px) {
-
-        .quick-actions {
-            grid-template-columns:
-                repeat(4, 1fr);
-        }
-
-        .country-grid {
-            grid-template-columns:
-                repeat(2, 1fr);
-        }
+            translateY(0)
+            scale(1);
 
     }
 
+}
 
-    /* =========================
-       MOBILE
-    ========================= */
 
-    @media (max-width: 650px) {
+/* =========================
+   SUPPORT
+========================= */
 
-        .dashboard {
-            padding-top: 25px;
-        }
+.support-card{
 
-        .header-inner {
-            min-height: 68px;
-        }
+    margin-top:35px;
 
-        .brand-name {
-            font-size: 16px;
-        }
+    background:#fffbea;
 
-        .balance-card {
-            padding: 24px;
-        }
+    border:1px solid #f5df88;
 
-        .balance-row {
-            align-items: flex-start;
-            flex-direction: column;
-        }
+    border-radius:18px;
 
-        .deposit-btn {
-            width: 100%;
-        }
+    padding:25px;
 
-        .quick-actions {
-            grid-template-columns:
-                repeat(4, 1fr);
-        }
+    display:flex;
 
-        .country-grid {
-            grid-template-columns:
-                repeat(2, 1fr);
-        }
+    justify-content:space-between;
 
-        .country-card {
-            min-height: 120px;
-            padding: 18px;
-        }
+    align-items:center;
 
-        .support-card {
-            align-items: flex-start;
-            flex-direction: column;
-        }
+    gap:20px;
 
-        .support-btn {
-            width: 100%;
-            text-align: center;
-        }
+}
 
-        .footer-inner {
-            align-items: flex-start;
-            flex-direction: column;
-        }
+.support-card h3{
+
+    font-size:17px;
+
+}
+
+.support-card p{
+
+    color:var(--gray);
+
+    font-size:12px;
+
+    margin-top:5px;
+
+}
+
+.support-btn{
+
+    background:var(--blue);
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:9px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    white-space:nowrap;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    background:#061c43;
+
+    color:white;
+
+    padding:25px 0;
+
+}
+
+.footer-inner{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.footer p{
+
+    color:#9eafc9;
+
+    font-size:10px;
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:
+        translate(-50%,100px);
+
+    opacity:0;
+
+    background:#101828;
+
+    color:white;
+
+    padding:13px 20px;
+
+    border-radius:10px;
+
+    font-size:12px;
+
+    z-index:9999;
+
+    transition:.3s;
+
+    pointer-events:none;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:950px){
+
+    .quick-actions{
+
+        grid-template-columns:
+            repeat(4,1fr);
 
     }
 
+    .country-grid{
 
-    /* =========================
-       SMALL PHONE
-    ========================= */
-
-    @media (max-width: 400px) {
-
-        .quick-actions {
-            grid-template-columns:
-                repeat(2, 1fr);
-        }
-
-        .country-grid {
-            grid-template-columns:
-                repeat(2, 1fr);
-        }
-
-        .country-card {
-            padding: 15px;
-        }
-
-        .country-flag {
-            font-size: 30px;
-        }
-
-        .country-name {
-            font-size: 13px;
-        }
+        grid-template-columns:
+            repeat(2,1fr);
 
     }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    .dashboard{
+
+        padding-top:20px;
+
+    }
+
+    .header-inner{
+
+        min-height:68px;
+
+    }
+
+    .brand-name{
+
+        font-size:16px;
+
+    }
+
+    .balance-card{
+
+        padding:24px;
+
+    }
+
+    .balance-row{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+    .deposit-btn{
+
+        width:100%;
+
+    }
+
+    .quick-actions{
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+    }
+
+    .country-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .country-card{
+
+        min-height:120px;
+
+        padding:18px;
+
+    }
+
+    .support-card{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+    .support-btn{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+    .footer-inner{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+
+    }
+
+    .activity-demo{
+
+        display:none;
+
+    }
+
+}
+
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media(max-width:400px){
+
+    .quick-actions{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .country-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+    .country-card{
+
+        padding:15px;
+
+    }
+
+    .country-flag{
+
+        font-size:30px;
+
+    }
+
+    .country-name{
+
+        font-size:13px;
+
+    }
+
+}
 
 </style>
 
-</head><body><!-- =========================
+</head>
+
+
+<body>
+
+
+<!-- =========================
      HEADER
-========================= --><header class="header"><div class="container header-inner">
+========================= -->
+
+<header class="header">
+
+<div class="container header-inner">
+
 
     <a
         href="dashboard.html"
@@ -893,9 +1408,56 @@
 
 </div>
 
-</header><!-- =========================
+</header>
+
+
+
+<!-- =========================
      DASHBOARD
-========================= --><main class="dashboard"><div class="container">
+========================= -->
+
+<main class="dashboard">
+
+<div class="container">
+
+
+    <!-- =========================
+         RECENT ACTIVITY
+    ========================= -->
+
+    <section class="activity-box">
+
+        <div class="activity-header">
+
+            <div class="activity-title">
+
+                <span class="live-dot"></span>
+
+                <span>
+                    Recent Activity
+                </span>
+
+            </div>
+
+            <span class="activity-demo">
+                Demo Activity
+            </span>
+
+        </div>
+
+
+        <div class="activity-window">
+
+            <div
+                class="activity-track"
+                id="activityTrack">
+
+            </div>
+
+        </div>
+
+    </section>
+
 
 
     <!-- =========================
@@ -907,9 +1469,11 @@
         <h1>
 
             Welcome,
+
             <span id="userName">
                 Customer
             </span>
+
             👋
 
         </h1>
@@ -1119,8 +1683,6 @@
             id="countryGrid">
 
 
-            <!-- USA -->
-
             <div
                 class="country-card"
                 data-page="usa.html">
@@ -1135,8 +1697,6 @@
 
             </div>
 
-
-            <!-- CANADA -->
 
             <div
                 class="country-card"
@@ -1226,9 +1786,17 @@
 
 </div>
 
-</main><!-- =========================
+</main>
+
+
+
+<!-- =========================
      FOOTER
-========================= --><footer class="footer"><div class="container footer-inner">
+========================= -->
+
+<footer class="footer">
+
+<div class="container footer-inner">
 
     <p>
         © 2026 Fame Store.
@@ -1242,554 +1810,962 @@
 
 </div>
 
-</footer><!-- =========================
+</footer>
+
+
+
+<!-- =========================
      TOAST
-========================= --><div
+========================= -->
+
+<div
     class="toast"
     id="toast">
-</div><!-- =========================
+</div>
+
+
+
+<!-- =========================
+     ACTIVITY SYSTEM
+========================= -->
+
+<script>
+
+/*
+=================================================
+FAME STORE ACTIVITY LIST
+=================================================
+
+These are demo/sample entries.
+
+Do not present them as real customer orders unless
+they are replaced with actual order data.
+
+The system automatically rotates through 200+
+entries.
+=================================================
+*/
+
+const activityData = [
+
+    ["John","just placed an order"],
+    ["Thomas","just placed an order"],
+    ["Michael","sent a gift 🎁"],
+    ["David","just placed an order"],
+    ["James","sent a gift ❤️"],
+    ["Daniel","just placed an order"],
+    ["Robert","sent a gift 🎁"],
+    ["William","just placed an order"],
+    ["Joseph","sent a gift ❤️"],
+    ["Charles","just placed an order"],
+    ["Christopher","sent a gift 🎁"],
+    ["Matthew","just placed an order"],
+    ["Anthony","sent a gift ❤️"],
+    ["Joshua","just placed an order"],
+    ["Andrew","sent a gift 🎁"],
+    ["Benjamin","just placed an order"],
+    ["Samuel","sent a gift ❤️"],
+    ["Henry","just placed an order"],
+    ["Alexander","sent a gift 🎁"],
+    ["Daniel","just placed an order"],
+
+    ["Noah","sent a gift ❤️"],
+    ["Oliver","just placed an order"],
+    ["Lucas","sent a gift 🎁"],
+    ["Ethan","just placed an order"],
+    ["Mason","sent a gift ❤️"],
+    ["Logan","just placed an order"],
+    ["Jackson","sent a gift 🎁"],
+    ["Owen","just placed an order"],
+    ["Theodore","sent a gift ❤️"],
+    ["Aiden","just placed an order"],
+    ["Elijah","sent a gift 🎁"],
+    ["Dylan","just placed an order"],
+    ["Luke","sent a gift ❤️"],
+    ["Asher","just placed an order"],
+    ["Liam","sent a gift 🎁"],
+    ["Emma","just placed an order"],
+    ["Olivia","sent a gift ❤️"],
+    ["Ava","just placed an order"],
+    ["Sophia","sent a gift 🎁"],
+    ["Isabella","just placed an order"],
+
+    ["Mia","sent a gift ❤️"],
+    ["Charlotte","just placed an order"],
+    ["Amelia","sent a gift 🎁"],
+    ["Harper","just placed an order"],
+    ["Evelyn","sent a gift ❤️"],
+    ["Ella","just placed an order"],
+    ["Elizabeth","sent a gift 🎁"],
+    ["Camila","just placed an order"],
+    ["Luna","sent a gift ❤️"],
+    ["Sofia","just placed an order"],
+    ["Avery","sent a gift 🎁"],
+    ["Mila","just placed an order"],
+    ["Aria","sent a gift ❤️"],
+    ["Scarlett","just placed an order"],
+    ["Penelope","sent a gift 🎁"],
+    ["Layla","just placed an order"],
+    ["Chloe","sent a gift ❤️"],
+    ["Grace","just placed an order"],
+    ["Victoria","sent a gift 🎁"],
+    ["Riley","just placed an order"],
+
+    ["Nora","sent a gift ❤️"],
+    ["Lily","just placed an order"],
+    ["Eleanor","sent a gift 🎁"],
+    ["Hazel","just placed an order"],
+    ["Aurora","sent a gift ❤️"],
+    ["Ellie","just placed an order"],
+    ["Naomi","sent a gift 🎁"],
+    ["Stella","just placed an order"],
+    ["Zoe","sent a gift ❤️"],
+    ["Hannah","just placed an order"],
+    ["Lucy","sent a gift 🎁"],
+    ["Maya","just placed an order"],
+    ["Leah","sent a gift ❤️"],
+    ["Lillian","just placed an order"],
+    ["Addison","sent a gift 🎁"],
+    ["Natalie","just placed an order"],
+    ["Emilia","sent a gift ❤️"],
+    ["Ruby","just placed an order"],
+    ["Claire","sent a gift 🎁"],
+    ["Alice","just placed an order"],
+
+    ["Bella","sent a gift ❤️"],
+    ["Ivy","just placed an order"],
+    ["Sarah","sent a gift 🎁"],
+    ["Madison","just placed an order"],
+    ["Willow","sent a gift ❤️"],
+    ["Lydia","just placed an order"],
+    ["Clara","sent a gift 🎁"],
+    ["Josephine","just placed an order"],
+    ["Elena","sent a gift ❤️"],
+    ["Caroline","just placed an order"],
+    ["Kennedy","sent a gift 🎁"],
+    ["Anna","just placed an order"],
+    ["Savannah","sent a gift ❤️"],
+    ["Brooklyn","just placed an order"],
+    ["Samantha","sent a gift 🎁"],
+    ["Ashley","just placed an order"],
+    ["Diana","sent a gift ❤️"],
+    ["Rachel","just placed an order"],
+    ["Rebecca","sent a gift 🎁"],
+    ["Laura","just placed an order"],
+
+    ["Jennifer","sent a gift ❤️"],
+    ["Jessica","just placed an order"],
+    ["Amanda","sent a gift 🎁"],
+    ["Michelle","just placed an order"],
+    ["Stephanie","sent a gift ❤️"],
+    ["Nicole","just placed an order"],
+    ["Katherine","sent a gift 🎁"],
+    ["Maria","just placed an order"],
+    ["Angela","sent a gift ❤️"],
+    ["Christina","just placed an order"],
+    ["Melissa","sent a gift 🎁"],
+    ["Brianna","just placed an order"],
+    ["Jasmine","sent a gift ❤️"],
+    ["Alexis","just placed an order"],
+    ["Kayla","sent a gift 🎁"],
+    ["Faith","just placed an order"],
+    ["Joy","sent a gift ❤️"],
+    ["Blessing","just placed an order"],
+    ["Grace","sent a gift 🎁"],
+    ["Precious","just placed an order"],
+
+    ["Favour","sent a gift ❤️"],
+    ["Mercy","just placed an order"],
+    ["Peace","sent a gift 🎁"],
+    ["Emmanuel","just placed an order"],
+    ["Victor","sent a gift ❤️"],
+    ["Frank","just placed an order"],
+    ["George","sent a gift 🎁"],
+    ["Peter","just placed an order"],
+    ["Paul","sent a gift ❤️"],
+    ["Stephen","just placed an order"],
+    ["Patrick","sent a gift 🎁"],
+    ["Brian","just placed an order"],
+    ["Kevin","sent a gift ❤️"],
+    ["Eric","just placed an order"],
+    ["Jason","sent a gift 🎁"],
+    ["Ryan","just placed an order"],
+    ["Justin","sent a gift ❤️"],
+    ["Brandon","just placed an order"],
+    ["Tyler","sent a gift 🎁"],
+    ["Jordan","just placed an order"],
+
+    ["Cameron","sent a gift ❤️"],
+    ["Derek","just placed an order"],
+    ["Alex","sent a gift 🎁"],
+    ["Chris","just placed an order"],
+    ["Mark","sent a gift ❤️"],
+    ["Steven","just placed an order"],
+    ["Adam","sent a gift 🎁"],
+    ["Aaron","just placed an order"],
+    ["Jonathan","sent a gift ❤️"],
+    ["Christian","just placed an order"],
+    ["Isaac","sent a gift 🎁"],
+    ["Gabriel","just placed an order"],
+    ["Nathaniel","sent a gift ❤️"],
+    ["Caleb","just placed an order"],
+    ["Isaiah","sent a gift 🎁"],
+    ["Josiah","just placed an order"],
+    ["Jeremiah","sent a gift ❤️"],
+    ["Nathan","just placed an order"],
+    ["Dominic","sent a gift 🎁"],
+    ["Adrian","just placed an order"],
+
+    ["Leo","sent a gift ❤️"],
+    ["Julian","just placed an order"],
+    ["Aaron","sent a gift 🎁"],
+    ["Ezra","just placed an order"],
+    ["Hudson","sent a gift ❤️"],
+    ["Lincoln","just placed an order"],
+    ["Thomas","sent a gift 🎁"],
+    ["Mateo","just placed an order"],
+    ["Nolan","sent a gift ❤️"],
+    ["Carter","just placed an order"],
+    ["Wyatt","sent a gift 🎁"],
+    ["Grayson","just placed an order"],
+    ["Isaac","sent a gift ❤️"],
+    ["Jayden","just placed an order"],
+    ["Luca","sent a gift 🎁"],
+    ["Asher","just placed an order"],
+    ["Easton","sent a gift ❤️"],
+    ["Colton","just placed an order"],
+    ["Jaxon","sent a gift 🎁"],
+    ["Maverick","just placed an order"],
+
+    ["Kayden","sent a gift ❤️"],
+    ["Parker","just placed an order"],
+    ["Cooper","sent a gift 🎁"],
+    ["Silas","just placed an order"],
+    ["Rowan","sent a gift ❤️"],
+    ["Micah","just placed an order"],
+    ["Everett","sent a gift 🎁"],
+    ["Declan","just placed an order"],
+    ["Wesley","sent a gift ❤️"],
+    ["Kai","just placed an order"],
+    ["Xavier","sent a gift 🎁"],
+    ["Milo","just placed an order"],
+    ["Vincent","sent a gift ❤️"],
+    ["Axel","just placed an order"],
+    ["Zachary","sent a gift 🎁"],
+    ["Miles","just placed an order"],
+    ["Ryder","sent a gift ❤️"],
+    ["Kingston","just placed an order"],
+    ["Atlas","sent a gift 🎁"],
+    ["Brooks","just placed an order"],
+
+    ["Aaliyah","sent a gift ❤️"],
+    ["Nevaeh","just placed an order"],
+    ["Skylar","sent a gift 🎁"],
+    ["Genesis","just placed an order"],
+    ["Serenity","sent a gift ❤️"],
+    ["Adeline","just placed an order"],
+    ["Paisley","sent a gift 🎁"],
+    ["Madeline","just placed an order"],
+    ["Audrey","sent a gift ❤️"],
+    ["Ariana","just placed an order"],
+    ["Everleigh","sent a gift 🎁"],
+    ["Piper","just placed an order"],
+    ["Rylee","sent a gift ❤️"],
+    ["Kaylee","just placed an order"],
+    ["Peyton","sent a gift 🎁"],
+    ["Melanie","just placed an order"],
+    ["Gianna","sent a gift ❤️"],
+    ["Valentina","just placed an order"],
+    ["Raelynn","sent a gift 🎁"],
+    ["Vivian","just placed an order"],
+
+    ["Iris","sent a gift ❤️"],
+    ["Sophie","just placed an order"],
+    ["Brielle","sent a gift 🎁"],
+    ["Madelyn","just placed an order"],
+    ["Reagan","sent a gift ❤️"],
+    ["Cora","just placed an order"],
+    ["Emery","sent a gift 🎁"],
+    ["Julia","just placed an order"],
+    ["Athena","sent a gift ❤️"],
+    ["Mariah","just placed an order"],
+    ["Melody","sent a gift 🎁"],
+    ["Rose","just placed an order"],
+    ["Laila","sent a gift ❤️"],
+    ["Adalynn","just placed an order"],
+    ["Hadley","sent a gift 🎁"],
+    ["Arya","just placed an order"],
+    ["Parker","sent a gift ❤️"],
+    ["Lyla","just placed an order"],
+    ["Eliana","sent a gift 🎁"],
+    ["Liliana","just placed an order"],
+
+    ["Amara","sent a gift ❤️"],
+    ["Brianna","just placed an order"],
+    ["Nadia","sent a gift 🎁"],
+    ["Zara","just placed an order"],
+    ["Aisha","sent a gift ❤️"],
+    ["Fatima","just placed an order"],
+    ["Mariam","sent a gift 🎁"],
+    ["Halima","just placed an order"],
+    ["Esther","sent a gift ❤️"],
+    ["Deborah","just placed an order"],
+    ["Naomi","sent a gift 🎁"],
+    ["Abigail","just placed an order"],
+    ["Chidinma","sent a gift ❤️"],
+    ["Ada","just placed an order"],
+    ["Amaka","sent a gift 🎁"],
+    ["Ifeoma","just placed an order"],
+    ["Chioma","sent a gift ❤️"],
+    ["Ngozi","just placed an order"],
+    ["Tolu","sent a gift 🎁"],
+    ["Kemi","just placed an order"]
+
+];
+
+
+const activityTrack =
+    document.getElementById(
+        "activityTrack"
+    );
+
+
+/* =========================
+   BUILD ACTIVITY LIST
+========================= */
+
+activityData.forEach(
+    (item,index) => {
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "activity-item";
+
+        row.innerHTML = `
+
+            <div class="activity-icon">
+                ${item[1].includes("gift")
+                    ? "🎁"
+                    : "📦"}
+            </div>
+
+            <div class="activity-content">
+
+                <div class="activity-name">
+                    ${item[0]}
+                </div>
+
+                <div class="activity-message">
+                    ${item[1]}
+                </div>
+
+            </div>
+
+            <div class="activity-time">
+                ${index % 4 === 0
+                    ? "Just now"
+                    : (index % 4) + "m ago"}
+            </div>
+
+        `;
+
+        activityTrack.appendChild(row);
+
+    }
+);
+
+
+/* =========================
+   ACTIVITY ROTATION
+========================= */
+
+let activityIndex = 0;
+
+const activityHeight = 55;
+
+
+function showNextActivity(){
+
+    activityIndex++;
+
+    if(
+        activityIndex >=
+        activityData.length
+    ){
+
+        activityIndex = 0;
+
+    }
+
+    activityTrack.style.transform =
+        `translateY(-${
+            activityIndex *
+            activityHeight
+        }px)`;
+
+}
+
+
+/*
+   Change activity every
+   3 seconds.
+*/
+
+setInterval(
+    showNextActivity,
+    3000
+);
+
+</script>
+
+
+
+<!-- =========================
      FIREBASE
-========================= --><script type="module">
+========================= -->
+
+<script type="module">
 
 
-    /* =========================
-       FIREBASE APP
-    ========================= */
+/* =========================
+   FIREBASE APP
+========================= */
 
-    import {
-        initializeApp
-    } from
-    "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-
-    import {
-        getAuth,
-        onAuthStateChanged,
-        signOut
-    } from
-    "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
-    import {
-        getFirestore,
-        doc,
-        onSnapshot
-    } from
-    "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-
-    /* =========================
-       FIREBASE CONFIG
-    ========================= */
-
-    const firebaseConfig = {
-
-        apiKey:
-            "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
-
-        authDomain:
-            "fame-store-ea8b7.firebaseapp.com",
-
-        projectId:
-            "fame-store-ea8b7",
-
-        storageBucket:
-            "fame-store-ea8b7.firebasestorage.app",
-
-        messagingSenderId:
-            "484192010044",
-
-        appId:
-            "1:484192010044:web:8b1c496d5baa492d74a839",
-
-        measurementId:
-            "G-YTGM3N01V6"
-
-    };
+import {
+    getFirestore,
+    doc,
+    onSnapshot
+} from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
 
-    /* =========================
-       INITIALIZE FIREBASE
-    ========================= */
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
-    const app =
-        initializeApp(
-            firebaseConfig
-        );
+const firebaseConfig = {
 
+    apiKey:
+        "AIzaSyDMqdl_6k3iRAx96fX8g9LUpQtcZlSTIJg",
 
-    const auth =
-        getAuth(app);
+    authDomain:
+        "fame-store-ea8b7.firebaseapp.com",
 
+    projectId:
+        "fame-store-ea8b7",
 
-    const db =
-        getFirestore(app);
+    storageBucket:
+        "fame-store-ea8b7.firebasestorage.app",
 
+    messagingSenderId:
+        "484192010044",
 
+    appId:
+        "1:484192010044:web:8b1c496d5baa492d74a839",
 
-    /* =========================
-       ELEMENTS
-    ========================= */
+    measurementId:
+        "G-YTGM3N01V6"
 
-    const userName =
-        document.getElementById(
-            "userName"
-        );
-
-
-    const walletBalance =
-        document.getElementById(
-            "walletBalance"
-        );
-
-
-    const profileMini =
-        document.getElementById(
-            "profileMini"
-        );
-
-
-    const logoutBtn =
-        document.getElementById(
-            "logoutBtn"
-        );
-
-
-    const depositBtn =
-        document.getElementById(
-            "depositBtn"
-        );
-
-
-    const notificationBtn =
-        document.getElementById(
-            "notificationBtn"
-        );
-
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
+};
 
 
 
-    /* =========================
-       TOAST
-    ========================= */
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
 
-    function showToast(text) {
-
-        toast.textContent =
-            text;
-
-        toast.classList.add(
-            "show"
-        );
+const app =
+    initializeApp(
+        firebaseConfig
+    );
 
 
-        setTimeout(() => {
+const auth =
+    getAuth(app);
+
+
+const db =
+    getFirestore(app);
+
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const userName =
+    document.getElementById(
+        "userName"
+    );
+
+
+const walletBalance =
+    document.getElementById(
+        "walletBalance"
+    );
+
+
+const profileMini =
+    document.getElementById(
+        "profileMini"
+    );
+
+
+const logoutBtn =
+    document.getElementById(
+        "logoutBtn"
+    );
+
+
+const depositBtn =
+    document.getElementById(
+        "depositBtn"
+    );
+
+
+const notificationBtn =
+    document.getElementById(
+        "notificationBtn"
+    );
+
+
+const toast =
+    document.getElementById(
+        "toast"
+    );
+
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(text){
+
+    toast.textContent =
+        text;
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
 
             toast.classList.remove(
                 "show"
             );
 
-        }, 2500);
+        },
+        2500
+    );
 
-    }
-
-
-
-    /* =========================
-       FORMAT NAIRA
-    ========================= */
-
-    function formatNaira(amount) {
-
-        const number =
-            Number(amount) || 0;
+}
 
 
-        return "₦" +
-            number.toLocaleString(
-                "en-NG",
-                {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2
-                }
+
+/* =========================
+   FORMAT NAIRA
+========================= */
+
+function formatNaira(amount){
+
+    const number =
+        Number(amount) || 0;
+
+
+    return "₦" +
+        number.toLocaleString(
+            "en-NG",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if(!user){
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                user.uid
             );
 
-    }
 
+        onSnapshot(
 
+            userRef,
 
-    /* =========================
-       AUTH STATE
-    ========================= */
+            snapshot => {
 
-    onAuthStateChanged(
-        auth,
-        user => {
-
-            if (!user) {
-
-                window.location.href =
-                    "login.html";
-
-                return;
-
-            }
-
-
-            const userRef =
-                doc(
-                    db,
-                    "users",
-                    user.uid
-                );
-
-
-            onSnapshot(
-
-                userRef,
-
-                snapshot => {
-
-                    if (
-                        !snapshot.exists()
-                    ) {
-
-                        userName.textContent =
-                            "Customer";
-
-
-                        walletBalance.textContent =
-                            "₦0.00";
-
-
-                        profileMini.textContent =
-                            "?";
-
-
-                        return;
-
-                    }
-
-
-                    const data =
-                        snapshot.data();
-
-
-                    /* NAME */
-
-                    const name =
-                        data.fullName ||
-                        user.displayName ||
-                        "Customer";
-
+                if(
+                    !snapshot.exists()
+                ){
 
                     userName.textContent =
-                        name;
-
-
-                    /* INITIAL */
-
-                    const initial =
-                        name
-                            .trim()
-                            .charAt(0)
-                            .toUpperCase();
-
-
-                    profileMini.textContent =
-                        initial || "?";
-
-
-                    /* WALLET */
-
-                    const balance =
-                        Number(
-                            data.walletBalance || 0
-                        );
-
-
-                    walletBalance.textContent =
-                        formatNaira(
-                            balance
-                        );
-
-                },
-
-                error => {
-
-                    console.error(
-                        "Firestore wallet error:",
-                        error
-                    );
-
+                        "Customer";
 
                     walletBalance.textContent =
                         "₦0.00";
 
+                    profileMini.textContent =
+                        "?";
+
+                    return;
+
                 }
 
-            );
 
-        }
-    );
-
+                const data =
+                    snapshot.data();
 
 
-    /* =========================
-       LOGOUT
-    ========================= */
+                /* NAME */
 
-    logoutBtn.addEventListener(
-        "click",
-        async event => {
-
-            event.preventDefault();
+                const name =
+                    data.fullName ||
+                    user.displayName ||
+                    "Customer";
 
 
-            try {
-
-                await signOut(
-                    auth
-                );
+                userName.textContent =
+                    name;
 
 
-                window.location.href =
-                    "login.html";
+                /* INITIAL */
 
-            }
+                const initial =
+                    name
+                        .trim()
+                        .charAt(0)
+                        .toUpperCase();
 
-            catch (error) {
+
+                profileMini.textContent =
+                    initial || "?";
+
+
+                /* WALLET */
+
+                const balance =
+                    Number(
+                        data.walletBalance || 0
+                    );
+
+
+                walletBalance.textContent =
+                    formatNaira(
+                        balance
+                    );
+
+            },
+
+
+            error => {
 
                 console.error(
-                    "Logout error:",
+                    "Firestore wallet error:",
                     error
                 );
 
 
-                showToast(
-                    "Unable to logout. Please try again."
-                );
+                walletBalance.textContent =
+                    "₦0.00";
 
             }
 
-        }
-    );
+        );
+
+    }
+);
 
 
 
-    /* =========================
-       DEPOSIT
-    ========================= */
+/* =========================
+   LOGOUT
+========================= */
 
-    depositBtn.addEventListener(
-        "click",
-        () => {
+logoutBtn.addEventListener(
+    "click",
+    async event => {
+
+        event.preventDefault();
+
+
+        try{
+
+            await signOut(
+                auth
+            );
+
 
             window.location.href =
-                "deposit.html";
+                "login.html";
 
         }
+
+        catch(error){
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+
+            showToast(
+                "Unable to logout. Please try again."
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   DEPOSIT
+========================= */
+
+depositBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "deposit.html";
+
+    }
+);
+
+
+
+/* =========================
+   PROFILE
+========================= */
+
+profileMini.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "profile.html";
+
+    }
+);
+
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
+notificationBtn.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "notifications.html";
+
+    }
+);
+
+
+
+/* =========================
+   COUNTRY PAGES
+========================= */
+
+const countryCards =
+    document.querySelectorAll(
+        ".country-card"
     );
 
 
+countryCards.forEach(
+    card => {
 
-    /* =========================
-       PROFILE
-    ========================= */
+        card.addEventListener(
+            "click",
+            () => {
 
-    profileMini.addEventListener(
-        "click",
-        () => {
+                const page =
+                    card.dataset.page;
 
-            window.location.href =
-                "profile.html";
 
-        }
+                if(!page){
+
+                    showToast(
+                        "Country page is not available yet."
+                    );
+
+                    return;
+
+                }
+
+
+                window.location.href =
+                    page;
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================
+   OTHER COUNTRIES
+========================= */
+
+const otherCountry =
+    document.getElementById(
+        "otherCountry"
     );
 
 
+otherCountry.addEventListener(
+    "click",
+    () => {
 
-    /* =========================
-       NOTIFICATIONS
-    ========================= */
-
-    notificationBtn.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "notifications.html";
-
-        }
-    );
+        const whatsappLink =
+            "https://whatsapp.com/channel/0029VbDpD8RIyPtZiIkHkx3u";
 
 
+        const modal =
+            document.createElement(
+                "div"
+            );
 
-    /* =========================
-       COUNTRY PAGES
-    ========================= */
 
-    const countryCards =
-        document.querySelectorAll(
-            ".country-card"
+        modal.className =
+            "country-modal-overlay";
+
+
+        modal.innerHTML = `
+
+            <div class="country-modal">
+
+                <div class="country-modal-icon">
+                    🌎
+                </div>
+
+                <h2>
+                    Other Countries
+                </h2>
+
+                <p>
+                    We're currently working
+                    on expanding our delivery
+                    destinations.
+                </p>
+
+                <p>
+                    Kindly contact us on WhatsApp,
+                    and we're going to help arrange
+                    delivery to your destination.
+                </p>
+
+                <a
+                    href="${whatsappLink}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="whatsapp-btn">
+
+                    Contact Us on WhatsApp
+
+                </a>
+
+                <button
+                    class="close-modal-btn">
+
+                    Thank You ❤️
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        document.body.appendChild(
+            modal
         );
 
 
-    countryCards.forEach(
-        card => {
-
-            card.addEventListener(
+        modal
+            .querySelector(
+                ".close-modal-btn"
+            )
+            .addEventListener(
                 "click",
                 () => {
 
-                    const page =
-                        card.dataset.page;
-
-
-                    if (!page) {
-
-                        showToast(
-                            "Country page is not available yet."
-                        );
-
-                        return;
-
-                    }
-
-
-                    window.location.href =
-                        page;
+                    modal.remove();
 
                 }
             );
 
-        }
-    );
 
+        modal.addEventListener(
+            "click",
+            event => {
 
+                if(
+                    event.target ===
+                    modal
+                ){
 
-    /* =========================
-       OTHER COUNTRIES
-    ========================= */
+                    modal.remove();
 
-    const otherCountry =
-        document.getElementById(
-            "otherCountry"
+                }
+
+            }
         );
 
+    }
+);
 
-    otherCountry.addEventListener(
-        "click",
-        () => {
+</script>
 
-            const whatsappLink =
-                "https://whatsapp.com/channel/0029VbDpD8RIyPtZiIkHkx3u";
-
-
-            const modal =
-                document.createElement(
-                    "div"
-                );
-
-
-            modal.className =
-                "country-modal-overlay";
-
-
-            modal.innerHTML = `
-
-                <div class="country-modal">
-
-                    <div class="country-modal-icon">
-                        🌎
-                    </div>
-
-                    <h2>
-                        Other Countries
-                    </h2>
-
-                    <p>
-                        We're currently working
-                        on expanding our delivery
-                        destinations.
-                    </p>
-
-                    <p>
-                        Kindly contact us on WhatsApp,
-                        and we're going to help arrange
-                        delivery to your destination.
-                    </p>
-
-                    <a
-                        href="${whatsappLink}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="whatsapp-btn">
-
-                        Contact Us on WhatsApp
-
-                    </a>
-
-                    <button
-                        class="close-modal-btn">
-
-                        Thank You ❤️
-
-                    </button>
-
-                </div>
-
-            `;
-
-
-            document.body.appendChild(
-                modal
-            );
-
-
-            /* CLOSE */
-
-            modal
-                .querySelector(
-                    ".close-modal-btn"
-                )
-                .addEventListener(
-                    "click",
-                    () => {
-
-                        modal.remove();
-
-                    }
-                );
-
-
-            /* OUTSIDE */
-
-            modal.addEventListener(
-                "click",
-                event => {
-
-                    if (
-                        event.target ===
-                        modal
-                    ) {
-
-                        modal.remove();
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-</script></body></html>
+</body>
+                  </html>
