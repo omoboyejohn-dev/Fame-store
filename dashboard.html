@@ -22,11 +22,20 @@
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
+
+
+/* =========================
+   ROOT
+========================= */
 
 :root{
 
@@ -40,6 +49,11 @@
     --border:#e5eaf1;
 
 }
+
+
+/* =========================
+   GLOBAL
+========================= */
 
 html{
     scroll-behavior:smooth;
@@ -403,13 +417,19 @@ button{
 @keyframes livePulse{
 
     0%,100%{
+
         opacity:1;
+
         transform:scale(1);
+
     }
 
     50%{
+
         opacity:.45;
+
         transform:scale(.82);
+
     }
 
 }
@@ -845,202 +865,6 @@ button{
 
 
 /* =========================
-   MODAL
-========================= */
-
-.country-modal-overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-        rgba(0,0,0,.60);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
-
-    z-index:10000;
-
-    animation:modalFade .25s ease;
-
-}
-
-.country-modal{
-
-    width:min(420px,100%);
-
-    background:#ffffff;
-
-    border-radius:22px;
-
-    padding:30px 25px;
-
-    text-align:center;
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.25);
-
-    animation:modalUp .25s ease;
-
-}
-
-.country-modal-icon{
-
-    width:65px;
-
-    height:65px;
-
-    margin:0 auto 15px;
-
-    border-radius:18px;
-
-    background:#fff7d9;
-
-    display:grid;
-
-    place-items:center;
-
-    font-size:32px;
-
-}
-
-.country-modal h2{
-
-    font-size:22px;
-
-    font-weight:800;
-
-    color:var(--black);
-
-    margin-bottom:12px;
-
-}
-
-.country-modal p{
-
-    color:var(--gray);
-
-    font-size:13px;
-
-    line-height:1.7;
-
-    margin-bottom:10px;
-
-}
-
-.whatsapp-btn{
-
-    display:block;
-
-    width:100%;
-
-    margin-top:22px;
-
-    padding:14px 18px;
-
-    border-radius:11px;
-
-    background:#25d366;
-
-    color:#ffffff;
-
-    font-size:13px;
-
-    font-weight:800;
-
-    transition:.25s;
-
-}
-
-.whatsapp-btn:hover{
-
-    transform:translateY(-2px);
-
-    filter:brightness(.95);
-
-}
-
-.close-modal-btn{
-
-    width:100%;
-
-    margin-top:10px;
-
-    padding:13px 18px;
-
-    border:1px solid var(--border);
-
-    border-radius:11px;
-
-    background:#ffffff;
-
-    color:var(--black);
-
-    font-family:inherit;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-.close-modal-btn:hover{
-
-    border-color:var(--blue);
-
-    color:var(--blue);
-
-}
-
-@keyframes modalFade{
-
-    from{
-        opacity:0;
-    }
-
-    to{
-        opacity:1;
-    }
-
-}
-
-@keyframes modalUp{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(20px)
-            scale(.97);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
-}
-
-
-/* =========================
    SUPPORT
 ========================= */
 
@@ -1360,51 +1184,53 @@ button{
 <div class="container header-inner">
 
 
-    <a
-        href="dashboard.html"
-        class="brand">
+<a
+    href="dashboard.html"
+    class="brand">
 
-        <div class="brand-icon">
-            🛍️
+    <div class="brand-icon">
+        🛍️
+    </div>
+
+    <div>
+
+        <div class="brand-name">
+            Fame Store
         </div>
 
-        <div>
-
-            <div class="brand-name">
-                Fame Store
-            </div>
-
-            <div class="brand-tagline">
-                Send gifts 🎁, share love ❤️
-            </div>
-
-        </div>
-
-    </a>
-
-
-    <div class="header-actions">
-
-        <button
-            class="header-btn"
-            id="notificationBtn"
-            title="Notifications">
-
-            🔔
-
-        </button>
-
-
-        <div
-            class="profile-mini"
-            id="profileMini"
-            title="Profile">
-
-            ?
-
+        <div class="brand-tagline">
+            Send gifts 🎁, share love ❤️
         </div>
 
     </div>
+
+</a>
+
+
+<div class="header-actions">
+
+
+<button
+    class="header-btn"
+    id="notificationBtn"
+    title="Notifications">
+
+    🔔
+
+</button>
+
+
+<div
+    class="profile-mini"
+    id="profileMini"
+    title="Profile">
+
+    ?
+
+</div>
+
+
+</div>
 
 </div>
 
@@ -1421,368 +1247,381 @@ button{
 <div class="container">
 
 
-    <!-- =========================
-         RECENT ACTIVITY
-    ========================= -->
+<!-- =========================
+     RECENT ACTIVITY
+========================= -->
 
-    <section class="activity-box">
+<section class="activity-box">
 
-        <div class="activity-header">
+<div class="activity-header">
 
-            <div class="activity-title">
+<div class="activity-title">
 
-                <span class="live-dot"></span>
+<span class="live-dot"></span>
 
-                <span>
-                    Recent Activity
-                </span>
+<span>
+    Recent Activity
+</span>
 
-            </div>
+</div>
 
-            <span class="activity-demo">
-                Demo Activity
-            </span>
+<span class="activity-demo">
+    Demo Activity
+</span>
 
-        </div>
+</div>
 
 
-        <div class="activity-window">
+<div class="activity-window">
 
-            <div
-                class="activity-track"
-                id="activityTrack">
+<div
+    class="activity-track"
+    id="activityTrack">
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-    </section>
+</section>
 
 
 
-    <!-- =========================
-         WELCOME
-    ========================= -->
+<!-- =========================
+     WELCOME
+========================= -->
 
-    <section class="welcome">
+<section class="welcome">
 
-        <h1>
+<h1>
 
-            Welcome,
+    Welcome,
 
-            <span id="userName">
-                Customer
-            </span>
+    <span id="userName">
+        Customer
+    </span>
 
-            👋
+    👋
 
-        </h1>
+</h1>
 
-        <p>
-            Send something special
-            to someone you love.
-        </p>
+<p>
+    Send something special
+    to someone you love.
+</p>
 
-    </section>
+</section>
 
 
 
-    <!-- =========================
-         BALANCE
-    ========================= -->
+<!-- =========================
+     BALANCE
+========================= -->
 
-    <section class="balance-card">
+<section class="balance-card">
 
-        <div class="balance-label">
-            Total Balance
-        </div>
+<div class="balance-label">
+    Total Balance
+</div>
 
 
-        <div class="balance-row">
+<div class="balance-row">
 
-            <div>
+<div>
 
-                <div
-                    class="balance-amount"
-                    id="walletBalance">
+<div
+    class="balance-amount"
+    id="walletBalance">
 
-                    ₦0.00
+    ₦0.00
 
-                </div>
+</div>
 
-            </div>
+</div>
 
 
-            <button
-                class="deposit-btn"
-                id="depositBtn">
+<button
+    class="deposit-btn"
+    id="depositBtn">
 
-                Deposit
+    Deposit
 
-            </button>
+</button>
 
-        </div>
+</div>
 
-    </section>
+</section>
 
 
 
-    <!-- =========================
-         QUICK ACTIONS
-    ========================= -->
+<!-- =========================
+     QUICK ACTIONS
+========================= -->
 
-    <section class="quick-actions">
+<section class="quick-actions">
 
 
-        <a
-            href="profile.html"
-            class="quick-action">
+<a
+    href="profile.html"
+    class="quick-action">
 
-            <span class="quick-icon">
-                👤
-            </span>
+    <span class="quick-icon">
+        👤
+    </span>
 
-            <span>
-                Profile
-            </span>
+    <span>
+        Profile
+    </span>
 
-        </a>
+</a>
 
 
-        <a
-            href="deposit.html"
-            class="quick-action">
+<a
+    href="deposit.html"
+    class="quick-action">
 
-            <span class="quick-icon">
-                💳
-            </span>
+    <span class="quick-icon">
+        💳
+    </span>
 
-            <span>
-                Deposit
-            </span>
+    <span>
+        Deposit
+    </span>
 
-        </a>
+</a>
 
 
-        <a
-            href="settings.html"
-            class="quick-action">
+<a
+    href="settings.html"
+    class="quick-action">
 
-            <span class="quick-icon">
-                ⚙️
-            </span>
+    <span class="quick-icon">
+        ⚙️
+    </span>
 
-            <span>
-                Settings
-            </span>
+    <span>
+        Settings
+    </span>
 
-        </a>
+</a>
 
 
-        <a
-            href="notifications.html"
-            class="quick-action">
+<a
+    href="notifications.html"
+    class="quick-action">
 
-            <span class="quick-icon">
-                🔔
-            </span>
+    <span class="quick-icon">
+        🔔
+    </span>
 
-            <span>
-                Notifications
-            </span>
+    <span>
+        Notifications
+    </span>
 
-        </a>
+</a>
 
 
-        <a
-            href="support.html"
-            class="quick-action">
+<a
+    href="support.html"
+    class="quick-action">
 
-            <span class="quick-icon">
-                💬
-            </span>
+    <span class="quick-icon">
+        💬
+    </span>
 
-            <span>
-                Support
-            </span>
+    <span>
+        Support
+    </span>
 
-        </a>
+</a>
 
 
-        <a
-            href="payment-history.html"
-            class="quick-action">
+<a
+    href="payment-history.html"
+    class="quick-action">
 
-            <span class="quick-icon">
-                💰
-            </span>
+    <span class="quick-icon">
+        💰
+    </span>
 
-            <span>
-                Payment History
-            </span>
+    <span>
+        Payment History
+    </span>
 
-        </a>
+</a>
 
 
-        <a
-            href="order-history.html"
-            class="quick-action">
+<a
+    href="order-history.html"
+    class="quick-action">
 
-            <span class="quick-icon">
-                📦
-            </span>
+    <span class="quick-icon">
+        📦
+    </span>
 
-            <span>
-                Order History
-            </span>
+    <span>
+        Order History
+    </span>
 
-        </a>
+</a>
 
 
-        <a
-            href="#"
-            class="quick-action"
-            id="logoutBtn">
+<a
+    href="#"
+    class="quick-action"
+    id="logoutBtn">
 
-            <span class="quick-icon">
-                🚪
-            </span>
+    <span class="quick-icon">
+        🚪
+    </span>
 
-            <span>
-                Logout
-            </span>
+    <span>
+        Logout
+    </span>
 
-        </a>
+</a>
 
-    </section>
 
+</section>
 
 
-    <!-- =========================
-         GLOBAL DELIVERY
-    ========================= -->
 
-    <section class="delivery-section">
+<!-- =========================
+     GLOBAL DELIVERY
+========================= -->
 
-        <div class="section-title">
+<section class="delivery-section">
 
-            <h2>
-                🌎 Global Delivery
-            </h2>
 
-            <p>
-                Choose where you want
-                to send your gift.
-            </p>
+<div class="section-title">
 
-        </div>
+<h2>
+    🌎 Global Delivery
+</h2>
 
+<p>
+    Choose where you want
+    to send your gift.
+</p>
 
-        <div
-            class="country-grid"
-            id="countryGrid">
+</div>
 
 
-            <div
-                class="country-card"
-                data-page="usa.html">
 
-                <span class="country-flag">
-                    🇺🇸
-                </span>
+<div
+    class="country-grid"
+    id="countryGrid">
 
-                <span class="country-name">
-                    USA
-                </span>
 
-            </div>
+<!-- USA -->
 
+<div
+    class="country-card"
+    data-page="usa.html">
 
-            <div
-                class="country-card"
-                data-page="canada.html">
+    <span class="country-flag">
+        🇺🇸
+    </span>
 
-                <span class="country-flag">
-                    🇨🇦
-                </span>
+    <span class="country-name">
+        USA
+    </span>
 
-                <span class="country-name">
-                    Canada
-                </span>
+</div>
 
-            </div>
 
-        </div>
+<!-- CANADA -->
 
+<div
+    class="country-card"
+    data-page="canada.html">
 
+    <span class="country-flag">
+        🇨🇦
+    </span>
 
-        <!-- OTHER COUNTRIES -->
+    <span class="country-name">
+        Canada
+    </span>
 
-        <div
-            class="other-country"
-            id="otherCountry">
+</div>
 
-            <div class="other-left">
 
-                <div class="other-icon">
-                    🌎
-                </div>
+</div>
 
-                <div>
 
-                    <strong>
-                        Other Countries
-                    </strong>
 
-                    <span>
-                        Choose another
-                        delivery destination
-                    </span>
+<!-- =========================
+     OTHER COUNTRIES
+========================= -->
 
-                </div>
+<div
+    class="other-country"
+    id="otherCountry">
 
-            </div>
+<div class="other-left">
 
+<div class="other-icon">
+    🌎
+</div>
 
-            <strong>
-                →
-            </strong>
+<div>
 
-        </div>
+<strong>
+    Other Countries
+</strong>
 
-    </section>
+<span>
+    Gift products for other destinations
+</span>
 
+</div>
 
+</div>
 
-    <!-- =========================
-         SUPPORT
-    ========================= -->
 
-    <section class="support-card">
+<strong>
+    →
+</strong>
 
-        <div>
+</div>
 
-            <h3>
-                Need help sending a gift?
-            </h3>
 
-            <p>
-                Our support team is available
-                to help you with your order.
-            </p>
+</section>
 
-        </div>
 
 
-        <a
-            href="support.html"
-            class="support-btn">
+<!-- =========================
+     SUPPORT
+========================= -->
 
-            Contact Support
+<section class="support-card">
 
-        </a>
 
-    </section>
+<div>
+
+<h3>
+    Need help sending a gift?
+</h3>
+
+<p>
+    Our support team is available
+    to help you with your order.
+</p>
+
+</div>
+
+
+<a
+    href="support.html"
+    class="support-btn">
+
+    Contact Support
+
+</a>
+
+
+</section>
+
 
 </div>
 
@@ -1798,15 +1637,18 @@ button{
 
 <div class="container footer-inner">
 
-    <p>
-        © 2026 Fame Store.
-        All rights reserved.
-    </p>
 
-    <p>
-        Send gifts today,
-        for a brighter tomorrow ❤️
-    </p>
+<p>
+    © 2026 Fame Store.
+    All rights reserved.
+</p>
+
+
+<p>
+    Send gifts today,
+    for a brighter tomorrow ❤️
+</p>
+
 
 </div>
 
@@ -1831,295 +1673,281 @@ button{
 
 <script>
 
-/*
-=================================================
-FAME STORE ACTIVITY LIST
-=================================================
-
-These are demo/sample entries.
-
-Do not present them as real customer orders unless
-they are replaced with actual order data.
-
-The system automatically rotates through 200+
-entries.
-=================================================
-*/
 
 const activityData = [
 
-    ["John","just placed an order"],
-    ["Thomas","just placed an order"],
-    ["Michael","sent a gift 🎁"],
-    ["David","just placed an order"],
-    ["James","sent a gift ❤️"],
-    ["Daniel","just placed an order"],
-    ["Robert","sent a gift 🎁"],
-    ["William","just placed an order"],
-    ["Joseph","sent a gift ❤️"],
-    ["Charles","just placed an order"],
-    ["Christopher","sent a gift 🎁"],
-    ["Matthew","just placed an order"],
-    ["Anthony","sent a gift ❤️"],
-    ["Joshua","just placed an order"],
-    ["Andrew","sent a gift 🎁"],
-    ["Benjamin","just placed an order"],
-    ["Samuel","sent a gift ❤️"],
-    ["Henry","just placed an order"],
-    ["Alexander","sent a gift 🎁"],
-    ["Daniel","just placed an order"],
+["John","just placed an order"],
+["Thomas","just placed an order"],
+["Michael","sent a gift 🎁"],
+["David","just placed an order"],
+["James","sent a gift ❤️"],
+["Daniel","just placed an order"],
+["Robert","sent a gift 🎁"],
+["William","just placed an order"],
+["Joseph","sent a gift ❤️"],
+["Charles","just placed an order"],
+["Christopher","sent a gift 🎁"],
+["Matthew","just placed an order"],
+["Anthony","sent a gift ❤️"],
+["Joshua","just placed an order"],
+["Andrew","sent a gift 🎁"],
+["Benjamin","just placed an order"],
+["Samuel","sent a gift ❤️"],
+["Henry","just placed an order"],
+["Alexander","sent a gift 🎁"],
+["Daniel","just placed an order"],
 
-    ["Noah","sent a gift ❤️"],
-    ["Oliver","just placed an order"],
-    ["Lucas","sent a gift 🎁"],
-    ["Ethan","just placed an order"],
-    ["Mason","sent a gift ❤️"],
-    ["Logan","just placed an order"],
-    ["Jackson","sent a gift 🎁"],
-    ["Owen","just placed an order"],
-    ["Theodore","sent a gift ❤️"],
-    ["Aiden","just placed an order"],
-    ["Elijah","sent a gift 🎁"],
-    ["Dylan","just placed an order"],
-    ["Luke","sent a gift ❤️"],
-    ["Asher","just placed an order"],
-    ["Liam","sent a gift 🎁"],
-    ["Emma","just placed an order"],
-    ["Olivia","sent a gift ❤️"],
-    ["Ava","just placed an order"],
-    ["Sophia","sent a gift 🎁"],
-    ["Isabella","just placed an order"],
+["Noah","sent a gift ❤️"],
+["Oliver","just placed an order"],
+["Lucas","sent a gift 🎁"],
+["Ethan","just placed an order"],
+["Mason","sent a gift ❤️"],
+["Logan","just placed an order"],
+["Jackson","sent a gift 🎁"],
+["Owen","just placed an order"],
+["Theodore","sent a gift ❤️"],
+["Aiden","just placed an order"],
+["Elijah","sent a gift 🎁"],
+["Dylan","just placed an order"],
+["Luke","sent a gift ❤️"],
+["Asher","just placed an order"],
+["Liam","sent a gift 🎁"],
+["Emma","just placed an order"],
+["Olivia","sent a gift ❤️"],
+["Ava","just placed an order"],
+["Sophia","sent a gift 🎁"],
+["Isabella","just placed an order"],
 
-    ["Mia","sent a gift ❤️"],
-    ["Charlotte","just placed an order"],
-    ["Amelia","sent a gift 🎁"],
-    ["Harper","just placed an order"],
-    ["Evelyn","sent a gift ❤️"],
-    ["Ella","just placed an order"],
-    ["Elizabeth","sent a gift 🎁"],
-    ["Camila","just placed an order"],
-    ["Luna","sent a gift ❤️"],
-    ["Sofia","just placed an order"],
-    ["Avery","sent a gift 🎁"],
-    ["Mila","just placed an order"],
-    ["Aria","sent a gift ❤️"],
-    ["Scarlett","just placed an order"],
-    ["Penelope","sent a gift 🎁"],
-    ["Layla","just placed an order"],
-    ["Chloe","sent a gift ❤️"],
-    ["Grace","just placed an order"],
-    ["Victoria","sent a gift 🎁"],
-    ["Riley","just placed an order"],
+["Mia","sent a gift ❤️"],
+["Charlotte","just placed an order"],
+["Amelia","sent a gift 🎁"],
+["Harper","just placed an order"],
+["Evelyn","sent a gift ❤️"],
+["Ella","just placed an order"],
+["Elizabeth","sent a gift 🎁"],
+["Camila","just placed an order"],
+["Luna","sent a gift ❤️"],
+["Sofia","just placed an order"],
+["Avery","sent a gift 🎁"],
+["Mila","just placed an order"],
+["Aria","sent a gift ❤️"],
+["Scarlett","just placed an order"],
+["Penelope","sent a gift 🎁"],
+["Layla","just placed an order"],
+["Chloe","sent a gift ❤️"],
+["Grace","just placed an order"],
+["Victoria","sent a gift 🎁"],
+["Riley","just placed an order"],
 
-    ["Nora","sent a gift ❤️"],
-    ["Lily","just placed an order"],
-    ["Eleanor","sent a gift 🎁"],
-    ["Hazel","just placed an order"],
-    ["Aurora","sent a gift ❤️"],
-    ["Ellie","just placed an order"],
-    ["Naomi","sent a gift 🎁"],
-    ["Stella","just placed an order"],
-    ["Zoe","sent a gift ❤️"],
-    ["Hannah","just placed an order"],
-    ["Lucy","sent a gift 🎁"],
-    ["Maya","just placed an order"],
-    ["Leah","sent a gift ❤️"],
-    ["Lillian","just placed an order"],
-    ["Addison","sent a gift 🎁"],
-    ["Natalie","just placed an order"],
-    ["Emilia","sent a gift ❤️"],
-    ["Ruby","just placed an order"],
-    ["Claire","sent a gift 🎁"],
-    ["Alice","just placed an order"],
+["Nora","sent a gift ❤️"],
+["Lily","just placed an order"],
+["Eleanor","sent a gift 🎁"],
+["Hazel","just placed an order"],
+["Aurora","sent a gift ❤️"],
+["Ellie","just placed an order"],
+["Naomi","sent a gift 🎁"],
+["Stella","just placed an order"],
+["Zoe","sent a gift ❤️"],
+["Hannah","just placed an order"],
+["Lucy","sent a gift 🎁"],
+["Maya","just placed an order"],
+["Leah","sent a gift ❤️"],
+["Lillian","just placed an order"],
+["Addison","sent a gift 🎁"],
+["Natalie","just placed an order"],
+["Emilia","sent a gift ❤️"],
+["Ruby","just placed an order"],
+["Claire","sent a gift 🎁"],
+["Alice","just placed an order"],
 
-    ["Bella","sent a gift ❤️"],
-    ["Ivy","just placed an order"],
-    ["Sarah","sent a gift 🎁"],
-    ["Madison","just placed an order"],
-    ["Willow","sent a gift ❤️"],
-    ["Lydia","just placed an order"],
-    ["Clara","sent a gift 🎁"],
-    ["Josephine","just placed an order"],
-    ["Elena","sent a gift ❤️"],
-    ["Caroline","just placed an order"],
-    ["Kennedy","sent a gift 🎁"],
-    ["Anna","just placed an order"],
-    ["Savannah","sent a gift ❤️"],
-    ["Brooklyn","just placed an order"],
-    ["Samantha","sent a gift 🎁"],
-    ["Ashley","just placed an order"],
-    ["Diana","sent a gift ❤️"],
-    ["Rachel","just placed an order"],
-    ["Rebecca","sent a gift 🎁"],
-    ["Laura","just placed an order"],
+["Bella","sent a gift ❤️"],
+["Ivy","just placed an order"],
+["Sarah","sent a gift 🎁"],
+["Madison","just placed an order"],
+["Willow","sent a gift ❤️"],
+["Lydia","just placed an order"],
+["Clara","sent a gift 🎁"],
+["Josephine","just placed an order"],
+["Elena","sent a gift ❤️"],
+["Caroline","just placed an order"],
+["Kennedy","sent a gift 🎁"],
+["Anna","just placed an order"],
+["Savannah","sent a gift ❤️"],
+["Brooklyn","just placed an order"],
+["Samantha","sent a gift 🎁"],
+["Ashley","just placed an order"],
+["Diana","sent a gift ❤️"],
+["Rachel","just placed an order"],
+["Rebecca","sent a gift 🎁"],
+["Laura","just placed an order"],
 
-    ["Jennifer","sent a gift ❤️"],
-    ["Jessica","just placed an order"],
-    ["Amanda","sent a gift 🎁"],
-    ["Michelle","just placed an order"],
-    ["Stephanie","sent a gift ❤️"],
-    ["Nicole","just placed an order"],
-    ["Katherine","sent a gift 🎁"],
-    ["Maria","just placed an order"],
-    ["Angela","sent a gift ❤️"],
-    ["Christina","just placed an order"],
-    ["Melissa","sent a gift 🎁"],
-    ["Brianna","just placed an order"],
-    ["Jasmine","sent a gift ❤️"],
-    ["Alexis","just placed an order"],
-    ["Kayla","sent a gift 🎁"],
-    ["Faith","just placed an order"],
-    ["Joy","sent a gift ❤️"],
-    ["Blessing","just placed an order"],
-    ["Grace","sent a gift 🎁"],
-    ["Precious","just placed an order"],
+["Jennifer","sent a gift ❤️"],
+["Jessica","just placed an order"],
+["Amanda","sent a gift 🎁"],
+["Michelle","just placed an order"],
+["Stephanie","sent a gift ❤️"],
+["Nicole","just placed an order"],
+["Katherine","sent a gift 🎁"],
+["Maria","just placed an order"],
+["Angela","sent a gift ❤️"],
+["Christina","just placed an order"],
+["Melissa","sent a gift 🎁"],
+["Brianna","just placed an order"],
+["Jasmine","sent a gift ❤️"],
+["Alexis","just placed an order"],
+["Kayla","sent a gift 🎁"],
+["Faith","just placed an order"],
+["Joy","sent a gift ❤️"],
+["Blessing","just placed an order"],
+["Grace","sent a gift 🎁"],
+["Precious","just placed an order"],
 
-    ["Favour","sent a gift ❤️"],
-    ["Mercy","just placed an order"],
-    ["Peace","sent a gift 🎁"],
-    ["Emmanuel","just placed an order"],
-    ["Victor","sent a gift ❤️"],
-    ["Frank","just placed an order"],
-    ["George","sent a gift 🎁"],
-    ["Peter","just placed an order"],
-    ["Paul","sent a gift ❤️"],
-    ["Stephen","just placed an order"],
-    ["Patrick","sent a gift 🎁"],
-    ["Brian","just placed an order"],
-    ["Kevin","sent a gift ❤️"],
-    ["Eric","just placed an order"],
-    ["Jason","sent a gift 🎁"],
-    ["Ryan","just placed an order"],
-    ["Justin","sent a gift ❤️"],
-    ["Brandon","just placed an order"],
-    ["Tyler","sent a gift 🎁"],
-    ["Jordan","just placed an order"],
+["Favour","sent a gift ❤️"],
+["Mercy","just placed an order"],
+["Peace","sent a gift 🎁"],
+["Emmanuel","just placed an order"],
+["Victor","sent a gift ❤️"],
+["Frank","just placed an order"],
+["George","sent a gift 🎁"],
+["Peter","just placed an order"],
+["Paul","sent a gift ❤️"],
+["Stephen","just placed an order"],
+["Patrick","sent a gift 🎁"],
+["Brian","just placed an order"],
+["Kevin","sent a gift ❤️"],
+["Eric","just placed an order"],
+["Jason","sent a gift 🎁"],
+["Ryan","just placed an order"],
+["Justin","sent a gift ❤️"],
+["Brandon","just placed an order"],
+["Tyler","sent a gift 🎁"],
+["Jordan","just placed an order"],
 
-    ["Cameron","sent a gift ❤️"],
-    ["Derek","just placed an order"],
-    ["Alex","sent a gift 🎁"],
-    ["Chris","just placed an order"],
-    ["Mark","sent a gift ❤️"],
-    ["Steven","just placed an order"],
-    ["Adam","sent a gift 🎁"],
-    ["Aaron","just placed an order"],
-    ["Jonathan","sent a gift ❤️"],
-    ["Christian","just placed an order"],
-    ["Isaac","sent a gift 🎁"],
-    ["Gabriel","just placed an order"],
-    ["Nathaniel","sent a gift ❤️"],
-    ["Caleb","just placed an order"],
-    ["Isaiah","sent a gift 🎁"],
-    ["Josiah","just placed an order"],
-    ["Jeremiah","sent a gift ❤️"],
-    ["Nathan","just placed an order"],
-    ["Dominic","sent a gift 🎁"],
-    ["Adrian","just placed an order"],
+["Cameron","sent a gift ❤️"],
+["Derek","just placed an order"],
+["Alex","sent a gift 🎁"],
+["Chris","just placed an order"],
+["Mark","sent a gift ❤️"],
+["Steven","just placed an order"],
+["Adam","sent a gift 🎁"],
+["Aaron","just placed an order"],
+["Jonathan","sent a gift ❤️"],
+["Christian","just placed an order"],
+["Isaac","sent a gift 🎁"],
+["Gabriel","just placed an order"],
+["Nathaniel","sent a gift ❤️"],
+["Caleb","just placed an order"],
+["Isaiah","sent a gift 🎁"],
+["Josiah","just placed an order"],
+["Jeremiah","sent a gift ❤️"],
+["Nathan","just placed an order"],
+["Dominic","sent a gift 🎁"],
+["Adrian","just placed an order"],
 
-    ["Leo","sent a gift ❤️"],
-    ["Julian","just placed an order"],
-    ["Aaron","sent a gift 🎁"],
-    ["Ezra","just placed an order"],
-    ["Hudson","sent a gift ❤️"],
-    ["Lincoln","just placed an order"],
-    ["Thomas","sent a gift 🎁"],
-    ["Mateo","just placed an order"],
-    ["Nolan","sent a gift ❤️"],
-    ["Carter","just placed an order"],
-    ["Wyatt","sent a gift 🎁"],
-    ["Grayson","just placed an order"],
-    ["Isaac","sent a gift ❤️"],
-    ["Jayden","just placed an order"],
-    ["Luca","sent a gift 🎁"],
-    ["Asher","just placed an order"],
-    ["Easton","sent a gift ❤️"],
-    ["Colton","just placed an order"],
-    ["Jaxon","sent a gift 🎁"],
-    ["Maverick","just placed an order"],
+["Leo","sent a gift ❤️"],
+["Julian","just placed an order"],
+["Aaron","sent a gift 🎁"],
+["Ezra","just placed an order"],
+["Hudson","sent a gift ❤️"],
+["Lincoln","just placed an order"],
+["Thomas","sent a gift 🎁"],
+["Mateo","just placed an order"],
+["Nolan","sent a gift ❤️"],
+["Carter","just placed an order"],
+["Wyatt","sent a gift 🎁"],
+["Grayson","just placed an order"],
+["Isaac","sent a gift ❤️"],
+["Jayden","just placed an order"],
+["Luca","sent a gift 🎁"],
+["Asher","just placed an order"],
+["Easton","sent a gift ❤️"],
+["Colton","just placed an order"],
+["Jaxon","sent a gift 🎁"],
+["Maverick","just placed an order"],
 
-    ["Kayden","sent a gift ❤️"],
-    ["Parker","just placed an order"],
-    ["Cooper","sent a gift 🎁"],
-    ["Silas","just placed an order"],
-    ["Rowan","sent a gift ❤️"],
-    ["Micah","just placed an order"],
-    ["Everett","sent a gift 🎁"],
-    ["Declan","just placed an order"],
-    ["Wesley","sent a gift ❤️"],
-    ["Kai","just placed an order"],
-    ["Xavier","sent a gift 🎁"],
-    ["Milo","just placed an order"],
-    ["Vincent","sent a gift ❤️"],
-    ["Axel","just placed an order"],
-    ["Zachary","sent a gift 🎁"],
-    ["Miles","just placed an order"],
-    ["Ryder","sent a gift ❤️"],
-    ["Kingston","just placed an order"],
-    ["Atlas","sent a gift 🎁"],
-    ["Brooks","just placed an order"],
+["Kayden","sent a gift ❤️"],
+["Parker","just placed an order"],
+["Cooper","sent a gift 🎁"],
+["Silas","just placed an order"],
+["Rowan","sent a gift ❤️"],
+["Micah","just placed an order"],
+["Everett","sent a gift 🎁"],
+["Declan","just placed an order"],
+["Wesley","sent a gift ❤️"],
+["Kai","just placed an order"],
+["Xavier","sent a gift 🎁"],
+["Milo","just placed an order"],
+["Vincent","sent a gift ❤️"],
+["Axel","just placed an order"],
+["Zachary","sent a gift 🎁"],
+["Miles","just placed an order"],
+["Ryder","sent a gift ❤️"],
+["Kingston","just placed an order"],
+["Atlas","sent a gift 🎁"],
+["Brooks","just placed an order"],
 
-    ["Aaliyah","sent a gift ❤️"],
-    ["Nevaeh","just placed an order"],
-    ["Skylar","sent a gift 🎁"],
-    ["Genesis","just placed an order"],
-    ["Serenity","sent a gift ❤️"],
-    ["Adeline","just placed an order"],
-    ["Paisley","sent a gift 🎁"],
-    ["Madeline","just placed an order"],
-    ["Audrey","sent a gift ❤️"],
-    ["Ariana","just placed an order"],
-    ["Everleigh","sent a gift 🎁"],
-    ["Piper","just placed an order"],
-    ["Rylee","sent a gift ❤️"],
-    ["Kaylee","just placed an order"],
-    ["Peyton","sent a gift 🎁"],
-    ["Melanie","just placed an order"],
-    ["Gianna","sent a gift ❤️"],
-    ["Valentina","just placed an order"],
-    ["Raelynn","sent a gift 🎁"],
-    ["Vivian","just placed an order"],
+["Aaliyah","sent a gift ❤️"],
+["Nevaeh","just placed an order"],
+["Skylar","sent a gift 🎁"],
+["Genesis","just placed an order"],
+["Serenity","sent a gift ❤️"],
+["Adeline","just placed an order"],
+["Paisley","sent a gift 🎁"],
+["Madeline","just placed an order"],
+["Audrey","sent a gift ❤️"],
+["Ariana","just placed an order"],
+["Everleigh","sent a gift 🎁"],
+["Piper","just placed an order"],
+["Rylee","sent a gift ❤️"],
+["Kaylee","just placed an order"],
+["Peyton","sent a gift 🎁"],
+["Melanie","just placed an order"],
+["Gianna","sent a gift ❤️"],
+["Valentina","just placed an order"],
+["Raelynn","sent a gift 🎁"],
+["Vivian","just placed an order"],
 
-    ["Iris","sent a gift ❤️"],
-    ["Sophie","just placed an order"],
-    ["Brielle","sent a gift 🎁"],
-    ["Madelyn","just placed an order"],
-    ["Reagan","sent a gift ❤️"],
-    ["Cora","just placed an order"],
-    ["Emery","sent a gift 🎁"],
-    ["Julia","just placed an order"],
-    ["Athena","sent a gift ❤️"],
-    ["Mariah","just placed an order"],
-    ["Melody","sent a gift 🎁"],
-    ["Rose","just placed an order"],
-    ["Laila","sent a gift ❤️"],
-    ["Adalynn","just placed an order"],
-    ["Hadley","sent a gift 🎁"],
-    ["Arya","just placed an order"],
-    ["Parker","sent a gift ❤️"],
-    ["Lyla","just placed an order"],
-    ["Eliana","sent a gift 🎁"],
-    ["Liliana","just placed an order"],
+["Iris","sent a gift ❤️"],
+["Sophie","just placed an order"],
+["Brielle","sent a gift 🎁"],
+["Madelyn","just placed an order"],
+["Reagan","sent a gift ❤️"],
+["Cora","just placed an order"],
+["Emery","sent a gift 🎁"],
+["Julia","just placed an order"],
+["Athena","sent a gift ❤️"],
+["Mariah","just placed an order"],
+["Melody","sent a gift 🎁"],
+["Rose","just placed an order"],
+["Laila","sent a gift ❤️"],
+["Adalynn","just placed an order"],
+["Hadley","sent a gift 🎁"],
+["Arya","just placed an order"],
+["Parker","sent a gift ❤️"],
+["Lyla","just placed an order"],
+["Eliana","sent a gift 🎁"],
+["Liliana","just placed an order"],
 
-    ["Amara","sent a gift ❤️"],
-    ["Brianna","just placed an order"],
-    ["Nadia","sent a gift 🎁"],
-    ["Zara","just placed an order"],
-    ["Aisha","sent a gift ❤️"],
-    ["Fatima","just placed an order"],
-    ["Mariam","sent a gift 🎁"],
-    ["Halima","just placed an order"],
-    ["Esther","sent a gift ❤️"],
-    ["Deborah","just placed an order"],
-    ["Naomi","sent a gift 🎁"],
-    ["Abigail","just placed an order"],
-    ["Chidinma","sent a gift ❤️"],
-    ["Ada","just placed an order"],
-    ["Amaka","sent a gift 🎁"],
-    ["Ifeoma","just placed an order"],
-    ["Chioma","sent a gift ❤️"],
-    ["Ngozi","just placed an order"],
-    ["Tolu","sent a gift 🎁"],
-    ["Kemi","just placed an order"]
+["Amara","sent a gift ❤️"],
+["Brianna","just placed an order"],
+["Nadia","sent a gift 🎁"],
+["Zara","just placed an order"],
+["Aisha","sent a gift ❤️"],
+["Fatima","just placed an order"],
+["Mariam","sent a gift 🎁"],
+["Halima","just placed an order"],
+["Esther","sent a gift ❤️"],
+["Deborah","just placed an order"],
+["Naomi","sent a gift 🎁"],
+["Abigail","just placed an order"],
+["Chidinma","sent a gift ❤️"],
+["Ada","just placed an order"],
+["Amaka","sent a gift 🎁"],
+["Ifeoma","just placed an order"],
+["Chioma","sent a gift ❤️"],
+["Ngozi","just placed an order"],
+["Tolu","sent a gift 🎁"],
+["Kemi","just placed an order"]
 
 ];
 
@@ -2131,7 +1959,7 @@ const activityTrack =
 
 
 /* =========================
-   BUILD ACTIVITY LIST
+   BUILD ACTIVITY
 ========================= */
 
 activityData.forEach(
@@ -2146,9 +1974,11 @@ activityData.forEach(
         row.innerHTML = `
 
             <div class="activity-icon">
-                ${item[1].includes("gift")
-                    ? "🎁"
-                    : "📦"}
+                ${
+                    item[1].includes("gift")
+                        ? "🎁"
+                        : "📦"
+                }
             </div>
 
             <div class="activity-content">
@@ -2164,9 +1994,13 @@ activityData.forEach(
             </div>
 
             <div class="activity-time">
-                ${index % 4 === 0
-                    ? "Just now"
-                    : (index % 4) + "m ago"}
+
+                ${
+                    index % 4 === 0
+                        ? "Just now"
+                        : (index % 4) + "m ago"
+                }
+
             </div>
 
         `;
@@ -2199,6 +2033,7 @@ function showNextActivity(){
 
     }
 
+
     activityTrack.style.transform =
         `translateY(-${
             activityIndex *
@@ -2207,11 +2042,6 @@ function showNextActivity(){
 
 }
 
-
-/*
-   Change activity every
-   3 seconds.
-*/
 
 setInterval(
     showNextActivity,
@@ -2230,12 +2060,13 @@ setInterval(
 
 
 /* =========================
-   FIREBASE APP
+   FIREBASE IMPORTS
 ========================= */
 
 import {
     initializeApp
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
@@ -2243,7 +2074,8 @@ import {
     getAuth,
     onAuthStateChanged,
     signOut
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
@@ -2251,9 +2083,9 @@ import {
     getFirestore,
     doc,
     onSnapshot
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
 
 
 /* =========================
@@ -2286,9 +2118,8 @@ const firebaseConfig = {
 };
 
 
-
 /* =========================
-   INITIALIZE FIREBASE
+   INITIALIZE
 ========================= */
 
 const app =
@@ -2303,7 +2134,6 @@ const auth =
 
 const db =
     getFirestore(app);
-
 
 
 /* =========================
@@ -2346,11 +2176,16 @@ const notificationBtn =
     );
 
 
+const otherCountry =
+    document.getElementById(
+        "otherCountry"
+    );
+
+
 const toast =
     document.getElementById(
         "toast"
     );
-
 
 
 /* =========================
@@ -2381,7 +2216,6 @@ function showToast(text){
 }
 
 
-
 /* =========================
    FORMAT NAIRA
 ========================= */
@@ -2402,7 +2236,6 @@ function formatNaira(amount){
         );
 
 }
-
 
 
 /* =========================
@@ -2471,7 +2304,7 @@ onAuthStateChanged(
                     name;
 
 
-                /* INITIAL */
+                /* PROFILE INITIAL */
 
                 const initial =
                     name
@@ -2519,7 +2352,6 @@ onAuthStateChanged(
 );
 
 
-
 /* =========================
    LOGOUT
 ========================= */
@@ -2561,7 +2393,6 @@ logoutBtn.addEventListener(
 );
 
 
-
 /* =========================
    DEPOSIT
 ========================= */
@@ -2575,7 +2406,6 @@ depositBtn.addEventListener(
 
     }
 );
-
 
 
 /* =========================
@@ -2593,7 +2423,6 @@ profileMini.addEventListener(
 );
 
 
-
 /* =========================
    NOTIFICATIONS
 ========================= */
@@ -2609,9 +2438,8 @@ notificationBtn.addEventListener(
 );
 
 
-
 /* =========================
-   COUNTRY PAGES
+   USA / CANADA
 ========================= */
 
 const countryCards =
@@ -2652,120 +2480,28 @@ countryCards.forEach(
 );
 
 
-
 /* =========================
    OTHER COUNTRIES
 ========================= */
 
-const otherCountry =
-    document.getElementById(
-        "otherCountry"
+if(otherCountry){
+
+    otherCountry.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                "other-countries.html";
+
+        }
     );
 
+}
 
-otherCountry.addEventListener(
-    "click",
-    () => {
-
-        const whatsappLink =
-            "https://whatsapp.com/channel/0029VbDpD8RIyPtZiIkHkx3u";
-
-
-        const modal =
-            document.createElement(
-                "div"
-            );
-
-
-        modal.className =
-            "country-modal-overlay";
-
-
-        modal.innerHTML = `
-
-            <div class="country-modal">
-
-                <div class="country-modal-icon">
-                    🌎
-                </div>
-
-                <h2>
-                    Other Countries
-                </h2>
-
-                <p>
-                    We're currently working
-                    on expanding our delivery
-                    destinations.
-                </p>
-
-                <p>
-                    Kindly contact us on WhatsApp,
-                    and we're going to help arrange
-                    delivery to your destination.
-                </p>
-
-                <a
-                    href="${whatsappLink}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="whatsapp-btn">
-
-                    Contact Us on WhatsApp
-
-                </a>
-
-                <button
-                    class="close-modal-btn">
-
-                    Thank You ❤️
-
-                </button>
-
-            </div>
-
-        `;
-
-
-        document.body.appendChild(
-            modal
-        );
-
-
-        modal
-            .querySelector(
-                ".close-modal-btn"
-            )
-            .addEventListener(
-                "click",
-                () => {
-
-                    modal.remove();
-
-                }
-            );
-
-
-        modal.addEventListener(
-            "click",
-            event => {
-
-                if(
-                    event.target ===
-                    modal
-                ){
-
-                    modal.remove();
-
-                }
-
-            }
-        );
-
-    }
-);
 
 </script>
 
+
 </body>
-                  </html>
+
+      </html>
