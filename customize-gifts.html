@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customize Gift | Fame Store</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --blue:#1769ff;
+    --blue-dark:#0d47c9;
+    --yellow:#ffd43b;
+    --white:#ffffff;
+    --bg:#f5f8ff;
+    --text:#172033;
+    --muted:#718096;
+    --border:#e4e9f2;
+    --card:#ffffff;
+    --danger:#e53935;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header-inner{
+    max-width:1150px;
+    margin:auto;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--text);
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    background:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.logo-text{
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo-text span{
+    color:var(--blue);
+}
+
+.back-btn{
+    border:none;
+    background:#eef4ff;
+    color:var(--blue);
+    padding:11px 15px;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.container{
+    width:100%;
+    max-width:1150px;
+    margin:auto;
+    padding:30px 20px 50px;
+}
+
+.hero{
+    background:linear-gradient(135deg,#1769ff,#0c4bc7);
+    color:white;
+    border-radius:24px;
+    padding:30px;
+    margin-bottom:25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::after{
+    content:"🎁";
+    position:absolute;
+    right:30px;
+    bottom:-18px;
+    font-size:105px;
+    opacity:.15;
+}
+
+.hero h1{
+    font-size:32px;
+    margin-bottom:9px;
+}
+
+.hero p{
+    color:#e5edff;
+    line-height:1.6;
+    max-width:650px;
+}
+
+/* =========================
+   WALLET
+========================= */
+
+.wallet{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:18px 20px;
+    margin-bottom:25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    box-shadow:0 6px 20px rgba(24,45,85,.05);
+}
+
+.wallet-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.wallet-icon{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:#fff6c7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.wallet small{
+    display:block;
+    color:var(--muted);
+    margin-bottom:3px;
+}
+
+.wallet strong{
+    font-size:21px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title{
+    margin-bottom:15px;
+}
+
+.section-title h2{
+    font-size:22px;
+    margin-bottom:5px;
+}
+
+.section-title p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+/* =========================
+   CATEGORY CARDS
+========================= */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:30px;
+}
+
+.category{
+    background:var(--card);
+    border:2px solid var(--border);
+    border-radius:17px;
+    padding:20px 10px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+.category:hover{
+    transform:translateY(-3px);
+    border-color:#9dbdff;
+}
+
+.category.active{
+    border-color:var(--blue);
+    background:#f2f6ff;
+    box-shadow:0 7px 20px rgba(23,105,255,.10);
+}
+
+.category-icon{
+    font-size:38px;
+    display:block;
+    margin-bottom:10px;
+}
+
+.category strong{
+    font-size:14px;
+}
+
+/* =========================
+   MAIN GRID
+========================= */
+
+.custom-grid{
+    display:grid;
+    grid-template-columns:1.3fr .7fr;
+    gap:22px;
+    align-items:start;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:23px;
+    box-shadow:0 7px 25px rgba(25,45,85,.05);
+}
+
+.card h3{
+    font-size:19px;
+    margin-bottom:18px;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:11px;
+    padding:13px 14px;
+    outline:none;
+    background:#fbfcff;
+    color:var(--text);
+    font-size:14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--blue);
+    background:white;
+}
+
+.form-group textarea{
+    min-height:105px;
+    resize:vertical;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* =========================
+   IMAGE UPLOAD
+========================= */
+
+.upload-box{
+    border:2px dashed #b9c8e7;
+    border-radius:15px;
+    padding:22px;
+    text-align:center;
+    background:#f9fbff;
+    cursor:pointer;
+}
+
+.upload-box:hover{
+    border-color:var(--blue);
+}
+
+.upload-icon{
+    font-size:34px;
+    margin-bottom:7px;
+}
+
+.upload-box strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.upload-box span{
+    font-size:12px;
+    color:var(--muted);
+}
+
+#imageInput{
+    display:none;
+}
+
+.preview{
+    margin-top:14px;
+    text-align:center;
+}
+
+.preview img{
+    max-width:180px;
+    max-height:180px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    object-fit:cover;
+}
+
+/* =========================
+   COLOR OPTIONS
+========================= */
+
+.color-options{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.color-btn{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:3px solid white;
+    outline:1px solid #ccd5e5;
+    cursor:pointer;
+}
+
+.color-btn.selected{
+    outline:3px solid var(--blue);
+}
+
+/* =========================
+   SIZE
+========================= */
+
+.sizes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.size-btn{
+    min-width:48px;
+    padding:10px;
+    border:1px solid var(--border);
+    background:white;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.size-btn.selected{
+    background:var(--blue);
+    color:white;
+    border-color:var(--blue);
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary{
+    position:sticky;
+    top:90px;
+}
+
+.summary-product{
+    background:#f4f7ff;
+    border-radius:14px;
+    padding:17px;
+    margin-bottom:18px;
+}
+
+.summary-product .summary-icon{
+    font-size:42px;
+    margin-bottom:8px;
+}
+
+.summary-product h4{
+    font-size:18px;
+    margin-bottom:4px;
+}
+
+.summary-product p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+    font-size:14px;
+}
+
+.summary-row span:first-child{
+    color:var(--muted);
+}
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+    font-size:19px;
+    font-weight:800;
+}
+
+.total strong{
+    color:var(--blue);
+}
+
+.continue-btn{
+    width:100%;
+    border:none;
+    background:var(--blue);
+    color:white;
+    padding:15px;
+    border-radius:12px;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.continue-btn:hover{
+    background:var(--blue-dark);
+    transform:translateY(-1px);
+}
+
+.continue-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.note{
+    margin-top:14px;
+    background:#fff9d9;
+    border:1px solid #f4df74;
+    border-radius:11px;
+    padding:12px;
+    font-size:12px;
+    line-height:1.5;
+    color:#665600;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    padding:25px 20px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,120px);
+    background:#172033;
+    color:white;
+    padding:14px 20px;
+    border-radius:12px;
+    z-index:500;
+    opacity:0;
+    transition:.3s;
+    font-size:14px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+    .categories{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .custom-grid{
+        grid-template-columns:1fr;
+    }
+
+    .summary{
+        position:static;
+    }
+}
+
+@media(max-width:550px){
+
+    .header-inner{
+        padding:13px 15px;
+    }
+
+    .logo-text{
+        font-size:17px;
+    }
+
+    .logo-icon{
+        width:38px;
+        height:38px;
+    }
+
+    .container{
+        padding:20px 14px 40px;
+    }
+
+    .hero{
+        padding:24px 20px;
+        border-radius:19px;
+    }
+
+    .hero h1{
+        font-size:25px;
+    }
+
+    .hero::after{
+        font-size:75px;
+        right:10px;
+    }
+
+    .wallet{
+        padding:15px;
+    }
+
+    .wallet strong{
+        font-size:17px;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .card{
+        padding:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <a href="dashboard.html" class="logo">
+
+            <div class="logo-icon">
+                🛍️
+            </div>
+
+            <div class="logo-text">
+                Fame <span>Store</span>
+            </div>
+
+        </a>
+
+        <button class="back-btn" onclick="goBack()">
+            ← Dashboard
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>Customize Your Gift 🎁</h1>
+
+        <p>
+            Create something special and personal. Choose a gift,
+            add your own image, name, colors and instructions.
+            We'll prepare your customized gift for you.
+        </p>
+
+    </section>
+
+
+    <!-- WALLET -->
+
+    <div class="wallet">
+
+        <div class="wallet-left">
+
+            <div class="wallet-icon">
+                💰
+            </div>
+
+            <div>
+                <small>Available Wallet Balance</small>
+                <strong id="walletBalance">₦0.00</strong>
+            </div>
+
+        </div>
+
+        <button class="back-btn" onclick="window.location.href='deposit.html'">
+            + Deposit
+        </button>
+
+    </div>
+
+
+    <!-- CATEGORY -->
+
+    <div class="section-title">
+
+        <h2>What do you want to customize?</h2>
+
+        <p>
+            Select a gift category below.
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+        <div class="category active" data-type="Frame">
+
+            <span class="category-icon">🖼️</span>
+
+            <strong>Frame</strong>
+
+        </div>
+
+
+        <div class="category" data-type="Cup">
+
+            <span class="category-icon">☕</span>
+
+            <strong>Cup</strong>
+
+        </div>
+
+
+        <div class="category" data-type="Cap">
+
+            <span class="category-icon">🧢</span>
+
+            <strong>Cap</strong>
+
+        </div>
+
+
+        <div class="category" data-type="Clothes">
+
+            <span class="category-icon">👕</span>
+
+            <strong>Clothes</strong>
+
+        </div>
+
+
+        <div class="category" data-type="Other">
+
+            <span class="category-icon">🎁</span>
+
+            <strong>Other</strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- CUSTOMIZATION -->
+
+    <div class="custom-grid">
+
+        <!-- LEFT -->
+
+        <div class="card">
+
+            <h3>Customize your <span id="selectedType">Frame</span></h3>
+
+
+            <!-- IMAGE -->
+
+            <div class="form-group">
+
+                <label>
+                    Upload your picture
+                </label>
+
+                <label class="upload-box" for="imageInput">
+
+                    <div class="upload-icon">
+                        📷
+                    </div>
+
+                    <strong>
+                        Tap to upload an image
+                    </strong>
+
+                    <span>
+                        JPG, PNG or WEBP
+                    </span>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/png,image/jpeg,image/webp"
+                >
+
+                <div class="preview hidden" id="preview">
+                    <img id="previewImage" alt="Preview">
+                </div>
+
+            </div>
+
+
+            <!-- CUSTOM TEXT -->
+
+            <div class="form-group">
+
+                <label>
+                    Name / Text to add
+                </label>
+
+                <input
+                    type="text"
+                    id="customText"
+                    placeholder="Example: Happy Birthday John"
+                >
+
+            </div>
+
+
+            <!-- COLOR -->
+
+            <div class="form-group">
+
+                <label>
+                    Choose color
+                </label>
+
+                <div class="color-options">
+
+                    <button
+                        class="color-btn selected"
+                        data-color="White"
+                        style="background:#ffffff"
+                        aria-label="White">
+                    </button>
+
+                    <button
+                        class="color-btn"
+                        data-color="Black"
+                        style="background:#111111"
+                        aria-label="Black">
+                    </button>
+
+                    <button
+                        class="color-btn"
+                        data-color="Blue"
+                        style="background:#1769ff"
+                        aria-label="Blue">
+                    </button>
+
+                    <button
+                        class="color-btn"
+                        data-color="Red"
+                        style="background:#e53935"
+                        aria-label="Red">
+                    </button>
+
+                    <button
+                        class="color-btn"
+                        data-color="Yellow"
+                        style="background:#ffd43b"
+                        aria-label="Yellow">
+                    </button>
+
+                    <button
+                        class="color-btn"
+                        data-color="Pink"
+                        style="background:#ff7eb6"
+                        aria-label="Pink">
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CLOTH SIZE -->
+
+            <div class="form-group" id="sizeGroup">
+
+                <label>
+                    Size
+                </label>
+
+                <div class="sizes">
+
+                    <button class="size-btn" data-size="S">
+                        S
+                    </button>
+
+                    <button class="size-btn selected" data-size="M">
+                        M
+                    </button>
+
+                    <button class="size-btn" data-size="L">
+                        L
+                    </button>
+
+                    <button class="size-btn" data-size="XL">
+                        XL
+                    </button>
+
+                    <button class="size-btn" data-size="XXL">
+                        XXL
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SPECIAL INSTRUCTIONS -->
+
+            <div class="form-group">
+
+                <label>
+                    Special instructions
+                </label>
+
+                <textarea
+                    id="instructions"
+                    placeholder="Tell us exactly how you want your gift customized..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SUMMARY -->
+
+        <div class="card summary">
+
+            <h3>Customization Summary</h3>
+
+
+            <div class="summary-product">
+
+                <div class="summary-icon" id="summaryIcon">
+                    🖼️
+                </div>
+
+                <h4 id="summaryType">
+                    Customized Frame
+                </h4>
+
+                <p>
+                    Personalized gift from Fame Store
+                </p>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Gift</span>
+
+                <strong id="summaryGift">
+                    Frame
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Text</span>
+
+                <strong id="summaryText">
+                    None
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Color</span>
+
+                <strong id="summaryColor">
+                    White
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>Size</span>
+
+                <strong id="summarySize">
+                    M
+                </strong>
+
+            </div>
+
+
+            <div class="total">
+
+                <span>
+                    Price
+                </span>
+
+                <strong>
+                    Contact us
+                </strong>
+
+            </div>
+
+
+            <button
+                class="continue-btn"
+                id="continueBtn"
+            >
+                Continue to Order →
+            </button>
+
+
+            <div class="note">
+
+                💡 <strong>Important:</strong>
+                Customized gifts may have different prices depending
+                on the design, size and materials. Your final price
+                will be confirmed before payment.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    © 2026 Fame Store · Send gifts 🎁, share love ❤️
+
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script type="module">
+
+import { auth, db } from "./firebase-config.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentUser = null;
+
+let selectedType = "Frame";
+let selectedColor = "White";
+let selectedSize = "M";
+
+const icons = {
+    Frame:"🖼️",
+    Cup:"☕",
+    Cap:"🧢",
+    Clothes:"👕",
+    Other:"🎁"
+};
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(auth, async (user) => {
+
+    if(!user){
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+    currentUser = user;
+
+    await loadWallet();
+
+});
+
+
+/* =========================
+   LOAD WALLET
+========================= */
+
+async function loadWallet(){
+
+    try{
+
+        const userRef = doc(
+            db,
+            "users",
+            currentUser.uid
+        );
+
+        const snap = await getDoc(userRef);
+
+        if(snap.exists()){
+
+            const data = snap.data();
+
+            const balance =
+                Number(data.walletBalance || 0);
+
+            document.getElementById("walletBalance")
+                .textContent =
+                "₦" + balance.toLocaleString(
+                    "en-NG",
+                    {
+                        minimumFractionDigits:2,
+                        maximumFractionDigits:2
+                    }
+                );
+
+        }
+
+    }catch(error){
+
+        console.error(
+            "Wallet loading error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================
+   CATEGORY SELECTION
+========================= */
+
+document.querySelectorAll(".category")
+.forEach(category => {
+
+    category.addEventListener("click", () => {
+
+        document.querySelectorAll(".category")
+        .forEach(item => {
+            item.classList.remove("active");
+        });
+
+        category.classList.add("active");
+
+        selectedType =
+            category.dataset.type;
+
+        updateCategory();
+
+    });
+
+});
+
+
+function updateCategory(){
+
+    const icon =
+        icons[selectedType] || "🎁";
+
+    document.getElementById("selectedType")
+        .textContent =
+        selectedType;
+
+    document.getElementById("summaryIcon")
+        .textContent =
+        icon;
+
+    document.getElementById("summaryType")
+        .textContent =
+        "Customized " + selectedType;
+
+    document.getElementById("summaryGift")
+        .textContent =
+        selectedType;
+
+    /*
+      Clothes normally require size.
+      For other products we can hide it.
+    */
+
+    const sizeGroup =
+        document.getElementById("sizeGroup");
+
+    if(selectedType === "Clothes"){
+
+        sizeGroup.classList.remove("hidden");
+
+    }else{
+
+        sizeGroup.classList.add("hidden");
+
+    }
+
+}
+
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+
+const imageInput =
+    document.getElementById("imageInput");
+
+const preview =
+    document.getElementById("preview");
+
+const previewImage =
+    document.getElementById("previewImage");
+
+
+imageInput.addEventListener("change", () => {
+
+    const file =
+        imageInput.files[0];
+
+    if(!file){
+
+        preview.classList.add("hidden");
+
+        return;
+    }
+
+    /*
+      Limit preview file size to 5MB.
+    */
+
+    if(file.size > 5 * 1024 * 1024){
+
+        showToast(
+            "Please choose an image smaller than 5MB."
+        );
+
+        imageInput.value = "";
+
+        preview.classList.add("hidden");
+
+        return;
+    }
+
+    const reader =
+        new FileReader();
+
+    reader.onload = function(e){
+
+        previewImage.src =
+            e.target.result;
+
+        preview.classList.remove(
+            "hidden"
+        );
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+
+/* =========================
+   TEXT
+========================= */
+
+document.getElementById("customText")
+.addEventListener("input", (e) => {
+
+    const value =
+        e.target.value.trim();
+
+    document.getElementById("summaryText")
+        .textContent =
+        value || "None";
+
+});
+
+
+/* =========================
+   COLORS
+========================= */
+
+document.querySelectorAll(".color-btn")
+.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".color-btn")
+        .forEach(btn => {
+            btn.classList.remove(
+                "selected"
+            );
+        });
+
+        button.classList.add(
+            "selected"
+        );
+
+        selectedColor =
+            button.dataset.color;
+
+        document.getElementById(
+            "summaryColor"
+        ).textContent =
+            selectedColor;
+
+    });
+
+});
+
+
+/* =========================
+   SIZES
+========================= */
+
+document.querySelectorAll(".size-btn")
+.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".size-btn")
+        .forEach(btn => {
+            btn.classList.remove(
+                "selected"
+            );
+        });
+
+        button.classList.add(
+            "selected"
+        );
+
+        selectedSize =
+            button.dataset.size;
+
+        document.getElementById(
+            "summarySize"
+        ).textContent =
+            selectedSize;
+
+    });
+
+});
+
+
+/* =========================
+   CONTINUE
+========================= */
+
+document.getElementById("continueBtn")
+.addEventListener("click", () => {
+
+    if(!currentUser){
+
+        showToast(
+            "Please login first."
+        );
+
+        return;
+    }
+
+
+    const customText =
+        document.getElementById(
+            "customText"
+        ).value.trim();
+
+
+    const instructions =
+        document.getElementById(
+            "instructions"
+        ).value.trim();
+
+
+    const hasImage =
+        imageInput.files.length > 0;
+
+
+    /*
+      We don't charge the wallet here.
+      The final price needs to be confirmed.
+    */
+
+    const customization = {
+
+        type:selectedType,
+
+        text:customText,
+
+        color:selectedColor,
+
+        size:
+            selectedType === "Clothes"
+            ? selectedSize
+            : null,
+
+        hasImage:hasImage,
+
+        instructions:instructions
+
+    };
+
+
+    /*
+      Save temporarily for the next page.
+      This does NOT replace Firestore order storage.
+    */
+
+    sessionStorage.setItem(
+        "fameStoreCustomization",
+        JSON.stringify(
+            customization
+        )
+    );
+
+
+    /*
+      Change this page later to your
+      final custom-gift checkout page.
+    */
+
+    window.location.href =
+        "customize-checkout.html";
+
+});
+
+
+/* =========================
+   BACK
+========================= */
+
+window.goBack = function(){
+
+    if(
+        document.referrer &&
+        document.referrer !==
+        window.location.href
+    ){
+
+        history.back();
+
+    }else{
+
+        window.location.href =
+            "dashboard.html";
+
+    }
+
+};
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove(
+            "show"
+        );
+
+    },3000);
+
+}
+
+</script>
+
+</body>
+</html>
