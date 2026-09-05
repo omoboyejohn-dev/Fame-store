@@ -682,7 +682,7 @@ button{
 
 
 /* =========================
-   COUNTRY GRID
+   DELIVERY GRID
 ========================= */
 
 .delivery-section{
@@ -860,6 +860,152 @@ button{
     color:var(--gray);
 
     font-size:11px;
+
+}
+
+
+/* =========================
+   CUSTOMIZE GIFT
+========================= */
+
+.customize-gift{
+
+    margin-top:15px;
+
+    background:linear-gradient(
+        135deg,
+        #ffffff,
+        #fffbea
+    );
+
+    border:1px solid #f2df91;
+
+    border-radius:16px;
+
+    padding:20px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    transition:.25s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.customize-gift::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:110px;
+
+    height:110px;
+
+    right:-40px;
+
+    top:-40px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,201,40,.12);
+
+}
+
+.customize-gift:hover{
+
+    border-color:var(--yellow);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(255,201,40,.15);
+
+}
+
+.customize-gift:active{
+
+    transform:scale(.99);
+
+}
+
+.customize-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.customize-icon{
+
+    width:48px;
+
+    height:48px;
+
+    background:var(--yellow);
+
+    border-radius:13px;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:24px;
+
+    flex-shrink:0;
+
+}
+
+.customize-gift strong{
+
+    display:block;
+
+    font-size:14px;
+
+}
+
+.customize-gift span{
+
+    color:var(--gray);
+
+    font-size:11px;
+
+    margin-top:4px;
+
+    display:block;
+
+}
+
+.customize-arrow{
+
+    color:var(--blue);
+
+    font-size:20px;
+
+    font-weight:800;
+
+    position:relative;
+
+    z-index:2;
 
 }
 
@@ -1512,7 +1658,9 @@ button{
     id="countryGrid">
 
 
-<!-- USA -->
+<!-- =========================
+     USA
+========================= -->
 
 <div
     class="country-card"
@@ -1529,7 +1677,10 @@ button{
 </div>
 
 
-<!-- CANADA -->
+
+<!-- =========================
+     CANADA
+========================= -->
 
 <div
     class="country-card"
@@ -1582,6 +1733,43 @@ button{
 <strong>
     →
 </strong>
+
+</div>
+
+
+
+<!-- =========================
+     CUSTOMIZE GIFT
+========================= -->
+
+<div
+    class="customize-gift"
+    id="customizeGift">
+
+<div class="customize-left">
+
+<div class="customize-icon">
+    🎁
+</div>
+
+<div>
+
+<strong>
+    Customize Gift
+</strong>
+
+<span>
+    Create a personalized gift just for someone special
+</span>
+
+</div>
+
+</div>
+
+
+<div class="customize-arrow">
+    →
+</div>
 
 </div>
 
@@ -1672,7 +1860,6 @@ button{
 ========================= -->
 
 <script>
-
 
 const activityData = [
 
@@ -1842,112 +2029,7 @@ const activityData = [
 ["Jeremiah","sent a gift ❤️"],
 ["Nathan","just placed an order"],
 ["Dominic","sent a gift 🎁"],
-["Adrian","just placed an order"],
-
-["Leo","sent a gift ❤️"],
-["Julian","just placed an order"],
-["Aaron","sent a gift 🎁"],
-["Ezra","just placed an order"],
-["Hudson","sent a gift ❤️"],
-["Lincoln","just placed an order"],
-["Thomas","sent a gift 🎁"],
-["Mateo","just placed an order"],
-["Nolan","sent a gift ❤️"],
-["Carter","just placed an order"],
-["Wyatt","sent a gift 🎁"],
-["Grayson","just placed an order"],
-["Isaac","sent a gift ❤️"],
-["Jayden","just placed an order"],
-["Luca","sent a gift 🎁"],
-["Asher","just placed an order"],
-["Easton","sent a gift ❤️"],
-["Colton","just placed an order"],
-["Jaxon","sent a gift 🎁"],
-["Maverick","just placed an order"],
-
-["Kayden","sent a gift ❤️"],
-["Parker","just placed an order"],
-["Cooper","sent a gift 🎁"],
-["Silas","just placed an order"],
-["Rowan","sent a gift ❤️"],
-["Micah","just placed an order"],
-["Everett","sent a gift 🎁"],
-["Declan","just placed an order"],
-["Wesley","sent a gift ❤️"],
-["Kai","just placed an order"],
-["Xavier","sent a gift 🎁"],
-["Milo","just placed an order"],
-["Vincent","sent a gift ❤️"],
-["Axel","just placed an order"],
-["Zachary","sent a gift 🎁"],
-["Miles","just placed an order"],
-["Ryder","sent a gift ❤️"],
-["Kingston","just placed an order"],
-["Atlas","sent a gift 🎁"],
-["Brooks","just placed an order"],
-
-["Aaliyah","sent a gift ❤️"],
-["Nevaeh","just placed an order"],
-["Skylar","sent a gift 🎁"],
-["Genesis","just placed an order"],
-["Serenity","sent a gift ❤️"],
-["Adeline","just placed an order"],
-["Paisley","sent a gift 🎁"],
-["Madeline","just placed an order"],
-["Audrey","sent a gift ❤️"],
-["Ariana","just placed an order"],
-["Everleigh","sent a gift 🎁"],
-["Piper","just placed an order"],
-["Rylee","sent a gift ❤️"],
-["Kaylee","just placed an order"],
-["Peyton","sent a gift 🎁"],
-["Melanie","just placed an order"],
-["Gianna","sent a gift ❤️"],
-["Valentina","just placed an order"],
-["Raelynn","sent a gift 🎁"],
-["Vivian","just placed an order"],
-
-["Iris","sent a gift ❤️"],
-["Sophie","just placed an order"],
-["Brielle","sent a gift 🎁"],
-["Madelyn","just placed an order"],
-["Reagan","sent a gift ❤️"],
-["Cora","just placed an order"],
-["Emery","sent a gift 🎁"],
-["Julia","just placed an order"],
-["Athena","sent a gift ❤️"],
-["Mariah","just placed an order"],
-["Melody","sent a gift 🎁"],
-["Rose","just placed an order"],
-["Laila","sent a gift ❤️"],
-["Adalynn","just placed an order"],
-["Hadley","sent a gift 🎁"],
-["Arya","just placed an order"],
-["Parker","sent a gift ❤️"],
-["Lyla","just placed an order"],
-["Eliana","sent a gift 🎁"],
-["Liliana","just placed an order"],
-
-["Amara","sent a gift ❤️"],
-["Brianna","just placed an order"],
-["Nadia","sent a gift 🎁"],
-["Zara","just placed an order"],
-["Aisha","sent a gift ❤️"],
-["Fatima","just placed an order"],
-["Mariam","sent a gift 🎁"],
-["Halima","just placed an order"],
-["Esther","sent a gift ❤️"],
-["Deborah","just placed an order"],
-["Naomi","sent a gift 🎁"],
-["Abigail","just placed an order"],
-["Chidinma","sent a gift ❤️"],
-["Ada","just placed an order"],
-["Amaka","sent a gift 🎁"],
-["Ifeoma","just placed an order"],
-["Chioma","sent a gift ❤️"],
-["Ngozi","just placed an order"],
-["Tolu","sent a gift 🎁"],
-["Kemi","just placed an order"]
+["Adrian","just placed an order"]
 
 ];
 
@@ -1957,10 +2039,6 @@ const activityTrack =
         "activityTrack"
     );
 
-
-/* =========================
-   BUILD ACTIVITY
-========================= */
 
 activityData.forEach(
     (item,index) => {
@@ -2011,10 +2089,6 @@ activityData.forEach(
 );
 
 
-/* =========================
-   ACTIVITY ROTATION
-========================= */
-
 let activityIndex = 0;
 
 const activityHeight = 55;
@@ -2059,10 +2133,6 @@ setInterval(
 <script type="module">
 
 
-/* =========================
-   FIREBASE IMPORTS
-========================= */
-
 import {
     initializeApp
 }
@@ -2087,10 +2157,6 @@ import {
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-
-/* =========================
-   FIREBASE CONFIG
-========================= */
 
 const firebaseConfig = {
 
@@ -2118,10 +2184,6 @@ const firebaseConfig = {
 };
 
 
-/* =========================
-   INITIALIZE
-========================= */
-
 const app =
     initializeApp(
         firebaseConfig
@@ -2135,10 +2197,6 @@ const auth =
 const db =
     getFirestore(app);
 
-
-/* =========================
-   ELEMENTS
-========================= */
 
 const userName =
     document.getElementById(
@@ -2182,15 +2240,17 @@ const otherCountry =
     );
 
 
+const customizeGift =
+    document.getElementById(
+        "customizeGift"
+    );
+
+
 const toast =
     document.getElementById(
         "toast"
     );
 
-
-/* =========================
-   TOAST
-========================= */
 
 function showToast(text){
 
@@ -2216,10 +2276,6 @@ function showToast(text){
 }
 
 
-/* =========================
-   FORMAT NAIRA
-========================= */
-
 function formatNaira(amount){
 
     const number =
@@ -2239,7 +2295,7 @@ function formatNaira(amount){
 
 
 /* =========================
-   AUTH STATE
+   AUTH
 ========================= */
 
 onAuthStateChanged(
@@ -2292,8 +2348,6 @@ onAuthStateChanged(
                     snapshot.data();
 
 
-                /* NAME */
-
                 const name =
                     data.fullName ||
                     user.displayName ||
@@ -2303,8 +2357,6 @@ onAuthStateChanged(
                 userName.textContent =
                     name;
 
-
-                /* PROFILE INITIAL */
 
                 const initial =
                     name
@@ -2316,8 +2368,6 @@ onAuthStateChanged(
                 profileMini.textContent =
                     initial || "?";
 
-
-                /* WALLET */
 
                 const balance =
                     Number(
@@ -2499,9 +2549,28 @@ if(otherCountry){
 }
 
 
+/* =========================
+   CUSTOMIZE GIFT
+========================= */
+
+if(customizeGift){
+
+    customizeGift.addEventListener(
+        "click",
+        () => {
+
+            window.location.href =
+                "customize-gift.html";
+
+        }
+    );
+
+}
+
+
 </script>
 
 
 </body>
 
-      </html>
+</html>
