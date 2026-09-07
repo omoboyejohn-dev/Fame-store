@@ -198,11 +198,15 @@ button{
 
     font-size:18px;
 
+    transition:.25s;
+
 }
 
 .header-btn:hover{
 
     border-color:var(--blue);
+
+    transform:translateY(-2px);
 
 }
 
@@ -225,6 +229,14 @@ button{
     font-weight:800;
 
     cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.profile-mini:hover{
+
+    transform:scale(1.05);
 
 }
 
@@ -299,7 +311,7 @@ button{
 
 }
 
-.activity-live{
+.activity-demo{
 
     font-size:9px;
 
@@ -682,7 +694,7 @@ button{
 
 
 /* =========================
-   DELIVERY GRID
+   GLOBAL DELIVERY
 ========================= */
 
 .delivery-section{
@@ -702,9 +714,14 @@ button{
 
 }
 
+
+/* =========================
+   COUNTRY CARD
+========================= */
+
 .country-card{
 
-    background:white;
+    background:#ffffff;
 
     border:1px solid var(--border);
 
@@ -714,11 +731,22 @@ button{
 
     cursor:pointer;
 
-    transition:.25s;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
 
     position:relative;
 
-    min-height:130px;
+    min-height:145px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    overflow:hidden;
 
 }
 
@@ -740,24 +768,6 @@ button{
 
 }
 
-.country-flag{
-
-    font-size:36px;
-
-    display:block;
-
-    margin-bottom:12px;
-
-}
-
-.country-name{
-
-    font-weight:800;
-
-    font-size:15px;
-
-}
-
 .country-card::after{
 
     content:"→";
@@ -766,168 +776,75 @@ button{
 
     right:18px;
 
-    bottom:20px;
+    bottom:18px;
 
     color:var(--blue);
 
-    font-size:18px;
+    font-size:19px;
 
     font-weight:800;
 
 }
 
+.country-flag{
 
-/* =========================
-   OTHER COUNTRIES
-========================= */
-
-.other-country{
-
-    margin-top:15px;
-
-    background:white;
-
-    border:1px solid var(--border);
-
-    border-radius:16px;
-
-    padding:18px;
-
-    cursor:pointer;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    transition:.25s;
-
-}
-
-.other-country:hover{
-
-    border-color:var(--blue);
-
-    transform:translateY(-2px);
-
-    box-shadow:
-        0 10px 25px
-        rgba(7,87,217,.07);
-
-}
-
-.other-left{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-}
-
-.other-icon{
-
-    width:45px;
-
-    height:45px;
-
-    background:#fff7d9;
-
-    border-radius:12px;
-
-    display:grid;
-
-    place-items:center;
-
-    font-size:22px;
-
-}
-
-.other-country strong{
+    font-size:34px;
 
     display:block;
 
-    font-size:14px;
+    margin-bottom:10px;
 
 }
 
-.other-country span{
+.country-name{
+
+    display:block;
+
+    font-weight:800;
+
+    font-size:15px;
+
+    color:var(--black);
+
+}
+
+.country-description{
+
+    display:block;
 
     color:var(--gray);
 
     font-size:11px;
 
+    line-height:1.4;
+
+    margin-top:5px;
+
+    padding-right:25px;
+
 }
 
 
 /* =========================
-   CUSTOMIZE GIFT
+   CUSTOMIZE GIFT CARD
 ========================= */
 
-.customize-gift{
-
-    margin-top:15px;
-
-    background:linear-gradient(
-        135deg,
-        #ffffff,
-        #fffbea
-    );
-
-    border:1px solid #f2df91;
-
-    border-radius:16px;
-
-    padding:20px;
-
-    cursor:pointer;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    transition:.25s;
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.customize-gift::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:110px;
-
-    height:110px;
-
-    right:-40px;
-
-    top:-40px;
-
-    border-radius:50%;
+.customize-card{
 
     background:
-        rgba(255,201,40,.12);
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #fffbea
+        );
+
+    border-color:#f2df91;
 
 }
 
-.customize-gift:hover{
+.customize-card:hover{
 
     border-color:var(--yellow);
-
-    transform:translateY(-3px);
 
     box-shadow:
         0 12px 30px
@@ -935,77 +852,9 @@ button{
 
 }
 
-.customize-gift:active{
+.customize-card::after{
 
-    transform:scale(.99);
-
-}
-
-.customize-left{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-.customize-icon{
-
-    width:48px;
-
-    height:48px;
-
-    background:var(--yellow);
-
-    border-radius:13px;
-
-    display:grid;
-
-    place-items:center;
-
-    font-size:24px;
-
-    flex-shrink:0;
-
-}
-
-.customize-gift strong{
-
-    display:block;
-
-    font-size:14px;
-
-}
-
-.customize-gift span{
-
-    color:var(--gray);
-
-    font-size:11px;
-
-    margin-top:4px;
-
-    display:block;
-
-}
-
-.customize-arrow{
-
-    color:var(--blue);
-
-    font-size:20px;
-
-    font-weight:800;
-
-    position:relative;
-
-    z-index:2;
+    color:#c99500;
 
 }
 
@@ -1067,6 +916,16 @@ button{
     font-weight:700;
 
     white-space:nowrap;
+
+    transition:.25s;
+
+}
+
+.support-btn:hover{
+
+    background:var(--dark-blue);
+
+    transform:translateY(-2px);
 
 }
 
@@ -1230,13 +1089,33 @@ button{
         grid-template-columns:
             repeat(2,1fr);
 
+        gap:10px;
+
     }
 
     .country-card{
 
-        min-height:120px;
+        min-height:125px;
 
-        padding:18px;
+        padding:16px;
+
+    }
+
+    .country-flag{
+
+        font-size:30px;
+
+    }
+
+    .country-name{
+
+        font-size:13px;
+
+    }
+
+    .country-description{
+
+        font-size:10px;
 
     }
 
@@ -1291,23 +1170,33 @@ button{
         grid-template-columns:
             repeat(2,1fr);
 
+        gap:8px;
+
     }
 
     .country-card{
 
-        padding:15px;
+        padding:14px;
+
+        min-height:120px;
 
     }
 
     .country-flag{
 
-        font-size:30px;
+        font-size:28px;
 
     }
 
     .country-name{
 
-        font-size:13px;
+        font-size:12px;
+
+    }
+
+    .country-description{
+
+        font-size:9px;
 
     }
 
@@ -1659,7 +1548,7 @@ button{
 
 
 <!-- =========================
-     USA
+     1. USA
 ========================= -->
 
 <div
@@ -1674,12 +1563,16 @@ button{
         USA
     </span>
 
+    <span class="country-description">
+        Gift products available in USA
+    </span>
+
 </div>
 
 
 
 <!-- =========================
-     CANADA
+     2. CANADA
 ========================= -->
 
 <div
@@ -1694,85 +1587,62 @@ button{
         Canada
     </span>
 
-</div>
-
-
-</div>
-
-
-
-<!-- =========================
-     OTHER COUNTRIES
-========================= -->
-
-<div
-    class="other-country"
-    id="otherCountry">
-
-<div class="other-left">
-
-<div class="other-icon">
-    🌎
-</div>
-
-<div>
-
-<strong>
-    Other Countries
-</strong>
-
-<span>
-    Gift products for other destinations
-</span>
-
-</div>
-
-</div>
-
-
-<strong>
-    →
-</strong>
+    <span class="country-description">
+        Gift products available in Canada
+    </span>
 
 </div>
 
 
 
 <!-- =========================
-     CUSTOMIZE GIFT
+     3. OTHER COUNTRIES
 ========================= -->
 
 <div
-    class="customize-gift"
-    id="customizeGift">
+    class="country-card"
+    data-page="other-countries.html">
 
-<div class="customize-left">
+    <span class="country-flag">
+        🌎
+    </span>
 
-<div class="customize-icon">
-    🎁
-</div>
+    <span class="country-name">
+        Other Countries
+    </span>
 
-<div>
-
-<strong>
-    Customize Gift
-</strong>
-
-<span>
-    Create a personalized gift just for someone special
-</span>
-
-</div>
+    <span class="country-description">
+        Send gifts to other destinations
+    </span>
 
 </div>
 
 
-<div class="customize-arrow">
-    →
-</div>
+
+<!-- =========================
+     4. CUSTOMIZE GIFT
+========================= -->
+
+<div
+    class="country-card customize-card"
+    data-page="customize-gifts.html">
+
+    <span class="country-flag">
+        🎁
+    </span>
+
+    <span class="country-name">
+        Customize Gift
+    </span>
+
+    <span class="country-description">
+        Create a personalized gift
+    </span>
 
 </div>
 
+
+</div>
 
 </section>
 
@@ -2198,6 +2068,11 @@ const db =
     getFirestore(app);
 
 
+
+/* =========================
+   ELEMENTS
+========================= */
+
 const userName =
     document.getElementById(
         "userName"
@@ -2234,25 +2109,22 @@ const notificationBtn =
     );
 
 
-const otherCountry =
-    document.getElementById(
-        "otherCountry"
-    );
-
-
-const customizeGift =
-    document.getElementById(
-        "customizeGift"
-    );
-
-
 const toast =
     document.getElementById(
         "toast"
     );
 
 
+
+/* =========================
+   TOAST
+========================= */
+
 function showToast(text){
+
+    if(!toast){
+        return;
+    }
 
     toast.textContent =
         text;
@@ -2276,6 +2148,11 @@ function showToast(text){
 }
 
 
+
+/* =========================
+   FORMAT NAIRA
+========================= */
+
 function formatNaira(amount){
 
     const number =
@@ -2292,6 +2169,7 @@ function formatNaira(amount){
         );
 
 }
+
 
 
 /* =========================
@@ -2402,6 +2280,7 @@ onAuthStateChanged(
 );
 
 
+
 /* =========================
    LOGOUT
 ========================= */
@@ -2443,6 +2322,7 @@ logoutBtn.addEventListener(
 );
 
 
+
 /* =========================
    DEPOSIT
 ========================= */
@@ -2456,6 +2336,7 @@ depositBtn.addEventListener(
 
     }
 );
+
 
 
 /* =========================
@@ -2473,6 +2354,7 @@ profileMini.addEventListener(
 );
 
 
+
 /* =========================
    NOTIFICATIONS
 ========================= */
@@ -2488,8 +2370,13 @@ notificationBtn.addEventListener(
 );
 
 
+
 /* =========================
-   USA / CANADA
+   GLOBAL DELIVERY
+   1 = USA
+   2 = CANADA
+   3 = OTHER COUNTRIES
+   4 = CUSTOMIZE GIFT
 ========================= */
 
 const countryCards =
@@ -2512,7 +2399,7 @@ countryCards.forEach(
                 if(!page){
 
                     showToast(
-                        "Country page is not available yet."
+                        "This page is not available yet."
                     );
 
                     return;
@@ -2528,44 +2415,6 @@ countryCards.forEach(
 
     }
 );
-
-
-/* =========================
-   OTHER COUNTRIES
-========================= */
-
-if(otherCountry){
-
-    otherCountry.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "other-countries.html";
-
-        }
-    );
-
-}
-
-
-/* =========================
-   CUSTOMIZE GIFT
-========================= */
-
-if(customizeGift){
-
-    customizeGift.addEventListener(
-        "click",
-        () => {
-
-            window.location.href =
-                "customize-gift.html";
-
-        }
-    );
-
-}
 
 
 </script>
