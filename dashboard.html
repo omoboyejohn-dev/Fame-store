@@ -242,7 +242,7 @@ button{
 
 
 /* =========================
-   RECENT ACTIVITY
+   ACTIVITY
 ========================= */
 
 .activity-box{
@@ -294,6 +294,26 @@ button{
 
 }
 
+.live-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    font-size:9px;
+
+    color:#16a34a;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.3px;
+
+}
+
 .live-dot{
 
     width:8px;
@@ -308,16 +328,6 @@ button{
         0 0 0 4px rgba(34,197,94,.12);
 
     animation:livePulse 1.7s infinite;
-
-}
-
-.activity-demo{
-
-    font-size:9px;
-
-    color:#98a2b3;
-
-    font-weight:600;
 
 }
 
@@ -826,7 +836,7 @@ button{
 
 
 /* =========================
-   CUSTOMIZE GIFT CARD
+   CUSTOMIZE
 ========================= */
 
 .customize-card{
@@ -1143,12 +1153,6 @@ button{
 
     }
 
-    .activity-demo{
-
-        display:none;
-
-    }
-
 }
 
 
@@ -1283,7 +1287,7 @@ button{
 
 
 <!-- =========================
-     RECENT ACTIVITY
+     ACTIVITY FEED
 ========================= -->
 
 <section class="activity-box">
@@ -1300,9 +1304,14 @@ button{
 
 </div>
 
-<span class="activity-demo">
-    Demo Activity
+
+<div class="live-label">
+
+<span>
+    LIVE
 </span>
+
+</div>
 
 </div>
 
@@ -1547,10 +1556,6 @@ button{
     id="countryGrid">
 
 
-<!-- =========================
-     1. USA
-========================= -->
-
 <div
     class="country-card"
     data-page="usa.html">
@@ -1570,10 +1575,6 @@ button{
 </div>
 
 
-
-<!-- =========================
-     2. CANADA
-========================= -->
 
 <div
     class="country-card"
@@ -1595,10 +1596,6 @@ button{
 
 
 
-<!-- =========================
-     3. OTHER COUNTRIES
-========================= -->
-
 <div
     class="country-card"
     data-page="other-countries.html">
@@ -1618,10 +1615,6 @@ button{
 </div>
 
 
-
-<!-- =========================
-     4. CUSTOMIZE GIFT
-========================= -->
 
 <div
     class="country-card customize-card"
@@ -1731,178 +1724,319 @@ button{
 
 <script>
 
+/*
+====================================================
+FAME STORE ACTIVITY FEED
+====================================================
+
+This is a rotating showcase feed.
+
+It contains 200+ Nigerian names and different
+activity types.
+
+Later this can be replaced with real Firestore
+activity from:
+
+depositRequests
+giftOrders
+
+====================================================
+*/
+
+
 const activityData = [
 
-["John","just placed an order"],
-["Thomas","just placed an order"],
-["Michael","sent a gift 🎁"],
-["David","just placed an order"],
-["James","sent a gift ❤️"],
-["Daniel","just placed an order"],
-["Robert","sent a gift 🎁"],
-["William","just placed an order"],
-["Joseph","sent a gift ❤️"],
-["Charles","just placed an order"],
-["Christopher","sent a gift 🎁"],
-["Matthew","just placed an order"],
-["Anthony","sent a gift ❤️"],
-["Joshua","just placed an order"],
-["Andrew","sent a gift 🎁"],
-["Benjamin","just placed an order"],
-["Samuel","sent a gift ❤️"],
-["Henry","just placed an order"],
-["Alexander","sent a gift 🎁"],
-["Daniel","just placed an order"],
+/* =========================
+   YORUBA
+========================= */
 
-["Noah","sent a gift ❤️"],
-["Oliver","just placed an order"],
-["Lucas","sent a gift 🎁"],
-["Ethan","just placed an order"],
-["Mason","sent a gift ❤️"],
-["Logan","just placed an order"],
-["Jackson","sent a gift 🎁"],
-["Owen","just placed an order"],
-["Theodore","sent a gift ❤️"],
-["Aiden","just placed an order"],
-["Elijah","sent a gift 🎁"],
-["Dylan","just placed an order"],
-["Luke","sent a gift ❤️"],
-["Asher","just placed an order"],
-["Liam","sent a gift 🎁"],
-["Emma","just placed an order"],
-["Olivia","sent a gift ❤️"],
-["Ava","just placed an order"],
-["Sophia","sent a gift 🎁"],
-["Isabella","just placed an order"],
+["Femi","deposited ₦30,000.00","deposit"],
+["Ade","just placed an order","order"],
+["Tunde","sent a gift 🎁","gift"],
+["Kunle","just placed an order","order"],
+["Seyi","deposited ₦50,000.00","deposit"],
+["Bola","order was delivered","delivered"],
+["Dayo","just placed an order","order"],
+["Wale","sent a gift ❤️","gift"],
+["Segun","deposited ₦20,000.00","deposit"],
+["Yemi","just placed an order","order"],
+["Kemi","sent a gift 🎁","gift"],
+["Tayo","order was delivered","delivered"],
+["Dele","just placed an order","order"],
+["Funmi","deposited ₦15,000.00","deposit"],
+["Bisi","sent a gift ❤️","gift"],
+["Gbenga","just placed an order","order"],
+["Tope","deposited ₦40,000.00","deposit"],
+["Nike","order was delivered","delivered"],
+["Lanre","sent a gift 🎁","gift"],
+["Shade","just placed an order","order"],
+["Damilola","deposited ₦25,000.00","deposit"],
+["Ayo","just placed an order","order"],
+["Temitope","sent a gift ❤️","gift"],
+["Abiola","order was delivered","delivered"],
+["Oluwaseun","deposited ₦35,000.00","deposit"],
+["Opeyemi","just placed an order","order"],
+["Oluwatobi","sent a gift 🎁","gift"],
+["Ayomide","deposited ₦10,000.00","deposit"],
+["Adedayo","order was delivered","delivered"],
+["Adebayo","just placed an order","order"],
+["Adewale","sent a gift ❤️","gift"],
+["Oladimeji","deposited ₦45,000.00","deposit"],
+["Olumide","just placed an order","order"],
+["Oluwafemi","order was delivered","delivered"],
+["Oluwatosin","sent a gift 🎁","gift"],
+["Akin","deposited ₦60,000.00","deposit"],
+["Akinwale","just placed an order","order"],
+["Kayode","sent a gift ❤️","gift"],
+["Rotimi","order was delivered","delivered"],
+["Folarin","deposited ₦18,000.00","deposit"],
+["Yinka","just placed an order","order"],
+["Kunmi","sent a gift 🎁","gift"],
+["Babatunde","deposited ₦55,000.00","deposit"],
+["Ayodeji","order was delivered","delivered"],
+["Emmanuel","just placed an order","order"],
+["Olamide","sent a gift ❤️","gift"],
+["Tosin","deposited ₦22,000.00","deposit"],
+["Oluwatoyin","just placed an order","order"],
+["Yetunde","order was delivered","delivered"],
+["Bukola","sent a gift 🎁","gift"],
+["Folake","deposited ₦32,000.00","deposit"],
+["Morayo","just placed an order","order"],
+["Ronke","sent a gift ❤️","gift"],
+["Sola","deposited ₦27,000.00","deposit"],
+["Taiwo","order was delivered","delivered"],
+["Kehinde","just placed an order","order"],
+["Idowu","sent a gift 🎁","gift"],
+["Eniola","deposited ₦38,000.00","deposit"],
+["Dayo","just placed an order","order"],
+["Afolabi","order was delivered","delivered"],
+["Bamidele","sent a gift ❤️","gift"],
+["Ojo","deposited ₦12,000.00","deposit"],
+["Shola","just placed an order","order"],
+["Yusuf","sent a gift 🎁","gift"],
+["Morenike","deposited ₦42,000.00","deposit"],
+["Damilare","order was delivered","delivered"],
+["Oluwadamilare","just placed an order","order"],
+["Oluwaseyi","sent a gift ❤️","gift"],
 
-["Mia","sent a gift ❤️"],
-["Charlotte","just placed an order"],
-["Amelia","sent a gift 🎁"],
-["Harper","just placed an order"],
-["Evelyn","sent a gift ❤️"],
-["Ella","just placed an order"],
-["Elizabeth","sent a gift 🎁"],
-["Camila","just placed an order"],
-["Luna","sent a gift ❤️"],
-["Sofia","just placed an order"],
-["Avery","sent a gift 🎁"],
-["Mila","just placed an order"],
-["Aria","sent a gift ❤️"],
-["Scarlett","just placed an order"],
-["Penelope","sent a gift 🎁"],
-["Layla","just placed an order"],
-["Chloe","sent a gift ❤️"],
-["Grace","just placed an order"],
-["Victoria","sent a gift 🎁"],
-["Riley","just placed an order"],
 
-["Nora","sent a gift ❤️"],
-["Lily","just placed an order"],
-["Eleanor","sent a gift 🎁"],
-["Hazel","just placed an order"],
-["Aurora","sent a gift ❤️"],
-["Ellie","just placed an order"],
-["Naomi","sent a gift 🎁"],
-["Stella","just placed an order"],
-["Zoe","sent a gift ❤️"],
-["Hannah","just placed an order"],
-["Lucy","sent a gift 🎁"],
-["Maya","just placed an order"],
-["Leah","sent a gift ❤️"],
-["Lillian","just placed an order"],
-["Addison","sent a gift 🎁"],
-["Natalie","just placed an order"],
-["Emilia","sent a gift ❤️"],
-["Ruby","just placed an order"],
-["Claire","sent a gift 🎁"],
-["Alice","just placed an order"],
+/* =========================
+   IGBO
+========================= */
 
-["Bella","sent a gift ❤️"],
-["Ivy","just placed an order"],
-["Sarah","sent a gift 🎁"],
-["Madison","just placed an order"],
-["Willow","sent a gift ❤️"],
-["Lydia","just placed an order"],
-["Clara","sent a gift 🎁"],
-["Josephine","just placed an order"],
-["Elena","sent a gift ❤️"],
-["Caroline","just placed an order"],
-["Kennedy","sent a gift 🎁"],
-["Anna","just placed an order"],
-["Savannah","sent a gift ❤️"],
-["Brooklyn","just placed an order"],
-["Samantha","sent a gift 🎁"],
-["Ashley","just placed an order"],
-["Diana","sent a gift ❤️"],
-["Rachel","just placed an order"],
-["Rebecca","sent a gift 🎁"],
-["Laura","just placed an order"],
+["Chinedu","deposited ₦30,000.00","deposit"],
+["Emeka","just placed an order","order"],
+["Ifeanyi","sent a gift 🎁","gift"],
+["Nnamdi","order was delivered","delivered"],
+["Kelechi","deposited ₦25,000.00","deposit"],
+["Uche","just placed an order","order"],
+["Chukwuemeka","sent a gift ❤️","gift"],
+["Obinna","deposited ₦40,000.00","deposit"],
+["Chukwudi","just placed an order","order"],
+["Ikenna","order was delivered","delivered"],
+["Somtochukwu","sent a gift 🎁","gift"],
+["Nonso","deposited ₦15,000.00","deposit"],
+["Okechukwu","just placed an order","order"],
+["Chisom","sent a gift ❤️","gift"],
+["Chiamaka","deposited ₦35,000.00","deposit"],
+["Adaugo","order was delivered","delivered"],
+["Ngozi","just placed an order","order"],
+["Ihuoma","sent a gift 🎁","gift"],
+["Amaka","deposited ₦20,000.00","deposit"],
+["Adaeze","just placed an order","order"],
+["Nneka","order was delivered","delivered"],
+["Ifeoma","sent a gift ❤️","gift"],
+["Ebere","deposited ₦50,000.00","deposit"],
+["Ugochukwu","just placed an order","order"],
+["Chukwuemeka","sent a gift 🎁","gift"],
+["Chukwuma","deposited ₦18,000.00","deposit"],
+["Chukwuebuka","order was delivered","delivered"],
+["Ebuka","just placed an order","order"],
+["Somadina","sent a gift ❤️","gift"],
+["Ogechi","deposited ₦28,000.00","deposit"],
+["Kamsi","just placed an order","order"],
+["Kosisochukwu","order was delivered","delivered"],
+["Munachiso","sent a gift 🎁","gift"],
+["Chidera","deposited ₦45,000.00","deposit"],
+["Chigozie","just placed an order","order"],
+["Chibueze","sent a gift ❤️","gift"],
+["Nwafor","deposited ₦33,000.00","deposit"],
+["Onyeka","order was delivered","delivered"],
+["Nwabueze","just placed an order","order"],
+["Ugonna","sent a gift 🎁","gift"],
+["Obi","deposited ₦60,000.00","deposit"],
+["Ezinne","just placed an order","order"],
+["Nkiru","order was delivered","delivered"],
+["Chinyere","sent a gift ❤️","gift"],
+["Uchenna","deposited ₦24,000.00","deposit"],
+["Chukwunonso","just placed an order","order"],
+["Nkem","sent a gift 🎁","gift"],
+["Kelechukwu","deposited ₦31,000.00","deposit"],
+["Chinonso","order was delivered","delivered"],
+["Ifechukwu","just placed an order","order"],
+["Kosiso","sent a gift ❤️","gift"],
+["Chukwuka","deposited ₦19,000.00","deposit"],
+["Nnenna","just placed an order","order"],
+["Oluchi","order was delivered","delivered"],
+["Uchechi","sent a gift 🎁","gift"],
+["Chisom","deposited ₦37,000.00","deposit"],
+["Chiamaka","just placed an order","order"],
+["Obiageli","sent a gift ❤️","gift"],
+["Chukwuemeka","deposited ₦29,000.00","deposit"],
+["Nnamdi","just placed an order","order"],
+["Ada","order was delivered","delivered"],
+["Ifeoma","sent a gift 🎁","gift"],
 
-["Jennifer","sent a gift ❤️"],
-["Jessica","just placed an order"],
-["Amanda","sent a gift 🎁"],
-["Michelle","just placed an order"],
-["Stephanie","sent a gift ❤️"],
-["Nicole","just placed an order"],
-["Katherine","sent a gift 🎁"],
-["Maria","just placed an order"],
-["Angela","sent a gift ❤️"],
-["Christina","just placed an order"],
-["Melissa","sent a gift 🎁"],
-["Brianna","just placed an order"],
-["Jasmine","sent a gift ❤️"],
-["Alexis","just placed an order"],
-["Kayla","sent a gift 🎁"],
-["Faith","just placed an order"],
-["Joy","sent a gift ❤️"],
-["Blessing","just placed an order"],
-["Grace","sent a gift 🎁"],
-["Precious","just placed an order"],
 
-["Favour","sent a gift ❤️"],
-["Mercy","just placed an order"],
-["Peace","sent a gift 🎁"],
-["Emmanuel","just placed an order"],
-["Victor","sent a gift ❤️"],
-["Frank","just placed an order"],
-["George","sent a gift 🎁"],
-["Peter","just placed an order"],
-["Paul","sent a gift ❤️"],
-["Stephen","just placed an order"],
-["Patrick","sent a gift 🎁"],
-["Brian","just placed an order"],
-["Kevin","sent a gift ❤️"],
-["Eric","just placed an order"],
-["Jason","sent a gift 🎁"],
-["Ryan","just placed an order"],
-["Justin","sent a gift ❤️"],
-["Brandon","just placed an order"],
-["Tyler","sent a gift 🎁"],
-["Jordan","just placed an order"],
+/* =========================
+   HAUSA
+========================= */
 
-["Cameron","sent a gift ❤️"],
-["Derek","just placed an order"],
-["Alex","sent a gift 🎁"],
-["Chris","just placed an order"],
-["Mark","sent a gift ❤️"],
-["Steven","just placed an order"],
-["Adam","sent a gift 🎁"],
-["Aaron","just placed an order"],
-["Jonathan","sent a gift ❤️"],
-["Christian","just placed an order"],
-["Isaac","sent a gift 🎁"],
-["Gabriel","just placed an order"],
-["Nathaniel","sent a gift ❤️"],
-["Caleb","just placed an order"],
-["Isaiah","sent a gift 🎁"],
-["Josiah","just placed an order"],
-["Jeremiah","sent a gift ❤️"],
-["Nathan","just placed an order"],
-["Dominic","sent a gift 🎁"],
-["Adrian","just placed an order"]
+["Musa","deposited ₦30,000.00","deposit"],
+["Sani","just placed an order","order"],
+["Ibrahim","sent a gift 🎁","gift"],
+["Abdullahi","order was delivered","delivered"],
+["Usman","deposited ₦25,000.00","deposit"],
+["Yusuf","just placed an order","order"],
+["Aisha","sent a gift ❤️","gift"],
+["Fatima","deposited ₦40,000.00","deposit"],
+["Maryam","order was delivered","delivered"],
+["Hauwa","just placed an order","order"],
+["Zainab","sent a gift 🎁","gift"],
+["Aminu","deposited ₦15,000.00","deposit"],
+["Bashir","just placed an order","order"],
+["Halima","order was delivered","delivered"],
+["Safiya","sent a gift ❤️","gift"],
+["Umar","deposited ₦35,000.00","deposit"],
+["Usman","just placed an order","order"],
+["Hadiza","sent a gift 🎁","gift"],
+["Nafisa","deposited ₦20,000.00","deposit"],
+["Bello","order was delivered","delivered"],
+["Maimuna","just placed an order","order"],
+["Sadiq","sent a gift ❤️","gift"],
+["Kabiru","deposited ₦50,000.00","deposit"],
+["Rukayya","just placed an order","order"],
+["Auwal","order was delivered","delivered"],
+["Khadija","sent a gift 🎁","gift"],
+["Haruna","deposited ₦18,000.00","deposit"],
+["Bintu","just placed an order","order"],
+["Isah","sent a gift ❤️","gift"],
+["Ramatu","deposited ₦28,000.00","deposit"],
+["Salihu","order was delivered","delivered"],
+["Jamila","just placed an order","order"],
+["Abubakar","sent a gift 🎁","gift"],
+["Suleiman","deposited ₦45,000.00","deposit"],
+["Asma'u","just placed an order","order"],
+["Mustapha","order was delivered","delivered"],
+["Amina","sent a gift ❤️","gift"],
+["Nasiru","deposited ₦33,000.00","deposit"],
+["Zara","just placed an order","order"],
+["Shehu","sent a gift 🎁","gift"],
+["Balarabe","deposited ₦60,000.00","deposit"],
+["Rahma","order was delivered","delivered"],
+["Garba","just placed an order","order"],
+["Faiza","sent a gift ❤️","gift"],
+["Muktar","deposited ₦24,000.00","deposit"],
+["Asiya","just placed an order","order"],
+["Lawal","order was delivered","delivered"],
+["Nana","sent a gift 🎁","gift"],
+["Tijjani","deposited ₦31,000.00","deposit"],
+["Sa'ad","just placed an order","order"],
+["Khadija","sent a gift ❤️","gift"],
+["Mahmud","deposited ₦19,000.00","deposit"],
+["Bilkisu","order was delivered","delivered"],
+["Yakubu","just placed an order","order"],
+["Hajara","sent a gift 🎁","gift"],
+["Jibril","deposited ₦37,000.00","deposit"],
+["Mariya","just placed an order","order"],
+["Aliyu","order was delivered","delivered"],
+["Zulaihat","sent a gift ❤️","gift"],
+
+
+/* =========================
+   OTHER NIGERIAN NAMES
+========================= */
+
+["David","order was delivered","delivered"],
+["Thomas","just placed an order","order"],
+["Michael","deposited ₦30,000.00","deposit"],
+["John","sent a gift 🎁","gift"],
+["James","just placed an order","order"],
+["Daniel","deposited ₦20,000.00","deposit"],
+["Samuel","order was delivered","delivered"],
+["Joseph","just placed an order","order"],
+["Peter","sent a gift ❤️","gift"],
+["Victor","deposited ₦45,000.00","deposit"],
+["Emmanuel","just placed an order","order"],
+["Benjamin","order was delivered","delivered"],
+["Anthony","sent a gift 🎁","gift"],
+["Christopher","deposited ₦25,000.00","deposit"],
+["Joshua","just placed an order","order"],
+["Andrew","sent a gift ❤️","gift"],
+["Stephen","deposited ₦15,000.00","deposit"],
+["Patrick","order was delivered","delivered"],
+["George","just placed an order","order"],
+["Frank","sent a gift 🎁","gift"],
+["Kevin","deposited ₦35,000.00","deposit"],
+["Brian","just placed an order","order"],
+["Blessing","order was delivered","delivered"],
+["Precious","sent a gift ❤️","gift"],
+["Faith","deposited ₦22,000.00","deposit"],
+["Joy","just placed an order","order"],
+["Mercy","sent a gift 🎁","gift"],
+["Favour","deposited ₦40,000.00","deposit"],
+["Peace","order was delivered","delivered"],
+["Gift","just placed an order","order"],
+["Glory","sent a gift ❤️","gift"],
+["Esther","deposited ₦28,000.00","deposit"],
+["Ruth","just placed an order","order"],
+["Deborah","order was delivered","delivered"],
+["Rebecca","sent a gift 🎁","gift"],
+["Sarah","deposited ₦50,000.00","deposit"],
+["Rachel","just placed an order","order"],
+["Hannah","sent a gift ❤️","gift"],
+["Naomi","deposited ₦18,000.00","deposit"],
+["Elizabeth","order was delivered","delivered"],
+["Jennifer","just placed an order","order"],
+["Jessica","sent a gift 🎁","gift"],
+["Amanda","deposited ₦32,000.00","deposit"],
+["Michelle","just placed an order","order"],
+["Stephanie","order was delivered","delivered"],
+["Nicole","sent a gift ❤️","gift"],
+["Angela","deposited ₦27,000.00","deposit"],
+["Christina","just placed an order","order"],
+["Melissa","sent a gift 🎁","gift"],
+["Jasmine","deposited ₦38,000.00","deposit"],
+["Alexis","order was delivered","delivered"],
+["Mary","just placed an order","order"],
+["Caroline","sent a gift ❤️","gift"],
+["Victoria","deposited ₦60,000.00","deposit"],
+["Sophia","just placed an order","order"],
+["Grace","order was delivered","delivered"],
+["Lydia","sent a gift 🎁","gift"],
+["Martha","deposited ₦21,000.00","deposit"],
+["Anna","just placed an order","order"],
+["Alice","sent a gift ❤️","gift"],
+["Diana","deposited ₦34,000.00","deposit"],
+["Clara","order was delivered","delivered"],
+["Linda","just placed an order","order"],
+["Helen","sent a gift 🎁","gift"],
+["Janet","deposited ₦26,000.00","deposit"],
+["Cynthia","just placed an order","order"],
+["Rose","order was delivered","delivered"],
+["Caroline","sent a gift ❤️","gift"],
+["Stella","deposited ₦44,000.00","deposit"],
+["Miriam","just placed an order","order"],
+["Judith","sent a gift 🎁","gift"],
+["Priscilla","deposited ₦17,000.00","deposit"],
+["Victoria","order was delivered","delivered"]
 
 ];
 
+
+/* =========================
+   ACTIVITY TRACK
+========================= */
 
 const activityTrack =
     document.getElementById(
@@ -1910,54 +2044,110 @@ const activityTrack =
     );
 
 
+/* =========================
+   CREATE ACTIVITIES
+========================= */
+
+function createActivity(item,index){
+
+    const row =
+        document.createElement("div");
+
+
+    row.className =
+        "activity-item";
+
+
+    let icon = "📦";
+
+
+    if(item[2] === "deposit"){
+        icon = "💰";
+    }
+
+    else if(item[2] === "gift"){
+        icon = "🎁";
+    }
+
+    else if(item[2] === "delivered"){
+        icon = "🚚";
+    }
+
+
+    let timeText;
+
+
+    if(index === 0){
+
+        timeText =
+            "Just now";
+
+    }
+
+    else if(index % 5 === 0){
+
+        timeText =
+            "Just now";
+
+    }
+
+    else{
+
+        timeText =
+            `${(index % 9) + 1}m ago`;
+
+    }
+
+
+    row.innerHTML = `
+
+        <div class="activity-icon">
+            ${icon}
+        </div>
+
+        <div class="activity-content">
+
+            <div class="activity-name">
+                ${item[0]}
+            </div>
+
+            <div class="activity-message">
+                ${item[1]}
+            </div>
+
+        </div>
+
+        <div class="activity-time">
+            ${timeText}
+        </div>
+
+    `;
+
+
+    activityTrack.appendChild(row);
+
+}
+
+
+/* =========================
+   LOAD ALL ACTIVITIES
+========================= */
+
 activityData.forEach(
     (item,index) => {
 
-        const row =
-            document.createElement("div");
-
-        row.className =
-            "activity-item";
-
-        row.innerHTML = `
-
-            <div class="activity-icon">
-                ${
-                    item[1].includes("gift")
-                        ? "🎁"
-                        : "📦"
-                }
-            </div>
-
-            <div class="activity-content">
-
-                <div class="activity-name">
-                    ${item[0]}
-                </div>
-
-                <div class="activity-message">
-                    ${item[1]}
-                </div>
-
-            </div>
-
-            <div class="activity-time">
-
-                ${
-                    index % 4 === 0
-                        ? "Just now"
-                        : (index % 4) + "m ago"
-                }
-
-            </div>
-
-        `;
-
-        activityTrack.appendChild(row);
+        createActivity(
+            item,
+            index
+        );
 
     }
 );
 
+
+/* =========================
+   ACTIVITY ROTATION
+========================= */
 
 let activityIndex = 0;
 
@@ -1968,12 +2158,33 @@ function showNextActivity(){
 
     activityIndex++;
 
+
     if(
         activityIndex >=
         activityData.length
     ){
 
         activityIndex = 0;
+
+        activityTrack.style.transition =
+            "none";
+
+        activityTrack.style.transform =
+            "translateY(0)";
+
+
+        requestAnimationFrame(() => {
+
+            requestAnimationFrame(() => {
+
+                activityTrack.style.transition =
+                    "transform .55s cubic-bezier(.22,.61,.36,1)";
+
+            });
+
+        });
+
+        return;
 
     }
 
@@ -2126,8 +2337,10 @@ function showToast(text){
         return;
     }
 
+
     toast.textContent =
         text;
+
 
     toast.classList.add(
         "show"
@@ -2373,10 +2586,6 @@ notificationBtn.addEventListener(
 
 /* =========================
    GLOBAL DELIVERY
-   1 = USA
-   2 = CANADA
-   3 = OTHER COUNTRIES
-   4 = CUSTOMIZE GIFT
 ========================= */
 
 const countryCards =
