@@ -1,6 +1,12 @@
-<!DOCTYPE html><html lang="en">
-<head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Fame Store | USA Gifts</title><style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fame Store | USA Gifts</title>
+
+<style>
 
 *{
     box-sizing:border-box;
@@ -183,7 +189,32 @@ textarea{
     font-size:14px;
 }
 
-/* CHECKOUT */
+
+/* =========================
+   BOTTOM
+========================= */
+
+.bottom-area{
+    text-align:center;
+    padding:10px 18px 35px;
+}
+
+.dashboard-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#fff;
+    border:1px solid #d9e1eb;
+    color:#344054;
+    padding:12px 20px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:700;
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
 
 #checkout{
     display:none;
@@ -352,7 +383,10 @@ textarea{
     cursor:not-allowed;
 }
 
-/* POPUP */
+
+/* =========================
+   POPUP
+========================= */
 
 .message-overlay{
     display:none;
@@ -421,6 +455,7 @@ textarea{
     background:#063b91;
 }
 
+
 @media(max-width:600px){
 
     .products{
@@ -460,375 +495,431 @@ textarea{
 
 }
 
-</style></head><body><header class="header"><div class="brand-icon">
-    🛍️
-</div>
+</style>
+</head>
 
-<div class="brand-name">
-    Fame Store
-</div>
+<body>
 
-<div class="brand-text">
-    Send gifts 🎁, share love ❤️
-</div>
+<header class="header">
 
-<div class="country-badge">
-    🇺🇸 United States
-</div>
+    <div class="brand-icon">
+        🛍️
+    </div>
 
-<div class="wallet-box">
-    Wallet:
-    <span id="walletBalance">₦0.00</span>
-</div>
+    <div class="brand-name">
+        Fame Store
+    </div>
 
-</header><!-- PRODUCTS --><section id="productsSection"><div class="container">
+    <div class="brand-text">
+        Send gifts 🎁, share love ❤️
+    </div>
 
-    <div class="page-title">
+    <div class="country-badge">
+        🇺🇸 United States
+    </div>
 
-        <h1>
-            Send a Gift to USA 🇺🇸
-        </h1>
+    <div class="wallet-box">
+        Wallet:
+        <span id="walletBalance">₦0.00</span>
+    </div>
 
-        <p>
-            Choose a gift and send it to someone special in the United States.
-        </p>
+</header>
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<section id="productsSection">
+
+    <div class="container">
+
+        <div class="page-title">
+
+            <h1>
+                Send a Gift to USA 🇺🇸
+            </h1>
+
+            <p>
+                Choose a gift and send it to someone special in the United States.
+            </p>
+
+        </div>
+
+        <div
+            class="products"
+            id="products"
+        >
+
+            <div class="loading-products">
+                Loading gifts...
+            </div>
+
+        </div>
 
     </div>
 
-    <div
-        class="products"
-        id="products"
+</section>
+
+
+<!-- =========================
+     CHECKOUT
+========================= -->
+
+<section id="checkout">
+
+    <div class="checkout-container">
+
+        <div class="checkout-card">
+
+            <button
+                type="button"
+                class="back-products"
+                id="backProducts"
+            >
+                ← Back to Gifts
+            </button>
+
+            <h2>
+                USA Checkout 🇺🇸
+            </h2>
+
+
+            <div class="selected-product">
+
+                <img
+                    id="selectedImage"
+                    src=""
+                    alt="Gift"
+                >
+
+                <div>
+
+                    <div
+                        class="selected-name"
+                        id="selectedName"
+                    ></div>
+
+                    <div
+                        class="selected-price"
+                        id="selectedPrice"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                Contact Info
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Your Phone
+                </label>
+
+                <input
+                    id="yourPhone"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    required
+                >
+
+            </div>
+
+
+            <div class="section-title">
+                USA Delivery Information
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Sender Name
+                </label>
+
+                <input
+                    id="senderName"
+                    type="text"
+                    placeholder="Sender name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Name
+                </label>
+
+                <input
+                    id="recipientName"
+                    type="text"
+                    placeholder="Recipient name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Phone
+                </label>
+
+                <input
+                    id="recipientPhone"
+                    type="tel"
+                    placeholder="Recipient phone"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Street / House Address
+                </label>
+
+                <input
+                    id="streetAddress"
+                    type="text"
+                    placeholder="Street / house address"
+                    required
+                >
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        id="city"
+                        type="text"
+                        placeholder="City"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    <input
+                        id="state"
+                        type="text"
+                        placeholder="State"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="form-group">
+
+                    <label>
+                        Country
+                    </label>
+
+                    <input
+                        id="country"
+                        type="text"
+                        value="United States"
+                        readonly
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        ZIP Code
+                    </label>
+
+                    <input
+                        id="zipCode"
+                        type="text"
+                        placeholder="ZIP Code"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                Additional Notes
+            </div>
+
+            <div class="form-group">
+
+                <textarea
+                    id="additionalNotes"
+                    placeholder="Gift message or delivery instructions"
+                ></textarea>
+
+            </div>
+
+
+            <div class="section-title">
+                Payment Summary
+            </div>
+
+            <div class="summary">
+
+                <div class="summary-row">
+
+                    <span>
+                        Base Price
+                    </span>
+
+                    <strong id="basePrice">
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="totalPrice">
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Your Balance
+                    </span>
+
+                    <strong
+                        class="balance"
+                        id="checkoutBalance"
+                    >
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="confirm-btn"
+                id="confirmOrder"
+            >
+                Confirm Order
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BOTTOM
+========================= -->
+
+<div class="bottom-area">
+
+    <a
+        href="dashboard.html"
+        class="dashboard-btn"
     >
-
-        <div class="loading-products">
-            Loading gifts...
-        </div>
-
-    </div>
+        ← Back to Dashboard
+    </a>
 
 </div>
 
-</section><!-- CHECKOUT --><section id="checkout"><div class="checkout-container">
 
-    <div class="checkout-card">
+<!-- =========================
+     POPUP
+========================= -->
 
-        <button
-            type="button"
-            class="back-products"
-            id="backProducts"
-        >
-            ← Back to Gifts
-        </button>
-
-        <h2>
-            USA Checkout 🇺🇸
-        </h2>
-
-        <div class="selected-product">
-
-            <img
-                id="selectedImage"
-                src=""
-                alt="Gift"
-            >
-
-            <div>
-
-                <div
-                    class="selected-name"
-                    id="selectedName"
-                ></div>
-
-                <div
-                    class="selected-price"
-                    id="selectedPrice"
-                ></div>
-
-            </div>
-
-        </div>
-
-
-        <div class="section-title">
-            Contact Info
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Your Phone
-            </label>
-
-            <input
-                id="yourPhone"
-                type="tel"
-                placeholder="Enter your phone number"
-                required
-            >
-
-        </div>
-
-
-        <div class="section-title">
-            USA Delivery Information
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Sender Name
-            </label>
-
-            <input
-                id="senderName"
-                type="text"
-                placeholder="Sender name"
-                required
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Recipient Name
-            </label>
-
-            <input
-                id="recipientName"
-                type="text"
-                placeholder="Recipient name"
-                required
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Recipient Phone
-            </label>
-
-            <input
-                id="recipientPhone"
-                type="tel"
-                placeholder="Recipient phone"
-                required
-            >
-
-        </div>
-
-        <div class="form-group">
-
-            <label>
-                Street / House Address
-            </label>
-
-            <input
-                id="streetAddress"
-                type="text"
-                placeholder="Street / house address"
-                required
-            >
-
-        </div>
-
-
-        <div class="two-columns">
-
-            <div class="form-group">
-
-                <label>
-                    City
-                </label>
-
-                <input
-                    id="city"
-                    type="text"
-                    placeholder="City"
-                    required
-                >
-
-            </div>
-
-            <div class="form-group">
-
-                <label>
-                    State
-                </label>
-
-                <input
-                    id="state"
-                    type="text"
-                    placeholder="State"
-                    required
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="two-columns">
-
-            <div class="form-group">
-
-                <label>
-                    Country
-                </label>
-
-                <input
-                    id="country"
-                    type="text"
-                    value="United States"
-                    readonly
-                    required
-                >
-
-            </div>
-
-            <div class="form-group">
-
-                <label>
-                    ZIP Code
-                </label>
-
-                <input
-                    id="zipCode"
-                    type="text"
-                    placeholder="ZIP Code"
-                    required
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="section-title">
-            Additional Notes
-        </div>
-
-        <div class="form-group">
-
-            <textarea
-                id="additionalNotes"
-                placeholder="Gift message or delivery instructions"
-            ></textarea>
-
-        </div>
-
-
-        <div class="section-title">
-            Payment Summary
-        </div>
-
-        <div class="summary">
-
-            <div class="summary-row">
-
-                <span>
-                    Base Price
-                </span>
-
-                <strong id="basePrice">
-                    ₦0.00
-                </strong>
-
-            </div>
-
-            <div class="summary-row summary-total">
-
-                <span>
-                    Total
-                </span>
-
-                <strong id="totalPrice">
-                    ₦0.00
-                </strong>
-
-            </div>
-
-            <div class="summary-row">
-
-                <span>
-                    Your Balance
-                </span>
-
-                <strong
-                    class="balance"
-                    id="checkoutBalance"
-                >
-                    ₦0.00
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="confirm-btn"
-            id="confirmOrder"
-        >
-            Confirm Order
-        </button>
-
-    </div>
-
-</div>
-
-</section><div class="bottom-area"><a
-    href="dashboard.html"
-    class="dashboard-btn"
->
-    ← Back to Dashboard
-</a>
-
-</div><!-- POPUP --><div
+<div
     class="message-overlay"
     id="messageOverlay"
-><div
-    class="message-box"
-    id="messageBox"
 >
 
     <div
-        class="message-icon"
-        id="messageIcon"
+        class="message-box"
+        id="messageBox"
     >
-        ⚠️
+
+        <div
+            class="message-icon"
+            id="messageIcon"
+        >
+            ⚠️
+        </div>
+
+        <h3 id="messageTitle">
+            Order Failed
+        </h3>
+
+        <p id="messageText">
+            Unable to complete your order.
+        </p>
+
+        <button
+            type="button"
+            class="thanks-btn"
+            id="thanksButton"
+        >
+            Thanks
+        </button>
+
     </div>
-
-    <h3 id="messageTitle">
-        Order Failed
-    </h3>
-
-    <p id="messageText">
-        Unable to complete your order.
-    </p>
-
-    <button
-        type="button"
-        class="thanks-btn"
-        id="thanksButton"
-    >
-        Thanks
-    </button>
 
 </div>
 
-</div><script type="module">
+
+<script type="module">
 
 import {
     auth,
     db
 } from "./firebase-config.js";
 
+
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
 
 import {
     doc,
@@ -969,7 +1060,7 @@ image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238712
 {
 name:"House Keys",
 price:30000,
-image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238998_6a3acdf16450ca_1000008923"
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238998_6a3acf16450ca_1000008923"
 },
 
 {
@@ -1643,7 +1734,7 @@ function openCheckout(product){
 
 
 /* =====================================================
-   BACK
+   BACK TO GIFTS
 ===================================================== */
 
 document
@@ -1917,8 +2008,6 @@ confirmButton.addEventListener(
             return;
 
 
-        /* LOGIN */
-
         if(!currentUser){
 
             showPopup(
@@ -1931,8 +2020,6 @@ confirmButton.addEventListener(
 
         }
 
-
-        /* PRODUCT */
 
         if(!currentProduct){
 
@@ -1947,8 +2034,6 @@ confirmButton.addEventListener(
         }
 
 
-        /* FORM */
-
         if(!validateForm()){
 
             showPopup(
@@ -1961,8 +2046,6 @@ confirmButton.addEventListener(
 
         }
 
-
-        /* LATEST WALLET */
 
         await loadWallet();
 
@@ -1989,8 +2072,6 @@ confirmButton.addEventListener(
         }
 
 
-        /* QUICK BALANCE CHECK */
-
         if(currentBalance < total){
 
             showPopup(
@@ -2003,8 +2084,6 @@ confirmButton.addEventListener(
 
         }
 
-
-        /* START PROCESSING */
 
         orderProcessing =
             true;
@@ -2040,13 +2119,6 @@ confirmButton.addEventListener(
             const formData =
                 getFormData();
 
-
-            /*
-             * IMPORTANT:
-             * Make a stable copy of the
-             * selected product before
-             * transaction starts.
-             */
 
             const selectedProduct = {
 
@@ -2087,18 +2159,10 @@ confirmButton.addEventListener(
             };
 
 
-            /* =================================================
-               FIRESTORE TRANSACTION
-            ================================================= */
-
             const result =
                 await runTransaction(
                     db,
                     async transaction => {
-
-                        /*
-                         * READ USER FIRST
-                         */
 
                         const userSnap =
                             await transaction.get(
@@ -2150,10 +2214,6 @@ confirmButton.addEventListener(
                         const newBalance =
                             wallet - total;
 
-
-                        /* =================================================
-                           ORDER DATA
-                        ================================================= */
 
                         const orderData = {
 
@@ -2244,19 +2304,11 @@ confirmButton.addEventListener(
                         };
 
 
-                        /* =================================================
-                           CREATE ORDER
-                        ================================================= */
-
                         transaction.set(
                             orderRef,
                             orderData
                         );
 
-
-                        /* =================================================
-                           UPDATE WALLET
-                        ================================================= */
 
                         transaction.update(
                             userRef,
@@ -2291,10 +2343,6 @@ confirmButton.addEventListener(
                     }
                 );
 
-
-            /* =================================================
-               SUCCESS
-            ================================================= */
 
             currentBalance =
                 result.newBalance;
@@ -2346,7 +2394,6 @@ confirmButton.addEventListener(
 
             }
 
-
             else if(
                 error.message ===
                 "USER_NOT_FOUND"
@@ -2359,7 +2406,6 @@ confirmButton.addEventListener(
                 );
 
             }
-
 
             else if(
                 error.message ===
@@ -2374,7 +2420,6 @@ confirmButton.addEventListener(
 
             }
 
-
             else if(
                 error.code ===
                 "permission-denied"
@@ -2387,7 +2432,6 @@ confirmButton.addEventListener(
                 );
 
             }
-
 
             else{
 
@@ -2443,5 +2487,7 @@ messageOverlay.addEventListener(
     }
 );
 
-</script></body>
+</script>
+
+</body>
 </html>
