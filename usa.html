@@ -165,6 +165,10 @@ textarea{
     font-size:14px;
 }
 
+/* =========================
+   BOTTOM
+========================= */
+
 .bottom-area{
     text-align:center;
     padding:10px 18px 35px;
@@ -182,7 +186,9 @@ textarea{
     font-weight:700;
 }
 
-/* CHECKOUT */
+/* =========================
+   CHECKOUT
+========================= */
 
 #checkout{
     display:none;
@@ -351,7 +357,9 @@ textarea{
     cursor:not-allowed;
 }
 
-/* POPUP */
+/* =========================
+   POPUP
+========================= */
 
 .message-overlay{
     display:none;
@@ -461,8 +469,6 @@ textarea{
 
 <body>
 
-<!-- HEADER -->
-
 <header class="header">
 
     <div class="brand-icon">
@@ -485,7 +491,9 @@ textarea{
 </header>
 
 
-<!-- PRODUCTS -->
+<!-- =========================
+     PRODUCTS
+========================= -->
 
 <section id="productsSection">
 
@@ -519,7 +527,9 @@ textarea{
 </section>
 
 
-<!-- CHECKOUT -->
+<!-- =========================
+     CHECKOUT
+========================= -->
 
 <section id="checkout">
 
@@ -590,11 +600,8 @@ textarea{
             <!-- DELIVERY -->
 
             <div class="section-title">
-                <span id="deliveryTitle">
-                    Delivery Info
-                </span>
+                Delivery Info
             </div>
-
 
             <div class="form-group">
 
@@ -664,8 +671,8 @@ textarea{
 
                 <div class="form-group">
 
-                    <label>
-                        City
+                    <label id="stateLabel">
+                        State
                     </label>
 
                     <input
@@ -680,7 +687,7 @@ textarea{
 
                 <div class="form-group">
 
-                    <label id="stateLabel">
+                    <label>
                         State
                     </label>
 
@@ -716,7 +723,7 @@ textarea{
 
             <div class="form-group">
 
-                <label id="zipLabel">
+                <label>
                     ZIP Code
                 </label>
 
@@ -813,7 +820,9 @@ textarea{
 </section>
 
 
-<!-- BOTTOM -->
+<!-- =========================
+     BOTTOM
+========================= -->
 
 <div class="bottom-area">
 
@@ -827,7 +836,9 @@ textarea{
 </div>
 
 
-<!-- POPUP -->
+<!-- =========================
+     POPUP
+========================= -->
 
 <div
     class="message-overlay"
@@ -891,8 +902,7 @@ import {
 
 
 /* =========================================================
-   OLD / LEGACY PRODUCTS
-   These products will ALWAYS remain on this page.
+   LEGACY PRODUCTS
 ========================================================= */
 
 const legacyProducts = [
@@ -1142,7 +1152,6 @@ let currentUser = null;
 let currentProduct = null;
 let currentBalance = 0;
 let orderProcessing = false;
-
 let firestoreProducts = [];
 
 
@@ -1375,13 +1384,6 @@ function renderProducts(){
 
     productsContainer.innerHTML = "";
 
-    /*
-       OLD PRODUCTS ARE ALWAYS SHOWN.
-
-       Firestore products are added AFTER
-       the old products.
-    */
-
     const visibleFirestoreProducts =
         firestoreProducts.filter(product => {
 
@@ -1401,10 +1403,10 @@ function renderProducts(){
                 ...product,
 
                 id:
-                    "legacy-" +
-                    index,
+                    "legacy-" + index,
 
-                source:"legacy",
+                source:
+                    "legacy",
 
                 category:
                     product.category ||
@@ -1420,7 +1422,8 @@ function renderProducts(){
                 id:
                     product.id,
 
-                source:"firestore"
+                source:
+                    "firestore"
 
             })
         )
@@ -1547,7 +1550,8 @@ function loadFirestoreProducts(){
                 snapshot.docs.map(
                     productDoc => ({
 
-                        id:productDoc.id,
+                        id:
+                            productDoc.id,
 
                         ...productDoc.data()
 
@@ -1566,13 +1570,6 @@ function loadFirestoreProducts(){
                 error
             );
 
-            /*
-               IMPORTANT:
-
-               Even if Firestore fails,
-               the old products remain visible.
-            */
-
             firestoreProducts = [];
 
             renderProducts();
@@ -1588,7 +1585,6 @@ function loadFirestoreProducts(){
 ========================================================= */
 
 renderProducts();
-
 loadFirestoreProducts();
 
 
@@ -1612,10 +1608,12 @@ onAuthStateChanged(
                 "₦0.00";
 
             return;
+
         }
 
 
-        currentUser = user;
+        currentUser =
+            user;
 
         await loadWallet();
 
@@ -1956,6 +1954,22 @@ document
 
 
             if(
+                !Number.isFinite(total) ||
+                total <= 0
+            ){
+
+                showPopup(
+                    "error",
+                    "Invalid Product Price",
+                    "This product cannot be ordered right now. Please try another product."
+                );
+
+                return;
+
+            }
+
+
+            if(
                 currentBalance < total
             ){
 
@@ -2011,6 +2025,11 @@ document
                         db,
                         async transaction => {
 
+                            /*
+                             * IMPORTANT:
+                             * Read the user first.
+                             */
+
                             const userSnap =
                                 await transaction.get(
                                     userRef
@@ -2039,6 +2058,19 @@ document
 
 
                             if(
+                                !Number.isFinite(
+                                    latestBalance
+                                )
+                            ){
+
+                                throw new Error(
+                                    "INVALID_BALANCE"
+                                );
+
+                            }
+
+
+                            if(
                                 latestBalance < total
                             ){
 
@@ -2053,18 +2085,30 @@ document
                                 latestBalance - total;
 
 
-                            /* DEDUCT WALLET */
+                            /*
+                             * DEDUCT WALLET
+                             *
+                             * lastGiftOrderId is required
+                             * by the Firestore security rules.
+                             */
 
                             transaction.update(
                                 userRef,
                                 {
+
                                     walletBalance:
-                                        newBalance
+                                        newBalance,
+
+                                    lastGiftOrderId:
+                                        orderRef.id
+
                                 }
                             );
 
 
-                            /* CREATE ORDER */
+                            /*
+                             * CREATE GIFT ORDER
+                             */
 
                             transaction.set(
                                 orderRef,
@@ -2083,7 +2127,7 @@ document
                                         currentProduct.source || "legacy",
 
                                     productName:
-                                        currentProduct.name,
+                                        currentProduct.name || "",
 
                                     productImage:
                                         currentProduct.image || "",
@@ -2189,11 +2233,14 @@ document
                                     paymentMethod:
                                         "Wallet",
 
+
                                     paymentStatus:
                                         "Paid",
 
+
                                     status:
                                         "Pending",
+
 
                                     createdAt:
                                         serverTimestamp()
@@ -2203,12 +2250,21 @@ document
 
 
                             return {
-                                newBalance
+                                newBalance:
+                                    newBalance,
+
+                                orderId:
+                                    orderRef.id
+
                             };
 
                         }
                     );
 
+
+                /*
+                 * TRANSACTION SUCCESS
+                 */
 
                 currentBalance =
                     result.newBalance;
@@ -2229,7 +2285,7 @@ document
                 showPopup(
                     "success",
                     "Your order completed",
-                    "It will take less than three business days to deliver your order. Always check your order history"
+                    "It will take less than three business days to deliver your order. Always check your order history."
                 );
 
 
@@ -2244,6 +2300,11 @@ document
                 );
 
 
+                /*
+                 * Show the actual Firebase error
+                 * in console for debugging.
+                 */
+
                 if(
                     error.message ===
                     "INSUFFICIENT_BALANCE"
@@ -2256,6 +2317,28 @@ document
                         "error",
                         "Insufficient wallet balance",
                         "Kindly deposit and make an order"
+                    );
+
+                }else if(
+                    error.message ===
+                    "USER_NOT_FOUND"
+                ){
+
+                    showPopup(
+                        "error",
+                        "Account Error",
+                        "Your Fame Store account could not be found. Please logout and login again."
+                    );
+
+                }else if(
+                    error.message ===
+                    "INVALID_BALANCE"
+                ){
+
+                    showPopup(
+                        "error",
+                        "Wallet Error",
+                        "Your wallet balance is invalid. Please contact Fame Store support."
                     );
 
                 }else{
