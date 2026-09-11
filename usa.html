@@ -184,8 +184,6 @@ textarea{
     font-weight:700;
 }
 
-/* CHECKOUT */
-
 #checkout{
     display:none;
 }
@@ -353,8 +351,6 @@ textarea{
     cursor:not-allowed;
 }
 
-/* POPUP */
-
 .message-overlay{
     display:none;
     position:fixed;
@@ -466,11 +462,9 @@ textarea{
 
 <body>
 
-<header class="header">
+    <header class="header">
 
-    <div class="brand-icon">
-        🛍️
-    </div>
+    <div class="brand-icon">🛍️</div>
 
     <div class="brand-name">
         Fame Store
@@ -488,17 +482,13 @@ textarea{
 </header>
 
 
-<!-- PRODUCTS -->
-
 <section id="productsSection">
 
     <div class="container">
 
         <div class="page-title">
 
-            <h1>
-                Send a Gift
-            </h1>
+            <h1>Send a Gift</h1>
 
             <p>
                 Choose a gift and send it to someone special.
@@ -506,10 +496,7 @@ textarea{
 
         </div>
 
-        <div
-            class="products"
-            id="products"
-        >
+        <div class="products" id="products">
 
             <div class="loading-products">
                 Loading gifts...
@@ -521,8 +508,6 @@ textarea{
 
 </section>
 
-
-<!-- CHECKOUT -->
 
 <section id="checkout">
 
@@ -538,9 +523,7 @@ textarea{
                 ← Back to Gifts
             </button>
 
-            <h2>
-                Checkout
-            </h2>
+            <h2>Checkout</h2>
 
             <div class="selected-product">
 
@@ -566,7 +549,6 @@ textarea{
 
             </div>
 
-
             <div class="section-title">
                 Contact Info
             </div>
@@ -583,7 +565,6 @@ textarea{
                 >
 
             </div>
-
 
             <div class="section-title">
                 <span id="deliveryTitle">
@@ -675,7 +656,6 @@ textarea{
 
             </div>
 
-
             <div class="form-group">
 
                 <label>Country</label>
@@ -704,7 +684,6 @@ textarea{
 
             </div>
 
-
             <div class="section-title">
                 Additional Notes
             </div>
@@ -717,7 +696,6 @@ textarea{
                 ></textarea>
 
             </div>
-
 
             <div class="section-title">
                 Payment Summary
@@ -786,8 +764,6 @@ textarea{
 
 </div>
 
-
-<!-- POPUP -->
 
 <div
     class="message-overlay"
@@ -872,33 +848,54 @@ const legacyProducts = [
         image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058a940_xv"
     },
 
+
+    /* =====================================================
+       NEW PRODUCT 1
+    ===================================================== */
+
     {
-    name:"U.S. Polo Assn. Men's Boxers, 3-Pack",
-    category:"Fashion",
-    price:35000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/YOUR_ACTUAL_CLOUDINARY_ID"
-},
+        name:"U.S. Polo Assn. Men's Boxers, 3-Pack",
+        category:"Fashion",
+        price:35000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/fetch/f_auto,q_auto/https%3A%2F%2Fi.postimg.cc%2FxTZx6Fy2%2Fs-l300%2811%29.png"
+    },
 
-{
-    name:"Seiko Spirit SBTR027 Chronograph Blue Dial Stainless Steel Men's Watch",
-    category:"Watches",
-    price:135000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/YOUR_ACTUAL_CLOUDINARY_ID"
-},
 
-{
-    name:"Seiko Quality Dial Men's Watch",
-    category:"Watches",
-    price:135000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/YOUR_ACTUAL_CLOUDINARY_ID"
-},
+    /* =====================================================
+       NEW PRODUCT 2
+    ===================================================== */
 
-{
-    name:"Bulova Marine Star-98B308-Men's Black Rubber Strap Quartz Watch Blue Dial 44mm",
-    category:"Watches",
-    price:135000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/YOUR_ACTUAL_CLOUDINARY_ID"
-},
+    {
+        name:"Seiko Spirit SBTR027 Chronograph Blue Dial Stainless Steel Men's Watch",
+        category:"Watches",
+        price:135000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/fetch/f_auto,q_auto/https%3A%2F%2Fi.postimg.cc%2F8P7wfmQ8%2Fs-l300%281%29.png"
+    },
+
+
+    /* =====================================================
+       NEW PRODUCT 3
+    ===================================================== */
+
+    {
+        name:"Seiko Quality Dial Men's Watch",
+        category:"Watches",
+        price:135000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/fetch/f_auto,q_auto/https%3A%2F%2Fi.postimg.cc%2FgjTDBnhN%2Fs-l300%2812%29.png"
+    },
+
+
+    /* =====================================================
+       NEW PRODUCT 4
+    ===================================================== */
+
+    {
+        name:"Bulova Marine Star-98B308-Men's Black Rubber Strap Quartz Watch Blue Dial 44mm",
+        category:"Watches",
+        price:135000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/fetch/f_auto,q_auto/https%3A%2F%2Fi.postimg.cc%2FvBXXfPZH%2Fs-l300%2813%29.png"
+    },
+
 
     {
         name:"Fresh Cut Flower",
@@ -1118,10 +1115,26 @@ const legacyProducts = [
 
 ];
 
+    <script type="module">
 
-/* =========================================================
-   VARIABLES
-========================================================= */
+import {
+    auth,
+    db
+} from "./firebase-config.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+    doc,
+    getDoc,
+    collection,
+    serverTimestamp,
+    runTransaction,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 let currentUser = null;
 let currentProduct = null;
@@ -1130,10 +1143,6 @@ let orderProcessing = false;
 
 let firestoreProducts = [];
 
-
-/* =========================================================
-   COUNTRY
-========================================================= */
 
 const urlParams =
     new URLSearchParams(window.location.search);
@@ -1182,10 +1191,6 @@ const countryInfo =
     getCountryInfo();
 
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
 const productsContainer =
     document.getElementById("products");
 
@@ -1219,10 +1224,6 @@ const messageText =
 const thanksButton =
     document.getElementById("thanksButton");
 
-
-/* =========================================================
-   COUNTRY FORM
-========================================================= */
 
 function applyCountry(){
 
@@ -1262,10 +1263,6 @@ function applyCountry(){
 applyCountry();
 
 
-/* =========================================================
-   MONEY
-========================================================= */
-
 function money(value){
 
     return "₦" +
@@ -1280,10 +1277,6 @@ function money(value){
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
 function escapeHTML(value){
 
     return String(value ?? "")
@@ -1295,10 +1288,6 @@ function escapeHTML(value){
 
 }
 
-
-/* =========================================================
-   IMAGE FALLBACK
-========================================================= */
 
 function imageFallback(){
 
@@ -1333,10 +1322,6 @@ function imageFallback(){
 }
 
 
-/* =========================================================
-   FIRESTORE COUNTRY FILTER
-========================================================= */
-
 function firestoreProductIsForCountry(product){
 
     const destination =
@@ -1363,10 +1348,6 @@ function firestoreProductIsForCountry(product){
 }
 
 
-/* =========================================================
-   GET PRODUCT IMAGE
-========================================================= */
-
 function getProductImage(product){
 
     return (
@@ -1377,10 +1358,6 @@ function getProductImage(product){
 
 }
 
-
-/* =========================================================
-   RENDER PRODUCTS
-========================================================= */
 
 function renderProducts(){
 
@@ -1539,10 +1516,6 @@ function renderProducts(){
 }
 
 
-/* =========================================================
-   FIRESTORE PRODUCTS
-========================================================= */
-
 function loadFirestoreProducts(){
 
     const productsRef =
@@ -1589,18 +1562,10 @@ function loadFirestoreProducts(){
 }
 
 
-/* =========================================================
-   START PRODUCTS
-========================================================= */
-
 renderProducts();
 
 loadFirestoreProducts();
 
-
-/* =========================================================
-   AUTH
-========================================================= */
 
 onAuthStateChanged(
     auth,
@@ -1629,10 +1594,6 @@ onAuthStateChanged(
     }
 );
 
-
-/* =========================================================
-   LOAD WALLET
-========================================================= */
 
 async function loadWallet(){
 
@@ -1689,10 +1650,6 @@ async function loadWallet(){
 
 }
 
-
-/* =========================================================
-   OPEN CHECKOUT
-========================================================= */
 
 function openCheckout(product){
 
@@ -1781,10 +1738,6 @@ function openCheckout(product){
 }
 
 
-/* =========================================================
-   BACK
-========================================================= */
-
 document
     .getElementById("backProducts")
     .addEventListener(
@@ -1813,10 +1766,6 @@ document
         }
     );
 
-
-/* =========================================================
-   POPUP
-========================================================= */
 
 function showPopup(
     type,
@@ -1874,10 +1823,6 @@ thanksButton.addEventListener(
 );
 
 
-/* =========================================================
-   VALIDATION
-========================================================= */
-
 function validateForm(){
 
     const fields = [
@@ -1920,10 +1865,6 @@ function validateForm(){
 
 }
 
-
-/* =========================================================
-   CONFIRM ORDER
-========================================================= */
 
 document
     .getElementById("confirmOrder")
@@ -2298,10 +2239,6 @@ document
     );
 
 
-/* =========================================================
-   CLEAR FORM
-========================================================= */
-
 function clearCheckoutForm(){
 
     const fields = [
@@ -2337,10 +2274,6 @@ function clearCheckoutForm(){
 }
 
 
-/* =========================================================
-   CLOSE POPUP
-========================================================= */
-
 messageOverlay.addEventListener(
     "click",
     event => {
@@ -2362,4 +2295,4 @@ messageOverlay.addEventListener(
 </script>
 
 </body>
-    </html>
+</html>
