@@ -160,10 +160,6 @@ textarea{
     font-size:14px;  
 }  
   
-/* =========================  
-   BOTTOM  
-========================= */  
-  
 .bottom-area{  
     text-align:center;  
     padding:10px 18px 35px;  
@@ -181,9 +177,7 @@ textarea{
     font-weight:700;  
 }  
   
-/* =========================  
-   CHECKOUT  
-========================= */  
+/* CHECKOUT */  
   
 #checkout{  
     display:none;  
@@ -352,9 +346,7 @@ textarea{
     cursor:not-allowed;  
 }  
   
-/* =========================  
-   POPUP  
-========================= */  
+/* POPUP */  
   
 .message-overlay{  
     display:none;  
@@ -459,7 +451,7 @@ textarea{
         padding:18px;  
     }  
 }  
-</style>  </head>  <body>  <header class="header">  <div class="brand-icon">  
+</style>  </head>  <body>  <!-- HEADER -->  <header class="header">  <div class="brand-icon">  
     🛍️  
 </div>  
 
@@ -476,9 +468,7 @@ textarea{
     <span id="walletBalance">₦0.00</span>  
 </div>
 
-</header>  <!-- =========================  
-     PRODUCTS  
-========================= -->  <section id="productsSection">  <div class="container">  
+</header>  <!-- PRODUCTS -->  <section id="productsSection">  <div class="container">  
 
     <div class="page-title">  
 
@@ -505,9 +495,7 @@ textarea{
 
 </div>
 
-</section>  <!-- =========================  
-     CHECKOUT  
-========================= -->  <section id="checkout">  <div class="checkout-container">  
+</section>  <!-- CHECKOUT -->  <section id="checkout">  <div class="checkout-container">  
 
     <div class="checkout-card">  
 
@@ -574,8 +562,11 @@ textarea{
         <!-- DELIVERY -->  
 
         <div class="section-title">  
-            Delivery Info  
+            <span id="deliveryTitle">  
+                Delivery Info  
+            </span>  
         </div>  
+
 
         <div class="form-group">  
 
@@ -645,8 +636,8 @@ textarea{
 
             <div class="form-group">  
 
-                <label id="stateLabel">  
-                    State  
+                <label>  
+                    City  
                 </label>  
 
                 <input  
@@ -661,7 +652,7 @@ textarea{
 
             <div class="form-group">  
 
-                <label>  
+                <label id="stateLabel">  
                     State  
                 </label>  
 
@@ -697,7 +688,7 @@ textarea{
 
         <div class="form-group">  
 
-            <label>  
+            <label id="zipLabel">  
                 ZIP Code  
             </label>  
 
@@ -791,18 +782,14 @@ textarea{
 
 </div>
 
-</section>  <!-- =========================  
-     BOTTOM  
-========================= -->  <div class="bottom-area">  <a  
+</section>  <!-- BOTTOM -->  <div class="bottom-area">  <a  
     href="dashboard.html"  
     class="dashboard-btn"  
 >  
     ← Back to Dashboard  
 </a>
 
-</div>  <!-- =========================  
-     POPUP  
-========================= -->  <div  
+</div>  <!-- POPUP -->  <div  
     class="message-overlay"  
     id="messageOverlay"  
 >  <div  
@@ -859,7 +846,8 @@ import {
   
   
 /* =========================================================  
-   LEGACY PRODUCTS  
+   OLD / LEGACY PRODUCTS  
+   These products will ALWAYS remain on this page.  
 ========================================================= */  
   
 const legacyProducts = [  
@@ -1109,6 +1097,7 @@ let currentUser = null;
 let currentProduct = null;  
 let currentBalance = 0;  
 let orderProcessing = false;  
+  
 let firestoreProducts = [];  
   
   
@@ -1341,6 +1330,13 @@ function renderProducts(){
   
     productsContainer.innerHTML = "";  
   
+    /*  
+       OLD PRODUCTS ARE ALWAYS SHOWN.  
+  
+       Firestore products are added AFTER  
+       the old products.  
+    */  
+  
     const visibleFirestoreProducts =  
         firestoreProducts.filter(product => {  
   
@@ -1360,10 +1356,10 @@ function renderProducts(){
                 ...product,  
   
                 id:  
-                    "legacy-" + index,  
+                    "legacy-" +  
+                    index,  
   
-                source:  
-                    "legacy",  
+                source:"legacy",  
   
                 category:  
                     product.category ||  
@@ -1379,8 +1375,7 @@ function renderProducts(){
                 id:  
                     product.id,  
   
-                source:  
-                    "firestore"  
+                source:"firestore"  
   
             })  
         )  
@@ -1507,8 +1502,7 @@ function loadFirestoreProducts(){
                 snapshot.docs.map(  
                     productDoc => ({  
   
-                        id:  
-                            productDoc.id,  
+                        id:productDoc.id,  
   
                         ...productDoc.data()  
   
@@ -1527,6 +1521,13 @@ function loadFirestoreProducts(){
                 error  
             );  
   
+            /*  
+               IMPORTANT:  
+  
+               Even if Firestore fails,  
+               the old products remain visible.  
+            */  
+  
             firestoreProducts = [];  
   
             renderProducts();  
@@ -1542,6 +1543,7 @@ function loadFirestoreProducts(){
 ========================================================= */  
   
 renderProducts();  
+  
 loadFirestoreProducts();  
   
   
@@ -1565,12 +1567,10 @@ onAuthStateChanged(
                 "₦0.00";  
   
             return;  
-  
         }  
   
   
-        currentUser =  
-            user;  
+        currentUser = user;  
   
         await loadWallet();  
   
@@ -1911,22 +1911,6 @@ document
   
   
             if(  
-                !Number.isFinite(total) ||  
-                total <= 0  
-            ){  
-  
-                showPopup(  
-                    "error",  
-                    "Invalid Product Price",  
-                    "This product cannot be ordered right now. Please try another product."  
-                );  
-  
-                return;  
-  
-            }  
-  
-  
-            if(  
                 currentBalance < total  
             ){  
   
@@ -1982,11 +1966,6 @@ document
                         db,  
                         async transaction => {  
   
-                            /*  
-                             * IMPORTANT:  
-                             * Read the user first.  
-                             */  
-  
                             const userSnap =  
                                 await transaction.get(  
                                     userRef  
@@ -2015,19 +1994,6 @@ document
   
   
                             if(  
-                                !Number.isFinite(  
-                                    latestBalance  
-                                )  
-                            ){  
-  
-                                throw new Error(  
-                                    "INVALID_BALANCE"  
-                                );  
-  
-                            }  
-  
-  
-                            if(  
                                 latestBalance < total  
                             ){  
   
@@ -2042,30 +2008,18 @@ document
                                 latestBalance - total;  
   
   
-                            /*  
-                             * DEDUCT WALLET  
-                             *  
-                             * lastGiftOrderId is required  
-                             * by the Firestore security rules.  
-                             */  
+                            /* DEDUCT WALLET */  
   
                             transaction.update(  
                                 userRef,  
                                 {  
-  
                                     walletBalance:  
-                                        newBalance,  
-  
-                                    lastGiftOrderId:  
-                                        orderRef.id  
-  
+                                        newBalance  
                                 }  
                             );  
   
   
-                            /*  
-                             * CREATE GIFT ORDER  
-                             */  
+                            /* CREATE ORDER */  
   
                             transaction.set(  
                                 orderRef,  
@@ -2084,7 +2038,7 @@ document
                                         currentProduct.source || "legacy",  
   
                                     productName:  
-                                        currentProduct.name || "",  
+                                        currentProduct.name,  
   
                                     productImage:  
                                         currentProduct.image || "",  
@@ -2190,14 +2144,11 @@ document
                                     paymentMethod:  
                                         "Wallet",  
   
-  
                                     paymentStatus:  
                                         "Paid",  
   
-  
                                     status:  
                                         "Pending",  
-  
   
                                     createdAt:  
                                         serverTimestamp()  
@@ -2207,21 +2158,12 @@ document
   
   
                             return {  
-                                newBalance:  
-                                    newBalance,  
-  
-                                orderId:  
-                                    orderRef.id  
-  
+                                newBalance  
                             };  
   
                         }  
                     );  
   
-  
-                /*  
-                 * TRANSACTION SUCCESS  
-                 */  
   
                 currentBalance =  
                     result.newBalance;  
@@ -2242,7 +2184,7 @@ document
                 showPopup(  
                     "success",  
                     "Your order completed",  
-                    "It will take less than three business days to deliver your order. Always check your order history."  
+                    "It will take less than three business days to deliver your order. Always check your order history"  
                 );  
   
   
@@ -2257,11 +2199,6 @@ document
                 );  
   
   
-                /*  
-                 * Show the actual Firebase error  
-                 * in console for debugging.  
-                 */  
-  
                 if(  
                     error.message ===  
                     "INSUFFICIENT_BALANCE"  
@@ -2274,28 +2211,6 @@ document
                         "error",  
                         "Insufficient wallet balance",  
                         "Kindly deposit and make an order"  
-                    );  
-  
-                }else if(  
-                    error.message ===  
-                    "USER_NOT_FOUND"  
-                ){  
-  
-                    showPopup(  
-                        "error",  
-                        "Account Error",  
-                        "Your Fame Store account could not be found. Please logout and login again."  
-                    );  
-  
-                }else if(  
-                    error.message ===  
-                    "INVALID_BALANCE"  
-                ){  
-  
-                    showPopup(  
-                        "error",  
-                        "Wallet Error",  
-                        "Your wallet balance is invalid. Please contact Fame Store support."  
                     );  
   
                 }else{  
