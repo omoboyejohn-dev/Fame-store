@@ -1,2073 +1,2432 @@
-<!DOCTYPE html>  <html lang="en">  <head>  <meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Products Management | Fame Store</title>  <link rel="preconnect" href="https://fonts.googleapis.com">  
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"  
-rel="stylesheet">  <style>  
-  
-*{  
-    margin:0;  
-    padding:0;  
-    box-sizing:border-box;  
-}  
-  
-:root{  
-    --blue:#0757d9;  
-    --dark-blue:#063b91;  
-    --yellow:#ffc928;  
-    --white:#fff;  
-    --black:#101828;  
-    --gray:#667085;  
-    --light:#f5f8fc;  
-    --border:#e5eaf1;  
-    --green:#087443;  
-    --red:#b42318;  
-}  
-  
-body{  
-    font-family:"Inter",sans-serif;  
-    background:var(--light);  
-    color:var(--black);  
-}  
-  
-button,  
-input,  
-select{  
-    font-family:inherit;  
-}  
-  
-button{  
-    cursor:pointer;  
-}  
-  
-button:disabled{  
-    opacity:.65;  
-    cursor:not-allowed;  
-}  
-  
-a{  
-    text-decoration:none;  
-    color:inherit;  
-}  
-  
-  
-/* =========================  
-   HEADER  
-========================= */  
-  
-.header{  
-    background:white;  
-    border-bottom:1px solid var(--border);  
-    min-height:70px;  
-    padding:15px 25px;  
-  
-    display:flex;  
-    justify-content:space-between;  
-    align-items:center;  
-  
-    position:sticky;  
-    top:0;  
-    z-index:100;  
-}  
-  
-.brand{  
-    display:flex;  
-    align-items:center;  
-    gap:11px;  
-}  
-  
-.brand-icon{  
-    width:43px;  
-    height:43px;  
-    background:var(--yellow);  
-    border-radius:12px;  
-    display:grid;  
-    place-items:center;  
-    font-size:21px;  
-}  
-  
-.brand-name{  
-    color:var(--blue);  
-    font-size:18px;  
-    font-weight:800;  
-}  
-  
-.brand-role{  
-    color:var(--gray);  
-    font-size:9px;  
-    margin-top:3px;  
-}  
-  
-.admin-badge{  
-    background:#eaf2ff;  
-    color:var(--blue);  
-    padding:8px 13px;  
-    border-radius:20px;  
-    font-size:10px;  
-    font-weight:800;  
-}  
-  
-  
-/* =========================  
-   CONTAINER  
-========================= */  
-  
-.container{  
-    width:min(1200px,100%);  
-    margin:auto;  
-    padding:28px 18px 60px;  
-}  
-  
-  
-/* =========================  
-   TITLE  
-========================= */  
-  
-.page-title{  
-    margin-bottom:22px;  
-}  
-  
-.page-title h1{  
-    font-size:25px;  
-    font-weight:800;  
-}  
-  
-.page-title p{  
-    color:var(--gray);  
-    font-size:12px;  
-    margin-top:6px;  
-}  
-  
-  
-/* =========================  
-   MESSAGE  
-========================= */  
-  
-.message{  
-    display:none;  
-    padding:13px 15px;  
-    border-radius:10px;  
-    margin-bottom:18px;  
-    font-size:12px;  
-}  
-  
-.message.show{  
-    display:block;  
-}  
-  
-.message.success{  
-    color:var(--green);  
-    background:#ecfff4;  
-    border:1px solid #b9efd1;  
-}  
-  
-.message.error{  
-    color:var(--red);  
-    background:#fff1f0;  
-    border:1px solid #ffd3d0;  
-}  
-  
-  
-/* =========================  
-   ADD PRODUCT CARD  
-========================= */  
-  
-.form-card{  
-    background:white;  
-    border:1px solid var(--border);  
-    border-radius:16px;  
-    padding:22px;  
-    margin-bottom:25px;  
-}  
-  
-.form-header{  
-    margin-bottom:20px;  
-}  
-  
-.form-header h2{  
-    font-size:16px;  
-}  
-  
-.form-header p{  
-    color:var(--gray);  
-    font-size:11px;  
-    margin-top:5px;  
-}  
-  
-.form-grid{  
-    display:grid;  
-    grid-template-columns:repeat(2,1fr);  
-    gap:15px;  
-}  
-  
-.form-group{  
-    display:flex;  
-    flex-direction:column;  
-    gap:7px;  
-}  
-  
-.form-group.full{  
-    grid-column:1/-1;  
-}  
-  
-.form-group label{  
-    font-size:11px;  
-    font-weight:700;  
-}  
-  
-.form-group input,  
-.form-group select{  
-    width:100%;  
-    height:45px;  
-    border:1px solid #d9e0ea;  
-    border-radius:9px;  
-    padding:0 13px;  
-    outline:none;  
-    background:white;  
-    font-size:12px;  
-}  
-  
-.form-group input:focus,  
-.form-group select:focus{  
-    border-color:var(--blue);  
-    box-shadow:0 0 0 3px rgba(7,87,217,.08);  
-}  
-  
-.form-actions{  
-    margin-top:18px;  
-    display:flex;  
-    gap:10px;  
-}  
-  
-.primary-btn{  
-    height:45px;  
-    padding:0 20px;  
-    border:0;  
-    border-radius:9px;  
-    background:var(--blue);  
-    color:white;  
-    font-size:12px;  
-    font-weight:800;  
-}  
-  
-.primary-btn:hover{  
-    background:var(--dark-blue);  
-}  
-  
-.secondary-btn{  
-    height:45px;  
-    padding:0 20px;  
-    border:1px solid #d9e0ea;  
-    border-radius:9px;  
-    background:white;  
-    color:#475467;  
-    font-size:12px;  
-    font-weight:700;  
-}  
-  
-.secondary-btn:hover{  
-    background:#f8fafc;  
-}  
-  
-  
-/* =========================  
-   PRODUCTS HEADER  
-========================= */  
-  
-.products-header{  
-    display:flex;  
-    justify-content:space-between;  
-    align-items:center;  
-    gap:15px;  
-    margin-bottom:15px;  
-}  
-  
-.products-header h2{  
-    font-size:17px;  
-}  
-  
-.product-count{  
-    color:var(--gray);  
-    font-size:11px;  
-}  
-  
-  
-/* =========================  
-   PRODUCTS  
-========================= */  
-  
-.products{  
-    display:grid;  
-    grid-template-columns:repeat(3,1fr);  
-    gap:16px;  
-}  
-  
-.product-card{  
-    background:white;  
-    border:1px solid var(--border);  
-    border-radius:16px;  
-    overflow:hidden;  
-}  
-  
-.product-image{  
-    width:100%;  
-    height:210px;  
-    background:#f8fafc;  
-    display:flex;  
-    align-items:center;  
-    justify-content:center;  
-    overflow:hidden;  
-}  
-  
-.product-image img{  
-    width:100%;  
-    height:100%;  
-    object-fit:cover;  
-}  
-  
-.product-content{  
-    padding:17px;  
-}  
-  
-.product-name{  
-    font-size:14px;  
-    font-weight:800;  
-    line-height:1.4;  
-}  
-  
-.product-price{  
-    color:var(--blue);  
-    font-size:16px;  
-    font-weight:800;  
-    margin-top:7px;  
-}  
-  
-.product-destination{  
-    display:inline-block;  
-    margin-top:9px;  
-    padding:5px 8px;  
-    border-radius:15px;  
-    background:#f2f4f7;  
-    color:#475467;  
-    font-size:9px;  
-    font-weight:700;  
-}  
-  
-.product-actions{  
-    display:flex;  
-    gap:8px;  
-    margin-top:15px;  
-}  
-  
-.edit-btn,  
-.delete-btn{  
-    flex:1;  
-    height:38px;  
-    border-radius:8px;  
-    font-size:10px;  
-    font-weight:800;  
-}  
-  
-.edit-btn{  
-    border:1px solid #cddcff;  
-    background:#edf4ff;  
-    color:var(--blue);  
-}  
-  
-.delete-btn{  
-    border:1px solid #ffd3d0;  
-    background:#fff1f0;  
-    color:var(--red);  
-}  
-  
-  
-/* =========================  
-   LOADING  
-========================= */  
-  
-.loading,  
-.empty{  
-    background:white;  
-    border:1px solid var(--border);  
-    border-radius:15px;  
-    padding:40px 20px;  
-    text-align:center;  
-    color:var(--gray);  
-    font-size:12px;  
-}  
-  
-.empty{  
-    display:none;  
-}  
-  
-  
-/* =========================  
-   MODAL  
-========================= */  
-  
-.modal{  
-    position:fixed;  
-    inset:0;  
-    background:rgba(16,24,40,.55);  
-  
-    display:none;  
-    align-items:center;  
-    justify-content:center;  
-  
-    padding:20px;  
-    z-index:500;  
-}  
-  
-.modal.show{  
-    display:flex;  
-}  
-  
-.modal-box{  
-    width:min(500px,100%);  
-    max-height:90vh;  
-    overflow:auto;  
-  
-    background:white;  
-    border-radius:17px;  
-    padding:22px;  
-}  
-  
-.modal-header{  
-    display:flex;  
-    justify-content:space-between;  
-    align-items:center;  
-    margin-bottom:20px;  
-}  
-  
-.modal-header h2{  
-    font-size:17px;  
-}  
-  
-.close-btn{  
-    width:34px;  
-    height:34px;  
-    border:0;  
-    border-radius:8px;  
-    background:#f2f4f7;  
-    font-size:18px;  
-}  
-  
-.modal-actions{  
-    display:flex;  
-    gap:10px;  
-    margin-top:20px;  
-}  
-  
-.modal-actions button{  
-    flex:1;  
-}  
-  
-  
-/* =========================  
-   MOBILE  
-========================= */  
-  
-@media(max-width:900px){  
-  
-    .products{  
-        grid-template-columns:repeat(2,1fr);  
-    }  
-  
-}  
-  
-@media(max-width:650px){  
-  
-    .form-grid{  
-        grid-template-columns:1fr;  
-    }  
-  
-    .form-group.full{  
-        grid-column:auto;  
-    }  
-  
-    .products{  
-        grid-template-columns:1fr;  
-    }  
-  
-    .header{  
-        padding:14px;  
-    }  
-  
-    .container{  
-        padding:20px 12px 50px;  
-    }  
-  
-}  
-  
-</style>  </head>  <body>  <header class="header">  <div class="brand">  
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="brand-icon">  
-        🛍️  
-    </div>  
+<head>
 
-    <div>  
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <div class="brand-name">  
-            Fame Store  
-        </div>  
+<title>Products Management | Fame Store</title>
 
-        <div class="brand-role">  
-            PRODUCT MANAGEMENT  
-        </div>  
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    </div>  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
 
-</div>  
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --blue:#0757d9;
+    --dark-blue:#063b91;
+    --yellow:#ffc928;
+    --white:#fff;
+    --black:#101828;
+    --gray:#667085;
+    --light:#f5f8fc;
+    --border:#e5eaf1;
+    --green:#087443;
+    --red:#b42318;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:var(--light);
+    color:var(--black);
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.header{
+    background:white;
+    border-bottom:1px solid var(--border);
+    min-height:70px;
+    padding:14px 25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.brand-icon{
+    width:43px;
+    height:43px;
+    border-radius:12px;
+    background:var(--yellow);
+
+    display:grid;
+    place-items:center;
+
+    font-size:21px;
+}
+
+.brand-name{
+    color:var(--blue);
+    font-size:18px;
+    font-weight:800;
+}
+
+.brand-role{
+    color:var(--gray);
+    font-size:9px;
+    font-weight:600;
+    margin-top:3px;
+}
+
+.admin-badge{
+    background:#eaf2ff;
+    color:var(--blue);
+
+    padding:8px 13px;
+    border-radius:20px;
+
+    font-size:10px;
+    font-weight:800;
+}
+
+.container{
+    width:min(1200px,100%);
+    margin:auto;
+    padding:28px 18px 60px;
+}
+
+.page-title{
+    margin-bottom:22px;
+}
+
+.page-title h1{
+    font-size:25px;
+    font-weight:800;
+}
+
+.page-title p{
+    color:var(--gray);
+    font-size:12px;
+    margin-top:6px;
+}
+
+.message{
+    display:none;
+    padding:13px 15px;
+    border-radius:10px;
+    margin-bottom:18px;
+
+    font-size:12px;
+    font-weight:600;
+}
+
+.message.show{
+    display:block;
+}
+
+.message.success{
+    color:var(--green);
+    background:#ecfff4;
+    border:1px solid #b9efd1;
+}
+
+.message.error{
+    color:var(--red);
+    background:#fff1f0;
+    border:1px solid #ffd3d0;
+}
+
+.form-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:22px;
+    margin-bottom:25px;
+}
+
+.form-header{
+    margin-bottom:20px;
+}
+
+.form-header h2{
+    font-size:16px;
+}
+
+.form-header p{
+    color:var(--gray);
+    font-size:11px;
+    margin-top:5px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    font-size:11px;
+    font-weight:700;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    height:45px;
+
+    border:1px solid #d9e0ea;
+    border-radius:9px;
+
+    padding:0 13px;
+
+    outline:none;
+    background:white;
+
+    font-size:12px;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(7,87,217,.08);
+}
+
+/* IMAGE UPLOAD */
+
+.image-upload{
+    border:2px dashed #cdd7e5;
+    border-radius:12px;
+    padding:18px;
+    background:#fafcff;
+}
+
+.image-upload:hover{
+    border-color:var(--blue);
+}
+
+.image-upload input{
+    height:auto;
+    border:0;
+    padding:0;
+    background:transparent;
+}
+
+.image-preview{
+    display:none;
+    margin-top:15px;
+    width:150px;
+    height:150px;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:#f8fafc;
+}
+
+.image-preview.show{
+    display:block;
+}
+
+.image-preview img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.upload-help{
+    color:var(--gray);
+    font-size:10px;
+    margin-top:7px;
+}
+
+.form-actions{
+    margin-top:18px;
+
+    display:flex;
+    gap:10px;
+}
+
+.primary-btn{
+    min-height:45px;
+    padding:0 20px;
+
+    border:0;
+    border-radius:9px;
+
+    background:var(--blue);
+    color:white;
+
+    font-size:12px;
+    font-weight:800;
+}
+
+.primary-btn:hover{
+    background:var(--dark-blue);
+}
+
+.secondary-btn{
+    min-height:45px;
+    padding:0 20px;
+
+    border:1px solid #d9e0ea;
+    border-radius:9px;
+
+    background:white;
+    color:#475467;
+
+    font-size:12px;
+    font-weight:700;
+}
+
+.secondary-btn:hover{
+    background:#f8fafc;
+}
+
+.products-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+    margin-bottom:15px;
+}
+
+.products-header h2{
+    font-size:17px;
+}
+
+.product-count{
+    color:var(--gray);
+    font-size:11px;
+    margin-top:4px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.product-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    overflow:hidden;
+}
+
+.product-image{
+    width:100%;
+    height:210px;
+
+    background:#f8fafc;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.no-image{
+    font-size:40px;
+}
+
+.product-content{
+    padding:17px;
+}
+
+.product-name{
+    font-size:14px;
+    font-weight:800;
+    line-height:1.4;
+}
+
+.product-price{
+    color:var(--blue);
+    font-size:16px;
+    font-weight:800;
+    margin-top:7px;
+}
+
+.product-destination{
+    display:inline-block;
+
+    margin-top:9px;
+    padding:5px 8px;
+
+    border-radius:15px;
+
+    background:#f2f4f7;
+    color:#475467;
+
+    font-size:9px;
+    font-weight:700;
+}
+
+.product-actions{
+    display:flex;
+    gap:8px;
+    margin-top:15px;
+}
+
+.edit-btn,
+.delete-btn{
+    flex:1;
+    height:38px;
+
+    border-radius:8px;
+
+    font-size:10px;
+    font-weight:800;
+}
+
+.edit-btn{
+    border:1px solid #cddcff;
+    background:#edf4ff;
+    color:var(--blue);
+}
+
+.delete-btn{
+    border:1px solid #ffd3d0;
+    background:#fff1f0;
+    color:var(--red);
+}
+
+.loading,
+.empty{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+
+    padding:40px 20px;
+
+    text-align:center;
+
+    color:var(--gray);
+    font-size:12px;
+}
+
+.empty{
+    display:none;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    background:rgba(16,24,40,.55);
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:500;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(500px,100%);
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:white;
+    border-radius:17px;
+    padding:22px;
+}
+
+.modal-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    font-size:17px;
+}
+
+.close-btn{
+    width:34px;
+    height:34px;
+
+    border:0;
+    border-radius:8px;
+
+    background:#f2f4f7;
+
+    font-size:18px;
+}
+
+.modal-actions{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.modal-actions button{
+    flex:1;
+}
+
+.edit-image-preview{
+    width:120px;
+    height:120px;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    margin-top:10px;
+
+    border:1px solid var(--border);
+}
+
+.edit-image-preview img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+@media(max-width:900px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .header{
+        padding:14px;
+    }
+
+    .container{
+        padding:20px 12px 50px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .products-header{
+        align-items:flex-start;
+    }
+
+    .form-actions{
+        flex-direction:column;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🛍️
+        </div>
+
+        <div>
+
+            <div class="brand-name">
+                Fame Store
+            </div>
+
+            <div class="brand-role">
+                PRODUCT MANAGEMENT
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="admin-badge">
+        ADMIN
+    </div>
+
+</header>
 
 
-<div class="admin-badge">  
-    ADMIN  
+<main class="container">
+
+    <section class="page-title">
+
+        <h1>
+            Products Management
+        </h1>
+
+        <p>
+            Add, edit and manage products available on Fame Store.
+        </p>
+
+    </section>
+
+
+    <div id="message" class="message"></div>
+
+
+    <!-- ADD PRODUCT -->
+
+    <section class="form-card">
+
+        <div class="form-header">
+
+            <h2>
+                ➕ Add New Product
+            </h2>
+
+            <p>
+                Upload a product image and choose where the product should appear.
+            </p>
+
+        </div>
+
+
+        <form id="productForm">
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Product Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productName"
+                        placeholder="Example: Artificial Rose Flower Bouquet"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Price (NGN)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        placeholder="45000"
+                        min="0"
+                        step="0.01"
+                        required>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Product Image
+                    </label>
+
+                    <div class="image-upload">
+
+                        <input
+                            type="file"
+                            id="productImage"
+                            accept="image/jpeg,image/png,image/webp,image/jpg"
+                            required>
+
+                        <div class="upload-help">
+                            JPG, PNG or WEBP. Maximum recommended size: 5MB.
+                        </div>
+
+                        <div
+                            class="image-preview"
+                            id="imagePreview">
+
+                            <img
+                                id="previewImage"
+                                alt="Product preview">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Destination
+                    </label>
+
+                    <select id="productDestination">
+
+                        <option value="USA">
+                            USA 🇺🇸
+                        </option>
+
+                        <option value="Canada">
+                            Canada 🇨🇦
+                        </option>
+
+                        <option value="USA & Canada">
+                            USA & Canada 🌎
+                        </option>
+
+                        <option value="Other Countries">
+                            Other Countries 🌍
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Category
+                    </label>
+
+                    <select id="productCategory">
+
+                        <option value="Flowers">
+                            Flowers
+                        </option>
+
+                        <option value="Gifts">
+                            Gifts
+                        </option>
+
+                        <option value="Fashion">
+                            Fashion
+                        </option>
+
+                        <option value="Food">
+                            Food
+                        </option>
+
+                        <option value="Jewelry">
+                            Jewelry
+                        </option>
+
+                        <option value="Watches">
+                            Watches
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    id="addProductBtn">
+
+                    Add Product
+
+                </button>
+
+
+                <button
+                    type="reset"
+                    class="secondary-btn"
+                    id="clearBtn">
+
+                    Clear
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+
+    <section>
+
+        <div class="products-header">
+
+            <div>
+
+                <h2>
+                    Store Products
+                </h2>
+
+                <div
+                    class="product-count"
+                    id="productCount">
+
+                    0 products
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="secondary-btn"
+                id="refreshBtn">
+
+                ↻ Refresh
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="loading"
+            class="loading">
+
+            Loading products...
+
+        </div>
+
+
+        <div
+            id="empty"
+            class="empty">
+
+            <div style="font-size:40px;margin-bottom:10px;">
+                🛍️
+            </div>
+
+            <strong>
+                No products found
+            </strong>
+
+            <p style="margin-top:6px;">
+                Add your first product above.
+            </p>
+
+        </div>
+
+
+        <div
+            id="products"
+            class="products">
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- EDIT MODAL -->
+
+<div
+    class="modal"
+    id="editModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Edit Product
+            </h2>
+
+            <button
+                type="button"
+                class="close-btn"
+                id="closeModal">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <form id="editForm">
+
+            <input
+                type="hidden"
+                id="editId">
+
+
+            <div
+                class="form-group"
+                style="margin-bottom:14px;">
+
+                <label>
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="editName"
+                    required>
+
+            </div>
+
+
+            <div
+                class="form-group"
+                style="margin-bottom:14px;">
+
+                <label>
+                    Price (NGN)
+                </label>
+
+                <input
+                    type="number"
+                    id="editPrice"
+                    min="0"
+                    step="0.01"
+                    required>
+
+            </div>
+
+
+            <div
+                class="form-group"
+                style="margin-bottom:14px;">
+
+                <label>
+                    Current Image
+                </label>
+
+                <div
+                    class="edit-image-preview"
+                    id="editImagePreview">
+
+                    <img
+                        id="editPreviewImage"
+                        alt="Current product">
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="form-group"
+                style="margin-bottom:14px;">
+
+                <label>
+                    Replace Image
+                </label>
+
+                <input
+                    type="file"
+                    id="editImage"
+                    accept="image/jpeg,image/png,image/webp,image/jpg">
+
+                <div class="upload-help">
+                    Leave empty if you want to keep the current image.
+                </div>
+
+            </div>
+
+
+            <div
+                class="form-group"
+                style="margin-bottom:14px;">
+
+                <label>
+                    Destination
+                </label>
+
+                <select id="editDestination">
+
+                    <option value="USA">
+                        USA 🇺🇸
+                    </option>
+
+                    <option value="Canada">
+                        Canada 🇨🇦
+                    </option>
+
+                    <option value="USA & Canada">
+                        USA & Canada 🌎
+                    </option>
+
+                    <option value="Other Countries">
+                        Other Countries 🌍
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="editCategory">
+
+                    <option value="Flowers">
+                        Flowers
+                    </option>
+
+                    <option value="Gifts">
+                        Gifts
+                    </option>
+
+                    <option value="Fashion">
+                        Fashion
+                    </option>
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Jewelry">
+                        Jewelry
+                    </option>
+
+                    <option value="Watches">
+                        Watches
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="cancelEdit">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    id="saveEditBtn">
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </div>
 
-</header>  <main class="container">  <section class="page-title">  <h1>  
-    Products Management  
-</h1>  
 
-<p>  
-    Add, edit and manage the products available on Fame Store.  
-</p>
+<script type="module">
 
-</section>  <div  
-    id="message"  
-    class="message">  
-</div>  <!-- =========================  
-     ADD PRODUCT  
-========================= -->  <section class="form-card">  <div class="form-header">  
+import {
+    auth,
+    db,
+    storage
+} from "./firebase-config.js";
 
-    <h2>  
-        ➕ Add New Product  
-    </h2>  
 
-    <p>  
-        Add a product that customers can order.  
-    </p>  
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
-</div>  
 
+import {
+    collection,
+    getDocs,
+    getDoc,
+    doc,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-<form id="productForm">  
 
+import {
+    ref,
+    uploadBytes,
+    getDownloadURL,
+    deleteObject
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-storage.js";
 
-    <div class="form-grid">  
 
+const message =
+    document.getElementById("message");
 
-        <div class="form-group">  
+const productForm =
+    document.getElementById("productForm");
 
-            <label>  
-                Product Name  
-            </label>  
+const productsContainer =
+    document.getElementById("products");
 
-            <input  
-                type="text"  
-                id="productName"  
-                placeholder="Example: Artificial Rose Flower Bouquet"  
-                required>  
+const loading =
+    document.getElementById("loading");
 
-        </div>  
+const empty =
+    document.getElementById("empty");
 
+const productCount =
+    document.getElementById("productCount");
 
-        <div class="form-group">  
+const refreshBtn =
+    document.getElementById("refreshBtn");
 
-            <label>  
-                Price (NGN)  
-            </label>  
+const editModal =
+    document.getElementById("editModal");
 
-            <input  
-                type="number"  
-                id="productPrice"  
-                placeholder="45000"  
-                min="0"  
-                step="0.01"  
-                required>  
+const editForm =
+    document.getElementById("editForm");
 
-        </div>  
+const closeModal =
+    document.getElementById("closeModal");
 
+const cancelEdit =
+    document.getElementById("cancelEdit");
 
-        <div class="form-group full">  
+const productImage =
+    document.getElementById("productImage");
 
-            <label>  
-                Product Image URL  
-            </label>  
+const imagePreview =
+    document.getElementById("imagePreview");
 
-            <input  
-                type="url"  
-                id="productImage"  
-                placeholder="https://i.ibb.co/example/product.webp"  
-                required>  
+const previewImage =
+    document.getElementById("previewImage");
 
-        </div>  
 
+let currentAdmin = null;
 
-        <!-- DESTINATION -->  
 
-        <div class="form-group">  
+/* =========================
+   MESSAGE
+========================= */
 
-            <label>  
-                Destination  
-            </label>  
+function showMessage(text,type){
 
-            <select id="productDestination">  
+    message.textContent = text;
 
-                <option value="USA">  
-                    USA  
-                </option>  
+    message.className =
+        "message show " + type;
 
-                <option value="Canada">  
-                    Canada  
-                </option>  
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
-                <option value="USA & Canada">  
-                    USA & Canada  
-                </option>  
+    setTimeout(() => {
 
-                <option value="Other Countries">  
-                    Other Countries  
-                </option>  
+        message.className =
+            "message";
 
-            </select>  
+    },5000);
 
-        </div>  
+}
 
 
-        <!-- CATEGORY -->  
+/* =========================
+   MONEY
+========================= */
 
-        <div class="form-group">  
+function formatMoney(amount){
 
-            <label>  
-                Category  
-            </label>  
+    return "₦" +
+        Number(amount || 0).toLocaleString(
+            "en-NG",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
+            }
+        );
 
-            <select id="productCategory">  
+}
 
-                <option value="Flowers">  
-                    Flowers  
-                </option>  
 
-                <option value="Gifts">  
-                    Gifts  
-                </option>  
+/* =========================
+   ESCAPE HTML
+========================= */
 
-                <option value="Fashion">  
-                    Fashion  
-                </option>  
+function escapeHTML(value){
 
-                <option value="Food">  
-                    Food  
-                </option>  
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
-                <option value="Jewelry">  
-                    Jewelry  
-                </option>  
+}
 
-                <option value="Watches">  
-                    Watches  
-                </option>  
 
-                <option value="Other">  
-                    Other  
-                </option>  
+/* =========================
+   ADMIN CHECK
+========================= */
 
-            </select>  
+async function checkAdmin(user){
 
-        </div>  
+    const userRef =
+        doc(
+            db,
+            "users",
+            user.uid
+        );
 
+    const snapshot =
+        await getDoc(userRef);
 
-    </div>  
+    if(!snapshot.exists()){
 
+        throw new Error(
+            "Admin profile was not found."
+        );
 
-    <div class="form-actions">  
+    }
 
-        <button  
-            type="submit"  
-            class="primary-btn"  
-            id="addProductBtn">  
+    const data =
+        snapshot.data();
 
-            Add Product  
+    if(data.role !== "admin"){
 
-        </button>  
+        throw new Error(
+            "Access denied. This account is not an admin."
+        );
 
+    }
 
-        <button  
-            type="reset"  
-            class="secondary-btn">  
+    currentAdmin = user;
 
-            Clear  
+}
 
-        </button>  
 
-    </div>  
+/* =========================
+   IMAGE PREVIEW
+========================= */
 
+productImage.addEventListener(
+    "change",
+    () => {
 
-</form>
+        const file =
+            productImage.files[0];
 
-</section>  <!-- =========================  
-     PRODUCT LIST  
-========================= -->  <section>  <div class="products-header">  
+        if(!file){
 
-    <div>  
+            imagePreview.classList.remove(
+                "show"
+            );
 
-        <h2>  
-            Store Products  
-        </h2>  
+            return;
 
-        <div  
-            class="product-count"  
-            id="productCount">  
+        }
 
-            0 products  
+        if(!file.type.startsWith("image/")){
 
-        </div>  
+            showMessage(
+                "Please select an image file.",
+                "error"
+            );
 
-    </div>  
+            productImage.value = "";
 
+            return;
 
-    <button  
-        class="secondary-btn"  
-        id="refreshBtn">  
+        }
 
-        ↻ Refresh  
+        const reader =
+            new FileReader();
 
-    </button>  
+        reader.onload =
+            event => {
 
-</div>  
+                previewImage.src =
+                    event.target.result;
 
+                imagePreview.classList.add(
+                    "show"
+                );
 
-<div  
-    id="loading"  
-    class="loading">  
+            };
 
-    Loading products...  
+        reader.readAsDataURL(file);
 
-</div>  
+    }
+);
 
 
-<div  
-    id="empty"  
-    class="empty">  
+/* =========================
+   UPLOAD IMAGE
+========================= */
 
-    <div style="font-size:40px;margin-bottom:10px;">  
-        🛍️  
-    </div>  
+async function uploadProductImage(file){
 
-    <strong>  
-        No products found  
-    </strong>  
+    if(!file){
 
-    <p style="margin-top:6px;">  
-        Add your first product above.  
-    </p>  
+        throw new Error(
+            "Please select a product image."
+        );
 
-</div>  
+    }
 
+    if(!file.type.startsWith("image/")){
 
-<div  
-    id="products"  
-    class="products">  
-</div>
+        throw new Error(
+            "Only image files are allowed."
+        );
 
-</section>  </main>  <!-- =========================  
-     EDIT MODAL  
-========================= -->  <div  
-    class="modal"  
-    id="editModal">  <div class="modal-box">  
+    }
 
+    const maxSize =
+        5 * 1024 * 1024;
 
-    <div class="modal-header">  
+    if(file.size > maxSize){
 
-        <h2>  
-            Edit Product  
-        </h2>  
+        throw new Error(
+            "Image is too large. Maximum size is 5MB."
+        );
 
-        <button  
-            type="button"  
-            class="close-btn"  
-            id="closeModal">  
+    }
 
-            ×  
 
-        </button>  
+    const extension =
+        file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
 
-    </div>  
 
+    const fileName =
+        "product_" +
+        Date.now() +
+        "_" +
+        Math.random()
+            .toString(36)
+            .substring(2) +
+        "." +
+        extension;
 
-    <form id="editForm">  
 
+    const storageRef =
+        ref(
+            storage,
+            "products/" +
+            currentAdmin.uid +
+            "/" +
+            fileName
+        );
 
-        <input  
-            type="hidden"  
-            id="editId">  
 
+    await uploadBytes(
+        storageRef,
+        file,
+        {
+            contentType:file.type
+        }
+    );
 
-        <div class="form-group"  
-             style="margin-bottom:14px;">  
 
-            <label>  
-                Product Name  
-            </label>  
+    const downloadURL =
+        await getDownloadURL(
+            storageRef
+        );
 
-            <input  
-                type="text"  
-                id="editName"  
-                required>  
 
-        </div>  
+    return {
+        url:downloadURL,
+        path:storageRef.fullPath
+    };
 
+}
 
-        <div class="form-group"  
-             style="margin-bottom:14px;">  
 
-            <label>  
-                Price (NGN)  
-            </label>  
+/* =========================
+   LOAD PRODUCTS
+========================= */
 
-            <input  
-                type="number"  
-                id="editPrice"  
-                min="0"  
-                step="0.01"  
-                required>  
+async function loadProducts(){
 
-        </div>  
+    loading.style.display =
+        "block";
 
+    empty.style.display =
+        "none";
 
-        <div class="form-group"  
-             style="margin-bottom:14px;">  
+    productsContainer.innerHTML =
+        "";
 
-            <label>  
-                Product Image URL  
-            </label>  
 
-            <input  
-                type="url"  
-                id="editImage"  
-                required>  
+    try{
 
-        </div>  
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "products"
+                )
+            );
 
 
-        <!-- EDIT DESTINATION -->  
+        const products = [];
 
-        <div class="form-group"  
-             style="margin-bottom:14px;">  
 
-            <label>  
-                Destination  
-            </label>  
+        snapshot.forEach(
+            productDoc => {
 
-            <select id="editDestination">  
+                products.push({
 
-                <option value="USA">  
-                    USA  
-                </option>  
+                    id:productDoc.id,
 
-                <option value="Canada">  
-                    Canada  
-                </option>  
+                    ...productDoc.data()
 
-                <option value="USA & Canada">  
-                    USA & Canada  
-                </option>  
+                });
 
-                <option value="Other Countries">  
-                    Other Countries  
-                </option>  
+            }
+        );
 
-            </select>  
 
-        </div>  
+        products.sort(
+            (a,b) => {
 
+                const aTime =
+                    a.createdAt?.seconds || 0;
 
-        <div class="form-group">  
+                const bTime =
+                    b.createdAt?.seconds || 0;
 
-            <label>  
-                Category  
-            </label>  
+                return bTime - aTime;
 
-            <select id="editCategory">  
+            }
+        );
 
-                <option value="Flowers">  
-                    Flowers  
-                </option>  
 
-                <option value="Gifts">  
-                    Gifts  
-                </option>  
+        loading.style.display =
+            "none";
 
-                <option value="Fashion">  
-                    Fashion  
-                </option>  
 
-                <option value="Food">  
-                    Food  
-                </option>  
+        productCount.textContent =
+            products.length +
+            (
+                products.length === 1
+                    ? " product"
+                    : " products"
+            );
 
-                <option value="Jewelry">  
-                    Jewelry  
-                </option>  
 
-                <option value="Watches">  
-                    Watches  
-                </option>  
+        if(products.length === 0){
 
-                <option value="Other">  
-                    Other  
-                </option>  
+            empty.style.display =
+                "block";
 
-            </select>  
+            return;
 
-        </div>  
+        }
 
 
-        <div class="modal-actions">  
+        products.forEach(
+            renderProduct
+        );
 
-            <button  
-                type="button"  
-                class="secondary-btn"  
-                id="cancelEdit">  
 
-                Cancel  
+    }catch(error){
 
-            </button>  
+        console.error(
+            "Load products error:",
+            error
+        );
 
 
-            <button  
-                type="submit"  
-                class="primary-btn"  
-                id="saveEditBtn">  
+        loading.style.display =
+            "none";
 
-                Save Changes  
 
-            </button>  
+        showMessage(
+            "Unable to load products: " +
+            error.message,
+            "error"
+        );
 
-        </div>  
+    }
 
+}
 
-    </form>  
 
-</div>
+/* =========================
+   RENDER PRODUCT
+========================= */
 
-</div>  <script type="module">  
-  
-  
-/* =====================================  
-   FIREBASE  
-===================================== */  
-  
-import {  
-    auth,  
-    db  
-} from "./firebase-config.js";  
-  
-  
-import {  
-    onAuthStateChanged  
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";  
-  
-  
-import {  
-    collection,  
-    getDocs,  
-    getDoc,  
-    doc,  
-    addDoc,  
-    updateDoc,  
-    deleteDoc,  
-    serverTimestamp  
-}  
-from  
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";  
-  
-  
-  
-/* =====================================  
-   ELEMENTS  
-===================================== */  
-  
-const message =  
-    document.getElementById("message");  
-  
-const productForm =  
-    document.getElementById("productForm");  
-  
-const productsContainer =  
-    document.getElementById("products");  
-  
-const loading =  
-    document.getElementById("loading");  
-  
-const empty =  
-    document.getElementById("empty");  
-  
-const productCount =  
-    document.getElementById("productCount");  
-  
-const refreshBtn =  
-    document.getElementById("refreshBtn");  
-  
-const editModal =  
-    document.getElementById("editModal");  
-  
-const editForm =  
-    document.getElementById("editForm");  
-  
-const closeModal =  
-    document.getElementById("closeModal");  
-  
-const cancelEdit =  
-    document.getElementById("cancelEdit");  
-  
-  
-let currentAdmin = null;  
-  
-  
-  
-/* =====================================  
-   MESSAGE  
-===================================== */  
-  
-function showMessage(text,type){  
-  
-    message.textContent = text;  
-  
-    message.className =  
-        "message show " + type;  
-  
-    window.scrollTo({  
-        top:0,  
-        behavior:"smooth"  
-    });  
-  
-    setTimeout(() => {  
-  
-        message.className =  
-            "message";  
-  
-    },5000);  
-  
-}  
-  
-  
-  
-/* =====================================  
-   MONEY  
-===================================== */  
-  
-function formatMoney(amount){  
-  
-    return "₦" +  
-        Number(amount || 0).toLocaleString(  
-            "en-NG",  
-            {  
-                minimumFractionDigits:2,  
-                maximumFractionDigits:2  
-            }  
-        );  
-  
-}  
-  
-  
-  
-/* =====================================  
-   ESCAPE HTML  
-===================================== */  
-  
-function escapeHTML(value){  
-  
-    return String(value ?? "")  
-        .replace(/&/g,"&amp;")  
-        .replace(/</g,"&lt;")  
-        .replace(/>/g,"&gt;")  
-        .replace(/"/g,"&quot;")  
-        .replace(/'/g,"&#039;");  
-  
-}  
-  
-  
-  
-/* =====================================  
-   CHECK ADMIN  
-===================================== */  
-  
-async function checkAdmin(user){  
-  
-    const userRef =  
-        doc(  
-            db,  
-            "users",  
-            user.uid  
-        );  
-  
-  
-    const snapshot =  
-        await getDoc(userRef);  
-  
-  
-    if(!snapshot.exists()){  
-  
-        throw new Error(  
-            "Admin profile was not found."  
-        );  
-  
-    }  
-  
-  
-    const data =  
-        snapshot.data();  
-  
-  
-    if(data.role !== "admin"){  
-  
-        throw new Error(  
-            "Access denied. This account is not an admin."  
-        );  
-  
-    }  
-  
-  
-    currentAdmin = user;  
-  
-}  
-  
-  
-  
-/* =====================================  
-   LOAD PRODUCTS  
-===================================== */  
-  
-async function loadProducts(){  
-  
-    loading.style.display =  
-        "block";  
-  
-    empty.style.display =  
-        "none";  
-  
-    productsContainer.innerHTML =  
-        "";  
-  
-  
-    try{  
-  
-        const snapshot =  
-            await getDocs(  
-                collection(  
-                    db,  
-                    "products"  
-                )  
-            );  
-  
-  
-        const products = [];  
-  
-  
-        snapshot.forEach(  
-            productDoc => {  
-  
-                products.push({  
-  
-                    id:productDoc.id,  
-  
-                    ...productDoc.data()  
-  
-                });  
-  
-            }  
-        );  
-  
-  
-        loading.style.display =  
-            "none";  
-  
-  
-        productCount.textContent =  
-            products.length +  
-            (  
-                products.length === 1  
-                    ? " product"  
-                    : " products"  
-            );  
-  
-  
-        if(products.length === 0){  
-  
-            empty.style.display =  
-                "block";  
-  
-            return;  
-  
-        }  
-  
-  
-        products.forEach(  
-            product => {  
-  
-                renderProduct(  
-                    product  
-                );  
-  
-            }  
-        );  
-  
-  
-    }catch(error){  
-  
-        console.error(  
-            "Load products error:",  
-            error  
-        );  
-  
-  
-        loading.style.display =  
-            "none";  
-  
-  
-        showMessage(  
-            "Unable to load products: " +  
-            error.message,  
-            "error"  
-        );  
-  
-    }  
-  
-}  
-  
-  
-  
-/* =====================================  
-   RENDER PRODUCT  
-===================================== */  
-  
-function renderProduct(product){  
-  
-    const card =  
-        document.createElement("div");  
-  
-  
-    card.className =  
-        "product-card";  
-  
-  
-    const image =  
-        product.image ||  
-        product.imageUrl ||  
-        "";  
-  
-  
-    const name =  
-        product.name ||  
-        "Unnamed Product";  
-  
-  
-    const price =  
-        Number(  
-            product.price || 0  
-        );  
-  
-  
-    const destination =  
-        product.destination ||  
-        "USA & Canada";  
-  
-  
-    const category =  
-        product.category ||  
-        "Other";  
-  
-  
-    card.innerHTML = `  
-  
-        <div class="product-image">  
-  
-            ${  
-                image  
-                ?  
-                `  
-                <img  
-                    src="${escapeHTML(image)}"  
-                    alt="${escapeHTML(name)}"  
-                    loading="lazy"  
-                    onerror="this.style.display='none'">  
-                `  
-                :  
-                `  
-                <span style="font-size:40px;">  
-                    🛍️  
-                </span>  
-                `  
-            }  
-  
-        </div>  
-  
-  
-        <div class="product-content">  
-  
-            <div class="product-name">  
-  
-                ${escapeHTML(name)}  
-  
-            </div>  
-  
-  
-            <div class="product-price">  
-  
-                ${formatMoney(price)}  
-  
-            </div>  
-  
-  
-            <span class="product-destination">  
-  
-                🌎 ${escapeHTML(destination)}  
-  
-                • ${escapeHTML(category)}  
-  
-            </span>  
-  
-  
-            <div class="product-actions">  
-  
-                <button  
-                    type="button"  
-                    class="edit-btn"  
-                    data-edit>  
-  
-                    ✏️ Edit  
-  
-                </button>  
-  
-  
-                <button  
-                    type="button"  
-                    class="delete-btn"  
-                    data-delete>  
-  
-                    🗑️ Delete  
-  
-                </button>  
-  
-            </div>  
-  
-        </div>  
-  
-    `;  
-  
-  
-    productsContainer.appendChild(  
-        card  
-    );  
-  
-  
-    card  
-        .querySelector("[data-edit]")  
-        .addEventListener(  
-            "click",  
-            () => {  
-  
-                openEditModal(  
-                    product  
-                );  
-  
-            }  
-        );  
-  
-  
-    card  
-        .querySelector("[data-delete]")  
-        .addEventListener(  
-            "click",  
-            () => {  
-  
-                deleteProduct(  
-                    product.id,  
-                    name  
-                );  
-  
-            }  
-        );  
-  
-}  
-  
-  
-  
-/* =====================================  
-   ADD PRODUCT  
-===================================== */  
-  
-productForm.addEventListener(  
-    "submit",  
-    async event => {  
-  
-        event.preventDefault();  
-  
-  
-        if(!currentAdmin){  
-  
-            showMessage(  
-                "Admin authentication is missing.",  
-                "error"  
-            );  
-  
-            return;  
-  
-        }  
-  
-  
-        const name =  
-            document  
-                .getElementById("productName")  
-                .value  
-                .trim();  
-  
-  
-        const price =  
-            Number(  
-                document  
-                    .getElementById("productPrice")  
-                    .value  
-            );  
-  
-  
-        const image =  
-            document  
-                .getElementById("productImage")  
-                .value  
-                .trim();  
-  
-  
-        const destination =  
-            document  
-                .getElementById("productDestination")  
-                .value;  
-  
-  
-        const category =  
-            document  
-                .getElementById("productCategory")  
-                .value;  
-  
-  
-        if(!name){  
-  
-            showMessage(  
-                "Enter a product name.",  
-                "error"  
-            );  
-  
-            return;  
-  
-        }  
-  
-  
-        if(  
-            !Number.isFinite(price) ||  
-            price < 0  
-        ){  
-  
-            showMessage(  
-                "Enter a valid price.",  
-                "error"  
-            );  
-  
-            return;  
-  
-        }  
-  
-  
-        if(!image){  
-  
-            showMessage(  
-                "Enter the product image URL.",  
-                "error"  
-            );  
-  
-            return;  
-  
-        }  
-  
-  
-        const button =  
-            document.getElementById(  
-                "addProductBtn"  
-            );  
-  
-  
-        button.disabled =  
-            true;  
-  
-        button.textContent =  
-            "Adding...";  
-  
-  
-        try{  
-  
-            await addDoc(  
-                collection(  
-                    db,  
-                    "products"  
-                ),  
-                {  
-  
-                    name:name,  
-  
-                    price:price,  
-  
-                    image:image,  
-  
-                    destination:destination,  
-  
-                    category:category,  
-  
-                    active:true,  
-  
-                    createdAt:  
-                        serverTimestamp(),  
-  
-                    createdBy:  
-                        currentAdmin.uid  
-  
-                }  
-            );  
-  
-  
-            showMessage(  
-                "Product added successfully.",  
-                "success"  
-            );  
-  
-  
-            productForm.reset();  
-  
-  
-            await loadProducts();  
-  
-  
-        }catch(error){  
-  
-            console.error(  
-                "Add product error:",  
-                error  
-            );  
-  
-  
-            if(  
-                error.code ===  
-                "permission-denied"  
-            ){  
-  
-                showMessage(  
-                    "Permission denied. Your Firestore Rules must allow admins to manage products.",  
-                    "error"  
-                );  
-  
-            }else{  
-  
-                showMessage(  
-                    "Unable to add product: " +  
-                    error.message,  
-                    "error"  
-                );  
-  
-            }  
-  
-        }finally{  
-  
-            button.disabled =  
-                false;  
-  
-            button.textContent =  
-                "Add Product";  
-  
-        }  
-  
-    }  
-);  
-  
-  
-  
-/* =====================================  
-   OPEN EDIT  
-===================================== */  
-  
-function openEditModal(product){  
-  
-    document.getElementById(  
-        "editId"  
-    ).value =  
-        product.id;  
-  
-  
-    document.getElementById(  
-        "editName"  
-    ).value =  
-        product.name || "";  
-  
-  
-    document.getElementById(  
-        "editPrice"  
-    ).value =  
-        product.price || 0;  
-  
-  
-    document.getElementById(  
-        "editImage"  
-    ).value =  
-        product.image ||  
-        product.imageUrl ||  
-        "";  
-  
-  
-    document.getElementById(  
-        "editDestination"  
-    ).value =  
-        product.destination ||  
-        "USA & Canada";  
-  
-  
-    document.getElementById(  
-        "editCategory"  
-    ).value =  
-        product.category ||  
-        "Other";  
-  
-  
-    editModal.classList.add(  
-        "show"  
-    );  
-  
-}  
-  
-  
-  
-/* =====================================  
-   CLOSE EDIT  
-===================================== */  
-  
-function closeEditModal(){  
-  
-    editModal.classList.remove(  
-        "show"  
-    );  
-  
-}  
-  
-  
-closeModal.addEventListener(  
-    "click",  
-    closeEditModal  
-);  
-  
-  
-cancelEdit.addEventListener(  
-    "click",  
-    closeEditModal  
-);  
-  
-  
-editModal.addEventListener(  
-    "click",  
-    event => {  
-  
-        if(  
-            event.target ===  
-            editModal  
-        ){  
-  
-            closeEditModal();  
-  
-        }  
-  
-    }  
-);  
-  
-  
-  
-/* =====================================  
-   SAVE EDIT  
-===================================== */  
-  
-editForm.addEventListener(  
-    "submit",  
-    async event => {  
-  
-        event.preventDefault();  
-  
-  
-        if(!currentAdmin){  
-  
-            showMessage(  
-                "Admin authentication is missing.",  
-                "error"  
-            );  
-  
-            return;  
-  
-        }  
-  
-  
-        const id =  
-            document  
-                .getElementById("editId")  
-                .value;  
-  
-  
-        const name =  
-            document  
-                .getElementById("editName")  
-                .value  
-                .trim();  
-  
-  
-        const price =  
-            Number(  
-                document  
-                    .getElementById("editPrice")  
-                    .value  
-            );  
-  
-  
-        const image =  
-            document  
-                .getElementById("editImage")  
-                .value  
-                .trim();  
-  
-  
-        const destination =  
-            document  
-                .getElementById("editDestination")  
-                .value;  
-  
-  
-        const category =  
-            document  
-                .getElementById("editCategory")  
-                .value;  
-  
-  
-        if(!name){  
-  
-            showMessage(  
-                "Product name is required.",  
-                "error"  
-            );  
-  
-            return;  
-  
-        }  
-  
-  
-        if(  
-            !Number.isFinite(price) ||  
-            price < 0  
-        ){  
-  
-            showMessage(  
-                "Enter a valid price.",  
-                "error"  
-            );  
-  
-            return;  
-  
-        }  
-  
-  
-        if(!image){  
-  
-            showMessage(  
-                "Product image URL is required.",  
-                "error"  
-            );  
-  
-            return;  
-  
-        }  
-  
-  
-        const button =  
-            document.getElementById(  
-                "saveEditBtn"  
-            );  
-  
-  
-        button.disabled =  
-            true;  
-  
-        button.textContent =  
-            "Saving...";  
-  
-  
-        try{  
-  
-            await updateDoc(  
-                doc(  
-                    db,  
-                    "products",  
-                    id  
-                ),  
-                {  
-  
-                    name:name,  
-  
-                    price:price,  
-  
-                    image:image,  
-  
-                    destination:destination,  
-  
-                    category:category,  
-  
-                    updatedAt:  
-                        serverTimestamp(),  
-  
-                    updatedBy:  
-                        currentAdmin.uid  
-  
-                }  
-            );  
-  
-  
-            closeEditModal();  
-  
-  
-            showMessage(  
-                "Product updated successfully.",  
-                "success"  
-            );  
-  
-  
-            await loadProducts();  
-  
-  
-        }catch(error){  
-  
-            console.error(  
-                "Update product error:",  
-                error  
-            );  
-  
-  
-            if(  
-                error.code ===  
-                "permission-denied"  
-            ){  
-  
-                showMessage(  
-                    "Permission denied. Check your Firestore Rules.",  
-                    "error"  
-                );  
-  
-            }else{  
-  
-                showMessage(  
-                    "Unable to update product: " +  
-                    error.message,  
-                    "error"  
-                );  
-  
-            }  
-  
-        }finally{  
-  
-            button.disabled =  
-                false;  
-  
-            button.textContent =  
-                "Save Changes";  
-  
-        }  
-  
-    }  
-);  
-  
-  
-  
-/* =====================================  
-   DELETE PRODUCT  
-===================================== */  
-  
-async function deleteProduct(  
-    productId,  
-    productName  
-){  
-  
-    if(!currentAdmin){  
-  
-        showMessage(  
-            "Admin authentication is missing.",  
-            "error"  
-        );  
-  
-        return;  
-  
-    }  
-  
-  
-    const confirmed =  
-        confirm(  
-            "Delete this product?\n\n" +  
-            productName +  
-            "\n\nThis action cannot be undone."  
-        );  
-  
-  
-    if(!confirmed){  
-  
-        return;  
-  
-    }  
-  
-  
-    try{  
-  
-        await deleteDoc(  
-            doc(  
-                db,  
-                "products",  
-                productId  
-            )  
-        );  
-  
-  
-        showMessage(  
-            "Product deleted successfully.",  
-            "success"  
-        );  
-  
-  
-        await loadProducts();  
-  
-  
-    }catch(error){  
-  
-        console.error(  
-            "Delete product error:",  
-            error  
-        );  
-  
-  
-        if(  
-            error.code ===  
-            "permission-denied"  
-        ){  
-  
-            showMessage(  
-                "Permission denied. Check your Firestore Rules.",  
-                "error"  
-            );  
-  
-        }else{  
-  
-            showMessage(  
-                "Unable to delete product: " +  
-                error.message,  
-                "error"  
-            );  
-  
-        }  
-  
-    }  
-  
-}  
-  
-  
-  
-/* =====================================  
-   AUTH  
-===================================== */  
-  
-onAuthStateChanged(  
-    auth,  
-    async user => {  
-  
-        if(!user){  
-  
-            window.location.href =  
-                "login.html";  
-  
-            return;  
-  
-        }  
-  
-  
-        try{  
-  
-            await checkAdmin(  
-                user  
-            );  
-  
-  
-            await loadProducts();  
-  
-  
-        }catch(error){  
-  
-            console.error(  
-                "Admin authentication error:",  
-                error  
-            );  
-  
-  
-            loading.style.display =  
-                "none";  
-  
-  
-            showMessage(  
-                error.message,  
-                "error"  
-            );  
-  
-  
-            setTimeout(  
-                () => {  
-  
-                    window.location.href =  
-                        "login.html";  
-  
-                },  
-                1500  
-            );  
-  
-        }  
-  
-    }  
-);  
-  
-  
-  
-/* =====================================  
-   REFRESH  
-===================================== */  
-  
-refreshBtn.addEventListener(  
-    "click",  
-    async () => {  
-  
-        refreshBtn.disabled =  
-            true;  
-  
-        refreshBtn.textContent =  
-            "Refreshing...";  
-  
-  
-        try{  
-  
-            await loadProducts();  
-  
-        }finally{  
-  
-            refreshBtn.disabled =  
-                false;  
-  
-            refreshBtn.textContent =  
-                "↻ Refresh";  
-  
-        }  
-  
-    }  
-);  
-  
-</script>  </body>  
+function renderProduct(product){
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "product-card";
+
+
+    const image =
+        product.imageUrl ||
+        product.image ||
+        "";
+
+
+    const name =
+        product.name ||
+        "Unnamed Product";
+
+
+    const price =
+        Number(
+            product.price || 0
+        );
+
+
+    const destination =
+        product.destination ||
+        "USA & Canada";
+
+
+    const category =
+        product.category ||
+        "Other";
+
+
+    card.innerHTML = `
+
+        <div class="product-image">
+
+            ${
+                image
+                ?
+                `
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(name)}"
+                    loading="lazy"
+                    onerror="this.parentElement.innerHTML='<span class=&quot;no-image&quot;>🛍️</span>'">
+                `
+                :
+                `
+                <span class="no-image">
+                    🛍️
+                </span>
+                `
+            }
+
+        </div>
+
+
+        <div class="product-content">
+
+            <div class="product-name">
+                ${escapeHTML(name)}
+            </div>
+
+
+            <div class="product-price">
+                ${formatMoney(price)}
+            </div>
+
+
+            <span class="product-destination">
+
+                🌎 ${escapeHTML(destination)}
+                •
+                ${escapeHTML(category)}
+
+            </span>
+
+
+            <div class="product-actions">
+
+                <button
+                    type="button"
+                    class="edit-btn"
+                    data-edit>
+
+                    ✏️ Edit
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="delete-btn"
+                    data-delete>
+
+                    🗑️ Delete
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    productsContainer.appendChild(
+        card
+    );
+
+
+    card
+        .querySelector("[data-edit]")
+        .addEventListener(
+            "click",
+            () => openEditModal(product)
+        );
+
+
+    card
+        .querySelector("[data-delete]")
+        .addEventListener(
+            "click",
+            () => deleteProduct(
+                product.id,
+                name,
+                product.imagePath
+            )
+        );
+
+}
+
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+productForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        if(!currentAdmin){
+
+            showMessage(
+                "Admin authentication is missing.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const name =
+            document
+                .getElementById("productName")
+                .value
+                .trim();
+
+
+        const price =
+            Number(
+                document
+                    .getElementById("productPrice")
+                    .value
+            );
+
+
+        const file =
+            productImage.files[0];
+
+
+        const destination =
+            document
+                .getElementById(
+                    "productDestination"
+                )
+                .value;
+
+
+        const category =
+            document
+                .getElementById(
+                    "productCategory"
+                )
+                .value;
+
+
+        if(!name){
+
+            showMessage(
+                "Enter a product name.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(price) ||
+            price < 0
+        ){
+
+            showMessage(
+                "Enter a valid price.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!file){
+
+            showMessage(
+                "Please select a product image.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById(
+                "addProductBtn"
+            );
+
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Uploading...";
+
+
+        try{
+
+            const uploaded =
+                await uploadProductImage(
+                    file
+                );
+
+
+            button.textContent =
+                "Saving...";
+
+
+            await addDoc(
+                collection(
+                    db,
+                    "products"
+                ),
+                {
+
+                    name:name,
+
+                    price:price,
+
+                    imageUrl:
+                        uploaded.url,
+
+                    image:
+                        uploaded.url,
+
+                    imagePath:
+                        uploaded.path,
+
+                    destination:
+                        destination,
+
+                    category:
+                        category,
+
+                    active:true,
+
+                    createdAt:
+                        serverTimestamp(),
+
+                    createdBy:
+                        currentAdmin.uid
+
+                }
+            );
+
+
+            showMessage(
+                "Product added successfully. It is now available on the store.",
+                "success"
+            );
+
+
+            productForm.reset();
+
+
+            imagePreview.classList.remove(
+                "show"
+            );
+
+
+            await loadProducts();
+
+
+        }catch(error){
+
+            console.error(
+                "Add product error:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to add product.",
+                "error"
+            );
+
+        }finally{
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Add Product";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   OPEN EDIT MODAL
+========================= */
+
+function openEditModal(product){
+
+    document.getElementById(
+        "editId"
+    ).value =
+        product.id;
+
+
+    document.getElementById(
+        "editName"
+    ).value =
+        product.name || "";
+
+
+    document.getElementById(
+        "editPrice"
+    ).value =
+        product.price || 0;
+
+
+    document.getElementById(
+        "editDestination"
+    ).value =
+        product.destination ||
+        "USA & Canada";
+
+
+    document.getElementById(
+        "editCategory"
+    ).value =
+        product.category ||
+        "Other";
+
+
+    const image =
+        product.imageUrl ||
+        product.image ||
+        "";
+
+
+    const preview =
+        document.getElementById(
+            "editPreviewImage"
+        );
+
+
+    if(image){
+
+        preview.src =
+            image;
+
+    }else{
+
+        preview.src = "";
+
+    }
+
+
+    editForm.dataset.oldImagePath =
+        product.imagePath || "";
+
+
+    editForm.dataset.oldImageUrl =
+        image;
+
+
+    editModal.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeEditModal(){
+
+    editModal.classList.remove(
+        "show"
+    );
+
+    editForm.reset();
+
+}
+
+
+closeModal.addEventListener(
+    "click",
+    closeEditModal
+);
+
+
+cancelEdit.addEventListener(
+    "click",
+    closeEditModal
+);
+
+
+editModal.addEventListener(
+    "click",
+    event => {
+
+        if(
+            event.target ===
+            editModal
+        ){
+
+            closeEditModal();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   SAVE EDIT
+========================= */
+
+editForm.addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+
+        if(!currentAdmin){
+
+            showMessage(
+                "Admin authentication is missing.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const id =
+            document
+                .getElementById("editId")
+                .value;
+
+
+        const name =
+            document
+                .getElementById("editName")
+                .value
+                .trim();
+
+
+        const price =
+            Number(
+                document
+                    .getElementById("editPrice")
+                    .value
+            );
+
+
+        const newFile =
+            document
+                .getElementById("editImage")
+                .files[0];
+
+
+        const destination =
+            document
+                .getElementById(
+                    "editDestination"
+                )
+                .value;
+
+
+        const category =
+            document
+                .getElementById(
+                    "editCategory"
+                )
+                .value;
+
+
+        if(!name){
+
+            showMessage(
+                "Product name is required.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !Number.isFinite(price) ||
+            price < 0
+        ){
+
+            showMessage(
+                "Enter a valid price.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const button =
+            document.getElementById(
+                "saveEditBtn"
+            );
+
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            newFile
+                ? "Uploading..."
+                : "Saving...";
+
+
+        try{
+
+            const updates = {
+
+                name:name,
+
+                price:price,
+
+                destination:
+                    destination,
+
+                category:
+                    category,
+
+                updatedAt:
+                    serverTimestamp(),
+
+                updatedBy:
+                    currentAdmin.uid
+
+            };
+
+
+            let newImagePath = "";
+
+
+            if(newFile){
+
+                const uploaded =
+                    await uploadProductImage(
+                        newFile
+                    );
+
+
+                newImagePath =
+                    uploaded.path;
+
+
+                updates.imageUrl =
+                    uploaded.url;
+
+                updates.image =
+                    uploaded.url;
+
+                updates.imagePath =
+                    uploaded.path;
+
+            }
+
+
+            await updateDoc(
+                doc(
+                    db,
+                    "products",
+                    id
+                ),
+                updates
+            );
+
+
+            /*
+             * Delete old Firebase Storage image
+             * only after the new product information
+             * has successfully been saved.
+             */
+
+            if(
+                newFile &&
+                editForm.dataset.oldImagePath
+            ){
+
+                try{
+
+                    await deleteObject(
+                        ref(
+                            storage,
+                            editForm.dataset.oldImagePath
+                        )
+                    );
+
+                }catch(storageError){
+
+                    console.warn(
+                        "Old image could not be deleted:",
+                        storageError
+                    );
+
+                }
+
+            }
+
+
+            closeEditModal();
+
+
+            showMessage(
+                "Product updated successfully.",
+                "success"
+            );
+
+
+            await loadProducts();
+
+
+        }catch(error){
+
+            console.error(
+                "Update product error:",
+                error
+            );
+
+
+            showMessage(
+                error.message ||
+                "Unable to update product.",
+                "error"
+            );
+
+        }finally{
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Save Changes";
+
+        }
+
+    }
+);
+
+
+/* =========================
+   DELETE PRODUCT
+========================= */
+
+async function deleteProduct(
+    productId,
+    productName,
+    imagePath
+){
+
+    if(!currentAdmin){
+
+        showMessage(
+            "Admin authentication is missing.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete this product?\n\n" +
+            productName +
+            "\n\nThis action cannot be undone."
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "products",
+                productId
+            )
+        );
+
+
+        if(imagePath){
+
+            try{
+
+                await deleteObject(
+                    ref(
+                        storage,
+                        imagePath
+                    )
+                );
+
+            }catch(storageError){
+
+                console.warn(
+                    "Storage image deletion failed:",
+                    storageError
+                );
+
+            }
+
+        }
+
+
+        showMessage(
+            "Product deleted successfully.",
+            "success"
+        );
+
+
+        await loadProducts();
+
+
+    }catch(error){
+
+        console.error(
+            "Delete product error:",
+            error
+        );
+
+
+        showMessage(
+            error.message ||
+            "Unable to delete product.",
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+onAuthStateChanged(
+    auth,
+    async user => {
+
+        if(!user){
+
+            window.location.href =
+                "login.html";
+
+            return;
+
+        }
+
+
+        try{
+
+            await checkAdmin(
+                user
+            );
+
+
+            await loadProducts();
+
+
+        }catch(error){
+
+            console.error(
+                "Admin authentication error:",
+                error
+            );
+
+
+            loading.style.display =
+                "none";
+
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                1500
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================
+   REFRESH
+========================= */
+
+refreshBtn.addEventListener(
+    "click",
+    async () => {
+
+        refreshBtn.disabled =
+            true;
+
+        refreshBtn.textContent =
+            "Refreshing...";
+
+
+        try{
+
+            await loadProducts();
+
+        }finally{
+
+            refreshBtn.disabled =
+                false;
+
+            refreshBtn.textContent =
+                "↻ Refresh";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
 </html>
