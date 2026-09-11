@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -113,12 +115,43 @@ textarea{
     box-shadow:0 12px 30px rgba(16,24,40,.10);
 }
 
-.product-image{
+
+/* =========================
+   PRODUCT IMAGE
+========================= */
+
+.product-image-wrapper{
     width:100%;
     height:220px;
+    background:#eef2f6;
+    overflow:hidden;
+    position:relative;
+}
+
+.product-image{
+    width:100%;
+    height:100%;
     display:block;
     object-fit:cover;
     background:#eef2f6;
+}
+
+.image-placeholder{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:8px;
+    color:#667085;
+    font-size:12px;
+    text-align:center;
+    padding:15px;
+}
+
+.image-placeholder-icon{
+    font-size:38px;
 }
 
 .product-info{
@@ -273,6 +306,7 @@ textarea{
     height:75px;
     object-fit:cover;
     border-radius:10px;
+    background:#eef2f6;
 }
 
 .selected-name{
@@ -456,6 +490,10 @@ textarea{
 }
 
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:600px){
 
     .products{
@@ -463,7 +501,7 @@ textarea{
         gap:12px;
     }
 
-    .product-image{
+    .product-image-wrapper{
         height:175px;
     }
 
@@ -496,9 +534,12 @@ textarea{
 }
 
 </style>
+
 </head>
 
+
 <body>
+
 
 <header class="header">
 
@@ -524,6 +565,7 @@ textarea{
     </div>
 
 </header>
+
 
 
 <!-- =========================
@@ -560,6 +602,7 @@ textarea{
     </div>
 
 </section>
+
 
 
 <!-- =========================
@@ -850,6 +893,7 @@ textarea{
 </section>
 
 
+
 <!-- =========================
      BOTTOM
 ========================= -->
@@ -864,6 +908,7 @@ textarea{
     </a>
 
 </div>
+
 
 
 <!-- =========================
@@ -908,7 +953,12 @@ textarea{
 </div>
 
 
+
 <script type="module">
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import {
     auth,
@@ -929,6 +979,7 @@ import {
     runTransaction,
     onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 
 /* =====================================================
@@ -1174,6 +1225,7 @@ image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/a12d4294cc
 ];
 
 
+
 /* =====================================================
    VARIABLES
 ===================================================== */
@@ -1183,6 +1235,7 @@ let currentProduct = null;
 let currentBalance = 0;
 let orderProcessing = false;
 let firestoreProducts = [];
+
 
 
 /* =====================================================
@@ -1226,6 +1279,7 @@ const thanksButton =
 document.getElementById("thanksButton");
 
 
+
 /* =====================================================
    MONEY
 ===================================================== */
@@ -1244,6 +1298,7 @@ function money(value){
 }
 
 
+
 /* =====================================================
    ESCAPE HTML
 ===================================================== */
@@ -1260,6 +1315,7 @@ function escapeHTML(value){
 }
 
 
+
 /* =====================================================
    IMAGE FALLBACK
 ===================================================== */
@@ -1273,17 +1329,38 @@ function imageFallback(){
                  height="500"
                  viewBox="0 0 600 500">
 
-                <rect width="600"
-                      height="500"
-                      fill="#eef2f6"/>
+                <rect
+                    width="600"
+                    height="500"
+                    fill="#eef2f6"
+                />
 
-                <text x="300"
-                      y="250"
-                      text-anchor="middle"
-                      dominant-baseline="middle"
-                      font-family="Arial"
-                      font-size="28"
-                      fill="#667085">
+                <circle
+                    cx="300"
+                    cy="205"
+                    r="55"
+                    fill="#ffffff"
+                />
+
+                <text
+                    x="300"
+                    y="210"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                    font-family="Arial"
+                    font-size="45"
+                    fill="#0757d9">
+                    🛍
+                </text>
+
+                <text
+                    x="300"
+                    y="310"
+                    text-anchor="middle"
+                    font-family="Arial"
+                    font-size="25"
+                    font-weight="bold"
+                    fill="#667085">
                     Fame Store
                 </text>
 
@@ -1293,6 +1370,209 @@ function imageFallback(){
 }
 
 
+
+/* =====================================================
+   GET IMAGE FROM FIRESTORE PRODUCT
+===================================================== */
+
+function getProductImage(product){
+
+    if(!product){
+        return "";
+    }
+
+
+    /*
+       MAIN FIELD USED BY YOUR ADMIN PAGE
+    */
+
+    if(
+        typeof product.image === "string" &&
+        product.image.trim()
+    ){
+
+        return convertImageUrl(
+            product.image.trim()
+        );
+
+    }
+
+
+    /*
+       OTHER COMMON FIELD NAMES
+    */
+
+    const possibleFields = [
+
+        "imageUrl",
+        "imageURL",
+        "photoURL",
+        "photoUrl",
+        "image_url",
+        "thumbnail",
+        "thumbnailUrl",
+        "productImage",
+        "productImageUrl"
+
+    ];
+
+
+    for(
+        const field of possibleFields
+    ){
+
+        if(
+            typeof product[field] === "string" &&
+            product[field].trim()
+        ){
+
+            return convertImageUrl(
+                product[field].trim()
+            );
+
+        }
+
+    }
+
+
+    /*
+       SUPPORT OBJECT FORMAT
+
+       Example:
+
+       image:{
+          url:"https://..."
+       }
+    */
+
+    if(
+        product.image &&
+        typeof product.image === "object"
+    ){
+
+        const objectImage =
+            product.image.url ||
+            product.image.downloadURL ||
+            product.image.downloadUrl;
+
+        if(
+            typeof objectImage === "string" &&
+            objectImage.trim()
+        ){
+
+            return convertImageUrl(
+                objectImage.trim()
+            );
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+
+/* =====================================================
+   CONVERT COMMON IMAGE LINKS
+===================================================== */
+
+function convertImageUrl(url){
+
+    if(!url){
+        return "";
+    }
+
+
+    let finalUrl = String(url).trim();
+
+
+    /*
+       GOOGLE DRIVE
+
+       Converts common sharing links
+       into a direct image URL.
+    */
+
+    const driveMatch =
+        finalUrl.match(
+            /drive\.google\.com\/file\/d\/([^/]+)/
+        );
+
+
+    if(driveMatch){
+
+        return (
+            "https://drive.google.com/uc?export=view&id=" +
+            driveMatch[1]
+        );
+
+    }
+
+
+    /*
+       GOOGLE DRIVE OPEN LINKS
+    */
+
+    const driveIdMatch =
+        finalUrl.match(
+            /drive\.google\.com\/open\?id=([^&]+)/
+        );
+
+
+    if(driveIdMatch){
+
+        return (
+            "https://drive.google.com/uc?export=view&id=" +
+            driveIdMatch[1]
+        );
+
+    }
+
+
+    /*
+       DROPBOX
+
+       Converts ?dl=0 to ?raw=1.
+    */
+
+    if(
+        finalUrl.includes("dropbox.com")
+    ){
+
+        finalUrl =
+            finalUrl
+                .replace("?dl=0","?raw=1")
+                .replace("?dl=1","?raw=1");
+
+        if(
+            !finalUrl.includes("raw=1") &&
+            finalUrl.includes("?")
+        ){
+
+            finalUrl += "&raw=1";
+
+        }
+
+        else if(
+            !finalUrl.includes("raw=1")
+        ){
+
+            finalUrl += "?raw=1";
+
+        }
+
+    }
+
+
+    return finalUrl;
+
+}
+
+
+
 /* =====================================================
    USA FIRESTORE PRODUCT FILTER
 ===================================================== */
@@ -1300,17 +1580,141 @@ function imageFallback(){
 function isUSAProduct(product){
 
     const destination =
-        String(product.destination || "")
-            .trim()
-            .toLowerCase()
-            .replace(/\s+/g," ");
+        String(
+            product.destination || ""
+        )
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g," ");
+
 
     return (
+
         destination === "usa" ||
+
         destination === "usa & canada"
+
     );
 
 }
+
+
+
+/* =====================================================
+   CREATE IMAGE ELEMENT
+===================================================== */
+
+function createProductImage(
+    product,
+    productName
+){
+
+    const wrapper =
+        document.createElement(
+            "div"
+        );
+
+    wrapper.className =
+        "product-image-wrapper";
+
+
+    const image =
+        getProductImage(product);
+
+
+    if(!image){
+
+        wrapper.innerHTML = `
+
+            <div class="image-placeholder">
+
+                <div class="image-placeholder-icon">
+                    🛍️
+                </div>
+
+                <div>
+                    Product image unavailable
+                </div>
+
+            </div>
+
+        `;
+
+        return wrapper;
+
+    }
+
+
+    const img =
+        document.createElement(
+            "img"
+        );
+
+
+    img.className =
+        "product-image";
+
+
+    img.alt =
+        productName || "Fame Store Gift";
+
+
+    img.loading =
+        "lazy";
+
+
+    img.src =
+        image;
+
+
+    /*
+       IMPORTANT:
+
+       If image URL fails,
+       replace it with Fame Store
+       placeholder instead of showing
+       a broken-image icon.
+    */
+
+    img.addEventListener(
+        "error",
+        () => {
+
+            console.warn(
+                "Product image failed to load:",
+                image
+            );
+
+
+            wrapper.innerHTML = `
+
+                <div class="image-placeholder">
+
+                    <div class="image-placeholder-icon">
+                        🛍️
+                    </div>
+
+                    <div>
+                        Product image unavailable
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    wrapper.appendChild(
+        img
+    );
+
+
+    return wrapper;
+
+}
+
 
 
 /* =====================================================
@@ -1323,15 +1727,24 @@ function renderProducts(){
 
 
     const visibleFirestoreProducts =
-        firestoreProducts.filter(product => {
+        firestoreProducts.filter(
+            product => {
 
-            if(product.active === false){
-                return false;
+                if(
+                    product.active === false
+                ){
+
+                    return false;
+
+                }
+
+
+                return isUSAProduct(
+                    product
+                );
+
             }
-
-            return isUSAProduct(product);
-
-        });
+        );
 
 
     const allProducts = [
@@ -1374,7 +1787,9 @@ function renderProducts(){
     ];
 
 
-    if(!allProducts.length){
+    if(
+        !allProducts.length
+    ){
 
         productsContainer.innerHTML = `
 
@@ -1397,43 +1812,68 @@ function renderProducts(){
     }
 
 
-    allProducts.forEach(product => {
+    allProducts.forEach(
+        product => {
 
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "product-card";
-
-
-        const image =
-            product.image ||
-            imageFallback();
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-        const category =
-            product.category ||
-            "Gifts";
+            card.className =
+                "product-card";
 
 
-        const destination =
-            product.destination ||
-            "USA";
+            const productName =
+                product.name ||
+                "Gift";
 
 
-        card.innerHTML = `
+            const category =
+                product.category ||
+                "Gifts";
 
-            <img
-                class="product-image"
-                src="${escapeHTML(image)}"
-                alt="${escapeHTML(product.name || "Gift")}"
-                loading="lazy"
-            >
 
-            <div class="product-info">
+            const destination =
+                product.destination ||
+                "USA";
+
+
+            /*
+               CREATE IMAGE SAFELY
+            */
+
+            const imageWrapper =
+                createProductImage(
+                    product,
+                    productName
+                );
+
+
+            card.appendChild(
+                imageWrapper
+            );
+
+
+            /*
+               PRODUCT INFORMATION
+            */
+
+            const info =
+                document.createElement(
+                    "div"
+                );
+
+
+            info.className =
+                "product-info";
+
+
+            info.innerHTML = `
 
                 <div class="product-name">
-                    ${escapeHTML(product.name || "Gift")}
+                    ${escapeHTML(productName)}
                 </div>
 
                 <div class="product-category">
@@ -1446,54 +1886,57 @@ function renderProducts(){
 
                 ${
                     product.source === "firestore"
-                    ? `
-                        <div class="product-destination">
-                            ${escapeHTML(destination)}
-                        </div>
-                      `
-                    : ""
+                    ?
+                    `
+                    <div class="product-destination">
+                        🌎 ${escapeHTML(destination)}
+                    </div>
+                    `
+                    :
+                    ""
                 }
 
                 <button
                     type="button"
-                    class="gift-btn"
-                >
+                    class="gift-btn">
                     Send as Gift
                 </button>
 
-            </div>
-
-        `;
+            `;
 
 
-        const imageElement =
-            card.querySelector(".product-image");
-
-
-        imageElement.addEventListener(
-            "error",
-            () => {
-
-                imageElement.src =
-                    imageFallback();
-
-            }
-        );
-
-
-        card
-            .querySelector(".gift-btn")
-            .addEventListener(
-                "click",
-                () => openCheckout(product)
+            card.appendChild(
+                info
             );
 
 
-        productsContainer.appendChild(card);
+            const giftButton =
+                info.querySelector(
+                    ".gift-btn"
+                );
 
-    });
+
+            giftButton.addEventListener(
+                "click",
+                () => {
+
+                    openCheckout(
+                        product
+                    );
+
+                }
+            );
+
+
+            productsContainer.appendChild(
+                card
+            );
+
+        }
+    );
 
 }
+
 
 
 /* =====================================================
@@ -1503,7 +1946,10 @@ function renderProducts(){
 function loadFirestoreProducts(){
 
     const productsRef =
-        collection(db,"products");
+        collection(
+            db,
+            "products"
+        );
 
 
     onSnapshot(
@@ -1524,6 +1970,12 @@ function loadFirestoreProducts(){
                 );
 
 
+            console.log(
+                "Fame Store products loaded:",
+                firestoreProducts
+            );
+
+
             renderProducts();
 
         },
@@ -1535,7 +1987,10 @@ function loadFirestoreProducts(){
                 error
             );
 
-            firestoreProducts = [];
+
+            firestoreProducts =
+                [];
+
 
             renderProducts();
 
@@ -1545,6 +2000,7 @@ function loadFirestoreProducts(){
 }
 
 
+
 /* =====================================================
    START PRODUCTS
 ===================================================== */
@@ -1552,6 +2008,7 @@ function loadFirestoreProducts(){
 renderProducts();
 
 loadFirestoreProducts();
+
 
 
 /* =====================================================
@@ -1564,9 +2021,11 @@ onAuthStateChanged(
 
         if(!user){
 
-            currentUser = null;
+            currentUser =
+                null;
 
-            currentBalance = 0;
+            currentBalance =
+                0;
 
             walletBalance.textContent =
                 money(0);
@@ -1587,6 +2046,7 @@ onAuthStateChanged(
 
     }
 );
+
 
 
 /* =====================================================
@@ -1610,17 +2070,25 @@ async function loadWallet(){
 
 
         const snap =
-            await getDoc(userRef);
+            await getDoc(
+                userRef
+            );
 
 
-        if(!snap.exists()){
+        if(
+            !snap.exists()
+        ){
 
-            currentBalance = 0;
+            currentBalance =
+                0;
 
-        }else{
+        }
+
+        else{
 
             const data =
                 snap.data();
+
 
             currentBalance =
                 Number(
@@ -1631,11 +2099,15 @@ async function loadWallet(){
 
 
         walletBalance.textContent =
-            money(currentBalance);
+            money(
+                currentBalance
+            );
 
 
         checkoutBalance.textContent =
-            money(currentBalance);
+            money(
+                currentBalance
+            );
 
 
     }catch(error){
@@ -1648,6 +2120,7 @@ async function loadWallet(){
     }
 
 }
+
 
 
 /* =====================================================
@@ -1683,11 +2156,40 @@ function openCheckout(product){
     );
 
 
-    document.getElementById(
-        "selectedImage"
-    ).src =
-        product.image ||
+    /*
+       USE THE SAME IMAGE
+       THAT WAS USED IN PRODUCT CARD
+    */
+
+    const selectedImage =
+        document.getElementById(
+            "selectedImage"
+        );
+
+
+    const productImage =
+        getProductImage(
+            product
+        );
+
+
+    selectedImage.src =
+        productImage ||
         imageFallback();
+
+
+    selectedImage.onerror =
+        () => {
+
+            selectedImage.src =
+                imageFallback();
+
+        };
+
+
+    selectedImage.alt =
+        product.name ||
+        "Gift";
 
 
     document.getElementById(
@@ -1700,23 +2202,31 @@ function openCheckout(product){
     document.getElementById(
         "selectedPrice"
     ).textContent =
-        money(product.price);
+        money(
+            product.price
+        );
 
 
     document.getElementById(
         "basePrice"
     ).textContent =
-        money(product.price);
+        money(
+            product.price
+        );
 
 
     document.getElementById(
         "totalPrice"
     ).textContent =
-        money(product.price);
+        money(
+            product.price
+        );
 
 
     checkoutBalance.textContent =
-        money(currentBalance);
+        money(
+            currentBalance
+        );
 
 
     document.getElementById(
@@ -1733,12 +2243,15 @@ function openCheckout(product){
 }
 
 
+
 /* =====================================================
    BACK TO GIFTS
 ===================================================== */
 
 document
-.getElementById("backProducts")
+.getElementById(
+    "backProducts"
+)
 .addEventListener(
     "click",
     () => {
@@ -1766,6 +2279,7 @@ document
 );
 
 
+
 /* =====================================================
    POPUP
 ===================================================== */
@@ -1780,18 +2294,23 @@ function showPopup(
         "message-box";
 
 
-    if(type === "success"){
+    if(
+        type === "success"
+    ){
 
         messageBox.classList.add(
             "success"
         );
+
 
         messageIcon.textContent =
             "✓";
 
     }
 
-    else if(type === "login"){
+    else if(
+        type === "login"
+    ){
 
         messageIcon.textContent =
             "🔐";
@@ -1821,6 +2340,7 @@ function showPopup(
 }
 
 
+
 thanksButton.addEventListener(
     "click",
     () => {
@@ -1831,6 +2351,7 @@ thanksButton.addEventListener(
 
     }
 );
+
 
 
 /* =====================================================
@@ -1859,7 +2380,9 @@ function validateForm(){
     ){
 
         const field =
-            document.getElementById(id);
+            document.getElementById(
+                id
+            );
 
 
         if(!field){
@@ -1874,7 +2397,9 @@ function validateForm(){
         }
 
 
-        if(!field.value.trim()){
+        if(
+            !field.value.trim()
+        ){
 
             field.focus();
 
@@ -1888,6 +2413,7 @@ function validateForm(){
     return true;
 
 }
+
 
 
 /* =====================================================
@@ -1951,6 +2477,7 @@ function getFormData(){
 }
 
 
+
 /* =====================================================
    CLEAR FORM
 ===================================================== */
@@ -1976,11 +2503,15 @@ function clearCheckoutForm(){
         id => {
 
             const field =
-                document.getElementById(id);
+                document.getElementById(
+                    id
+                );
+
 
             if(field){
 
-                field.value = "";
+                field.value =
+                    "";
 
             }
 
@@ -1994,6 +2525,7 @@ function clearCheckoutForm(){
         "United States";
 
 }
+
 
 
 /* =====================================================
@@ -2072,7 +2604,9 @@ confirmButton.addEventListener(
         }
 
 
-        if(currentBalance < total){
+        if(
+            currentBalance < total
+        ){
 
             showPopup(
                 "error",
@@ -2120,6 +2654,17 @@ confirmButton.addEventListener(
                 getFormData();
 
 
+            /*
+               SAVE THE ACTUAL IMAGE
+               USED BY THE PRODUCT.
+            */
+
+            const productImage =
+                getProductImage(
+                    currentProduct
+                );
+
+
             const selectedProduct = {
 
                 name:
@@ -2129,7 +2674,7 @@ confirmButton.addEventListener(
 
                 image:
                     String(
-                        currentProduct.image || ""
+                        productImage || ""
                     ),
 
                 price:
@@ -2170,7 +2715,9 @@ confirmButton.addEventListener(
                             );
 
 
-                        if(!userSnap.exists()){
+                        if(
+                            !userSnap.exists()
+                        ){
 
                             throw new Error(
                                 "USER_NOT_FOUND"
@@ -2349,11 +2896,15 @@ confirmButton.addEventListener(
 
 
             walletBalance.textContent =
-                money(currentBalance);
+                money(
+                    currentBalance
+                );
 
 
             checkoutBalance.textContent =
-                money(currentBalance);
+                money(
+                    currentBalance
+                );
 
 
             confirmButton.textContent =
@@ -2463,6 +3014,7 @@ confirmButton.addEventListener(
 
     }
 );
+
 
 
 /* =====================================================
