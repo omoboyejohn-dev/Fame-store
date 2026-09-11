@@ -466,8 +466,6 @@ textarea{
 
 <body>
 
-<!-- HEADER -->
-
 <header class="header">
 
     <div class="brand-icon">
@@ -569,17 +567,13 @@ textarea{
             </div>
 
 
-            <!-- CONTACT INFO -->
-
             <div class="section-title">
                 Contact Info
             </div>
 
             <div class="form-group">
 
-                <label>
-                    Your Phone
-                </label>
+                <label>Your Phone</label>
 
                 <input
                     id="yourPhone"
@@ -591,21 +585,15 @@ textarea{
             </div>
 
 
-            <!-- DELIVERY -->
-
             <div class="section-title">
-
                 <span id="deliveryTitle">
                     Delivery Info
                 </span>
-
             </div>
 
             <div class="form-group">
 
-                <label>
-                    Sender Name
-                </label>
+                <label>Sender Name</label>
 
                 <input
                     id="senderName"
@@ -618,9 +606,7 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    Recipient Name
-                </label>
+                <label>Recipient Name</label>
 
                 <input
                     id="recipientName"
@@ -633,9 +619,7 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    Recipient Phone
-                </label>
+                <label>Recipient Phone</label>
 
                 <input
                     id="recipientPhone"
@@ -648,9 +632,7 @@ textarea{
 
             <div class="form-group">
 
-                <label>
-                    Street / House Address
-                </label>
+                <label>Street / House Address</label>
 
                 <input
                     id="streetAddress"
@@ -665,9 +647,7 @@ textarea{
 
                 <div class="form-group">
 
-                    <label>
-                        City
-                    </label>
+                    <label>City</label>
 
                     <input
                         id="city"
@@ -696,13 +676,9 @@ textarea{
             </div>
 
 
-            <!-- COUNTRY -->
-
             <div class="form-group">
 
-                <label>
-                    Country
-                </label>
+                <label>Country</label>
 
                 <input
                     id="country"
@@ -729,8 +705,6 @@ textarea{
             </div>
 
 
-            <!-- NOTES -->
-
             <div class="section-title">
                 Additional Notes
             </div>
@@ -745,8 +719,6 @@ textarea{
             </div>
 
 
-            <!-- PAYMENT -->
-
             <div class="section-title">
                 Payment Summary
             </div>
@@ -755,9 +727,7 @@ textarea{
 
                 <div class="summary-row">
 
-                    <span>
-                        Base Price
-                    </span>
+                    <span>Base Price</span>
 
                     <strong id="basePrice">
                         ₦0.00
@@ -767,9 +737,7 @@ textarea{
 
                 <div class="summary-row summary-total">
 
-                    <span>
-                        Total
-                    </span>
+                    <span>Total</span>
 
                     <strong id="totalPrice">
                         ₦0.00
@@ -779,9 +747,7 @@ textarea{
 
                 <div class="summary-row">
 
-                    <span>
-                        Your Balance
-                    </span>
+                    <span>Your Balance</span>
 
                     <strong
                         class="balance"
@@ -808,8 +774,6 @@ textarea{
 
 </section>
 
-
-<!-- BOTTOM -->
 
 <div class="bottom-area">
 
@@ -870,11 +834,9 @@ import {
     db
 } from "./firebase-config.js";
 
-
 import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
 
 import {
     doc,
@@ -887,274 +849,280 @@ import {
 
 
 /* =========================================================
-   OLD / LEGACY PRODUCTS
+   ALL STATIC / OLD PRODUCTS
 ========================================================= */
 
 const legacyProducts = [
 
-{
-    name:"Glass Flower",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ab65_Purple"
-},
-
-{
-    name:"Glass Flower",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ac3f_Blue"
-},
-
-{
-    name:"Glass Flower",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058a940_xv"
-},
-
-    const products = [
     {
-        name: "U.S. Polo Assn. Men's Boxers, 3-Pack",
-        category: "Fashion",
-        price: 35000,
-        image: "https://i.postimg.cc/xTZx6Fy2/s-l300(11).png"
+        name:"Glass Flower",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ab65_Purple"
     },
 
     {
-        name: "Seiko Spirit SBTR027 Chronograph Blue Dial Stainless Steel Men's Watch",
-        category: "Watches",
-        price: 135000,
-        image: "https://i.postimg.cc/8P7wfmQ8/s-l300(1).png"
+        name:"Glass Flower",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ac3f_Blue"
     },
 
     {
-        name: "Seiko Quality Dial Men's Watch",
-        category: "Watches",
-        price: 135000,
-        image: "https://i.postimg.cc/gjTDBnhN/s-l300(12).png"
+        name:"Glass Flower",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058a940_xv"
+    },
+
+    /* NEW PRODUCT 1 */
+
+    {
+        name:"U.S. Polo Assn. Men's Boxers, 3-Pack",
+        category:"Fashion",
+        price:35000,
+        image:"https://i.postimg.cc/xTZx6Fy2/s-l300(11).png"
+    },
+
+    /* NEW PRODUCT 2 */
+
+    {
+        name:"Seiko Spirit SBTR027 Chronograph Blue Dial Stainless Steel Men's Watch",
+        category:"Watches",
+        price:135000,
+        image:"https://i.postimg.cc/8P7wfmQ8/s-l300(1).png"
+    },
+
+    /* NEW PRODUCT 3 */
+
+    {
+        name:"Seiko Quality Dial Men's Watch",
+        category:"Watches",
+        price:135000,
+        image:"https://i.postimg.cc/gjTDBnhN/s-l300(12).png"
+    },
+
+    /* NEW PRODUCT 4 */
+
+    {
+        name:"Bulova Marine Star-98B308-Men's Black Rubber Strap Quartz Watch Blue Dial 44mm",
+        category:"Watches",
+        price:135000,
+        image:"https://i.postimg.cc/vBXXfPZH/s-l300(13).png"
     },
 
     {
-        name: "Bulova Marine Star-98B308-Men's Black Rubber Strap Quartz Watch Blue Dial 44mm",
-        category: "Watches",
-        price: 135000,
-        image: "https://i.postimg.cc/vBXXfPZH/s-l300(13).png"
+        name:"Fresh Cut Flower",
+        price:45000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018b91_media_698d3fd2b0149"
+    },
+
+    {
+        name:"Fresh Cut Flower",
+        price:45000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018a52_media_698d3fd332f71"
+    },
+
+    {
+        name:"Fresh Cut Flower",
+        price:45000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d0188b3_media_698d3fd3b5d0a"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:25000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1916b_IMG_5382"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:25000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19279_IMG_5381"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:25000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19359_IMG_5380"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:25000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1942c_IMG_5379"
+    },
+
+    {
+        name:"Artificial Peonies Flowers",
+        price:25000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb194e4_IMG_5378"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931930b_Blue"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993193ae_Yellow"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931944a_Black"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993194e3_White"
+    },
+
+    {
+        name:"Artificial Rose Flowers",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c99319235_Red"
+    },
+
+    {
+        name:"AMG Benz Car Key",
+        price:230000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebe39_1000008930"
+    },
+
+    {
+        name:"AMG Benz Car Key",
+        price:230000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebf39_1000008931"
+    },
+
+    {
+        name:"Benz Key",
+        price:45000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238600_6a3acd889a953_1000008917"
+    },
+
+    {
+        name:"Tesla Key",
+        price:135000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238712_6a3acdf8eba67_1000008919"
+    },
+
+    {
+        name:"House Keys",
+        price:30000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238998_6a3acf16450ca_1000008923"
+    },
+
+    {
+        name:"Costway 3pcs Patio Acacia Wood Bistro Table Rocking Chair Set All-Weather Rope Outdoor",
+        price:250000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3pcs-Patio-Acacia-Wood-Bistro-Table-Rocking-Chair-Set-All-Weather-Rope-Outdoor_038a53ef-54cf-4ac9-be33-73863fc4b4fb.25eddf448bcecbf77ff23fe5bea83047"
+    },
+
+    {
+        name:"Costway 3 PCS Acacia Wood Patio Bistro Set Folding Table & Chairs Set with Cushions Navy",
+        price:195000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3-PCS-Acacia-Wood-Patio-Bistro-Set-Folding-Table-Chairs-Set-with-Cushions-Navy_9d86ceee-77ed-4972-a995-7a194c39a22f.cc4b7ebad2af83b9d788acd3f4c94690"
+    },
+
+    {
+        name:"Grand Patio 3-Piece Metal Outdoor Folding Bistro Set, Garden-Pea Green, Bistro Table and Chairs",
+        price:75000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Grand-Patio-Metal-3-Piece-Outdoor-Folding-Bistro-Set-Garden-Pea-Green_52cb114e-076a-4e13-94bc-72011bd08533.4b6dcb8a1b65ea741437a8f7e4d046e5"
+    },
+
+    {
+        name:"3-Piece Outdoor Folding Bistro Set Metal Patio Table & Chairs Set",
+        price:75000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/3-Piece-Outdoor-Folding-Bistro-Set-Metal-Patio-Table-Chairs-Set-Balcony-Backyard-Garden-Weather-Resistant-Small-Bistro-Set-Assembly-Required_8716a781-af35-4be9-8c8b-8e6413d15c8f.cfe1ea998f11fe8a665b314850f08b97"
+    },
+
+    {
+        name:"Bistro Table Chairs Set 3-Piece Outdoor Folding Patio Bistro Set",
+        price:75000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Bistro-Table-Chairs-Set-3-Piece-Outdoor-Folding-Patio-Bistro-Set-Foldable-Steel-Frame-Table-2-Chairs-Balcony-Garden-Yard-Porch-Weather-Resistant-Spac_5e9745c4-8469-4d3a-b668-d7153db27c9a.4c495713856d7b49966b4366664abc55"
+    },
+
+    {
+        name:"2.25Ct Round Moissanite 18K White Gold Over Silver Under Halo Bridal Set Wedding Engagement Ring Set",
+        price:95000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/silrxxx399-1111_1024x"
+    },
+
+    {
+        name:"Pizza And Coke",
+        price:20000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782219179_6a3a81abe67c6_IMG_4529"
+    },
+
+    {
+        name:"Wrapster And Pepsi",
+        price:15000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/wrapster-and-pepsi6846"
+    },
+
+    {
+        name:"4 In 1 Boss Combo",
+        price:25000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4-in-1-boss-combo7174"
+    },
+
+    {
+        name:"The Big Boss",
+        price:33000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/the-big-boss6576"
+    },
+
+    {
+        name:"Sweet Chilli Chicken",
+        price:15000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/sweet-chilli-chicken6236"
+    },
+
+    {
+        name:"Chicken Supreme",
+        price:17500,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/chicken-supreme5834"
+    },
+
+    {
+        name:"Chicken Strips 6pcs",
+        price:15000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/crumbed-chicken-strips5294"
+    },
+
+    {
+        name:"Chicken Wings (6pcs)",
+        price:15000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/saucy-chicken-wings9489"
+    },
+
+    {
+        name:"Teddy Bear",
+        price:150000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4f2623f0890a59b52ad6041c0376a958"
+    },
+
+    {
+        name:"Teddy Bear",
+        price:150000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/f38cec07b07bfc75cace01e4b50ef4c6"
+    },
+
+    {
+        name:"Teddy Bear",
+        price:150000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/531872b26909d00eb50dedfb42c602c8"
+    },
+
+    {
+        name:"Teddy Bear",
+        price:150000,
+        image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/a12d4294ccec72b254eef7d1254f5a51"
     }
-];
-
-{
-    name:"Fresh Cut Flower",
-    price:45000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018b91_media_698d3fd2b0149"
-},
-
-{
-    name:"Fresh Cut Flower",
-    price:45000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018a52_media_698d3fd332f71"
-},
-
-{
-    name:"Fresh Cut Flower",
-    price:45000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d0188b3_media_698d3fd3b5d0a"
-},
-
-{
-    name:"Artificial Peonies Flowers",
-    price:25000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1916b_IMG_5382"
-},
-
-{
-    name:"Artificial Peonies Flowers",
-    price:25000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19279_IMG_5381"
-},
-
-{
-    name:"Artificial Peonies Flowers",
-    price:25000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19359_IMG_5380"
-},
-
-{
-    name:"Artificial Peonies Flowers",
-    price:25000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1942c_IMG_5379"
-},
-
-{
-    name:"Artificial Peonies Flowers",
-    price:25000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb194e4_IMG_5378"
-},
-
-{
-    name:"Artificial Rose Flowers",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931930b_Blue"
-},
-
-{
-    name:"Artificial Rose Flowers",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993193ae_Yellow"
-},
-
-{
-    name:"Artificial Rose Flowers",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931944a_Black"
-},
-
-{
-    name:"Artificial Rose Flowers",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993194e3_White"
-},
-
-{
-    name:"Artificial Rose Flowers",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c99319235_Red"
-},
-
-{
-    name:"AMG Benz Car Key",
-    price:230000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebe39_1000008930"
-},
-
-{
-    name:"AMG Benz Car Key",
-    price:230000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebf39_1000008931"
-},
-
-{
-    name:"Benz Key",
-    price:45000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238600_6a3acd889a953_1000008917"
-},
-
-{
-    name:"Tesla Key",
-    price:135000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238712_6a3acdf8eba67_1000008919"
-},
-
-{
-    name:"House Keys",
-    price:30000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238998_6a3acf16450ca_1000008923"
-},
-
-{
-    name:"Costway 3pcs Patio Acacia Wood Bistro Table Rocking Chair Set All-Weather Rope Outdoor",
-    price:250000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3pcs-Patio-Acacia-Wood-Bistro-Table-Rocking-Chair-Set-All-Weather-Rope-Outdoor_038a53ef-54cf-4ac9-be33-73863fc4b4fb.25eddf448bcecbf77ff23fe5bea83047"
-},
-
-{
-    name:"Costway 3 PCS Acacia Wood Patio Bistro Set Folding Table & Chairs Set with Cushions Navy",
-    price:195000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3-PCS-Acacia-Wood-Patio-Bistro-Set-Folding-Table-Chairs-Set-with-Cushions-Navy_9d86ceee-77ed-4972-a995-7a194c39a22f.cc4b7ebad2af83b9d788acd3f4c94690"
-},
-
-{
-    name:"Grand Patio 3-Piece Metal Outdoor Folding Bistro Set, Garden-Pea Green, Bistro Table and Chairs",
-    price:75000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Grand-Patio-Metal-3-Piece-Outdoor-Folding-Bistro-Set-Garden-Pea-Green_52cb114e-076a-4e13-94bc-72011bd08533.4b6dcb8a1b65ea741437a8f7e4d046e5"
-},
-
-{
-    name:"3-Piece Outdoor Folding Bistro Set Metal Patio Table & Chairs Set",
-    price:75000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/3-Piece-Outdoor-Folding-Bistro-Set-Metal-Patio-Table-Chairs-Set-Balcony-Backyard-Garden-Weather-Resistant-Small-Bistro-Set-Assembly-Required_8716a781-af35-4be9-8c8b-8e6413d15c8f.cfe1ea998f11fe8a665b314850f08b97"
-},
-
-{
-    name:"Bistro Table Chairs Set 3-Piece Outdoor Folding Patio Bistro Set",
-    price:75000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Bistro-Table-Chairs-Set-3-Piece-Outdoor-Folding-Patio-Bistro-Set-Foldable-Steel-Frame-Table-2-Chairs-Balcony-Garden-Yard-Porch-Weather-Resistant-Spac_5e9745c4-8469-4d3a-b668-d7153db27c9a.4c495713856d7b49966b4366664abc55"
-},
-
-{
-    name:"2.25Ct Round Moissanite 18K White Gold Over Silver Under Halo Bridal Set Wedding Engagement Ring Set",
-    price:95000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/silrxxx399-1111_1024x"
-},
-
-{
-    name:"Pizza And Coke",
-    price:20000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782219179_6a3a81abe67c6_IMG_4529"
-},
-
-{
-    name:"Wrapster And Pepsi",
-    price:15000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/wrapster-and-pepsi6846"
-},
-
-{
-    name:"4 In 1 Boss Combo",
-    price:25000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4-in-1-boss-combo7174"
-},
-
-{
-    name:"The Big Boss",
-    price:33000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/the-big-boss6576"
-},
-
-{
-    name:"Sweet Chilli Chicken",
-    price:15000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/sweet-chilli-chicken6236"
-},
-
-{
-    name:"Chicken Supreme",
-    price:17500,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/chicken-supreme5834"
-},
-
-{
-    name:"Chicken Strips 6pcs",
-    price:15000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/crumbed-chicken-strips5294"
-},
-
-{
-    name:"Chicken Wings (6pcs)",
-    price:15000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/saucy-chicken-wings9489"
-},
-
-{
-    name:"Teddy Bear",
-    price:150000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4f2623f0890a59b52ad6041c0376a958"
-},
-
-{
-    name:"Teddy Bear",
-    price:150000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/f38cec07b07bfc75cace01e4b50ef4c6"
-},
-
-{
-    name:"Teddy Bear",
-    price:150000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/531872b26909d00eb50dedfb42c602c8"
-},
-
-{
-    name:"Teddy Bear",
-    price:150000,
-    image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/a12d4294ccec72b254eef7d1254f5a51"
-}
 
 ];
 
@@ -1281,7 +1249,6 @@ function applyCountry(){
     const zipField =
         document.getElementById("zipCode");
 
-
     countryField.value =
         countryInfo.country;
 
@@ -1385,7 +1352,6 @@ function firestoreProductIsForCountry(product){
             .trim()
             .toLowerCase();
 
-
     if(
         countryInfo.country === "Canada"
     ){
@@ -1397,10 +1363,24 @@ function firestoreProductIsForCountry(product){
 
     }
 
-
     return (
         destination === "usa" ||
         destination === "usa & canada"
+    );
+
+}
+
+
+/* =========================================================
+   GET PRODUCT IMAGE
+========================================================= */
+
+function getProductImage(product){
+
+    return (
+        product.image ||
+        product.imageUrl ||
+        imageFallback()
     );
 
 }
@@ -1413,14 +1393,6 @@ function firestoreProductIsForCountry(product){
 function renderProducts(){
 
     productsContainer.innerHTML = "";
-
-
-    /*
-       OLD PRODUCTS ARE ALWAYS SHOWN.
-
-       Firestore products are added AFTER
-       the old products.
-    */
 
     const visibleFirestoreProducts =
         firestoreProducts.filter(product => {
@@ -1438,11 +1410,11 @@ function renderProducts(){
 
         ...legacyProducts.map(
             (product,index) => ({
+
                 ...product,
 
                 id:
-                    "legacy-" +
-                    index,
+                    "legacy-" + index,
 
                 source:"legacy",
 
@@ -1455,12 +1427,17 @@ function renderProducts(){
 
         ...visibleFirestoreProducts.map(
             product => ({
+
                 ...product,
 
                 id:
                     product.id,
 
-                source:"firestore"
+                source:"firestore",
+
+                category:
+                    product.category ||
+                    "Gifts"
 
             })
         )
@@ -1473,14 +1450,13 @@ function renderProducts(){
         productsContainer.innerHTML = `
 
             <div class="empty-products">
-
                 No gifts are currently available.
-
             </div>
 
         `;
 
         return;
+
     }
 
 
@@ -1494,8 +1470,7 @@ function renderProducts(){
 
 
         const image =
-            product.image ||
-            imageFallback();
+            getProductImage(product);
 
 
         const category =
@@ -1511,6 +1486,7 @@ function renderProducts(){
                 alt="${escapeHTML(product.name)}"
                 loading="eager"
                 decoding="async"
+                fetchpriority="high"
             >
 
             <div class="product-info">
@@ -1540,7 +1516,9 @@ function renderProducts(){
 
 
         const imageElement =
-            card.querySelector(".product-image");
+            card.querySelector(
+                ".product-image"
+            );
 
 
         imageElement.addEventListener(
@@ -1588,7 +1566,8 @@ function loadFirestoreProducts(){
                 snapshot.docs.map(
                     productDoc => ({
 
-                        id:productDoc.id,
+                        id:
+                            productDoc.id,
 
                         ...productDoc.data()
 
@@ -1607,13 +1586,6 @@ function loadFirestoreProducts(){
                 error
             );
 
-
-            /*
-               IMPORTANT:
-
-               Even if Firestore fails,
-               the old products remain visible.
-            */
 
             firestoreProducts = [];
 
@@ -1654,6 +1626,7 @@ onAuthStateChanged(
                 "₦0.00";
 
             return;
+
         }
 
 
@@ -1761,11 +1734,23 @@ function openCheckout(product){
         .add("active");
 
 
-    document.getElementById(
-        "selectedImage"
-    ).src =
-        product.image ||
-        imageFallback();
+    const selectedImage =
+        document.getElementById(
+            "selectedImage"
+        );
+
+
+    selectedImage.src =
+        getProductImage(product);
+
+
+    selectedImage.onerror =
+        () => {
+
+            selectedImage.src =
+                imageFallback();
+
+        };
 
 
     document.getElementById(
@@ -2095,18 +2080,17 @@ document
                                 latestBalance - total;
 
 
-                            /* DEDUCT WALLET */
-
                             transaction.update(
                                 userRef,
                                 {
                                     walletBalance:
-                                        newBalance
+                                        newBalance,
+
+                                    lastGiftOrderId:
+                                        orderRef.id
                                 }
                             );
 
-
-                            /* CREATE ORDER */
 
                             transaction.set(
                                 orderRef,
@@ -2122,26 +2106,30 @@ document
                                         currentProduct.id || "",
 
                                     productSource:
-                                        currentProduct.source || "legacy",
+                                        currentProduct.source ||
+                                        "legacy",
 
                                     productName:
                                         currentProduct.name,
 
                                     productImage:
-                                        currentProduct.image || "",
+                                        getProductImage(
+                                            currentProduct
+                                        ),
 
                                     productCategory:
-                                        currentProduct.category || "Gifts",
+                                        currentProduct.category ||
+                                        "Gifts",
 
                                     productDestination:
-                                        currentProduct.destination || "",
+                                        currentProduct.destination ||
+                                        "",
 
                                     basePrice:
                                         total,
 
                                     total:
                                         total,
-
 
                                     yourPhone:
                                         document
@@ -2151,7 +2139,6 @@ document
                                             .value
                                             .trim(),
 
-
                                     senderName:
                                         document
                                             .getElementById(
@@ -2159,7 +2146,6 @@ document
                                             )
                                             .value
                                             .trim(),
-
 
                                     recipientName:
                                         document
@@ -2169,7 +2155,6 @@ document
                                             .value
                                             .trim(),
 
-
                                     recipientPhone:
                                         document
                                             .getElementById(
@@ -2177,7 +2162,6 @@ document
                                             )
                                             .value
                                             .trim(),
-
 
                                     streetAddress:
                                         document
@@ -2187,7 +2171,6 @@ document
                                             .value
                                             .trim(),
 
-
                                     city:
                                         document
                                             .getElementById(
@@ -2195,7 +2178,6 @@ document
                                             )
                                             .value
                                             .trim(),
-
 
                                     state:
                                         document
@@ -2205,10 +2187,8 @@ document
                                             .value
                                             .trim(),
 
-
                                     country:
                                         countryInfo.country,
-
 
                                     zipCode:
                                         document
@@ -2218,7 +2198,6 @@ document
                                             .value
                                             .trim(),
 
-
                                     additionalNotes:
                                         document
                                             .getElementById(
@@ -2226,7 +2205,6 @@ document
                                             )
                                             .value
                                             .trim(),
-
 
                                     paymentMethod:
                                         "Wallet",
@@ -2392,4 +2370,4 @@ messageOverlay.addEventListener(
 </script>
 
 </body>
-</html>
+    </html>
