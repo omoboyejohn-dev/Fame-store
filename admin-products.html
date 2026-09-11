@@ -6,471 +6,487 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Products Management | Fame Store</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-rel="stylesheet">
+<title>Fame Store | USA Gifts</title>
 
 <style>
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-}
-
-:root{
-    --blue:#0757d9;
-    --dark-blue:#063b91;
-    --yellow:#ffc928;
-    --white:#fff;
-    --black:#101828;
-    --gray:#667085;
-    --light:#f5f8fc;
-    --border:#e5eaf1;
-    --green:#087443;
-    --red:#b42318;
 }
 
 body{
-    font-family:"Inter",sans-serif;
-    background:var(--light);
-    color:var(--black);
+    font-family:Arial,sans-serif;
+    background:#f6f9ff;
+    color:#101828;
 }
 
 button,
 input,
-select{
+textarea{
     font-family:inherit;
 }
 
-button{
-    cursor:pointer;
-}
-
-button:disabled{
-    opacity:.65;
-    cursor:not-allowed;
-}
-
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
 .header{
-    background:white;
-    border-bottom:1px solid var(--border);
-    min-height:70px;
-    padding:15px 25px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:11px;
+    background:#fff;
+    border-bottom:1px solid #e7edf5;
+    padding:22px 18px;
+    text-align:center;
 }
 
 .brand-icon{
-    width:43px;
-    height:43px;
-    background:var(--yellow);
-    border-radius:12px;
-    display:grid;
-    place-items:center;
-    font-size:21px;
+    font-size:34px;
+    margin-bottom:5px;
 }
 
 .brand-name{
-    color:var(--blue);
-    font-size:18px;
-    font-weight:800;
-}
-
-.brand-role{
-    color:var(--gray);
-    font-size:9px;
-    margin-top:3px;
-}
-
-.admin-badge{
-    background:#eaf2ff;
-    color:var(--blue);
-    padding:8px 13px;
-    border-radius:20px;
-    font-size:10px;
-    font-weight:800;
-}
-
-
-/* =========================
-   CONTAINER
-========================= */
-
-.container{
-    width:min(1200px,100%);
-    margin:auto;
-    padding:28px 18px 60px;
-}
-
-
-/* =========================
-   TITLE
-========================= */
-
-.page-title{
-    margin-bottom:22px;
-}
-
-.page-title h1{
+    color:#0757d9;
     font-size:25px;
     font-weight:800;
 }
 
-.page-title p{
-    color:var(--gray);
-    font-size:12px;
-    margin-top:6px;
-}
-
-
-/* =========================
-   MESSAGE
-========================= */
-
-.message{
-    display:none;
-    padding:13px 15px;
-    border-radius:10px;
-    margin-bottom:18px;
-    font-size:12px;
-}
-
-.message.show{
-    display:block;
-}
-
-.message.success{
-    color:var(--green);
-    background:#ecfff4;
-    border:1px solid #b9efd1;
-}
-
-.message.error{
-    color:var(--red);
-    background:#fff1f0;
-    border:1px solid #ffd3d0;
-}
-
-
-/* =========================
-   ADD PRODUCT CARD
-========================= */
-
-.form-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:22px;
-    margin-bottom:25px;
-}
-
-.form-header{
-    margin-bottom:20px;
-}
-
-.form-header h2{
-    font-size:16px;
-}
-
-.form-header p{
-    color:var(--gray);
-    font-size:11px;
+.brand-text{
+    color:#667085;
+    font-size:13px;
     margin-top:5px;
 }
 
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.form-group{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
-}
-
-.form-group.full{
-    grid-column:1/-1;
-}
-
-.form-group label{
-    font-size:11px;
+.wallet-box{
+    display:inline-block;
+    margin-top:14px;
+    background:#eef5ff;
+    color:#0757d9;
+    padding:9px 15px;
+    border-radius:20px;
+    font-size:13px;
     font-weight:700;
 }
 
-.form-group input,
-.form-group select{
-    width:100%;
-    height:45px;
-    border:1px solid #d9e0ea;
-    border-radius:9px;
-    padding:0 13px;
-    outline:none;
-    background:white;
-    font-size:12px;
-}
-
-.form-group input:focus,
-.form-group select:focus{
-    border-color:var(--blue);
-    box-shadow:0 0 0 3px rgba(7,87,217,.08);
-}
-
-.form-actions{
-    margin-top:18px;
-    display:flex;
-    gap:10px;
-}
-
-.primary-btn{
-    height:45px;
-    padding:0 20px;
-    border:0;
-    border-radius:9px;
-    background:var(--blue);
-    color:white;
-    font-size:12px;
-    font-weight:800;
-}
-
-.primary-btn:hover{
-    background:var(--dark-blue);
-}
-
-.secondary-btn{
-    height:45px;
-    padding:0 20px;
-    border:1px solid #d9e0ea;
-    border-radius:9px;
-    background:white;
-    color:#475467;
+.country-badge{
+    display:inline-block;
+    margin-top:9px;
+    background:#eef5ff;
+    color:#0757d9;
+    padding:7px 13px;
+    border-radius:18px;
     font-size:12px;
     font-weight:700;
 }
 
-.secondary-btn:hover{
-    background:#f8fafc;
+.container{
+    width:min(1200px,100%);
+    margin:auto;
+    padding:25px 16px 35px;
 }
 
-
-/* =========================
-   PRODUCTS HEADER
-========================= */
-
-.products-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:15px;
+.page-title{
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.products-header h2{
-    font-size:17px;
+.page-title h1{
+    font-size:27px;
+    margin-bottom:7px;
 }
 
-.product-count{
-    color:var(--gray);
-    font-size:11px;
+.page-title p{
+    color:#667085;
+    font-size:13px;
 }
-
-
-/* =========================
-   PRODUCTS
-========================= */
 
 .products{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:18px;
 }
 
 .product-card{
-    background:white;
-    border:1px solid var(--border);
-    border-radius:16px;
+    background:#fff;
+    border:1px solid #e4e9f0;
+    border-radius:17px;
     overflow:hidden;
+    box-shadow:0 8px 25px rgba(16,24,40,.06);
+    transition:.2s;
+}
+
+.product-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(16,24,40,.10);
+}
+
+
+/* =========================
+   PRODUCT IMAGE
+========================= */
+
+.product-image-wrapper{
+    width:100%;
+    height:220px;
+    background:#eef2f6;
+    overflow:hidden;
+    position:relative;
 }
 
 .product-image{
     width:100%;
-    height:210px;
-    background:#f8fafc;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    background:#eef2f6;
+}
+
+.image-placeholder{
+    width:100%;
+    height:100%;
     display:flex;
     align-items:center;
     justify-content:center;
-    overflow:hidden;
+    flex-direction:column;
+    gap:8px;
+    color:#667085;
+    font-size:12px;
+    text-align:center;
+    padding:15px;
 }
 
-.product-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.image-placeholder-icon{
+    font-size:38px;
 }
 
-.product-content{
-    padding:17px;
+.product-info{
+    padding:15px;
 }
 
 .product-name{
-    font-size:14px;
-    font-weight:800;
+    font-size:15px;
+    font-weight:700;
     line-height:1.4;
+    min-height:42px;
 }
 
-.product-price{
-    color:var(--blue);
-    font-size:16px;
-    font-weight:800;
-    margin-top:7px;
-}
-
-.product-destination{
+.product-category{
     display:inline-block;
-    margin-top:9px;
-    padding:5px 8px;
-    border-radius:15px;
-    background:#f2f4f7;
-    color:#475467;
-    font-size:9px;
+    margin-top:7px;
+    padding:4px 8px;
+    border-radius:20px;
+    background:#eef5ff;
+    color:#0757d9;
+    font-size:11px;
     font-weight:700;
 }
 
-.product-actions{
-    display:flex;
-    gap:8px;
-    margin-top:15px;
-}
-
-.edit-btn,
-.delete-btn{
-    flex:1;
-    height:38px;
-    border-radius:8px;
-    font-size:10px;
+.product-price{
+    color:#0757d9;
+    font-size:18px;
     font-weight:800;
+    margin:10px 0 13px;
 }
 
-.edit-btn{
-    border:1px solid #cddcff;
-    background:#edf4ff;
-    color:var(--blue);
+.product-destination{
+    color:#667085;
+    font-size:11px;
+    margin-bottom:10px;
 }
 
-.delete-btn{
-    border:1px solid #ffd3d0;
-    background:#fff1f0;
-    color:var(--red);
+.gift-btn{
+    width:100%;
+    border:0;
+    background:#0757d9;
+    color:#fff;
+    padding:12px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
 }
 
+.gift-btn:hover{
+    background:#063b91;
+}
 
-/* =========================
-   LOADING
-========================= */
-
-.loading,
-.empty{
-    background:white;
-    border:1px solid var(--border);
+.empty-products{
+    grid-column:1/-1;
+    background:#fff;
+    border:1px solid #e4e9f0;
     border-radius:15px;
-    padding:40px 20px;
+    padding:35px 20px;
     text-align:center;
-    color:var(--gray);
-    font-size:12px;
+    color:#667085;
 }
 
-.empty{
-    display:none;
+.loading-products{
+    grid-column:1/-1;
+    text-align:center;
+    padding:40px 20px;
+    color:#667085;
+    font-size:14px;
 }
 
 
 /* =========================
-   MODAL
+   BOTTOM
 ========================= */
 
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(16,24,40,.55);
+.bottom-area{
+    text-align:center;
+    padding:10px 18px 35px;
+}
 
+.dashboard-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#fff;
+    border:1px solid #d9e1eb;
+    color:#344054;
+    padding:12px 20px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:700;
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+#checkout{
     display:none;
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-    z-index:500;
 }
 
-.modal.show{
-    display:flex;
+#checkout.active{
+    display:block;
 }
 
-.modal-box{
-    width:min(500px,100%);
-    max-height:90vh;
-    overflow:auto;
+#productsSection.hidden{
+    display:none;
+}
 
-    background:white;
-    border-radius:17px;
+.checkout-container{
+    width:min(720px,100%);
+    margin:auto;
+    padding:25px 16px 40px;
+}
+
+.checkout-card{
+    background:#fff;
+    border:1px solid #e4e9f0;
+    border-radius:20px;
     padding:22px;
+    box-shadow:0 10px 35px rgba(16,24,40,.08);
 }
 
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.back-products{
+    border:0;
+    background:#eef3f8;
+    color:#344054;
+    padding:10px 14px;
+    border-radius:9px;
+    font-weight:700;
+    cursor:pointer;
     margin-bottom:20px;
 }
 
-.modal-header h2{
-    font-size:17px;
+.checkout-card h2{
+    font-size:26px;
+    margin-bottom:20px;
 }
 
-.close-btn{
-    width:34px;
-    height:34px;
-    border:0;
-    border-radius:8px;
-    background:#f2f4f7;
-    font-size:18px;
-}
-
-.modal-actions{
+.selected-product{
     display:flex;
-    gap:10px;
-    margin-top:20px;
+    align-items:center;
+    gap:14px;
+    background:#f5f8fc;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:25px;
 }
 
-.modal-actions button{
-    flex:1;
+.selected-product img{
+    width:75px;
+    height:75px;
+    object-fit:cover;
+    border-radius:10px;
+    background:#eef2f6;
+}
+
+.selected-name{
+    font-weight:800;
+    font-size:14px;
+}
+
+.selected-price{
+    color:#0757d9;
+    font-weight:800;
+    margin-top:6px;
+}
+
+.section-title{
+    font-size:17px;
+    font-weight:800;
+    margin:23px 0 13px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    border:1px solid #d9e1eb;
+    border-radius:10px;
+    outline:none;
+    padding:13px;
+    font-size:14px;
+}
+
+.form-group input{
+    height:49px;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#0757d9;
+    box-shadow:0 0 0 3px rgba(7,87,217,.08);
+}
+
+.form-group input[readonly]{
+    background:#f5f8fc;
+    color:#344054;
+    cursor:not-allowed;
+}
+
+.two-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.summary{
+    background:#f5f8fc;
+    border-radius:13px;
+    padding:17px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:13px;
+    font-size:14px;
+}
+
+.summary-total{
+    border-top:1px solid #dce3ec;
+    padding-top:13px;
+    font-size:18px;
+    font-weight:800;
+}
+
+.balance{
+    color:#087443;
+    font-weight:800;
+}
+
+.confirm-btn{
+    width:100%;
+    border:0;
+    background:#ffc928;
+    color:#101828;
+    padding:15px;
+    border-radius:10px;
+    margin-top:18px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.confirm-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+
+/* =========================
+   POPUP
+========================= */
+
+.message-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(16,24,40,.55);
+    z-index:9999;
+    padding:20px;
+    align-items:center;
+    justify-content:center;
+}
+
+.message-overlay.show{
+    display:flex;
+}
+
+.message-box{
+    width:min(390px,100%);
+    background:#fff;
+    border-radius:20px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 20px 70px rgba(0,0,0,.2);
+}
+
+.message-icon{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    margin:0 auto 15px;
+    font-size:27px;
+    background:#fff4d6;
+}
+
+.message-box.success .message-icon{
+    background:#e8fff2;
+    color:#087443;
+}
+
+.message-box h3{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.message-box p{
+    color:#667085;
+    font-size:14px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.thanks-btn{
+    width:100%;
+    border:0;
+    background:#0757d9;
+    color:#fff;
+    padding:13px;
+    border-radius:10px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.thanks-btn:hover{
+    background:#063b91;
 }
 
 
@@ -478,34 +494,41 @@ a{
    MOBILE
 ========================= */
 
-@media(max-width:900px){
+@media(max-width:600px){
 
     .products{
         grid-template-columns:repeat(2,1fr);
+        gap:12px;
     }
 
-}
+    .product-image-wrapper{
+        height:175px;
+    }
 
-@media(max-width:650px){
+    .product-info{
+        padding:11px;
+    }
 
-    .form-grid{
+    .product-name{
+        font-size:13px;
+    }
+
+    .product-price{
+        font-size:16px;
+    }
+
+    .gift-btn{
+        font-size:12px;
+        padding:11px 5px;
+    }
+
+    .two-columns{
         grid-template-columns:1fr;
+        gap:0;
     }
 
-    .form-group.full{
-        grid-column:auto;
-    }
-
-    .products{
-        grid-template-columns:1fr;
-    }
-
-    .header{
-        padding:14px;
-    }
-
-    .container{
-        padding:20px 12px 50px;
+    .checkout-card{
+        padding:18px;
     }
 
 }
@@ -520,495 +543,410 @@ a{
 
 <header class="header">
 
-    <div class="brand">
-
-        <div class="brand-icon">
-            🛍️
-        </div>
-
-        <div>
-
-            <div class="brand-name">
-                Fame Store
-            </div>
-
-            <div class="brand-role">
-                PRODUCT MANAGEMENT
-            </div>
-
-        </div>
-
+    <div class="brand-icon">
+        🛍️
     </div>
 
+    <div class="brand-name">
+        Fame Store
+    </div>
 
-    <div class="admin-badge">
-        ADMIN
+    <div class="brand-text">
+        Send gifts 🎁, share love ❤️
+    </div>
+
+    <div class="country-badge">
+        🇺🇸 United States
+    </div>
+
+    <div class="wallet-box">
+        Wallet:
+        <span id="walletBalance">₦0.00</span>
     </div>
 
 </header>
 
 
 
-<main class="container">
+<!-- =========================
+     PRODUCTS
+========================= -->
 
+<section id="productsSection">
 
-<section class="page-title">
+    <div class="container">
 
-    <h1>
-        Products Management
-    </h1>
+        <div class="page-title">
 
-    <p>
-        Add, edit and manage the products available on Fame Store.
-    </p>
+            <h1>
+                Send a Gift to USA 🇺🇸
+            </h1>
+
+            <p>
+                Choose a gift and send it to someone special in the United States.
+            </p>
+
+        </div>
+
+        <div
+            class="products"
+            id="products"
+        >
+
+            <div class="loading-products">
+                Loading gifts...
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<div
-    id="message"
-    class="message">
+
+<!-- =========================
+     CHECKOUT
+========================= -->
+
+<section id="checkout">
+
+    <div class="checkout-container">
+
+        <div class="checkout-card">
+
+            <button
+                type="button"
+                class="back-products"
+                id="backProducts"
+            >
+                ← Back to Gifts
+            </button>
+
+            <h2>
+                USA Checkout 🇺🇸
+            </h2>
+
+
+            <div class="selected-product">
+
+                <img
+                    id="selectedImage"
+                    src=""
+                    alt="Gift"
+                >
+
+                <div>
+
+                    <div
+                        class="selected-name"
+                        id="selectedName"
+                    ></div>
+
+                    <div
+                        class="selected-price"
+                        id="selectedPrice"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                Contact Info
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Your Phone
+                </label>
+
+                <input
+                    id="yourPhone"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    required
+                >
+
+            </div>
+
+
+            <div class="section-title">
+                USA Delivery Information
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Sender Name
+                </label>
+
+                <input
+                    id="senderName"
+                    type="text"
+                    placeholder="Sender name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Name
+                </label>
+
+                <input
+                    id="recipientName"
+                    type="text"
+                    placeholder="Recipient name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Recipient Phone
+                </label>
+
+                <input
+                    id="recipientPhone"
+                    type="tel"
+                    placeholder="Recipient phone"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Street / House Address
+                </label>
+
+                <input
+                    id="streetAddress"
+                    type="text"
+                    placeholder="Street / house address"
+                    required
+                >
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="form-group">
+
+                    <label>
+                        City
+                    </label>
+
+                    <input
+                        id="city"
+                        type="text"
+                        placeholder="City"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    <input
+                        id="state"
+                        type="text"
+                        placeholder="State"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="two-columns">
+
+                <div class="form-group">
+
+                    <label>
+                        Country
+                    </label>
+
+                    <input
+                        id="country"
+                        type="text"
+                        value="United States"
+                        readonly
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        ZIP Code
+                    </label>
+
+                    <input
+                        id="zipCode"
+                        type="text"
+                        placeholder="ZIP Code"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="section-title">
+                Additional Notes
+            </div>
+
+            <div class="form-group">
+
+                <textarea
+                    id="additionalNotes"
+                    placeholder="Gift message or delivery instructions"
+                ></textarea>
+
+            </div>
+
+
+            <div class="section-title">
+                Payment Summary
+            </div>
+
+            <div class="summary">
+
+                <div class="summary-row">
+
+                    <span>
+                        Base Price
+                    </span>
+
+                    <strong id="basePrice">
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="totalPrice">
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Your Balance
+                    </span>
+
+                    <strong
+                        class="balance"
+                        id="checkoutBalance"
+                    >
+                        ₦0.00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="confirm-btn"
+                id="confirmOrder"
+            >
+                Confirm Order
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     BOTTOM
+========================= -->
+
+<div class="bottom-area">
+
+    <a
+        href="dashboard.html"
+        class="dashboard-btn"
+    >
+        ← Back to Dashboard
+    </a>
+
 </div>
 
 
 
 <!-- =========================
-     ADD PRODUCT
-========================= -->
-
-<section class="form-card">
-
-    <div class="form-header">
-
-        <h2>
-            ➕ Add New Product
-        </h2>
-
-        <p>
-            Add a product that customers can order.
-        </p>
-
-    </div>
-
-
-    <form id="productForm">
-
-
-        <div class="form-grid">
-
-
-            <div class="form-group">
-
-                <label>
-                    Product Name
-                </label>
-
-                <input
-                    type="text"
-                    id="productName"
-                    placeholder="Example: Artificial Rose Flower Bouquet"
-                    required>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Price (NGN)
-                </label>
-
-                <input
-                    type="number"
-                    id="productPrice"
-                    placeholder="45000"
-                    min="0"
-                    step="0.01"
-                    required>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Product Image URL
-                </label>
-
-                <input
-                    type="url"
-                    id="productImage"
-                    placeholder="https://i.ibb.co/example/product.webp"
-                    required>
-
-            </div>
-
-
-            <!-- DESTINATION -->
-
-            <div class="form-group">
-
-                <label>
-                    Destination
-                </label>
-
-                <select id="productDestination">
-
-                    <option value="USA">
-                        USA
-                    </option>
-
-                    <option value="Canada">
-                        Canada
-                    </option>
-
-                    <option value="USA & Canada">
-                        USA & Canada
-                    </option>
-
-                    <option value="Other Countries">
-                        Other Countries
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- CATEGORY -->
-
-            <div class="form-group">
-
-                <label>
-                    Category
-                </label>
-
-                <select id="productCategory">
-
-                    <option value="Flowers">
-                        Flowers
-                    </option>
-
-                    <option value="Gifts">
-                        Gifts
-                    </option>
-
-                    <option value="Fashion">
-                        Fashion
-                    </option>
-
-                    <option value="Food">
-                        Food
-                    </option>
-
-                    <option value="Jewelry">
-                        Jewelry
-                    </option>
-
-                    <option value="Watches">
-                        Watches
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
-                </select>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="form-actions">
-
-            <button
-                type="submit"
-                class="primary-btn"
-                id="addProductBtn">
-
-                Add Product
-
-            </button>
-
-
-            <button
-                type="reset"
-                class="secondary-btn">
-
-                Clear
-
-            </button>
-
-        </div>
-
-
-    </form>
-
-</section>
-
-
-
-<!-- =========================
-     PRODUCT LIST
-========================= -->
-
-<section>
-
-    <div class="products-header">
-
-        <div>
-
-            <h2>
-                Store Products
-            </h2>
-
-            <div
-                class="product-count"
-                id="productCount">
-
-                0 products
-
-            </div>
-
-        </div>
-
-
-        <button
-            class="secondary-btn"
-            id="refreshBtn">
-
-            ↻ Refresh
-
-        </button>
-
-    </div>
-
-
-    <div
-        id="loading"
-        class="loading">
-
-        Loading products...
-
-    </div>
-
-
-    <div
-        id="empty"
-        class="empty">
-
-        <div style="font-size:40px;margin-bottom:10px;">
-            🛍️
-        </div>
-
-        <strong>
-            No products found
-        </strong>
-
-        <p style="margin-top:6px;">
-            Add your first product above.
-        </p>
-
-    </div>
-
-
-    <div
-        id="products"
-        class="products">
-    </div>
-
-</section>
-
-
-</main>
-
-
-
-<!-- =========================
-     EDIT MODAL
+     POPUP
 ========================= -->
 
 <div
-    class="modal"
-    id="editModal">
+    class="message-overlay"
+    id="messageOverlay"
+>
 
+    <div
+        class="message-box"
+        id="messageBox"
+    >
 
-    <div class="modal-box">
-
-
-        <div class="modal-header">
-
-            <h2>
-                Edit Product
-            </h2>
-
-            <button
-                type="button"
-                class="close-btn"
-                id="closeModal">
-
-                ×
-
-            </button>
-
+        <div
+            class="message-icon"
+            id="messageIcon"
+        >
+            ⚠️
         </div>
 
+        <h3 id="messageTitle">
+            Order Failed
+        </h3>
 
-        <form id="editForm">
+        <p id="messageText">
+            Unable to complete your order.
+        </p>
 
-
-            <input
-                type="hidden"
-                id="editId">
-
-
-            <div class="form-group"
-                 style="margin-bottom:14px;">
-
-                <label>
-                    Product Name
-                </label>
-
-                <input
-                    type="text"
-                    id="editName"
-                    required>
-
-            </div>
-
-
-            <div class="form-group"
-                 style="margin-bottom:14px;">
-
-                <label>
-                    Price (NGN)
-                </label>
-
-                <input
-                    type="number"
-                    id="editPrice"
-                    min="0"
-                    step="0.01"
-                    required>
-
-            </div>
-
-
-            <div class="form-group"
-                 style="margin-bottom:14px;">
-
-                <label>
-                    Product Image URL
-                </label>
-
-                <input
-                    type="url"
-                    id="editImage"
-                    required>
-
-            </div>
-
-
-            <!-- EDIT DESTINATION -->
-
-            <div class="form-group"
-                 style="margin-bottom:14px;">
-
-                <label>
-                    Destination
-                </label>
-
-                <select id="editDestination">
-
-                    <option value="USA">
-                        USA
-                    </option>
-
-                    <option value="Canada">
-                        Canada
-                    </option>
-
-                    <option value="USA & Canada">
-                        USA & Canada
-                    </option>
-
-                    <option value="Other Countries">
-                        Other Countries
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Category
-                </label>
-
-                <select id="editCategory">
-
-                    <option value="Flowers">
-                        Flowers
-                    </option>
-
-                    <option value="Gifts">
-                        Gifts
-                    </option>
-
-                    <option value="Fashion">
-                        Fashion
-                    </option>
-
-                    <option value="Food">
-                        Food
-                    </option>
-
-                    <option value="Jewelry">
-                        Jewelry
-                    </option>
-
-                    <option value="Watches">
-                        Watches
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="modal-actions">
-
-                <button
-                    type="button"
-                    class="secondary-btn"
-                    id="cancelEdit">
-
-                    Cancel
-
-                </button>
-
-
-                <button
-                    type="submit"
-                    class="primary-btn"
-                    id="saveEditBtn">
-
-                    Save Changes
-
-                </button>
-
-            </div>
-
-
-        </form>
+        <button
+            type="button"
+            class="thanks-btn"
+            id="thanksButton"
+        >
+            Thanks
+        </button>
 
     </div>
 
@@ -1018,10 +956,9 @@ a{
 
 <script type="module">
 
-
-/* =====================================
+/* =====================================================
    FIREBASE
-===================================== */
+===================================================== */
 
 import {
     auth,
@@ -1035,97 +972,322 @@ import {
 
 
 import {
-    collection,
-    getDocs,
-    getDoc,
     doc,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    serverTimestamp
+    getDoc,
+    collection,
+    serverTimestamp,
+    runTransaction,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+
+/* =====================================================
+   EXISTING USA PRODUCTS
+===================================================== */
+
+const legacyProducts = [
+
+{
+name:"Glass Flower",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ab65_Purple"
+},
+
+{
+name:"Glass Flower",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058ac3f_Blue"
+},
+
+{
+name:"Glass Flower",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782104837_6a38c3058a940_xv"
+},
+
+{
+name:"Fresh Cut Flower",
+price:45000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018b91_media_698d3fd2b0149"
+},
+
+{
+name:"Fresh Cut Flower",
+price:45000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d018a52_media_698d3fd332f71"
+},
+
+{
+name:"Fresh Cut Flower",
+price:45000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782105552_6a38c5d0188b3_media_698d3fd3b5d0a"
+},
+
+{
+name:"Artificial Peonies Flowers",
+price:25000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1916b_IMG_5382"
+},
+
+{
+name:"Artificial Peonies Flowers",
+price:25000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19279_IMG_5381"
+},
+
+{
+name:"Artificial Peonies Flowers",
+price:25000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb19359_IMG_5380"
+},
+
+{
+name:"Artificial Peonies Flowers",
+price:25000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb1942c_IMG_5379"
+},
+
+{
+name:"Artificial Peonies Flowers",
+price:25000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1781780667_6a33d0bb194e4_IMG_5378"
+},
+
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931930b_Blue"
+},
+
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993193ae_Yellow"
+},
+
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c9931944a_Black"
+},
+
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c993194e3_White"
+},
+
+{
+name:"Artificial Rose Flowers",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782106515_6a38c99319235_Red"
+},
+
+{
+name:"AMG Benz Car Key",
+price:230000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebe39_1000008930"
+},
+
+{
+name:"AMG Benz Car Key",
+price:230000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782239207_6a3acfe7ebf39_1000008931"
+},
+
+{
+name:"Benz Key",
+price:45000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238600_6a3acd889a953_1000008917"
+},
+
+{
+name:"Tesla Key",
+price:135000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238712_6a3acdf8eba67_1000008919"
+},
+
+{
+name:"House Keys",
+price:30000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782238998_6a3acf16450ca_1000008923"
+},
+
+{
+name:"Costway 3pcs Patio Acacia Wood Bistro Table Rocking Chair Set All-Weather Rope Outdoor",
+price:250000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3pcs-Patio-Acacia-Wood-Bistro-Table-Rocking-Chair-Set-All-Weather-Rope-Outdoor_038a53ef-54cf-4ac9-be33-73863fc4b4fb.25eddf448bcecbf77ff23fe5bea83047"
+},
+
+{
+name:"Costway 3 PCS Acacia Wood Patio Bistro Set Folding Table & Chairs Set with Cushions Navy",
+price:195000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Costway-3-PCS-Acacia-Wood-Patio-Bistro-Set-Folding-Table-Chairs-Set-with-Cushions-Navy_9d86ceee-77ed-4972-a995-7a194c39a22f.cc4b7ebad2af83b9d788acd3f4c94690"
+},
+
+{
+name:"Grand Patio 3-Piece Metal Outdoor Folding Bistro Set, Garden-Pea Green, Bistro Table and Chairs",
+price:75000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Grand-Patio-Metal-3-Piece-Outdoor-Folding-Bistro-Set-Garden-Pea-Green_52cb114e-076a-4e13-94bc-72011bd08533.4b6dcb8a1b65ea741437a8f7e4d046e5"
+},
+
+{
+name:"3-Piece Outdoor Folding Bistro Set Metal Patio Table & Chairs Set",
+price:75000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/3-Piece-Outdoor-Folding-Bistro-Set-Metal-Patio-Table-Chairs-Set-Balcony-Backyard-Garden-Weather-Resistant-Small-Bistro-Set-Assembly-Required_8716a781-af35-4be9-8c8b-8e6413d15c8f.cfe1ea998f11fe8a665b314850f08b97"
+},
+
+{
+name:"Bistro Table Chairs Set 3-Piece Outdoor Folding Patio Bistro Set",
+price:75000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/Bistro-Table-Chairs-Set-3-Piece-Outdoor-Folding-Patio-Bistro-Set-Foldable-Steel-Frame-Table-2-Chairs-Balcony-Garden-Yard-Porch-Weather-Resistant-Spac_5e9745c4-8469-4d3a-b668-d7153db27c9a.4c495713856d7b49966b4366664abc55"
+},
+
+{
+name:"2.25Ct Round Moissanite 18K White Gold Over Silver Under Halo Bridal Set Wedding Engagement Ring Set",
+price:95000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/silrxxx399-1111_1024x"
+},
+
+{
+name:"Pizza And Coke",
+price:20000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/1782219179_6a3a81abe67c6_IMG_4529"
+},
+
+{
+name:"Wrapster And Pepsi",
+price:15000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/wrapster-and-pepsi6846"
+},
+
+{
+name:"4 In 1 Boss Combo",
+price:25000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4-in-1-boss-combo7174"
+},
+
+{
+name:"The Big Boss",
+price:33000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/the-big-boss6576"
+},
+
+{
+name:"Sweet Chilli Chicken",
+price:15000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/sweet-chilli-chicken6236"
+},
+
+{
+name:"Chicken Supreme",
+price:17500,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/chicken-supreme5834"
+},
+
+{
+name:"Chicken Strips 6pcs",
+price:15000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/crumbed-chicken-strips5294"
+},
+
+{
+name:"Chicken Wings (6pcs)",
+price:15000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/saucy-chicken-wings9489"
+},
+
+{
+name:"Teddy Bear",
+price:150000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/4f2623f0890a59b52ad6041c0376a958"
+},
+
+{
+name:"Teddy Bear",
+price:150000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/f38cec07b07bfc75cace01e4b50ef4c6"
+},
+
+{
+name:"Teddy Bear",
+price:150000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/531872b26909d00eb50dedfb42c602c8"
+},
+
+{
+name:"Teddy Bear",
+price:150000,
+image:"https://res.cloudinary.com/lr5eqmp3/image/upload/f_auto,q_auto/a12d4294ccec72b254eef7d1254f5a51"
 }
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+];
 
 
 
-/* =====================================
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentUser = null;
+let currentProduct = null;
+let currentBalance = 0;
+let orderProcessing = false;
+let firestoreProducts = [];
+
+
+
+/* =====================================================
    ELEMENTS
-===================================== */
-
-const message =
-    document.getElementById("message");
-
-const productForm =
-    document.getElementById("productForm");
+===================================================== */
 
 const productsContainer =
-    document.getElementById("products");
+document.getElementById("products");
 
-const loading =
-    document.getElementById("loading");
+const productsSection =
+document.getElementById("productsSection");
 
-const empty =
-    document.getElementById("empty");
+const checkout =
+document.getElementById("checkout");
 
-const productCount =
-    document.getElementById("productCount");
+const walletBalance =
+document.getElementById("walletBalance");
 
-const refreshBtn =
-    document.getElementById("refreshBtn");
+const checkoutBalance =
+document.getElementById("checkoutBalance");
 
-const editModal =
-    document.getElementById("editModal");
+const confirmButton =
+document.getElementById("confirmOrder");
 
-const editForm =
-    document.getElementById("editForm");
+const messageOverlay =
+document.getElementById("messageOverlay");
 
-const closeModal =
-    document.getElementById("closeModal");
+const messageBox =
+document.getElementById("messageBox");
 
-const cancelEdit =
-    document.getElementById("cancelEdit");
+const messageIcon =
+document.getElementById("messageIcon");
 
+const messageTitle =
+document.getElementById("messageTitle");
 
-let currentAdmin = null;
+const messageText =
+document.getElementById("messageText");
 
-
-
-/* =====================================
-   MESSAGE
-===================================== */
-
-function showMessage(text,type){
-
-    message.textContent = text;
-
-    message.className =
-        "message show " + type;
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-    setTimeout(() => {
-
-        message.className =
-            "message";
-
-    },5000);
-
-}
+const thanksButton =
+document.getElementById("thanksButton");
 
 
 
-/* =====================================
+/* =====================================================
    MONEY
-===================================== */
+===================================================== */
 
-function formatMoney(amount){
+function money(value){
 
     return "₦" +
-        Number(amount || 0).toLocaleString(
+        Number(value || 0).toLocaleString(
             "en-NG",
             {
                 minimumFractionDigits:2,
@@ -1137,9 +1299,9 @@ function formatMoney(amount){
 
 
 
-/* =====================================
+/* =====================================================
    ESCAPE HTML
-===================================== */
+===================================================== */
 
 function escapeHTML(value){
 
@@ -1154,896 +1316,704 @@ function escapeHTML(value){
 
 
 
-/* =====================================
-   CHECK ADMIN
-===================================== */
+/* =====================================================
+   IMAGE FALLBACK
+===================================================== */
 
-async function checkAdmin(user){
+function imageFallback(){
 
-    const userRef =
-        doc(
-            db,
-            "users",
-            user.uid
-        );
+    return "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="600"
+                 height="500"
+                 viewBox="0 0 600 500">
 
+                <rect
+                    width="600"
+                    height="500"
+                    fill="#eef2f6"
+                />
 
-    const snapshot =
-        await getDoc(userRef);
+                <circle
+                    cx="300"
+                    cy="205"
+                    r="55"
+                    fill="#ffffff"
+                />
 
+                <text
+                    x="300"
+                    y="210"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                    font-family="Arial"
+                    font-size="45"
+                    fill="#0757d9">
+                    🛍
+                </text>
 
-    if(!snapshot.exists()){
+                <text
+                    x="300"
+                    y="310"
+                    text-anchor="middle"
+                    font-family="Arial"
+                    font-size="25"
+                    font-weight="bold"
+                    fill="#667085">
+                    Fame Store
+                </text>
 
-        throw new Error(
-            "Admin profile was not found."
-        );
-
-    }
-
-
-    const data =
-        snapshot.data();
-
-
-    if(data.role !== "admin"){
-
-        throw new Error(
-            "Access denied. This account is not an admin."
-        );
-
-    }
-
-
-    currentAdmin = user;
+            </svg>
+        `);
 
 }
 
 
 
-/* =====================================
-   LOAD PRODUCTS
-===================================== */
+/* =====================================================
+   GET IMAGE FROM FIRESTORE PRODUCT
+===================================================== */
 
-async function loadProducts(){
+function getProductImage(product){
 
-    loading.style.display =
-        "block";
-
-    empty.style.display =
-        "none";
-
-    productsContainer.innerHTML =
-        "";
+    if(!product){
+        return "";
+    }
 
 
-    try{
+    /*
+       MAIN FIELD USED BY YOUR ADMIN PAGE
+    */
 
-        const snapshot =
-            await getDocs(
-                collection(
-                    db,
-                    "products"
-                )
-            );
+    if(
+        typeof product.image === "string" &&
+        product.image.trim()
+    ){
 
-
-        const products = [];
-
-
-        snapshot.forEach(
-            productDoc => {
-
-                products.push({
-
-                    id:productDoc.id,
-
-                    ...productDoc.data()
-
-                });
-
-            }
+        return convertImageUrl(
+            product.image.trim()
         );
 
-
-        loading.style.display =
-            "none";
+    }
 
 
-        productCount.textContent =
-            products.length +
-            (
-                products.length === 1
-                    ? " product"
-                    : " products"
+    /*
+       OTHER COMMON FIELD NAMES
+    */
+
+    const possibleFields = [
+
+        "imageUrl",
+        "imageURL",
+        "photoURL",
+        "photoUrl",
+        "image_url",
+        "thumbnail",
+        "thumbnailUrl",
+        "productImage",
+        "productImageUrl"
+
+    ];
+
+
+    for(
+        const field of possibleFields
+    ){
+
+        if(
+            typeof product[field] === "string" &&
+            product[field].trim()
+        ){
+
+            return convertImageUrl(
+                product[field].trim()
             );
-
-
-        if(products.length === 0){
-
-            empty.style.display =
-                "block";
-
-            return;
 
         }
 
-
-        products.forEach(
-            product => {
-
-                renderProduct(
-                    product
-                );
-
-            }
-        );
+    }
 
 
-    }catch(error){
+    /*
+       SUPPORT OBJECT FORMAT
 
-        console.error(
-            "Load products error:",
-            error
-        );
+       Example:
 
+       image:{
+          url:"https://..."
+       }
+    */
 
-        loading.style.display =
-            "none";
+    if(
+        product.image &&
+        typeof product.image === "object"
+    ){
 
+        const objectImage =
+            product.image.url ||
+            product.image.downloadURL ||
+            product.image.downloadUrl;
 
-        showMessage(
-            "Unable to load products: " +
-            error.message,
-            "error"
-        );
+        if(
+            typeof objectImage === "string" &&
+            objectImage.trim()
+        ){
+
+            return convertImageUrl(
+                objectImage.trim()
+            );
+
+        }
 
     }
+
+
+    return "";
 
 }
 
 
 
-/* =====================================
-   RENDER PRODUCT
-===================================== */
+/* =====================================================
+   CONVERT COMMON IMAGE LINKS
+===================================================== */
 
-function renderProduct(product){
+function convertImageUrl(url){
 
-    const card =
-        document.createElement("div");
-
-
-    card.className =
-        "product-card";
+    if(!url){
+        return "";
+    }
 
 
-    const image =
-        product.image ||
-        product.imageUrl ||
-        "";
+    let finalUrl = String(url).trim();
 
 
-    const name =
-        product.name ||
-        "Unnamed Product";
+    /*
+       GOOGLE DRIVE
 
+       Converts common sharing links
+       into a direct image URL.
+    */
 
-    const price =
-        Number(
-            product.price || 0
+    const driveMatch =
+        finalUrl.match(
+            /drive\.google\.com\/file\/d\/([^/]+)/
         );
 
+
+    if(driveMatch){
+
+        return (
+            "https://drive.google.com/uc?export=view&id=" +
+            driveMatch[1]
+        );
+
+    }
+
+
+    /*
+       GOOGLE DRIVE OPEN LINKS
+    */
+
+    const driveIdMatch =
+        finalUrl.match(
+            /drive\.google\.com\/open\?id=([^&]+)/
+        );
+
+
+    if(driveIdMatch){
+
+        return (
+            "https://drive.google.com/uc?export=view&id=" +
+            driveIdMatch[1]
+        );
+
+    }
+
+
+    /*
+       DROPBOX
+
+       Converts ?dl=0 to ?raw=1.
+    */
+
+    if(
+        finalUrl.includes("dropbox.com")
+    ){
+
+        finalUrl =
+            finalUrl
+                .replace("?dl=0","?raw=1")
+                .replace("?dl=1","?raw=1");
+
+        if(
+            !finalUrl.includes("raw=1") &&
+            finalUrl.includes("?")
+        ){
+
+            finalUrl += "&raw=1";
+
+        }
+
+        else if(
+            !finalUrl.includes("raw=1")
+        ){
+
+            finalUrl += "?raw=1";
+
+        }
+
+    }
+
+
+    return finalUrl;
+
+}
+
+
+
+/* =====================================================
+   USA FIRESTORE PRODUCT FILTER
+===================================================== */
+
+function isUSAProduct(product){
 
     const destination =
-        product.destination ||
-        "USA & Canada";
+        String(
+            product.destination || ""
+        )
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g," ");
 
 
-    const category =
-        product.category ||
-        "Other";
+    return (
 
+        destination === "usa" ||
 
-    card.innerHTML = `
+        destination === "usa & canada"
 
-        <div class="product-image">
-
-            ${
-                image
-                ?
-                `
-                <img
-                    src="${escapeHTML(image)}"
-                    alt="${escapeHTML(name)}"
-                    loading="lazy"
-                    onerror="this.style.display='none'">
-                `
-                :
-                `
-                <span style="font-size:40px;">
-                    🛍️
-                </span>
-                `
-            }
-
-        </div>
-
-
-        <div class="product-content">
-
-            <div class="product-name">
-
-                ${escapeHTML(name)}
-
-            </div>
-
-
-            <div class="product-price">
-
-                ${formatMoney(price)}
-
-            </div>
-
-
-            <span class="product-destination">
-
-                🌎 ${escapeHTML(destination)}
-
-                • ${escapeHTML(category)}
-
-            </span>
-
-
-            <div class="product-actions">
-
-                <button
-                    type="button"
-                    class="edit-btn"
-                    data-edit>
-
-                    ✏️ Edit
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="delete-btn"
-                    data-delete>
-
-                    🗑️ Delete
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
-
-
-    productsContainer.appendChild(
-        card
-    );
-
-
-    card
-        .querySelector("[data-edit]")
-        .addEventListener(
-            "click",
-            () => {
-
-                openEditModal(
-                    product
-                );
-
-            }
-        );
-
-
-    card
-        .querySelector("[data-delete]")
-        .addEventListener(
-            "click",
-            () => {
-
-                deleteProduct(
-                    product.id,
-                    name
-                );
-
-            }
-        );
-
-}
-
-
-
-/* =====================================
-   ADD PRODUCT
-===================================== */
-
-productForm.addEventListener(
-    "submit",
-    async event => {
-
-        event.preventDefault();
-
-
-        if(!currentAdmin){
-
-            showMessage(
-                "Admin authentication is missing.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        const name =
-            document
-                .getElementById("productName")
-                .value
-                .trim();
-
-
-        const price =
-            Number(
-                document
-                    .getElementById("productPrice")
-                    .value
-            );
-
-
-        const image =
-            document
-                .getElementById("productImage")
-                .value
-                .trim();
-
-
-        const destination =
-            document
-                .getElementById("productDestination")
-                .value;
-
-
-        const category =
-            document
-                .getElementById("productCategory")
-                .value;
-
-
-        if(!name){
-
-            showMessage(
-                "Enter a product name.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if(
-            !Number.isFinite(price) ||
-            price < 0
-        ){
-
-            showMessage(
-                "Enter a valid price.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if(!image){
-
-            showMessage(
-                "Enter the product image URL.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        const button =
-            document.getElementById(
-                "addProductBtn"
-            );
-
-
-        button.disabled =
-            true;
-
-        button.textContent =
-            "Adding...";
-
-
-        try{
-
-            await addDoc(
-                collection(
-                    db,
-                    "products"
-                ),
-                {
-
-                    name:name,
-
-                    price:price,
-
-                    image:image,
-
-                    destination:destination,
-
-                    category:category,
-
-                    active:true,
-
-                    createdAt:
-                        serverTimestamp(),
-
-                    createdBy:
-                        currentAdmin.uid
-
-                }
-            );
-
-
-            showMessage(
-                "Product added successfully.",
-                "success"
-            );
-
-
-            productForm.reset();
-
-
-            await loadProducts();
-
-
-        }catch(error){
-
-            console.error(
-                "Add product error:",
-                error
-            );
-
-
-            if(
-                error.code ===
-                "permission-denied"
-            ){
-
-                showMessage(
-                    "Permission denied. Your Firestore Rules must allow admins to manage products.",
-                    "error"
-                );
-
-            }else{
-
-                showMessage(
-                    "Unable to add product: " +
-                    error.message,
-                    "error"
-                );
-
-            }
-
-        }finally{
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "Add Product";
-
-        }
-
-    }
-);
-
-
-
-/* =====================================
-   OPEN EDIT
-===================================== */
-
-function openEditModal(product){
-
-    document.getElementById(
-        "editId"
-    ).value =
-        product.id;
-
-
-    document.getElementById(
-        "editName"
-    ).value =
-        product.name || "";
-
-
-    document.getElementById(
-        "editPrice"
-    ).value =
-        product.price || 0;
-
-
-    document.getElementById(
-        "editImage"
-    ).value =
-        product.image ||
-        product.imageUrl ||
-        "";
-
-
-    document.getElementById(
-        "editDestination"
-    ).value =
-        product.destination ||
-        "USA & Canada";
-
-
-    document.getElementById(
-        "editCategory"
-    ).value =
-        product.category ||
-        "Other";
-
-
-    editModal.classList.add(
-        "show"
     );
 
 }
 
 
 
-/* =====================================
-   CLOSE EDIT
-===================================== */
-
-function closeEditModal(){
-
-    editModal.classList.remove(
-        "show"
-    );
-
-}
-
-
-closeModal.addEventListener(
-    "click",
-    closeEditModal
-);
-
-
-cancelEdit.addEventListener(
-    "click",
-    closeEditModal
-);
-
-
-editModal.addEventListener(
-    "click",
-    event => {
-
-        if(
-            event.target ===
-            editModal
-        ){
-
-            closeEditModal();
-
-        }
-
-    }
-);
-
-
-
-/* =====================================
-   SAVE EDIT
-===================================== */
-
-editForm.addEventListener(
-    "submit",
-    async event => {
-
-        event.preventDefault();
-
-
-        if(!currentAdmin){
-
-            showMessage(
-                "Admin authentication is missing.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        const id =
-            document
-                .getElementById("editId")
-                .value;
-
-
-        const name =
-            document
-                .getElementById("editName")
-                .value
-                .trim();
-
-
-        const price =
-            Number(
-                document
-                    .getElementById("editPrice")
-                    .value
-            );
-
-
-        const image =
-            document
-                .getElementById("editImage")
-                .value
-                .trim();
-
-
-        const destination =
-            document
-                .getElementById("editDestination")
-                .value;
-
-
-        const category =
-            document
-                .getElementById("editCategory")
-                .value;
-
-
-        if(!name){
-
-            showMessage(
-                "Product name is required.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if(
-            !Number.isFinite(price) ||
-            price < 0
-        ){
-
-            showMessage(
-                "Enter a valid price.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if(!image){
-
-            showMessage(
-                "Product image URL is required.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        const button =
-            document.getElementById(
-                "saveEditBtn"
-            );
-
-
-        button.disabled =
-            true;
-
-        button.textContent =
-            "Saving...";
-
-
-        try{
-
-            await updateDoc(
-                doc(
-                    db,
-                    "products",
-                    id
-                ),
-                {
-
-                    name:name,
-
-                    price:price,
-
-                    image:image,
-
-                    destination:destination,
-
-                    category:category,
-
-                    updatedAt:
-                        serverTimestamp(),
-
-                    updatedBy:
-                        currentAdmin.uid
-
-                }
-            );
-
-
-            closeEditModal();
-
-
-            showMessage(
-                "Product updated successfully.",
-                "success"
-            );
-
-
-            await loadProducts();
-
-
-        }catch(error){
-
-            console.error(
-                "Update product error:",
-                error
-            );
-
-
-            if(
-                error.code ===
-                "permission-denied"
-            ){
-
-                showMessage(
-                    "Permission denied. Check your Firestore Rules.",
-                    "error"
-                );
-
-            }else{
-
-                showMessage(
-                    "Unable to update product: " +
-                    error.message,
-                    "error"
-                );
-
-            }
-
-        }finally{
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "Save Changes";
-
-        }
-
-    }
-);
-
-
-
-/* =====================================
-   DELETE PRODUCT
-===================================== */
-
-async function deleteProduct(
-    productId,
+/* =====================================================
+   CREATE IMAGE ELEMENT
+===================================================== */
+
+function createProductImage(
+    product,
     productName
 ){
 
-    if(!currentAdmin){
-
-        showMessage(
-            "Admin authentication is missing.",
-            "error"
+    const wrapper =
+        document.createElement(
+            "div"
         );
 
-        return;
+    wrapper.className =
+        "product-image-wrapper";
+
+
+    const image =
+        getProductImage(product);
+
+
+    if(!image){
+
+        wrapper.innerHTML = `
+
+            <div class="image-placeholder">
+
+                <div class="image-placeholder-icon">
+                    🛍️
+                </div>
+
+                <div>
+                    Product image unavailable
+                </div>
+
+            </div>
+
+        `;
+
+        return wrapper;
 
     }
 
 
-    const confirmed =
-        confirm(
-            "Delete this product?\n\n" +
-            productName +
-            "\n\nThis action cannot be undone."
+    const img =
+        document.createElement(
+            "img"
         );
 
 
-    if(!confirmed){
-
-        return;
-
-    }
+    img.className =
+        "product-image";
 
 
-    try{
-
-        await deleteDoc(
-            doc(
-                db,
-                "products",
-                productId
-            )
-        );
+    img.alt =
+        productName || "Fame Store Gift";
 
 
-        showMessage(
-            "Product deleted successfully.",
-            "success"
-        );
+    img.loading =
+        "lazy";
 
 
-        await loadProducts();
+    img.src =
+        image;
 
 
-    }catch(error){
+    /*
+       IMPORTANT:
 
-        console.error(
-            "Delete product error:",
-            error
-        );
+       If image URL fails,
+       replace it with Fame Store
+       placeholder instead of showing
+       a broken-image icon.
+    */
 
+    img.addEventListener(
+        "error",
+        () => {
 
-        if(
-            error.code ===
-            "permission-denied"
-        ){
-
-            showMessage(
-                "Permission denied. Check your Firestore Rules.",
-                "error"
+            console.warn(
+                "Product image failed to load:",
+                image
             );
 
-        }else{
 
-            showMessage(
-                "Unable to delete product: " +
-                error.message,
-                "error"
-            );
+            wrapper.innerHTML = `
+
+                <div class="image-placeholder">
+
+                    <div class="image-placeholder-icon">
+                        🛍️
+                    </div>
+
+                    <div>
+                        Product image unavailable
+                    </div>
+
+                </div>
+
+            `;
 
         }
+    );
 
-    }
+
+    wrapper.appendChild(
+        img
+    );
+
+
+    return wrapper;
 
 }
 
 
 
-/* =====================================
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts(){
+
+    productsContainer.innerHTML = "";
+
+
+    const visibleFirestoreProducts =
+        firestoreProducts.filter(
+            product => {
+
+                if(
+                    product.active === false
+                ){
+
+                    return false;
+
+                }
+
+
+                return isUSAProduct(
+                    product
+                );
+
+            }
+        );
+
+
+    const allProducts = [
+
+        ...legacyProducts.map(
+            (product,index) => ({
+
+                ...product,
+
+                id:
+                    "legacy-" + index,
+
+                source:
+                    "legacy",
+
+                category:
+                    product.category ||
+                    "Gifts",
+
+                destination:
+                    "USA"
+
+            })
+        ),
+
+        ...visibleFirestoreProducts.map(
+            product => ({
+
+                ...product,
+
+                id:
+                    product.id,
+
+                source:
+                    "firestore"
+
+            })
+        )
+
+    ];
+
+
+    if(
+        !allProducts.length
+    ){
+
+        productsContainer.innerHTML = `
+
+            <div class="empty-products">
+
+                <strong>
+                    No gifts available
+                </strong>
+
+                <br><br>
+
+                Please check again later.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    allProducts.forEach(
+        product => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "product-card";
+
+
+            const productName =
+                product.name ||
+                "Gift";
+
+
+            const category =
+                product.category ||
+                "Gifts";
+
+
+            const destination =
+                product.destination ||
+                "USA";
+
+
+            /*
+               CREATE IMAGE SAFELY
+            */
+
+            const imageWrapper =
+                createProductImage(
+                    product,
+                    productName
+                );
+
+
+            card.appendChild(
+                imageWrapper
+            );
+
+
+            /*
+               PRODUCT INFORMATION
+            */
+
+            const info =
+                document.createElement(
+                    "div"
+                );
+
+
+            info.className =
+                "product-info";
+
+
+            info.innerHTML = `
+
+                <div class="product-name">
+                    ${escapeHTML(productName)}
+                </div>
+
+                <div class="product-category">
+                    ${escapeHTML(category)}
+                </div>
+
+                <div class="product-price">
+                    ${money(product.price)}
+                </div>
+
+                ${
+                    product.source === "firestore"
+                    ?
+                    `
+                    <div class="product-destination">
+                        🌎 ${escapeHTML(destination)}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+                <button
+                    type="button"
+                    class="gift-btn">
+                    Send as Gift
+                </button>
+
+            `;
+
+
+            card.appendChild(
+                info
+            );
+
+
+            const giftButton =
+                info.querySelector(
+                    ".gift-btn"
+                );
+
+
+            giftButton.addEventListener(
+                "click",
+                () => {
+
+                    openCheckout(
+                        product
+                    );
+
+                }
+            );
+
+
+            productsContainer.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   LOAD FIRESTORE PRODUCTS
+===================================================== */
+
+function loadFirestoreProducts(){
+
+    const productsRef =
+        collection(
+            db,
+            "products"
+        );
+
+
+    onSnapshot(
+        productsRef,
+
+        snapshot => {
+
+            firestoreProducts =
+                snapshot.docs.map(
+                    productDoc => ({
+
+                        id:
+                            productDoc.id,
+
+                        ...productDoc.data()
+
+                    })
+                );
+
+
+            console.log(
+                "Fame Store products loaded:",
+                firestoreProducts
+            );
+
+
+            renderProducts();
+
+        },
+
+        error => {
+
+            console.error(
+                "FIRESTORE PRODUCTS ERROR:",
+                error
+            );
+
+
+            firestoreProducts =
+                [];
+
+
+            renderProducts();
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   START PRODUCTS
+===================================================== */
+
+renderProducts();
+
+loadFirestoreProducts();
+
+
+
+/* =====================================================
    AUTH
-===================================== */
+===================================================== */
 
 onAuthStateChanged(
     auth,
@@ -2051,51 +2021,994 @@ onAuthStateChanged(
 
         if(!user){
 
-            window.location.href =
-                "login.html";
+            currentUser =
+                null;
+
+            currentBalance =
+                0;
+
+            walletBalance.textContent =
+                money(0);
+
+            checkoutBalance.textContent =
+                money(0);
 
             return;
 
         }
 
 
-        try{
+        currentUser =
+            user;
 
-            await checkAdmin(
-                user
+
+        await loadWallet();
+
+    }
+);
+
+
+
+/* =====================================================
+   LOAD WALLET
+===================================================== */
+
+async function loadWallet(){
+
+    if(!currentUser)
+        return;
+
+
+    try{
+
+        const userRef =
+            doc(
+                db,
+                "users",
+                currentUser.uid
             );
 
 
-            await loadProducts();
+        const snap =
+            await getDoc(
+                userRef
+            );
+
+
+        if(
+            !snap.exists()
+        ){
+
+            currentBalance =
+                0;
+
+        }
+
+        else{
+
+            const data =
+                snap.data();
+
+
+            currentBalance =
+                Number(
+                    data.walletBalance || 0
+                );
+
+        }
+
+
+        walletBalance.textContent =
+            money(
+                currentBalance
+            );
+
+
+        checkoutBalance.textContent =
+            money(
+                currentBalance
+            );
+
+
+    }catch(error){
+
+        console.error(
+            "LOAD WALLET ERROR:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   OPEN CHECKOUT
+===================================================== */
+
+function openCheckout(product){
+
+    if(!currentUser){
+
+        showPopup(
+            "login",
+            "Please Login First",
+            "Please login to your Fame Store account before sending a gift."
+        );
+
+        return;
+
+    }
+
+
+    currentProduct =
+        product;
+
+
+    productsSection.classList.add(
+        "hidden"
+    );
+
+
+    checkout.classList.add(
+        "active"
+    );
+
+
+    /*
+       USE THE SAME IMAGE
+       THAT WAS USED IN PRODUCT CARD
+    */
+
+    const selectedImage =
+        document.getElementById(
+            "selectedImage"
+        );
+
+
+    const productImage =
+        getProductImage(
+            product
+        );
+
+
+    selectedImage.src =
+        productImage ||
+        imageFallback();
+
+
+    selectedImage.onerror =
+        () => {
+
+            selectedImage.src =
+                imageFallback();
+
+        };
+
+
+    selectedImage.alt =
+        product.name ||
+        "Gift";
+
+
+    document.getElementById(
+        "selectedName"
+    ).textContent =
+        product.name ||
+        "Gift";
+
+
+    document.getElementById(
+        "selectedPrice"
+    ).textContent =
+        money(
+            product.price
+        );
+
+
+    document.getElementById(
+        "basePrice"
+    ).textContent =
+        money(
+            product.price
+        );
+
+
+    document.getElementById(
+        "totalPrice"
+    ).textContent =
+        money(
+            product.price
+        );
+
+
+    checkoutBalance.textContent =
+        money(
+            currentBalance
+        );
+
+
+    document.getElementById(
+        "country"
+    ).value =
+        "United States";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+
+/* =====================================================
+   BACK TO GIFTS
+===================================================== */
+
+document
+.getElementById(
+    "backProducts"
+)
+.addEventListener(
+    "click",
+    () => {
+
+        checkout.classList.remove(
+            "active"
+        );
+
+
+        productsSection.classList.remove(
+            "hidden"
+        );
+
+
+        currentProduct =
+            null;
+
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+);
+
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+function showPopup(
+    type,
+    title,
+    text
+){
+
+    messageBox.className =
+        "message-box";
+
+
+    if(
+        type === "success"
+    ){
+
+        messageBox.classList.add(
+            "success"
+        );
+
+
+        messageIcon.textContent =
+            "✓";
+
+    }
+
+    else if(
+        type === "login"
+    ){
+
+        messageIcon.textContent =
+            "🔐";
+
+    }
+
+    else{
+
+        messageIcon.textContent =
+            "⚠️";
+
+    }
+
+
+    messageTitle.textContent =
+        title;
+
+
+    messageText.textContent =
+        text;
+
+
+    messageOverlay.classList.add(
+        "show"
+    );
+
+}
+
+
+
+thanksButton.addEventListener(
+    "click",
+    () => {
+
+        messageOverlay.classList.remove(
+            "show"
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   VALIDATE FORM
+===================================================== */
+
+function validateForm(){
+
+    const fields = [
+
+        "yourPhone",
+        "senderName",
+        "recipientName",
+        "recipientPhone",
+        "streetAddress",
+        "city",
+        "state",
+        "country",
+        "zipCode"
+
+    ];
+
+
+    for(
+        const id of fields
+    ){
+
+        const field =
+            document.getElementById(
+                id
+            );
+
+
+        if(!field){
+
+            console.error(
+                "Missing form field:",
+                id
+            );
+
+            return false;
+
+        }
+
+
+        if(
+            !field.value.trim()
+        ){
+
+            field.focus();
+
+            return false;
+
+        }
+
+    }
+
+
+    return true;
+
+}
+
+
+
+/* =====================================================
+   GET FORM DATA
+===================================================== */
+
+function getFormData(){
+
+    return {
+
+        yourPhone:
+            document.getElementById(
+                "yourPhone"
+            ).value.trim(),
+
+        senderName:
+            document.getElementById(
+                "senderName"
+            ).value.trim(),
+
+        recipientName:
+            document.getElementById(
+                "recipientName"
+            ).value.trim(),
+
+        recipientPhone:
+            document.getElementById(
+                "recipientPhone"
+            ).value.trim(),
+
+        streetAddress:
+            document.getElementById(
+                "streetAddress"
+            ).value.trim(),
+
+        city:
+            document.getElementById(
+                "city"
+            ).value.trim(),
+
+        state:
+            document.getElementById(
+                "state"
+            ).value.trim(),
+
+        country:
+            "United States",
+
+        zipCode:
+            document.getElementById(
+                "zipCode"
+            ).value.trim(),
+
+        additionalNotes:
+            document.getElementById(
+                "additionalNotes"
+            ).value.trim()
+
+    };
+
+}
+
+
+
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearCheckoutForm(){
+
+    const fields = [
+
+        "yourPhone",
+        "senderName",
+        "recipientName",
+        "recipientPhone",
+        "streetAddress",
+        "city",
+        "state",
+        "zipCode",
+        "additionalNotes"
+
+    ];
+
+
+    fields.forEach(
+        id => {
+
+            const field =
+                document.getElementById(
+                    id
+                );
+
+
+            if(field){
+
+                field.value =
+                    "";
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "country"
+    ).value =
+        "United States";
+
+}
+
+
+
+/* =====================================================
+   CONFIRM ORDER
+===================================================== */
+
+confirmButton.addEventListener(
+    "click",
+    async () => {
+
+        if(orderProcessing)
+            return;
+
+
+        if(!currentUser){
+
+            showPopup(
+                "login",
+                "Please Login First",
+                "Please login to your Fame Store account before making an order."
+            );
+
+            return;
+
+        }
+
+
+        if(!currentProduct){
+
+            showPopup(
+                "error",
+                "No Gift Selected",
+                "Please select a gift first."
+            );
+
+            return;
+
+        }
+
+
+        if(!validateForm()){
+
+            showPopup(
+                "error",
+                "Information Required",
+                "Kindly complete all the USA delivery information before confirming your order."
+            );
+
+            return;
+
+        }
+
+
+        await loadWallet();
+
+
+        const total =
+            Number(
+                currentProduct.price || 0
+            );
+
+
+        if(
+            !Number.isFinite(total) ||
+            total <= 0
+        ){
+
+            showPopup(
+                "error",
+                "Invalid Product Price",
+                "This product cannot be ordered right now. Please try another product."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            currentBalance < total
+        ){
+
+            showPopup(
+                "error",
+                "Insufficient wallet balance",
+                "Kindly deposit and make an order."
+            );
+
+            return;
+
+        }
+
+
+        orderProcessing =
+            true;
+
+
+        confirmButton.disabled =
+            true;
+
+
+        confirmButton.textContent =
+            "Processing...";
+
+
+        try{
+
+            const userRef =
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                );
+
+
+            const orderRef =
+                doc(
+                    collection(
+                        db,
+                        "giftOrders"
+                    )
+                );
+
+
+            const formData =
+                getFormData();
+
+
+            /*
+               SAVE THE ACTUAL IMAGE
+               USED BY THE PRODUCT.
+            */
+
+            const productImage =
+                getProductImage(
+                    currentProduct
+                );
+
+
+            const selectedProduct = {
+
+                name:
+                    String(
+                        currentProduct.name || ""
+                    ),
+
+                image:
+                    String(
+                        productImage || ""
+                    ),
+
+                price:
+                    Number(
+                        currentProduct.price || 0
+                    ),
+
+                category:
+                    String(
+                        currentProduct.category ||
+                        "Gifts"
+                    ),
+
+                destination:
+                    String(
+                        currentProduct.destination ||
+                        "USA"
+                    ),
+
+                id:
+                    currentProduct.id || "",
+
+                source:
+                    currentProduct.source ||
+                    "legacy"
+
+            };
+
+
+            const result =
+                await runTransaction(
+                    db,
+                    async transaction => {
+
+                        const userSnap =
+                            await transaction.get(
+                                userRef
+                            );
+
+
+                        if(
+                            !userSnap.exists()
+                        ){
+
+                            throw new Error(
+                                "USER_NOT_FOUND"
+                            );
+
+                        }
+
+
+                        const userData =
+                            userSnap.data();
+
+
+                        const wallet =
+                            Number(
+                                userData.walletBalance || 0
+                            );
+
+
+                        if(
+                            !Number.isFinite(wallet)
+                        ){
+
+                            throw new Error(
+                                "INVALID_BALANCE"
+                            );
+
+                        }
+
+
+                        if(
+                            wallet < total
+                        ){
+
+                            throw new Error(
+                                "INSUFFICIENT_BALANCE"
+                            );
+
+                        }
+
+
+                        const newBalance =
+                            wallet - total;
+
+
+                        const orderData = {
+
+                            customerUID:
+                                currentUser.uid,
+
+                            customerEmail:
+                                currentUser.email || "",
+
+                            destination:
+                                "USA",
+
+                            country:
+                                "United States",
+
+                            productId:
+                                selectedProduct.id,
+
+                            productSource:
+                                selectedProduct.source,
+
+                            productName:
+                                selectedProduct.name,
+
+                            productImage:
+                                selectedProduct.image,
+
+                            productCategory:
+                                selectedProduct.category,
+
+                            productDestination:
+                                selectedProduct.destination,
+
+                            basePrice:
+                                total,
+
+                            total:
+                                total,
+
+                            yourPhone:
+                                formData.yourPhone,
+
+                            senderName:
+                                formData.senderName,
+
+                            recipientName:
+                                formData.recipientName,
+
+                            recipientPhone:
+                                formData.recipientPhone,
+
+                            streetAddress:
+                                formData.streetAddress,
+
+                            city:
+                                formData.city,
+
+                            state:
+                                formData.state,
+
+                            zipCode:
+                                formData.zipCode,
+
+                            country:
+                                formData.country,
+
+                            additionalNotes:
+                                formData.additionalNotes,
+
+                            paymentMethod:
+                                "Wallet",
+
+                            paymentStatus:
+                                "Paid",
+
+                            status:
+                                "Pending",
+
+                            orderStatus:
+                                "Pending",
+
+                            deliveryCountry:
+                                "United States",
+
+                            createdAt:
+                                serverTimestamp()
+
+                        };
+
+
+                        transaction.set(
+                            orderRef,
+                            orderData
+                        );
+
+
+                        transaction.update(
+                            userRef,
+                            {
+
+                                walletBalance:
+                                    newBalance,
+
+                                lastGiftOrderId:
+                                    orderRef.id,
+
+                                lastGiftOrderCountry:
+                                    "United States",
+
+                                lastGiftOrderAt:
+                                    serverTimestamp()
+
+                            }
+                        );
+
+
+                        return {
+
+                            newBalance:
+                                newBalance,
+
+                            orderId:
+                                orderRef.id
+
+                        };
+
+                    }
+                );
+
+
+            currentBalance =
+                result.newBalance;
+
+
+            walletBalance.textContent =
+                money(
+                    currentBalance
+                );
+
+
+            checkoutBalance.textContent =
+                money(
+                    currentBalance
+                );
+
+
+            confirmButton.textContent =
+                "Order Completed";
+
+
+            clearCheckoutForm();
+
+
+            showPopup(
+                "success",
+                "Your order completed",
+                "It will take less than three business days to deliver your order. Always check your order history. Thanks"
+            );
 
 
         }catch(error){
 
             console.error(
-                "Admin authentication error:",
+                "USA ORDER ERROR:",
                 error
             );
 
 
-            loading.style.display =
-                "none";
+            if(
+                error.message ===
+                "INSUFFICIENT_BALANCE"
+            ){
+
+                await loadWallet();
 
 
-            showMessage(
-                error.message,
-                "error"
-            );
+                showPopup(
+                    "error",
+                    "Insufficient wallet balance",
+                    "Your wallet balance is not enough to make this order."
+                );
+
+            }
+
+            else if(
+                error.message ===
+                "USER_NOT_FOUND"
+            ){
+
+                showPopup(
+                    "error",
+                    "Account Error",
+                    "Your Fame Store account profile could not be found. Please contact support."
+                );
+
+            }
+
+            else if(
+                error.message ===
+                "INVALID_BALANCE"
+            ){
+
+                showPopup(
+                    "error",
+                    "Wallet Error",
+                    "Your wallet balance is invalid. Please contact Fame Store support."
+                );
+
+            }
+
+            else if(
+                error.code ===
+                "permission-denied"
+            ){
+
+                showPopup(
+                    "error",
+                    "Order Failed",
+                    "Your account does not currently have permission to complete this order. Please contact support."
+                );
+
+            }
+
+            else{
+
+                showPopup(
+                    "error",
+                    "Order Failed",
+                    "Unable to complete your order. Please try again."
+                );
+
+            }
 
 
-            setTimeout(
-                () => {
+            confirmButton.disabled =
+                false;
 
-                    window.location.href =
-                        "login.html";
 
-                },
-                1500
-            );
+            confirmButton.textContent =
+                "Confirm Order";
+
+        }
+
+
+        finally{
+
+            orderProcessing =
+                false;
 
         }
 
@@ -2104,32 +3017,22 @@ onAuthStateChanged(
 
 
 
-/* =====================================
-   REFRESH
-===================================== */
+/* =====================================================
+   CLOSE POPUP
+===================================================== */
 
-refreshBtn.addEventListener(
+messageOverlay.addEventListener(
     "click",
-    async () => {
+    event => {
 
-        refreshBtn.disabled =
-            true;
+        if(
+            event.target ===
+            messageOverlay
+        ){
 
-        refreshBtn.textContent =
-            "Refreshing...";
-
-
-        try{
-
-            await loadProducts();
-
-        }finally{
-
-            refreshBtn.disabled =
-                false;
-
-            refreshBtn.textContent =
-                "↻ Refresh";
+            messageOverlay.classList.remove(
+                "show"
+            );
 
         }
 
